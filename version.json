@@ -1,15 +1,18 @@
 {
- "version": "1.1.0",
+ "version": "1.2.0",
  "date": "2026-11-01",
  "notes": [
-  "Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.",
-  "Fachadas y cortes con acabados realistas, árboles de la región y figura humana.",
-  "Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).",
-  "Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.",
-  "Carta solar con estilos, letra a elegir y fondo de color o transparente.",
-  "Campanita de notificaciones y notas de actualización en el menú.",
-  "Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.",
-  "Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."
+  "Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).",
+  "Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.",
+  "Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.",
+  "Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.",
+  "Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.",
+  "Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.",
+  "Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."
+ ],
+ "fixes": [
+  "Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.",
+  "La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."
  ],
  "aviso": null
 }
