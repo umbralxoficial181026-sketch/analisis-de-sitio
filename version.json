@@ -1,0 +1,12 @@
+{
+ "version": "1.0.0",
+ "date": "2026-10-31",
+ "notes": [
+  "Primera versión pública.",
+  "Ubica tu terreno en México con tu ubicación o buscando la localidad, y trae 10 años de clima de ese punto.",
+  "Clima de ahora en el terreno: temperatura, viento, humedad y radiación UV.",
+  "Modo sencillo con lo básico, y modo completo con todas las herramientas.",
+  "Programa con mobiliario, normativa, fachadas y cortes, agua y energía, costo y láminas a escala."
+ ],
+ "aviso": null
+}
