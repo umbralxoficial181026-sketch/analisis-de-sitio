@@ -1,12 +1,15 @@
 {
- "version": "1.0.0",
- "date": "2026-10-31",
+ "version": "1.1.0",
+ "date": "2026-11-01",
  "notes": [
-  "Primera versión pública.",
-  "Ubica tu terreno en México con tu ubicación o buscando la localidad, y trae 10 años de clima de ese punto.",
-  "Clima de ahora en el terreno: temperatura, viento, humedad y radiación UV.",
-  "Modo sencillo con lo básico, y modo completo con todas las herramientas.",
-  "Programa con mobiliario, normativa, fachadas y cortes, agua y energía, costo y láminas a escala."
+  "Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.",
+  "Fachadas y cortes con acabados realistas, árboles de la región y figura humana.",
+  "Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).",
+  "Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.",
+  "Carta solar con estilos, letra a elegir y fondo de color o transparente.",
+  "Campanita de notificaciones y notas de actualización en el menú.",
+  "Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.",
+  "Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."
  ],
  "aviso": null
 }
