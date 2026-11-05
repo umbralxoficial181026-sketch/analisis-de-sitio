@@ -1,15 +1,20 @@
 {
- "version": "1.2.2",
+ "version": "1.3.0",
  "date": "2026-11-04",
  "notes": [
-  "Capas en el 3D: botones para prender o apagar el recorrido del sol, las sombras y el viento cada uno por separado o todo a la vez.",
-  "Reloj del sol dentro del 3D (también en pantalla completa): cambia el mes y la hora, y «Recorrer el día» mueve el sol para ver cómo avanzan las sombras.",
-  "Recorrido del sol rediseñado: solsticios de verano e invierno y equinoccio con colores, el día elegido resaltado, líneas de cada hora con su número, alturas de 30° y 60° y el sol con brillo y su rayo hacia el modelo.",
-  "Viento rediseñado: estelas suaves que siguen el aire y rodean los volúmenes, más cálidas donde se acelera, y una flecha en el suelo con la dirección y la velocidad.",
-  "El terreno ya no se ve como cuadrícula repetida y la calle sigue hasta el horizonte con su línea central."
+  "Proyectos grandes: la página aguanta programas de 1,000 espacios o más (hoteles, hospitales, conjuntos) y cada apartado abre al instante.",
+  "Niveles sin límite: sótanos y pisos con nombre, desplante y altura propios. En Zonificación eliges el nivel que dibujas y ves el de abajo punteado para alinear muros; «Niveles…» los ordena y apila todo automáticamente.",
+  "Cantidad en el programa: un espacio puede repetirse (por ejemplo, 120 habitaciones tipo) y el área total, los coeficientes, la tabla y las exportaciones lo multiplican solos.",
+  "Relaciones por zonas: con más de 150 espacios la matriz y el diagrama se resumen por zona; toca una zona para ver y editar su detalle. El Excel trae además la lista completa de relaciones.",
+  "Normativa por municipio: elige el reglamento de tu estado y municipio y el uso de suelo de tu predio; los mínimos, el COS, el CUS y el CAS se llenan solos y cada valor dice de qué artículo sale. Primer paquete: La Paz, Baja California Sur.",
+  "Guardado grande: las fotos e imágenes se guardan aparte en tu navegador, así los proyectos con muchas fotos ya no se llenan; el archivo del proyecto (.json) las lleva dentro para pasarlo a otra computadora.",
+  "Listas largas por partes (con «Mostrar más») y tablas para el documento resumidas por zona cuando el programa es grande; la lista completa siempre sale en Excel y Word."
  ],
  "fixes": [
-  "Las líneas del sol y del viento se veían delgadas y básicas; ahora tienen grosor real y bordes suaves en cualquier pantalla."
+  "Con cientos de espacios la página tardaba varios segundos en abrir Relaciones, Normativa y Recursos; ahora tarda milésimas.",
+  "En proyectos muy grandes algunas imágenes para Word y PowerPoint salían en blanco por ser demasiado altas; ahora se ajustan solas.",
+  "El total de m² cubiertos en Relaciones no contaba los espacios repetidos.",
+  "La volumetría de Concepto dibujaba también los muros escondidos entre espacios vecinos; ahora dibuja solo lo que se ve y es mucho más ligera."
  ],
  "aviso": null
 }

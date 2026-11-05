@@ -1,0 +1,4 @@
+{"v":1,"nota":"Cada paquete transcribe valores de documentos oficiales con su artículo. Confírmalos con la versión vigente de tu municipio.",
+ "paquetes":[
+  {"id":"bcs-la-paz","nombre":"Baja California Sur · La Paz","estado":"Baja California Sur","municipio":"La Paz","archivo":"bcs-la-paz.json","revisado":"2026-11"}
+ ]}

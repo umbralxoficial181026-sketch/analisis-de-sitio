@@ -435,8 +435,20 @@ body:has(.board.m3full){overflow:hidden}
   .board.m3full .m3tools.m3float{top:auto;bottom:calc(58px + env(safe-area-inset-bottom,0px));left:8px;right:8px;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;max-height:none;padding:4px;scrollbar-width:none}
   .m3float .m3sep{width:1px;height:24px;margin:0 3px;flex:none}.m3float .m3t{flex:none}.m3float .m3zone{display:none}
   .m3full .m3st{top:8px;bottom:auto;left:8px;max-width:calc(100% - 126px)}}
+
+/* niveles */
+.lvbar{display:flex;align-items:end;gap:6px;flex-wrap:wrap}
+.lvbar select{min-width:170px}
+.lvt input{width:100%;min-width:60px;border:1px solid var(--line);border-radius:5px;padding:4px 6px;background:var(--bg);color:var(--ink);font:inherit}
+.lvt td:nth-child(2) input{min-width:150px}
+
+/* normativa por paquetes */
+.nsrc{margin-top:10px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.nsrc>b{display:block;font-size:12px;margin-bottom:4px}
+.nsrc p{margin:3px 0;font-size:12px;line-height:1.35}.nsrc p span{display:inline-block;min-width:118px;font-weight:600;color:var(--ink)}
+.nrow{padding:6px 0;border-bottom:1px solid var(--line2)}.nrow:last-child{border-bottom:0}.nrow b{font-size:12.5px}.nrow p{margin:2px 0;font-size:12.5px}.nrow small{color:var(--muted);font-size:11px}
 </style>
-<script id="app-meta" type="application/json">{"version":"1.2.2","date":"2026-11-04","channel":"web","support":{"email":"","url":""},"notes":["Capas en el 3D: botones para prender o apagar el recorrido del sol, las sombras y el viento cada uno por separado o todo a la vez.","Reloj del sol dentro del 3D (también en pantalla completa): cambia el mes y la hora, y «Recorrer el día» mueve el sol para ver cómo avanzan las sombras.","Recorrido del sol rediseñado: solsticios de verano e invierno y equinoccio con colores, el día elegido resaltado, líneas de cada hora con su número, alturas de 30° y 60° y el sol con brillo y su rayo hacia el modelo.","Viento rediseñado: estelas suaves que siguen el aire y rodean los volúmenes, más cálidas donde se acelera, y una flecha en el suelo con la dirección y la velocidad.","El terreno ya no se ve como cuadrícula repetida y la calle sigue hasta el horizonte con su línea central."],"fixes":["Las líneas del sol y del viento se veían delgadas y básicas; ahora tienen grosor real y bordes suaves en cualquier pantalla."],"history":[{"version":"1.2.1","date":"2026-11-01","notes":["Modelado con lógica de objetos: cada espacio es un objeto completo; con doble clic entras a editar su forma y ahí Mover estira esquinas y muros, y Borrar quita una esquina.","Selección con recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. El clic derecho abre un menú (en el celular, mantén presionado).","Herramientas nuevas: Rotar (Q) con transportador que se pega cada 15°, Círculo y polígono (C; escribe 6s para un hexágono), Pintar (B) para muros y azoteas, y Orbitar.","El imán ahora te ayuda a alinear: líneas punteadas hacia puntos que ya tocaste, paralela y perpendicular a una arista (en magenta) e intersección de guías.","Un rectángulo dibujado sobre un muro crea una ventana, o una puerta si llega al piso. El arco se pega tangente a la línea anterior.","Borrar la línea que separa dos espacios los une en uno solo. Doble clic con Empujar/Tirar repite la última medida.","Las medidas negativas van hacia el otro lado (-2) y después de copiar puedes escribir /3 para repartir las copias."],"fixes":["Si la página se abrió mientras se publicaba, las texturas se vuelven a buscar solas y se encienden sin recargar; también hay un botón para buscarlas de nuevo.","El imán ya no se pega a esquinas o aristas que quedan escondidas detrás de un muro o un árbol.","Empujar un muro visto de frente ya no salta, y escribir una medida negativa ya no sube la altura.","El arco con la flecha tecleada se curva hacia afuera, y un eje fijado con las flechas se suelta al terminar cada tramo.","Mover toma el objeto aunque hagas clic justo en su esquina, y el giro con inercia funciona también en equipos lentos."]},{"version":"1.2.0","date":"2026-11-01","notes":["Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).","Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.","Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.","Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.","Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.","Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.","Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."],"fixes":["Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.","La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."]},{"version":"1.1.0","date":"2026-11-01","notes":["Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.","Fachadas y cortes con acabados realistas, árboles de la región y figura humana.","Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).","Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.","Carta solar con estilos, letra a elegir y fondo de color o transparente.","Campanita de notificaciones y notas de actualización en el menú.","Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.","Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."],"fixes":["Las imágenes exportadas (PNG, PDF y SVG) salían con otra letra; ahora usan la misma tipografía de la página."]}]}</script>
+<script id="app-meta" type="application/json">{"version":"1.3.0","date":"2026-11-04","channel":"web","support":{"email":"","url":""},"notes":["Proyectos grandes: la página aguanta programas de 1,000 espacios o más (hoteles, hospitales, conjuntos) y cada apartado abre al instante.","Niveles sin límite: sótanos y pisos con nombre, desplante y altura propios. En Zonificación eliges el nivel que dibujas y ves el de abajo punteado para alinear muros; «Niveles…» los ordena y apila todo automáticamente.","Cantidad en el programa: un espacio puede repetirse (por ejemplo, 120 habitaciones tipo) y el área total, los coeficientes, la tabla y las exportaciones lo multiplican solos.","Relaciones por zonas: con más de 150 espacios la matriz y el diagrama se resumen por zona; toca una zona para ver y editar su detalle. El Excel trae además la lista completa de relaciones.","Normativa por municipio: elige el reglamento de tu estado y municipio y el uso de suelo de tu predio; los mínimos, el COS, el CUS y el CAS se llenan solos y cada valor dice de qué artículo sale. Primer paquete: La Paz, Baja California Sur.","Guardado grande: las fotos e imágenes se guardan aparte en tu navegador, así los proyectos con muchas fotos ya no se llenan; el archivo del proyecto (.json) las lleva dentro para pasarlo a otra computadora.","Listas largas por partes (con «Mostrar más») y tablas para el documento resumidas por zona cuando el programa es grande; la lista completa siempre sale en Excel y Word."],"fixes":["Con cientos de espacios la página tardaba varios segundos en abrir Relaciones, Normativa y Recursos; ahora tarda milésimas.","En proyectos muy grandes algunas imágenes para Word y PowerPoint salían en blanco por ser demasiado altas; ahora se ajustan solas.","El total de m² cubiertos en Relaciones no contaba los espacios repetidos.","La volumetría de Concepto dibujaba también los muros escondidos entre espacios vecinos; ahora dibuja solo lo que se ve y es mucho más ligera."],"history":[{"version":"1.2.2","date":"2026-11-04","notes":["Capas en el 3D: botones para prender o apagar el recorrido del sol, las sombras y el viento cada uno por separado o todo a la vez.","Reloj del sol dentro del 3D (también en pantalla completa): cambia el mes y la hora, y «Recorrer el día» mueve el sol para ver cómo avanzan las sombras.","Recorrido del sol rediseñado: solsticios de verano e invierno y equinoccio con colores, el día elegido resaltado, líneas de cada hora con su número, alturas de 30° y 60° y el sol con brillo y su rayo hacia el modelo.","Viento rediseñado: estelas suaves que siguen el aire y rodean los volúmenes, más cálidas donde se acelera, y una flecha en el suelo con la dirección y la velocidad.","El terreno ya no se ve como cuadrícula repetida y la calle sigue hasta el horizonte con su línea central.","Corregido: Las líneas del sol y del viento se veían delgadas y básicas; ahora tienen grosor real y bordes suaves en cualquier pantalla."]},{"version":"1.2.1","date":"2026-11-01","notes":["Modelado con lógica de objetos: cada espacio es un objeto completo; con doble clic entras a editar su forma y ahí Mover estira esquinas y muros, y Borrar quita una esquina.","Selección con recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. El clic derecho abre un menú (en el celular, mantén presionado).","Herramientas nuevas: Rotar (Q) con transportador que se pega cada 15°, Círculo y polígono (C; escribe 6s para un hexágono), Pintar (B) para muros y azoteas, y Orbitar.","El imán ahora te ayuda a alinear: líneas punteadas hacia puntos que ya tocaste, paralela y perpendicular a una arista (en magenta) e intersección de guías.","Un rectángulo dibujado sobre un muro crea una ventana, o una puerta si llega al piso. El arco se pega tangente a la línea anterior.","Borrar la línea que separa dos espacios los une en uno solo. Doble clic con Empujar/Tirar repite la última medida.","Las medidas negativas van hacia el otro lado (-2) y después de copiar puedes escribir /3 para repartir las copias."],"fixes":["Si la página se abrió mientras se publicaba, las texturas se vuelven a buscar solas y se encienden sin recargar; también hay un botón para buscarlas de nuevo.","El imán ya no se pega a esquinas o aristas que quedan escondidas detrás de un muro o un árbol.","Empujar un muro visto de frente ya no salta, y escribir una medida negativa ya no sube la altura.","El arco con la flecha tecleada se curva hacia afuera, y un eje fijado con las flechas se suelta al terminar cada tramo.","Mover toma el objeto aunque hagas clic justo en su esquina, y el giro con inercia funciona también en equipos lentos."]},{"version":"1.2.0","date":"2026-11-01","notes":["Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).","Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.","Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.","Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.","Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.","Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.","Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."],"fixes":["Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.","La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."]},{"version":"1.1.0","date":"2026-11-01","notes":["Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.","Fachadas y cortes con acabados realistas, árboles de la región y figura humana.","Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).","Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.","Carta solar con estilos, letra a elegir y fondo de color o transparente.","Campanita de notificaciones y notas de actualización en el menú.","Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.","Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."],"fixes":["Las imágenes exportadas (PNG, PDF y SVG) salían con otra letra; ahora usan la misma tipografía de la página."]}]}</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="fSoft" x="-10%" y="-10%" width="125%" height="130%"><feDropShadow dx="0.8" dy="1.6" stdDeviation="1.4" flood-color="#0b1520" flood-opacity="0.22"/></filter><filter id="fSketch" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs></svg>
 <header class="top">
   <div class="top-in">
@@ -514,6 +526,24 @@ function defaultClimate(){return{series:'prom',years:JSON.parse(JSON.stringify(S
     {d:202.5,lab:'SSO',v1:8,v2:15},{d:202.5,lab:'S / SO',v1:10,v2:20},{d:202.5,lab:'S / SO',v1:10,v2:20},{d:202.5,lab:'S / SO',v1:10,v2:22},
     {d:157.5,lab:'SSE',v1:10,v2:22},{d:315,lab:'NO',v1:10,v2:18},{d:337.5,lab:'NNO',v1:10,v2:16},{d:337.5,lab:'NNO',v1:10,v2:15}],
   windSource:'Windfinder, estadística histórica de La Paz',epw:null}}
+/* ================= Niveles =================
+   Cada espacio está en un nivel (número entero): sótanos negativos, 0 planta baja, 1, 2, 3… hacia arriba.
+   Cada nivel tiene nombre, desplante (z) y altura de entrepiso; se pueden agregar los que haga falta. */
+const levelName=n=>n<0?'Sótano '+(-n):n===0?'Planta baja':'Nivel '+n;
+function defaultLevels(){return[{n:0,name:'Planta baja',z:0,h:3},{n:1,name:'Nivel 1',z:2.9,h:3}]}
+function levelOf(n){return(S.levels||[]).find(l=>l.n===n)||{n,name:levelName(n),z:n>0?n*3:n*3,h:3}}
+const lvName=n=>levelOf(n).name;
+function sortLevels(){S.levels.sort((a,b)=>a.n-b.n)}
+function ensureLevel(n){if(!S.levels.some(l=>l.n===n)){S.levels.push({n,name:levelName(n),z:n*3,h:3});sortLevels()}return levelOf(n)}
+/* Lee un nivel escrito en una tabla: «Planta baja», «Nivel 3», «Sótano 1», «Superior», «PB», «2»… */
+function parseLevel(t){t=String(t??'').trim();if(!t)return 0;const nl=norm(t);const L=(S.levels||[]).find(l=>norm(l.name)===nl);if(L)return L.n;const m=nl.match(/-?\d+/);
+  if(/sot/.test(nl))return-(m?Math.abs(+m[0]):1);if(/^pb$|planta baja|^baja/.test(nl))return 0;if(m)return clamp(+m[0],-10,200);if(/sup|alta|azot|entre/.test(nl))return 1;return 0}
+/* Nivel que corresponde a una altura; si no existe (por ejemplo, un volumen encima del último piso), se crea. */
+function levelForZ(z,create=true){if(!S.levels||!S.levels.length)S.levels=defaultLevels();sortLevels();const L=S.levels;
+  if(z<L[0].z-0.3){if(!create)return L[0].n;let lo=L[0];while(z<lo.z-0.3){const n=lo.n-1;lo={n,name:levelName(n),z:+(lo.z-3).toFixed(2),h:3};L.unshift(lo)}return lo.n}
+  let best=L[0];for(const l of L)if(l.z<=z+0.3)best=l;
+  if(create&&best===L[L.length-1]){let top=best;while(z>=top.z+top.h-0.3){const n=top.n+1;top={n,name:levelName(n),z:+(top.z+top.h).toFixed(2),h:3};L.push(top)}return top.n}
+  return best.n}
 function relKey(a,b){return a<b?a+'|'+b:b+'|'+a}
 function baseProject(){return{
   v:2,zones:JSON.parse(JSON.stringify(DEF_ZONES)),zoneOrder:Object.keys(DEF_ZONES),style:defaultStyle(),texts:{},
@@ -525,7 +555,7 @@ function baseProject(){return{
   concept:{title:'',idea:'',analogy:'',principles:['','',''],keywords:'',palette:['#F2C77B','#A9D79A','#9DD0E4','#EBA6B8'],steps:['Forma base','Desplegado','Zonas','Volumen']},
   board:null,openings:[],context:{buildings:[],trees:[]},norm:defaultNorm(),res:defaultRes(),circ:0.30,walls:0.08,
   fac:{mode:'elev',side:'frente',cutAxis:'x',cut:null,real:true,color:true,ctx:true,person:true,sun:true,levels:true},
-  sheet:{paper:'carta',orient:'l',scale:0,draw:'zoning',n:1,of:1,clave:'ARQ-01',materia:'',asesor:'',fecha:'',notas:''},variants:[],refs:[]}}
+  sheet:{paper:'carta',orient:'l',scale:0,draw:'zoning',n:1,of:1,clave:'ARQ-01',materia:'',asesor:'',fecha:'',notas:''},variants:[],refs:[],levels:defaultLevels()}}
 function defaultNorm(){return{ilum:17.5,vent:5,oper:50,door:0.90,hall:1.20,parking:1,cajon:12.5,
   t:{recp:[7.00,2.40,2.30],rec:[6.00,2.20,2.30],est:[7.30,2.60,2.30],com:[6.30,2.40,2.30],estcom:[13.60,2.60,2.30],coc:[3.00,1.50,2.30],ban:[0,0,2.10],lav:[1.68,1.40,2.10],pas:[0,0.90,2.30],otro:[0,0,2.30]}}}
 function defaultRes(){return{color:'medio',people:4,dot:150,coef:0.8,kwh:500,panelW:550,pr:0.78,cloud:0.75,wall:'block',roof:'losa',glass:'sencillo',quality:'media',cost:{economica:9500,media:14000,residencial:20000,lujo:30000},extCost:1200,
@@ -593,6 +623,7 @@ function defaultBoard(p){const W=850,H=1100;let n=0;const id=()=>'b'+(++n);const
 /* Migra proyectos guardados con la versión 1 (los .json anteriores siguen abriendo). */
 function migrate(o){
   if(!o||!o.project||!Array.isArray(o.spaces))throw new Error('formato');
+  if(o.assets){importAssets(o.assets);delete o.assets}
   const b=baseProject();
   if(o.v===1||!o.v){o.zones=JSON.parse(JSON.stringify(DEF_ZONES));o.zoneOrder=Object.keys(DEF_ZONES);o.texts={};o.style=defaultStyle();
     if(o.sizeBy)o.style.bubble.sizeBy=o.sizeBy;if(o.showZones===false)o.style.bubble.blobs=false;
@@ -612,7 +643,7 @@ const isHex=c=>typeof c==='string'&&/^#[0-9a-fA-F]{6}$/.test(c);
 const sCol=(c,d)=>isHex(c)?c:(d||'#CCCCCC');
 const sNum=(v,d=null,lo=-1e7,hi=1e7)=>{if(v===null||v===undefined||v==='')return d;const n=+v;return Number.isFinite(n)?clamp(n,lo,hi):d};
 const sStr=(v,max=400)=>v==null?'':String(v).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'').slice(0,max);
-const sImg=v=>typeof v==='string'&&/^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(v)&&v.length<6e6?v:null;
+const sImg=v=>typeof v==='string'&&(ASSET_RE.test(v)||/^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(v)&&v.length<6e6)?v:null;
 const sPts=a=>Array.isArray(a)?a.filter(q=>Array.isArray(q)&&q.length>=2).slice(0,5000).map(q=>[sNum(q[0],0),sNum(q[1],0)]):null;
 const cleanObj=(o,fn)=>{const r={};if(o&&typeof o==='object')for(const k of Object.keys(o)){if(BAD_KEY.test(k))continue;const v=fn(o[k],k);if(v!==undefined)r[k]=v}return r};
 function sanitizeProject(o){
@@ -634,23 +665,27 @@ function sanitizeProject(o){
     o.climate.epw={name:sStr(e.name,80),lat:sNum(e.lat,0),lon:sNum(e.lon,0),tz:sNum(e.tz,0),elev:sNum(e.elev,0),monthly:{tmax:arr12(e.monthly&&e.monthly.tmax,-60,70),tmin:arr12(e.monthly&&e.monthly.tmin,-60,70),tmed:arr12(e.monthly&&e.monthly.tmed,-60,70),hr:arr12(e.monthly&&e.monthly.hr,0,100),pp:arr12(e.monthly&&e.monthly.pp,0,5000)},
       hourT:Array.from({length:12},(_,m)=>Array.from({length:24},(_,h)=>sNum(((e.hourT||[])[m]||[])[h],0,-60,70))),hourRH:Array.from({length:12},(_,m)=>Array.from({length:24},(_,h)=>sNum(((e.hourRH||[])[m]||[])[h],0,0,100))),
       wind:Array.from({length:13},(_,m)=>Array.from({length:16},(_,dd)=>Array.from({length:5},(_,b)=>sNum((((e.wind||[])[m]||[])[dd]||[])[b],0,0,1e6))))}}
-  const ids=new Set();o.spaces=(Array.isArray(o.spaces)?o.spaces:[]).slice(0,400).map(s=>{let id=sStr(s.id,20).replace(/[^A-Za-z0-9_-]/g,'')||'E'+Math.random().toString(36).slice(2,6);while(ids.has(id))id+='x';ids.add(id);
-    const g=sPts(s.geo);return{id,name:sStr(s.name,80)||'Espacio',zone:o.zones[s.zone]?s.zone:Object.keys(o.zones)[0],area:sNum(s.area,0,0,1e6),level:s.level===1?1:0,geo:g&&g.length>=3?g:null,h:sNum(s.h,2.8,0,300),z:sNum(s.z,0,0,300),pos:[sNum((s.pos||[])[0],80,-1e4,1e4),sNum((s.pos||[])[1],110,-1e4,1e4)],
+  const ids=new Set();o.spaces=(Array.isArray(o.spaces)?o.spaces:[]).slice(0,5000).map(s=>{let id=sStr(s.id,20).replace(/[^A-Za-z0-9_-]/g,'')||'E'+Math.random().toString(36).slice(2,6);while(ids.has(id))id+='x';ids.add(id);
+    const g=sPts(s.geo);return{id,name:sStr(s.name,80)||'Espacio',zone:o.zones[s.zone]?s.zone:Object.keys(o.zones)[0],area:sNum(s.area,0,0,1e6),level:Math.round(sNum(s.level,0,-10,200)),geo:g&&g.length>=3?g:null,h:sNum(s.h,2.8,0,300),z:sNum(s.z,0,-100,1000),...(sNum(s.qty,1,1,100000)>1?{qty:Math.round(sNum(s.qty,1,1,100000))}:{}),pos:[sNum((s.pos||[])[0],80,-1e4,1e4),sNum((s.pos||[])[1],110,-1e4,1e4)],
       ...(isHex(s.color)?{color:s.color}:{}),...(['circle','rounded','square','hex','ellipse','diamond','octagon','pill','cloud'].includes(s.shape)?{shape:s.shape}:{}),...(s.r?{r:sNum(s.r,0,0,200)}:{}),...(['diag','cross','dots','lines','grass'].includes(s.hatch)?{hatch:s.hatch}:{}),
       ...(typeof s.perm==='boolean'?{perm:s.perm}:{}),...(s.free?{free:true}:{}),...(s.m3?{m3:true}:{}),...(typeof s.grp==='string'&&/^[A-Za-z0-9_-]{1,20}$/.test(s.grp)?{grp:s.grp}:{}),...(s.hideLabel?{hideLabel:true}:{}),...(Array.isArray(s.lpos)?{lpos:[sNum(s.lpos[0],0),sNum(s.lpos[1],0)]}:{}),
       ...(['recp','rec','est','com','estcom','coc','ban','lav','pas','estac','otro','ext'].includes(s.type)?{type:s.type}:{}),...(['aplanado','block','ladrillo','concreto','madera','azotea','teja','pasto','tierra','adoquin','banqueta','asfalto'].includes(s.fin)?{fin:s.fin}:{}),...(['aplanado','block','ladrillo','concreto','madera','azotea','teja','pasto','tierra','adoquin','banqueta','asfalto'].includes(s.rfin)?{rfin:s.rfin}:{}),
       ...(Array.isArray(s.furn)?{furn:s.furn.slice(0,60).map(f=>({n:sStr(f.n,60)||'Mueble',l:sNum(f.l,1,0,50),a:sNum(f.a,0.5,0,50),q:sNum(f.q,1,0,200)|0,f:sNum(f.f,0.6,0,10)}))}:{})}});
   Object.keys(o.rel).forEach(k=>{const[a,b]=k.split('|');if(!ids.has(a)||!ids.has(b))delete o.rel[k]});
   const So=o.solar||{};o.solar=cleanObj(d.solar,(v,k)=>typeof v==='number'?sNum(So[k],v,-1e4,1e4):typeof v==='boolean'?(typeof So[k]==='boolean'?So[k]:v):(['all','1','2'].includes(So[k])?So[k]:v));
-  const Zo=o.zoning||{};o.zoning={level:['all','0','1'].includes(Zo.level)?Zo.level:'0',showRel:!!Zo.showRel,full:!!Zo.full,snap:Zo.snap!==false,sel:null,refShow:Zo.refShow!==false,refOp:sNum(Zo.refOp,0.7,0,1),
-    notes:(Array.isArray(Zo.notes)?Zo.notes:[]).slice(0,500).map(n=>({id:sStr(n.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('n'),type:['text','arrow','dim','line'].includes(n.type)?n.type:'text',x1:sNum(n.x1,0),y1:sNum(n.y1,0),...(n.x2!=null?{x2:sNum(n.x2,0),y2:sNum(n.y2,0)}:{}),...(n.type==='line'&&+n.z>0?{z:sNum(n.z,0,0,300)}:{}),text:sStr(n.text,200),color:sCol(n.color,'#16212B'),size:sNum(n.size,1,0.2,6),w:sNum(n.w,1.4,0.1,10),bold:!!n.bold,dash:!!n.dash})),
+  // niveles: lista ordenada con un nivel para cada espacio (los proyectos anteriores tenían planta baja y nivel superior)
+  const LV=new Map();(Array.isArray(o.levels)?o.levels:[]).slice(0,220).forEach(l=>{if(!l||typeof l!=='object')return;const n=Math.round(sNum(l.n,NaN,-10,200));if(!Number.isFinite(n)||LV.has(n))return;LV.set(n,{n,name:sStr(l.name,40)||levelName(n),z:sNum(l.z,n*3,-100,1000),h:sNum(l.h,3,0.5,50)})});
+  if(!LV.size){LV.set(0,{n:0,name:'Planta baja',z:0,h:3});const u=o.spaces.filter(s=>s.level===1);LV.set(1,{n:1,name:'Nivel 1',z:u.length?Math.min(...u.map(s=>s.z||2.9)):2.9,h:3})}
+  o.spaces.forEach(s=>{if(!LV.has(s.level)){const n=s.level;LV.set(n,{n,name:levelName(n),z:n*3,h:3})}});o.levels=[...LV.values()].sort((a,b)=>a.n-b.n);
+  const Zo=o.zoning||{};o.zoning={level:Zo.level==='all'||o.levels.some(l=>String(l.n)===Zo.level)?Zo.level:'0',showRel:!!Zo.showRel,full:!!Zo.full,snap:Zo.snap!==false,sel:null,refShow:Zo.refShow!==false,refOp:sNum(Zo.refOp,0.7,0,1),
+    notes:(Array.isArray(Zo.notes)?Zo.notes:[]).slice(0,5000).map(n=>({id:sStr(n.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('n'),type:['text','arrow','dim','line'].includes(n.type)?n.type:'text',x1:sNum(n.x1,0),y1:sNum(n.y1,0),...(n.x2!=null?{x2:sNum(n.x2,0),y2:sNum(n.y2,0)}:{}),...(n.type==='line'&&+n.z>0?{z:sNum(n.z,0,0,300)}:{}),text:sStr(n.text,200),color:sCol(n.color,'#16212B'),size:sNum(n.size,1,0.2,6),w:sNum(n.w,1.4,0.1,10),bold:!!n.bold,dash:!!n.dash})),
     ref:(Array.isArray(Zo.ref)?Zo.ref:[]).slice(0,20000).map(r=>({pts:sPts(r.pts)||[],closed:!!r.closed,layer:sStr(r.layer,60)})).filter(r=>r.pts.length>1),
     bg:Zo.bg&&sImg(Zo.bg.src)?{src:Zo.bg.src,x:sNum(Zo.bg.x,0),y:sNum(Zo.bg.y,0),w:sNum(Zo.bg.w,10,0.1,1e4),aspect:sNum(Zo.bg.aspect,1,0.01,100),op:sNum(Zo.bg.op,0.5,0,1)}:null};
   const Mo=o.mass||{};o.mass={view:sNum(Mo.view,0,0,3)|0,month:sNum(Mo.month,5,0,11)|0,day:sNum(Mo.day,21,1,31),hour:sNum(Mo.hour,16,0,24),shadows:Mo.shadows!==false};
   const Co=o.concept||{};o.concept={title:sStr(Co.title,120),idea:sStr(Co.idea,1200),analogy:sStr(Co.analogy,800),keywords:sStr(Co.keywords,300),principles:(Array.isArray(Co.principles)?Co.principles:[]).slice(0,8).map(x=>sStr(x,200)),palette:(Array.isArray(Co.palette)?Co.palette:[]).slice(0,10).map(c=>sCol(c)),steps:Array.from({length:4},(_,i)=>sStr((Co.steps||[])[i],80))};
   if(!o.concept.palette.length)o.concept.palette=d.concept.palette.slice();
   const B=o.board;if(B&&typeof B==='object'&&Array.isArray(B.els)){const T=['text','rect','ellipse','line','arrow','pen','image','drawing','palette','legend'];
-    o.board={w:sNum(B.w,850,100,5000),h:sNum(B.h,1100,100,5000),size:sStr(B.size,10),next:sNum(B.next,100,0,1e7)|0,els:B.els.slice(0,800).filter(e=>e&&T.includes(e.type)).map(e=>{const r={id:sStr(e.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('b'),type:e.type,x:sNum(e.x,0),y:sNum(e.y,0),w:sNum(e.w,10),h:sNum(e.h,10),
+    o.board={w:sNum(B.w,850,100,5000),h:sNum(B.h,1100,100,5000),size:sStr(B.size,10),next:sNum(B.next,100,0,1e7)|0,els:B.els.slice(0,3000).filter(e=>e&&T.includes(e.type)).map(e=>{const r={id:sStr(e.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('b'),type:e.type,x:sNum(e.x,0),y:sNum(e.y,0),w:sNum(e.w,10),h:sNum(e.h,10),
       fill:e.fill==='none'?'none':sCol(e.fill,'none'),stroke:e.stroke==='none'?'none':sCol(e.stroke,'#16212B'),sw:sNum(e.sw,1,0,60),rx:sNum(e.rx,0,0,1000),op:sNum(e.op,1,0,1),rot:sNum(e.rot,0,-360,360),dash:!!e.dash,locked:!!e.locked,
       text:sStr(e.text,4000),fs:sNum(e.fs,14,4,400),fw:sNum(e.fw,400,100,900),italic:!!e.italic,color:sCol(e.color,'#16212B'),align:['start','middle','end'].includes(e.align)?e.align:'start',ls:sNum(e.ls,0,0,40),ph:sStr(e.ph,80)};
       if(e.fill==='none'||!e.fill)r.fill='none';if(e.stroke==='none')r.stroke='none';
@@ -659,18 +694,20 @@ function sanitizeProject(o){
       if(e.type==='pen')r.pts=(sPts(e.pts)||[]).map(([u,v])=>[clamp(u,0,1),clamp(v,0,1)]);
       if(e.type==='image'){r.src=sImg(e.src);r.fit=e.fit==='cover'?'cover':'meet';if(!r.src)return null}
       if(e.type==='drawing')r.ref=sStr(e.ref,20).replace(/[^a-z0-9]/gi,'');return r}).filter(Boolean)}}else o.board=null;
-  const op=Array.isArray(o.openings)?o.openings:[];o.openings=op.slice(0,1500).map(x=>({id:sStr(x.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('o'),sp:sStr(x.sp,20),e:sNum(x.e,0,0,5000)|0,t:sNum(x.t,0.5,0,1),type:x.type==='door'?'door':'window',w:sNum(x.w,1,0.2,20),h:sNum(x.h,1.2,0.1,20),sill:sNum(x.sill,0.9,0,20),hinge:x.hinge?1:0,side:x.side?1:0})).filter(x=>{const s=o.spaces.find(q=>q.id===x.sp);return s&&s.geo&&x.e<s.geo.length});
-  const cx=o.context||{};o.context={buildings:(Array.isArray(cx.buildings)?cx.buildings:[]).slice(0,60).map(b=>({id:sStr(b.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('c'),name:sStr(b.name,60),x:sNum(b.x,0,-1e3,1e3),y:sNum(b.y,0,-1e3,1e3),w:sNum(b.w,8,0.5,500),d:sNum(b.d,10,0.5,500),h:sNum(b.h,3,0.5,300)})),
-    trees:(Array.isArray(cx.trees)?cx.trees:[]).slice(0,200).map(t=>({id:sStr(t.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('t'),name:sStr(t.name,60),x:sNum(t.x,0,-1e3,1e3),y:sNum(t.y,0,-1e3,1e3),r:sNum(t.r,2,0.3,30),h:sNum(t.h,5,0.5,60),...(['mezquite','palma','paloverde','bugambilia'].includes(t.kind)?{kind:t.kind}:{})}))};
+  const op=Array.isArray(o.openings)?o.openings:[];o.openings=op.slice(0,30000).map(x=>({id:sStr(x.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('o'),sp:sStr(x.sp,20),e:sNum(x.e,0,0,5000)|0,t:sNum(x.t,0.5,0,1),type:x.type==='door'?'door':'window',w:sNum(x.w,1,0.2,20),h:sNum(x.h,1.2,0.1,20),sill:sNum(x.sill,0.9,0,20),hinge:x.hinge?1:0,side:x.side?1:0})).filter(x=>{const s=o.spaces.find(q=>q.id===x.sp);return s&&s.geo&&x.e<s.geo.length});
+  const cx=o.context||{};o.context={buildings:(Array.isArray(cx.buildings)?cx.buildings:[]).slice(0,500).map(b=>({id:sStr(b.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('c'),name:sStr(b.name,60),x:sNum(b.x,0,-1e3,1e3),y:sNum(b.y,0,-1e3,1e3),w:sNum(b.w,8,0.5,500),d:sNum(b.d,10,0.5,500),h:sNum(b.h,3,0.5,300)})),
+    trees:(Array.isArray(cx.trees)?cx.trees:[]).slice(0,3000).map(t=>({id:sStr(t.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('t'),name:sStr(t.name,60),x:sNum(t.x,0,-1e3,1e3),y:sNum(t.y,0,-1e3,1e3),r:sNum(t.r,2,0.3,30),h:sNum(t.h,5,0.5,60),...(['mezquite','palma','paloverde','bugambilia'].includes(t.kind)?{kind:t.kind}:{})}))};
   const dn=defaultNorm(),N0=o.norm||{};o.norm={};['ilum','vent','oper','door','hall','parking','cajon'].forEach(k=>o.norm[k]=sNum(N0[k],dn[k],0,1000));o.norm.t={};Object.keys(dn.t).forEach(k=>{const v=(N0.t||{})[k]||dn.t[k];o.norm.t[k]=[0,1,2].map(i=>sNum(v[i],dn.t[k][i],0,100))});
   const dr=defaultRes(),R0=o.res||{};o.res={};['people','dot','coef','kwh','panelW','pr','cloud','extCost'].forEach(k=>o.res[k]=sNum(R0[k],dr[k],0,1e7));['wall','roof','glass','quality','color'].forEach(k=>o.res[k]=typeof R0[k]==='string'&&/^[a-z_]{1,20}$/.test(R0[k])?R0[k]:dr[k]);
   o.res.cost={};Object.keys(dr.cost).forEach(k=>o.res.cost[k]=sNum((R0.cost||{})[k],dr.cost[k],0,1e7));o.res.parts=(Array.isArray(R0.parts)&&R0.parts.length?R0.parts:dr.parts).slice(0,20).map(p=>[sStr(p[0],60),sNum(p[1],0,0,100)]);
+  const NP=o.normPack;o.normPack=NP&&typeof NP==='object'&&/^[a-z0-9-]{2,40}$/.test(NP.id)?{id:NP.id,nombre:sStr(NP.nombre,120),revisado:sStr(NP.revisado,20),uso:sStr(NP.uso,20)}:null;
+  o.normRef=cleanObj(o.normRef,(v,k)=>/^(ilum|vent|oper|door|hall|parking|cajon|dot|cos|cus|cas)$/.test(k)?sStr(v,300):undefined);
   o.circ=sNum(o.circ,0.30,0,2);o.walls=sNum(o.walls,0.08,0,0.5);
   const F=o.fac||{};const dF=baseFac();o.fac={mode:['elev','cut'].includes(F.mode)?F.mode:'elev',side:['frente','fondo','izq','der'].includes(F.side)?F.side:'frente',cutAxis:F.cutAxis==='y'?'y':'x',cut:sNum(F.cut,null,-1e3,1e3),real:F.real!==false,color:F.color!==false,ctx:F.ctx!==false,person:F.person!==false,sun:F.sun!==false,levels:F.levels!==false};
   const SH=o.sheet||{};o.sheet={paper:['carta','tabloide','a3','a2','90x60'].includes(SH.paper)?SH.paper:'carta',orient:SH.orient==='p'?'p':'l',scale:sNum(SH.scale,0,0,5000),draw:sStr(SH.draw,20).replace(/[^a-z0-9_-]/gi,'')||'zoning',n:sNum(SH.n,1,0,999)|0,of:sNum(SH.of,1,0,999)|0,clave:sStr(SH.clave,30),materia:sStr(SH.materia,80),asesor:sStr(SH.asesor,80),fecha:sStr(SH.fecha,30),notas:sStr(SH.notas,300)};
   o.refs=(Array.isArray(o.refs)?o.refs:[]).slice(0,60).map(r=>sStr(r,500)).filter(Boolean);
   o.variants=(Array.isArray(o.variants)?o.variants:[]).slice(0,8).filter(v=>v&&v.data&&typeof v.data==='object').map(v=>({id:sStr(v.id,20).replace(/[^A-Za-z0-9_-]/g,'')||uid('v'),name:sStr(v.name,60)||'Variante',date:sStr(v.date,30),data:v.data}));
-  o.windMonth=Number.isInteger(o.windMonth)&&o.windMonth>=0&&o.windMonth<=12?o.windMonth:12;['relSel','boardSel'].forEach(k=>{o[k]=typeof o[k]==='string'?o[k].replace(/[^A-Za-z0-9_-]/g,'').slice(0,20):null});delete o.sizeBy;delete o.showZones;
+  o.relScope=typeof o.relScope==='string'&&(o.relScope==='zonas'||o.zones[o.relScope])?o.relScope:'';o.windMonth=Number.isInteger(o.windMonth)&&o.windMonth>=0&&o.windMonth<=12?o.windMonth:12;['relSel','boardSel'].forEach(k=>{o[k]=typeof o[k]==='string'?o[k].replace(/[^A-Za-z0-9_-]/g,'').slice(0,20):null});delete o.sizeBy;delete o.showZones;
   o.v=2;return o}
 function baseFac(){return{mode:'elev',side:'frente'}}
 
@@ -679,25 +716,60 @@ const STORE='taller-sitio-v2';
 /* El proyecto guardado se restaura en restoreState(), al arrancar, cuando ya existen todas las funciones
    (antes se leía aquí y fallaba en silencio porque algunas ayudas todavía no estaban definidas). */
 let S=null,FIRST_RUN=false,BOOT_RAW=null;
-(function(){try{BOOT_RAW=localStorage.getItem(STORE)||localStorage.getItem('taller-sitio-v1')}catch(e){}S=blankProject();FIRST_RUN=!BOOT_RAW})();
-function restoreState(){if(!BOOT_RAW)return;try{const o=migrate(JSON.parse(BOOT_RAW));if(o&&o.project){S=o;return}throw new Error('vacío')}
+(function(){S=blankProject()})();
+/* ================= Guardado grande: IndexedDB =================
+   Desde la 1.3.0 el proyecto vive en IndexedDB, que guarda cientos de MB (localStorage solo unos 5 MB), y las imágenes van
+   aparte, por referencia («asset:abc123»): así el historial de deshacer no copia fotos pesadas en cada paso.
+   Si el navegador no deja usar IndexedDB (algunas ventanas privadas), se sigue usando localStorage como antes. */
+const IDB={db:null,ok:false};const ASSETS=new Map();
+function idbOpen(){return new Promise(res=>{let done=false;const fin=v=>{if(!done){done=true;res(v)}};setTimeout(()=>fin(false),2500);
+  try{const r=indexedDB.open('taller-sitio',1);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains('kv'))d.createObjectStore('kv');if(!d.objectStoreNames.contains('assets'))d.createObjectStore('assets')};
+    r.onsuccess=()=>{IDB.db=r.result;IDB.ok=true;IDB.db.onversionchange=()=>{IDB.db.close();IDB.ok=false};fin(true)};r.onerror=()=>fin(false);r.onblocked=()=>fin(false)}catch(e){fin(false)}})}
+function idbTx(store,mode,fn){return new Promise((res,rej)=>{try{const t=IDB.db.transaction(store,mode);const q=fn(t.objectStore(store));t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error);t.onabort=()=>rej(t.error||new Error('abort'))}catch(e){rej(e)}})}
+const idbGet=(st,k)=>idbTx(st,'readonly',s=>s.get(k)),idbPut=(st,k,v)=>idbTx(st,'readwrite',s=>s.put(v,k)),idbDel=(st,k)=>idbTx(st,'readwrite',s=>s.delete(k));
+/* Imágenes por referencia. Sin IndexedDB, la imagen se queda dentro del proyecto como antes. */
+const ASSET_RE=/^asset:([a-z0-9]{6,24})$/;
+function putAsset(dataURL){if(!IDB.ok||typeof dataURL!=='string'||!dataURL.startsWith('data:'))return dataURL;const id='a'+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);ASSETS.set(id,dataURL);idbPut('assets',id,dataURL).catch(()=>{});return'asset:'+id}
+function assetSrc(v){if(typeof v!=='string')return'';const m=v.match(ASSET_RE);return m?(ASSETS.get(m[1])||''):v}
+function assetRefs(json){const out=new Set();const re=/asset:([a-z0-9]{6,24})/g;let m;while((m=re.exec(json)))out.add(m[1]);return out}
+/* Al abrir un archivo con imágenes dentro, pasan al almacén (y se validan como cualquier imagen). */
+function importAssets(map){if(!map||typeof map!=='object')return;for(const k of Object.keys(map)){if(!/^[a-z0-9]{6,24}$/.test(k))continue;const v=map[k];if(typeof v==='string'&&/^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(v)&&v.length<12e6){ASSETS.set(k,v);if(IDB.ok)idbPut('assets',k,v).catch(()=>{})}}}
+/* Las imágenes que todavía vienen dentro del proyecto (versiones anteriores) se mudan al almacén. */
+function externalizeImages(){if(!IDB.ok||!S)return false;let ch=false;const bg=S.zoning&&S.zoning.bg;if(bg&&typeof bg.src==='string'&&bg.src.startsWith('data:')){bg.src=putAsset(bg.src);ch=true}
+  if(S.board&&Array.isArray(S.board.els))S.board.els.forEach(e=>{if(e.type==='image'&&typeof e.src==='string'&&e.src.startsWith('data:')){e.src=putAsset(e.src);ch=true}});return ch}
+async function storageInit(){let raw=null;await idbOpen();
+  if(IDB.ok){try{raw=await idbGet('kv','proyecto')}catch(e){}
+    try{const keys=await idbTx('assets','readonly',s=>s.getAllKeys());const vals=await idbTx('assets','readonly',s=>s.getAll());(keys||[]).forEach((k,i)=>ASSETS.set(k,vals[i]))}catch(e){}}
+  if(!raw){try{raw=localStorage.getItem(STORE)||localStorage.getItem('taller-sitio-v1')}catch(e){}}
+  BOOT_RAW=raw;FIRST_RUN=!raw;
+  // limpia imágenes que ya no usa el proyecto guardado (solo al arrancar, para no romper deshacer)
+  if(IDB.ok&&raw&&ASSETS.size){const used=assetRefs(raw);for(const k of [...ASSETS.keys()])if(!used.has(k)){ASSETS.delete(k);idbDel('assets',k).catch(()=>{})}}}
+function restoreState(){if(!BOOT_RAW)return;try{const o=migrate(JSON.parse(BOOT_RAW));if(o&&o.project){S=o;if(externalizeImages())persist();return}throw new Error('vacío')}
   catch(e){try{localStorage.setItem(STORE+'-respaldo',BOOT_RAW)}catch(_){}FIRST_RUN=true;setTimeout(()=>toast('No se pudo abrir el proyecto guardado. Quedó un respaldo en este navegador; avísanos con «Reportar un error».'),900)}finally{BOOT_RAW=null}}
-let ZONES,ZONE_KEYS,COMFORT;
-function syncDerived(){LW=+S.style.lines||1;try{document.body&&document.body.setAttribute('data-finish',S.style.finish||'flat')}catch(e){}ZONES=S.zones;ZONE_KEYS=(S.zoneOrder||Object.keys(S.zones)).filter(k=>S.zones[k]);Object.keys(S.zones).forEach(k=>{if(!ZONE_KEYS.includes(k))ZONE_KEYS.push(k)});S.zoneOrder=ZONE_KEYS.slice();
+let ZONES,ZONE_KEYS,COMFORT,WMEMO=null;
+function syncDerived(){WMEMO=null;LW=+S.style.lines||1;try{document.body&&document.body.setAttribute('data-finish',S.style.finish||'flat')}catch(e){}ZONES=S.zones;ZONE_KEYS=(S.zoneOrder||Object.keys(S.zones)).filter(k=>S.zones[k]);Object.keys(S.zones).forEach(k=>{if(!ZONE_KEYS.includes(k))ZONE_KEYS.push(k)});S.zoneOrder=ZONE_KEYS.slice();
   COMFORT=COMFORT_N.map((n,i)=>({n,c:(S.style.comfort||DEF_COMFORT)[i]||DEF_COMFORT[i]}))}
 syncDerived();
 const zc=z=>ZONES[z]||{n:z||'Sin zona',c:'#CCCCCC'};
 const spColor=s=>s.color||zc(s.zone).c;
 let saveT=0,quotaWarned=false;
-function persist(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(STORE,JSON.stringify(S))}catch(e){if(!quotaWarned){quotaWarned=true;toast('El navegador ya no tiene espacio: usa Guardar para no perder cambios (las imágenes pesan mucho).')}}},300)}
+function persist(){clearTimeout(saveT);saveT=setTimeout(saveNow,300)}
+function lsSave(j){try{localStorage.setItem(STORE,j)}catch(e){if(!quotaWarned){quotaWarned=true;toast('El navegador ya no tiene espacio: usa Guardar para no perder cambios (las imágenes pesan mucho).')}}}
+/* Borrar todo de este navegador: proyecto, fotos (IndexedDB), perfil y preferencias. Después ya no se vuelve a guardar nada hasta recargar. */
+let WIPED=false;
+function wipeAll(){WIPED=true;clearTimeout(saveT);saveT=0;try{Object.keys(localStorage).filter(k=>k.startsWith('taller-sitio')).forEach(k=>localStorage.removeItem(k))}catch(_){}
+  return new Promise(res=>{try{if(IDB.db)IDB.db.close();IDB.ok=false;const r=indexedDB.deleteDatabase('taller-sitio');r.onsuccess=r.onerror=r.onblocked=()=>res();setTimeout(res,2500)}catch(_){res()}})}
+function saveNow(){saveT=0;if(WIPED)return;const j=JSON.stringify(S);if(IDB.ok)idbPut('kv','proyecto',j).catch(()=>lsSave(j));else lsSave(j)}
+// si la página se cierra con un guardado pendiente, se guarda en ese momento
+addEventListener('pagehide',()=>{if(saveT){clearTimeout(saveT);saveNow()}});document.addEventListener('visibilitychange',()=>{if(document.hidden&&saveT){clearTimeout(saveT);saveNow()}});
 const HIST={past:[],future:[],last:null,t:0};
 function snapshot(){return JSON.stringify(S)}
 function histInit(){HIST.past=[];HIST.future=[];HIST.last=snapshot();updHistBtns()}
-function changed(){persist();if(typeof SUNCACHE!=='undefined')SUNCACHE.clear();clearTimeout(HIST.t);HIST.t=setTimeout(()=>{const s=snapshot();if(s!==HIST.last){HIST.past.push(HIST.last);if(HIST.past.length>60)HIST.past.shift();HIST.last=s;HIST.future=[];updHistBtns()}},350)}
+function changed(){WMEMO=null;persist();if(typeof SUNCACHE!=='undefined')SUNCACHE.clear();clearTimeout(HIST.t);HIST.t=setTimeout(()=>{const s=snapshot();if(s!==HIST.last){HIST.past.push(HIST.last);if(HIST.past.length>60)HIST.past.shift();HIST.last=s;HIST.future=[];updHistBtns()}},350)}
 function undo(){clearTimeout(HIST.t);const cur=snapshot();if(cur!==HIST.last){HIST.past.push(HIST.last);HIST.last=cur}if(!HIST.past.length)return toast('No hay nada que deshacer');HIST.future.push(HIST.last);HIST.last=HIST.past.pop();S=JSON.parse(HIST.last);syncDerived();persist();updHistBtns();rerender()}
 function redo(){if(!HIST.future.length)return toast('No hay nada que rehacer');HIST.past.push(HIST.last);HIST.last=HIST.future.pop();S=JSON.parse(HIST.last);syncDerived();persist();updHistBtns();rerender()}
 function updHistBtns(){const u=document.getElementById('btnUndo'),r=document.getElementById('btnRedo');if(u)u.disabled=!HIST.past.length&&snapshot()===HIST.last;if(r)r.disabled=!HIST.future.length}
-function replaceProject(p,msg){S=migrate(p);syncDerived();persist();histInit();const pn=document.getElementById('projName');if(pn)pn.value=S.project.name;rerender();if(msg)toast(msg)}
+function replaceProject(p,msg){S=migrate(p);externalizeImages();syncDerived();persist();histInit();const pn=document.getElementById('projName');if(pn)pn.value=S.project.name;rerender();if(msg)toast(msg)}
 
 /* Preferencias de la persona (no del proyecto) */
 const PREF_KEY='taller-sitio-prefs';
@@ -744,6 +816,14 @@ const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const NS='http://www.w3.org/2000/svg';
 function E(tag,attrs,parent){const e=document.createElementNS(NS,tag);if(attrs)for(const k in attrs){let v=attrs[k];if(v===undefined||v===null||v===false)continue;if(k==='stroke-width'&&LW!==1)v=(+v)*LW;if(k==='text')e.textContent=v;else e.setAttribute(k,v)}if(parent)parent.appendChild(e);return e}
 function H(html){const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstElementChild}
+/* Listas largas: se dibujan por partes (las primeras y un botón «Mostrar más») para que un programa de 1,000 espacios no trabe la página.
+   show = índice que debe quedar visible (por ejemplo, el espacio elegido). after(el) vuelve a conectar los botones de cada fila. */
+function fillMore(el,items,row,{k=60,empty='',show=-1,after}={}){el.innerHTML='';if(!items.length){el.innerHTML=empty;return}let n=0,btn=null;
+  const more=lim=>{const end=Math.min(items.length,Math.max(lim||0,n+(n?k*4:k)));const t=document.createElement('template');t.innerHTML=items.slice(n,end).map(row).join('');if(btn)btn.remove();el.appendChild(t.content);n=end;
+    if(n<items.length){btn=H(`<button class="btn sm ghost more" type="button">Mostrar ${Math.min(k*4,items.length-n)} más · faltan ${items.length-n}</button>`);btn.onclick=()=>{more();after&&after(el)};el.appendChild(btn)}};
+  more(show>=0?show+1:0);after&&after(el)}
+/* Igual para textos cortos en una sola cadena: los primeros n y una nota con cuántos faltan. */
+const capJoin=(arr,n,row,rest)=>arr.slice(0,n).map(row).join('')+(arr.length>n?`<p class="hint" style="margin:4px 0">… y ${arr.length-n} ${rest||'más'}</p>`:'');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const f1=x=>x==null||isNaN(x)?'—':(Math.round(x*10)/10).toFixed(1);
 const f2=x=>x==null||isNaN(x)?'—':(Math.round(x*100)/100).toFixed(2);
@@ -867,7 +947,7 @@ function route(){
   $$('#rail a').forEach(a=>{a.setAttribute('aria-current',a.dataset.id===v.id?'page':'false');if(a.dataset.id===v.id)try{a.scrollIntoView({block:'nearest',inline:'center'})}catch(e){}});
   const app=$('#app');app.innerHTML='';VIEWS.forEach(x=>x.onKey=null);
   try{v.render(app);const hn=$('.head h1 span',app);if(hn)hn.textContent=dispNum(v.id);if(isSimple())$$('.card',app).forEach(c=>{const h=c.querySelector('h3');const t=h&&h.firstChild?String(h.firstChild.textContent).trim():'';if(ADV_TITLES.includes(t)&&c.id!=='cardSrc')c.classList.add('adv')})}catch(err){console.error(err);app.appendChild(H(`<div class="card"><h3>Algo falló en este apartado</h3><p class="hint">${esc(err.message)}. Prueba Deshacer o vuelve a cargar la página.</p></div>`))}
-  app.appendChild(H(`<footer class="foot"><div class="foot-r"><span>¿Algo no funciona o tienes una idea?</span><button class="btn sm" type="button" data-report>Reportar un error</button></div><span>Libre para usar, copiar y modificar (dominio público, CC0). Datos: SMN-CONAGUA · Open-Meteo/ERA5 · GeoNames · posición solar NOAA GML · confort adaptativo ASHRAE 55. Sin cuentas, sin cookies, sin rastreo: tu proyecto se queda en este navegador. <button class="lnk" type="button" data-ver>Versión ${esc(APP.version)}</button></span></footer>`));
+  app.appendChild(H(`<footer class="foot"><div class="foot-r"><span>¿Algo no funciona o tienes una idea?</span><button class="btn sm" type="button" data-report>Reportar un error</button></div><span>Libre para usar, copiar y modificar (dominio público, CC0). Datos: SMN-CONAGUA · Open-Meteo/ERA5 · GeoNames · posición solar NOAA GML · confort adaptativo ASHRAE 55 · reglamentos municipales citados. Sin cuentas, sin cookies, sin rastreo: tu proyecto y sus fotos se quedan en este navegador. <button class="lnk" type="button" data-ver>Versión ${esc(APP.version)}</button></span></footer>`));
   $$('[data-report]',app).forEach(b=>b.onclick=()=>openReport());$$('[data-ver]',app).forEach(b=>b.onclick=()=>settings('version'));
   if(matchMedia('(max-width:700px)').matches)mobileCollapse(app);
   try{localStorage.setItem(STORE+'-tab',v.id)}catch(e){}
@@ -1008,7 +1088,7 @@ function buildSVG(drawFn,w,h,P=LIGHT){const svg=document.createElementNS(NS,'svg
   E('rect',{x:0,y:0,width:w,height:h,fill:'#FFFFFF','data-bg':1},svg);drawFn(svg,P);
   const fin=S.style.finish;if(fin==='soft'||fin==='sketch'){const src=document.getElementById(fin==='soft'?'fSoft':'fSketch');if(src){const d=E('defs',{},null);d.appendChild(src.cloneNode(true));svg.insertBefore(d,svg.firstChild);svg.querySelectorAll(fin==='soft'?'.shp':'.shp,polyline').forEach(e=>e.setAttribute('filter','url(#'+src.id+')'))}}
   return embedFonts(svg)}
-async function svgToPngBlob(svg,w,h,maxPx=4200,type='image/png'){const str=new XMLSerializer().serializeToString(svg);const scale=Math.max(1,Math.min(6,maxPx/Math.max(w,h)));
+async function svgToPngBlob(svg,w,h,maxPx=4200,type='image/png'){const str=new XMLSerializer().serializeToString(svg);const scale=Math.min(Math.max(1,Math.min(6,maxPx/Math.max(w,h))),16000/Math.max(w,h,1));
   const img=new Image();const url=URL.createObjectURL(new Blob([str],{type:'image/svg+xml;charset=utf-8'}));
   await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(new Error('No se pudo convertir el dibujo'));img.src=url});
   const c=document.createElement('canvas');c.width=Math.round(w*scale);c.height=Math.round(h*scale);const x=c.getContext('2d');if(!(type==='image/png'&&svg.getAttribute('data-transparent')==='1')){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height)}x.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
@@ -1092,7 +1172,7 @@ function arcPts(x1,y1,rx,ry,ph,fa,fs,x2,y2){if(!rx||!ry)return[[x2,y2]];const cp
 function zoningDXF(){const D=DXF();const pr=S.project;
   D.poly('TERRENO',R(0,0,pr.lotW,pr.lotL),true,{c:7});D.line('RESTRICCION',0,pr.front,pr.lotW,pr.front,{c:8,lt:'DASHED'});
   D.text('TEXTOS',pr.lotW/2,-0.8,0.3,pr.street||'Calle',{align:'middle'});
-  S.spaces.forEach(s=>{if(!s.geo)return;const lay=(s.level===1?'NIVEL_SUP_':'ZONA_')+zc(s.zone).n;D.poly(lay,s.geo,true,{c:aciOf(spColor(s)),lt:s.level===1?'DASHED':null});
+  S.spaces.forEach(s=>{if(!s.geo)return;const lay=(s.level!==0?slug(lvName(s.level)).toUpperCase()+'_':'ZONA_')+zc(s.zone).n;D.poly(lay,s.geo,true,{c:aciOf(spColor(s)),lt:s.level!==0?'DASHED':null});
     const c=s.lpos||polyCentroid(s.geo);D.text('TEXTOS',c[0],c[1]+0.08,0.2,s.name,{align:'middle'});D.text('AREAS',c[0],c[1]-0.22,0.15,f2(polyArea(s.geo))+' m2',{align:'middle',c:8})});
   (S.zoning.notes||[]).forEach(nt=>{if(nt.type==='text')D.text('NOTAS',nt.x1,nt.y1,0.2*(nt.size||1),nt.text||'');else{D.line('NOTAS',nt.x1,nt.y1,nt.x2,nt.y2);if(nt.type==='dim')D.text('NOTAS',(nt.x1+nt.x2)/2,(nt.y1+nt.y2)/2+0.12,0.15,f2(Math.hypot(nt.x2-nt.x1,nt.y2-nt.y1))+' m',{align:'middle'})}});
   (S.zoning.ref||[]).forEach(r=>D.poly('REFERENCIA',r.pts,r.closed,{c:8}));
@@ -1134,10 +1214,10 @@ function toIFC(){let n=0;const L=[];const add=s=>{n++;L.push(`#${n}=${s};`);retu
   const lp=(rel,z=0)=>add(`IFCLOCALPLACEMENT(${rel||'$'},${add(`IFCAXIS2PLACEMENT3D(${pt(0,0,z)},$,$)`)})`);
   const sitePl=lp(null);const site=add(`IFCSITE(${gid()},${oh},'Terreno',$,$,${sitePl},$,$,.ELEMENT.,$,$,$,$,$)`);const bPl=lp(sitePl);const bld=add(`IFCBUILDING(${gid()},${oh},${str(S.project.name)},$,$,${bPl},$,$,.ELEMENT.,$,$,$)`);
   add(`IFCRELAGGREGATES(${gid()},${oh},$,$,${proj},(${site}))`);add(`IFCRELAGGREGATES(${gid()},${oh},$,$,${site},(${bld}))`);
-  const levels={};const storeys=[];[0,1].forEach(lv=>{if(!S.spaces.some(s=>s.geo&&s.level===lv))return;const z=lv?(Math.min(...S.spaces.filter(s=>s.geo&&s.level===1).map(s=>s.z||2.9))):0;const pl=lp(bPl,z);const st=add(`IFCBUILDINGSTOREY(${gid()},${oh},${str(lv?'Nivel superior':'Planta baja')},$,$,${pl},$,$,.ELEMENT.,${z.toFixed(3)})`);levels[lv]={st,pl,z,els:[]};storeys.push(st)});
+  const levels={};const storeys=[];S.levels.slice().sort((a,b)=>a.n-b.n).forEach(L=>{const lv=L.n;if(!S.spaces.some(s=>s.geo&&s.level===lv))return;const z=+L.z||0;const pl=lp(bPl,z);const st=add(`IFCBUILDINGSTOREY(${gid()},${oh},${str(L.name)},$,$,${pl},$,$,.ELEMENT.,${z.toFixed(3)})`);levels[lv]={st,pl,z,els:[]};storeys.push(st)});
   if(storeys.length)add(`IFCRELAGGREGATES(${gid()},${oh},$,$,${bld},(${storeys.join(',')}))`);
   const styles={};const styleFor=c=>{if(styles[c])return styles[c];const[r,g,b]=hex2rgb(c).map(v=>(v/255).toFixed(3));const col=add(`IFCCOLOURRGB($,${r},${g},${b})`);const ss=add(`IFCSURFACESTYLESHADING(${col})`);const s=add(`IFCSURFACESTYLE($,.BOTH.,(${ss}))`);styles[c]=add(`IFCPRESENTATIONSTYLEASSIGNMENT((${s}))`);return styles[c]};
-  meshes().forEach(m=>{const sp=S.spaces.find(s=>s.name===m.name);const lv=levels[sp&&sp.level===1?1:0]||levels[0];if(!lv)return;const P=m.poly.map(q=>pt(q[0],q[1]));P.push(P[0]);
+  meshes().forEach(m=>{const sp=S.spaces.find(s=>s.name===m.name);const lv=levels[sp?sp.level:0]||levels[0]||Object.values(levels)[0];if(!lv)return;const P=m.poly.map(q=>pt(q[0],q[1]));P.push(P[0]);
     const pl=add(`IFCPOLYLINE((${P.join(',')}))`);const prof=add(`IFCARBITRARYCLOSEDPROFILEDEF(.AREA.,${str(m.name)},${pl})`);const pos=add(`IFCAXIS2PLACEMENT3D(${pt(0,0,(m.z0-lv.z))},$,$)`);
     const sol=add(`IFCEXTRUDEDAREASOLID(${prof},${pos},${zD},${Math.max(m.h,0.02).toFixed(4)})`);add(`IFCSTYLEDITEM(${sol},(${styleFor(m.color)}),$)`);
     const rep=add(`IFCSHAPEREPRESENTATION(${ctx},'Body','SweptSolid',(${sol}))`);const ps=add(`IFCPRODUCTDEFINITIONSHAPE($,$,(${rep}))`);const epl=lp(lv.pl);
@@ -1153,9 +1233,12 @@ function tables(){const cs=climateSeries();const st=strategies(cs);const mm=zone
   T.sol={title:'Ángulos solares (día 21)',head:['Mes','Salida','Puesta','Mediodía','Horas de luz','Altura máx °','Azimut salida °','Azimut puesta °'],rows:MESES.map((mn,m)=>{const t=sunTimes(m,21);return[mn,hhmm(t.rise),hhmm(t.set),hhmm(t.noon),f1(t.len),f1(t.altNoon),f1(t.azRise),f1(t.azSet)]})};
   const hrs=[];for(let h=6;h<=19;h++)hrs.push(h);T.solh={title:'Altura y azimut del sol por hora (día 21)',head:['Mes',...hrs.map(h=>h+' h')],rows:MESES.flatMap((mn,m)=>[[mn+' altura°',...hrs.map(h=>{const p=solarPos(m,21,h);return p.alt>0?f1(p.alt):''})],[mn+' azimut°',...hrs.map(h=>{const p=solarPos(m,21,h);return p.alt>0?f1(p.az):''})]])};
   T.viento={title:'Viento dominante',head:['Mes','Viene del','Descripción','Mín km/h','Máx km/h'],rows:S.climate.wind.map((w,i)=>[MESES[i],compass16(w.d),w.lab,w.v1,w.v2])};
-  const sp=sortedSpaces();T.prog={title:'Programa arquitectónico',head:['Espacio','Zona','Nivel','Área programa m²','Área dibujada m²','Ponderación'],rows:sp.map(s=>[s.name,zc(s.zone).n,s.level===1?'Superior':'Planta baja',f2(s.area),s.geo?f2(polyArea(s.geo)):'',weightOf(s.id)])};
-  T.matriz={title:'Matriz de relaciones ('+S.style.rel.w2+' = '+S.style.rel.n2.toLowerCase()+', '+S.style.rel.w1+' = '+S.style.rel.n1.toLowerCase()+')',head:['',...sp.map(s=>s.name)],rows:sp.map(a=>[a.name,...sp.map(b=>a.id===b.id?'—':RELW()[relOf(a.id,b.id)]||'')])};
-  T.zon={title:'Indicadores de zonificación',head:['Concepto','Valor','Límite'],rows:[['Terreno m²',f2(mm.lot),''],['Planta baja cubierta m²',f2(mm.pb),''],['Nivel superior m²',f2(mm.up),''],['Total construido m²',f2(mm.total),''],['COS',f2(mm.cos),'máx '+S.project.cos],['CUS',f2(mm.cus),'máx '+S.project.cus],['Área permeable m²',f2(mm.perm),''],['CAS',f2(mm.cas),'mín '+S.project.cas]]};
+  const sp=sortedSpaces();T.prog={title:'Programa arquitectónico',head:['Espacio','Zona','Nivel','Cantidad','Área programa m²','Área total m²','Área dibujada m²','Ponderación'],rows:sp.map(s=>[s.name,zc(s.zone).n,lvName(s.level),s.qty||1,f2(s.area),f2(s.area*(s.qty||1)),s.geo?f2(polyArea(s.geo)):'',weightOf(s.id)])};
+  const RS=S.style.rel,relN=v=>[RS.n0,RS.n1,RS.n2][v]||'';
+  if(sp.length>REL_BIG){const{zs,M}=zoneRel();T.matriz={title:'Matriz de relaciones por zona (número de relaciones entre sus espacios; F = hay alguna '+RS.n2.toLowerCase()+')',head:['',...zs.map(z=>zc(z).n)],rows:zs.map(a=>[zc(a).n,...zs.map(b=>{if(a===b)return'—';const c=M[relKey(a,b)];return c?c.n+(c.v===2?' F':''):''})])}}
+  else T.matriz={title:'Matriz de relaciones ('+RS.w2+' = '+RS.n2.toLowerCase()+', '+RS.w1+' = '+RS.n1.toLowerCase()+')',head:['',...sp.map(s=>s.name)],rows:sp.map(a=>[a.name,...sp.map(b=>a.id===b.id?'—':RELW()[relOf(a.id,b.id)]||'')])};
+  const byId=new Map(S.spaces.map(s=>[s.id,s]));T.rels={title:'Lista de relaciones',head:['Espacio','Zona','Se relaciona con','Zona','Relación','Valor'],rows:Object.entries(S.rel).map(([k,v])=>{const[a,b]=k.split('|').map(i=>byId.get(i));return a&&b&&v?[a.name,zc(a.zone).n,b.name,zc(b.zone).n,relN(v),RELW()[v]]:null}).filter(Boolean).sort((p,q)=>String(p[0]).localeCompare(String(q[0]),'es'))};
+  T.zon={title:'Indicadores de zonificación',head:['Concepto','Valor','Límite'],rows:[['Terreno m²',f2(mm.lot),''],['Planta baja cubierta m²',f2(mm.pb),''],['Niveles superiores m²',f2(mm.up),''],...(mm.sot?[['Sótanos m²',f2(mm.sot),'']]:[]),['Total construido m²',f2(mm.total),''],['COS',f2(mm.cos),'máx '+S.project.cos],['CUS',f2(mm.cus),'máx '+S.project.cus],['Área permeable m²',f2(mm.perm),''],['CAS',f2(mm.cas),'mín '+S.project.cas]]};
   return T}
 async function exportExcel(){try{const X=await loadLib('xlsx');const T=tables();const wb=X.utils.book_new();
   const info=[['Proyecto',S.project.name],['Domicilio',S.project.address],['Latitud',S.project.lat],['Longitud',S.project.lon],['Huso horario UTC',S.project.tz],['Terreno (m)',S.project.lotW+' × '+S.project.lotL],['Fuente del clima',S.climate.source],['Fuente del viento',S.climate.windSource]];
@@ -1168,7 +1251,7 @@ async function exportExcel(){try{const X=await loadLib('xlsx');const T=tables();
   const w_=water(),e_=energy(),c_=cost();X.utils.book_append_sheet(wb,rows2(['Mes','Lluvia captada L','Consumo de agua L','Producción solar kWh','Consumo eléctrico kWh'],MESES.map((m,i)=>[m,Math.round(w_.cap[i]),Math.round(w_.dem[i]),+e_.prod[i].toFixed(1),+e_.consM[i].toFixed(1)])),'Recursos');
   X.utils.book_append_sheet(wb,rows2(['Partida','%','Importe MXN'],c_.parts.map(p=>[p[0],p[1],Math.round(p[2])])),'Costo');
   X.utils.book_append_sheet(wb,X.utils.aoa_to_sheet([['Referencias (APA)'],...references().map(r=>[r])]),'Referencias');
-  add('clima','Clima');add('estr','Estrategias');add('sol','Angulos solares');add('solh','Sol por hora');add('viento','Viento');add('prog','Programa');add('matriz','Matriz');add('zon','Zonificacion');
+  add('clima','Clima');add('estr','Estrategias');add('sol','Angulos solares');add('solh','Sol por hora');add('viento','Viento');add('prog','Programa');add('matriz','Matriz');add('rels','Relaciones');add('zon','Zonificacion');
   const out=X.write(wb,{bookType:'xlsx',type:'array'});await saveFile(slug(S.project.name)+'.xlsx',new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}))}catch(e){toast(e.message)}}
 const REPORT_KEYS=[['site','Análisis de sitio'],['temp','Temperatura y confort'],['rain','Precipitación y humedad'],['heat','Confort por hora'],['strat','Estrategias bioclimáticas'],['sun','Carta solar'],['rose','Rosa de vientos'],['windplan','Viento en el terreno'],['program','Programa arquitectónico'],['matrix','Matriz de relaciones'],['bubbles','Diagrama de relaciones'],['zoning','Zonificación'],['norm','Revisión normativa'],['mass','Volumetría y sombras'],['fac_frente','Fachada frente'],['fac_fondo','Fachada fondo'],['cut_x','Corte transversal'],['water','Agua'],['energy','Energía solar'],['envelope','Envolvente térmica'],['cost','Costo paramétrico'],['board','Lámina de concepto']];
 async function exportWord(){try{toast('Preparando el documento…');const d=await loadLib('docx');const T=tables();const ch=[];const{Paragraph,TextRun,HeadingLevel,ImageRun,Table,TableRow,TableCell,WidthType,AlignmentType,BorderStyle}=d;
@@ -1200,7 +1283,7 @@ function openExport(){const b=H(`<div class="exp">
   <p class="hint" style="margin-top:0">Cada archivo se arma con el proyecto actual. Los dibujos sueltos también se exportan desde su botón Exportar.<span class="simple-only"> Los formatos para AutoCAD, Revit y SketchUp están en el modo completo.</span></p>
   <div class="exp-g">
    <button class="exp-i" data-x="docx" type="button"><b>Word</b><span>Reporte con todos los dibujos y tablas (.docx)</span></button>
-   <button class="exp-i" data-x="xlsx" type="button"><b>Excel</b><span>Clima, sol, viento, programa, matriz y áreas (.xlsx)</span></button>
+   <button class="exp-i" data-x="xlsx" type="button"><b>Excel</b><span>Clima, sol, viento, programa, matriz, lista de relaciones y áreas (.xlsx)</span></button>
    <button class="exp-i" data-x="pptx" type="button"><b>PowerPoint · Canva</b><span>Una diapositiva por dibujo (.pptx). Canva lo importa.</span></button>
    <button class="exp-i" data-x="pdf" type="button"><b>PDF de láminas</b><span>Todas las láminas en tamaño carta. Canva también lo abre.</span></button>
    <button class="exp-i adv" data-x="dxf2" type="button"><b>AutoCAD · Revit (2D)</b><span>Zonificación a escala en metros, capas por zona (.dxf)</span></button>
@@ -1222,7 +1305,9 @@ function openExport(){const b=H(`<div class="exp">
     if(k==='obj'){await saveFile(base+'_volumetria.obj',new Blob([toOBJ()],{type:'text/plain'}));await saveFile(base+'_volumetria.stl',new Blob([toSTL()],{type:'model/stl'}))}
     if(k==='json')await saveProject();if(k==='refs'){m.close();openRefs()}if(k==='sheets'){m.close();location.hash='laminas'}
   }catch(e){toast(e.message)}x.disabled=false})}
-async function saveProject(){await saveFile(slug(S.project.name)+'.json',new Blob([JSON.stringify(S)],{type:'application/json'}))}
+/* El archivo del proyecto lleva sus imágenes dentro, para abrirlo completo en otra computadora. */
+function projectFileJSON(){const j=JSON.stringify(S);const refs=assetRefs(j);if(!refs.size)return j;const assets={};refs.forEach(k=>{const v=ASSETS.get(k);if(v)assets[k]=v});return JSON.stringify({...JSON.parse(j),assets})}
+async function saveProject(){await saveFile(slug(S.project.name)+'.json',new Blob([projectFileJSON()],{type:'application/json'}))}
 
 /* ================= Abrir archivos ================= */
 function openAny(f){const ext=(f.name.split('.').pop()||'').toLowerCase();
@@ -1237,10 +1322,10 @@ const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(
 async function importSheet(f){try{const X=await loadLib('xlsx');const wb=X.read(await f.arrayBuffer(),{type:'array'});let did=[];
   for(const name of wb.SheetNames){const rows=X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:true,defval:''});let hi=rows.findIndex(r=>r.some(c=>/^(espacio|nombre|local)$/i.test(norm(c)))||r.some(c=>norm(c)==='mes'));if(hi<0)continue;const head=rows[hi].map(norm);const body=rows.slice(hi+1).filter(r=>r.some(c=>String(c).trim()!==''));
     const col=(...ks)=>head.findIndex(h=>ks.some(k=>h.includes(k)));
-    if(head.some(h=>/^(espacio|nombre|local)$/.test(h))&&!head.includes('mes')){const cN=col('espacio','nombre','local'),cZ=col('zona'),cA=col('area','m2','superficie'),cL=col('nivel');let n=0;
+    if(head.some(h=>/^(espacio|nombre|local)$/.test(h))&&!head.includes('mes')){const cN=col('espacio','nombre','local'),cZ=col('zona'),cA=col('area','m2','superficie'),cL=col('nivel'),cQ=col('cantidad','cant','numero','piezas');let n=0;
       body.forEach(r=>{const nm=String(r[cN]||'').trim();if(!nm||/^total/i.test(nm))return;let z='social';if(cZ>=0&&String(r[cZ]).trim()){const zz=String(r[cZ]).trim();z=ZONE_KEYS.find(k=>norm(ZONES[k].n)===norm(zz)||k===norm(zz));if(!z){z=slug(zz).toLowerCase()||'zona';S.zones[z]={n:zz,c:pickColor()};S.zoneOrder.push(z);syncDerived()}}
-        const area=cA>=0?parseFloat(String(r[cA]).replace(',','.'))||0:0;const lvl=cL>=0&&/sup|alta|1|2|azot|entre/i.test(String(r[cL]))?1:0;const ex=S.spaces.find(s=>norm(s.name)===norm(nm));
-        if(ex){ex.area=area||ex.area;ex.zone=z;ex.level=lvl}else{S.spaces.push({id:newId(),name:nm,zone:z,area,level:lvl,geo:null,h:2.8,z:lvl?2.9:0,pos:[20+Math.random()*120,60+Math.random()*150]});n++}});did.push(`programa (${n} espacios nuevos)`)}
+        const area=cA>=0?parseFloat(String(r[cA]).replace(',','.'))||0:0;const lvl=cL>=0?parseLevel(r[cL]):0;ensureLevel(lvl);const qty=cQ>=0?Math.max(1,Math.round(parseFloat(String(r[cQ]).replace(',','.'))||1)):1;const ex=S.spaces.find(s=>norm(s.name)===norm(nm));
+        if(ex){ex.area=area||ex.area;ex.zone=z;ex.level=lvl;if(qty>1)ex.qty=qty;else delete ex.qty}else{S.spaces.push({id:newId(),name:nm,zone:z,area,level:lvl,geo:null,h:2.8,z:levelOf(lvl).z,pos:[20+Math.random()*120,60+Math.random()*150],...(qty>1?{qty}:{})});n++}});did.push(`programa (${n} espacios nuevos)`)}
     else if(head.includes('mes')){const cX=col('max','máx'),cM=col('med','prom'),cN=col('min','mín'),cP=col('lluv','prec','pp'),cH=col('hr','humedad');if(cX<0&&cP<0)continue;const ser={tmax:[],tmed:[],tmin:[],pp:[]};const hr=[];
       for(let i=0;i<12;i++){const r=body[i]||[];const v=c=>c>=0&&String(r[c]).trim()!==''?parseFloat(String(r[c]).replace(',','.').replace(/[^\d.\-]/g,'')):null;ser.tmax[i]=v(cX);ser.tmed[i]=v(cM)??(v(cX)!=null&&v(cN)!=null?(v(cX)+v(cN))/2:null);ser.tmin[i]=v(cN);ser.pp[i]=v(cP);hr[i]=v(cH)}
       const key='Importado '+(Object.keys(S.climate.years).filter(k=>k.startsWith('Importado')).length+1);S.climate.years[key]=ser;if(hr.some(x=>x!=null))S.climate.hr=hr;S.climate.series=key;did.push('clima ('+key+')')}}
@@ -1248,7 +1333,7 @@ async function importSheet(f){try{const X=await loadLib('xlsx');const wb=X.read(
 const PICK=['#F2C77B','#EBA6B8','#C9B7EA','#9DD0E4','#A9D79A','#F4A582','#B8E0D2','#D6C6A8','#F7D6E0','#C3D7F2'];
 function pickColor(){const used=new Set(Object.values(S.zones).map(z=>z.c.toUpperCase()));return PICK.find(c=>!used.has(c.toUpperCase()))||'#'+Math.floor(Math.random()*0xffffff).toString(16).padStart(6,'0')}
 async function downloadTemplate(){try{const X=await loadLib('xlsx');const wb=X.utils.book_new();
-  X.utils.book_append_sheet(wb,X.utils.aoa_to_sheet([['Espacio','Zona','Área m2','Nivel'],...(S.spaces.length?S.spaces.map(s=>[s.name,zc(s.zone).n,s.area,s.level?'Superior':'Planta baja']):[['Sala','Social',14,'Planta baja'],['Recámara 1','Privada',11,'Planta baja']])]),'Programa');
+  X.utils.book_append_sheet(wb,X.utils.aoa_to_sheet([['Espacio','Zona','Área m2','Nivel','Cantidad'],...(S.spaces.length?S.spaces.map(s=>[s.name,zc(s.zone).n,s.area,lvName(s.level),s.qty||1]):[['Sala','Social',14,'Planta baja',1],['Recámara 1','Privada',11,'Nivel 1',1],['Habitación tipo','Hospedaje',32,'Nivel 2',40]])]),'Programa');
   const cs=climateSeries();X.utils.book_append_sheet(wb,X.utils.aoa_to_sheet([['Mes','Tmax','Tmed','Tmin','Lluvia mm','HR %'],...MESES.map((m,i)=>[m,cs.tmax[i],cs.tmed[i],cs.tmin[i],cs.pp[i],cs.hr[i]])]),'Clima');
   await saveFile('plantilla_taller_de_sitio.xlsx',new Blob([X.write(wb,{bookType:'xlsx',type:'array'})]))}catch(e){toast(e.message)}}
 /* DXF: lee polilíneas y líneas y las pone como capa de referencia en la zonificación. */
@@ -1271,7 +1356,7 @@ function importDXF(t,name){let ents;try{ents=parseDXF(t)}catch(e){ents=[]}if(!en
   $('#dRef',body).onclick=()=>{S.zoning.ref=conv();changed();m.close();location.hash='zonas';rerender();toast('DXF agregado como referencia')};
   $('#dSp',body).onclick=()=>{let n=0;conv().filter(e=>e.closed&&e.pts.length>=3&&polyArea(e.pts)>0.3).forEach(e=>{n++;S.spaces.push({id:newId(),name:e.layer&&e.layer!=='0'?e.layer+' '+n:'Espacio '+n,zone:ZONE_KEYS[0],area:+polyArea(e.pts).toFixed(2),level:0,geo:e.pts,h:2.8,z:0,pos:[20+Math.random()*120,60+Math.random()*150]})});changed();m.close();location.hash='zonas';rerender();toast(n+' espacios creados desde el DXF')}}
 function importImage(f){const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{let src=String(r.result);if(src.length>1800000){const c=document.createElement('canvas');const k=Math.sqrt(1800000/src.length);c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);src=c.toDataURL('image/jpeg',0.82)}
-  S.zoning.bg={src,x:0,y:0,w:S.project.lotW,aspect:img.height/img.width,op:0.5};changed();location.hash='zonas';rerender();toast('Imagen agregada al fondo de la zonificación')};img.src=String(r.result)};r.readAsDataURL(f)}
+  S.zoning.bg={src:putAsset(src),x:0,y:0,w:S.project.lotW,aspect:img.height/img.width,op:0.5};changed();location.hash='zonas';rerender();toast('Imagen agregada al fondo de la zonificación')};img.src=String(r.result)};r.readAsDataURL(f)}
 
 /* ================= Geometría compartida: muros exteriores, aberturas, normativa ================= */
 const RTYPES=[['recp','Recámara principal'],['rec','Recámara'],['est','Estancia / sala'],['com','Comedor'],['estcom','Estancia-comedor'],['coc','Cocina'],['ban','Baño'],['lav','Cuarto de lavado'],['pas','Pasillo / circulación'],['estac','Estacionamiento'],['otro','Otro local habitable'],['ext','Exterior / no habitable']];
@@ -1288,13 +1373,20 @@ function edgeInfo(geo,i){const a=geo[i],b=geo[(i+1)%geo.length];const dx=b[0]-a[
 /* Rumbo (azimut desde el norte) hacia donde mira una normal de planta. */
 const bearingOf=n=>((deg(Math.atan2(n[0],n[1]))+(+S.project.northDeg||0))%360+360)%360;
 /* Lados que dan al exterior: ningún otro espacio cubierto del mismo nivel los toca por fuera. */
-function exteriorEdges(level){const sp=S.spaces.filter(s=>s.geo&&roofed(s)&&(level==null||s.level===level));const out=[];
+/* Índice de espacios por nivel y cuadrícula de 4 m: para saber qué espacio hay en un punto sin revisar los 1,000.
+   Vive solo durante el cálculo en curso (se descarta al terminar), así nunca queda viejo después de mover algo. */
+let SPIX=null;
+function spIndex(){if(SPIX&&SPIX.src===S.spaces&&SPIX.n===S.spaces.length)return SPIX;const C=4,cells=new Map(),byId=new Map(),BB=new Map();
+  S.spaces.forEach(s=>{byId.set(s.id,s);if(!s.geo||s.geo.length<3)return;const b=bbox(s.geo);BB.set(s,b);for(let ix=Math.floor(b.x0/C);ix<=Math.floor(b.x1/C);ix++)for(let iy=Math.floor(b.y0/C);iy<=Math.floor(b.y1/C);iy++){const k=s.level+'|'+ix+'|'+iy;let L=cells.get(k);if(!L)cells.set(k,L=[]);L.push(s)}});
+  SPIX={src:S.spaces,n:S.spaces.length,byId,at(q,level){const L=cells.get(level+'|'+Math.floor(q[0]/C)+'|'+Math.floor(q[1]/C));if(!L)return[];return L.filter(o=>{const b=BB.get(o);return q[0]>=b.x0&&q[0]<=b.x1&&q[1]>=b.y0&&q[1]<=b.y1&&inPoly(q,o.geo)})}};
+  queueMicrotask(()=>{SPIX=null});return SPIX}
+function exteriorEdges(level){const sp=S.spaces.filter(s=>s.geo&&roofed(s)&&(level==null||s.level===level));const out=[];const IX=spIndex();const inSet=new Set(sp);
   sp.forEach(s=>{for(let i=0;i<s.geo.length;i++){const E_=edgeInfo(s.geo,i);if(E_.len<0.05)continue;let ext=0,tot=0;
-    for(const t of[0.15,0.5,0.85]){tot++;const q=[E_.a[0]+(E_.b[0]-E_.a[0])*t+E_.n[0]*0.2,E_.a[1]+(E_.b[1]-E_.a[1])*t+E_.n[1]*0.2];if(!sp.some(o=>o!==s&&o.level===s.level&&inPoly(q,o.geo)))ext++}
+    for(const t of[0.15,0.5,0.85]){tot++;const q=[E_.a[0]+(E_.b[0]-E_.a[0])*t+E_.n[0]*0.2,E_.a[1]+(E_.b[1]-E_.a[1])*t+E_.n[1]*0.2];if(!IX.at(q,s.level).some(o=>o!==s&&inSet.has(o)))ext++}
     if(ext>=2)out.push({s,i,...E_,frac:ext/tot})}});return out}
-function openingGeom(o){const s=S.spaces.find(x=>x.id===o.sp);if(!s||!s.geo||o.e>=s.geo.length)return null;const E_=edgeInfo(s.geo,o.e);const w=Math.min(o.w,E_.len);const t=clamp(o.t,w/2/E_.len,1-w/2/E_.len);
+function openingGeom(o){const s=spIndex().byId.get(o.sp);if(!s||!s.geo||o.e>=s.geo.length)return null;const E_=edgeInfo(s.geo,o.e);const w=Math.min(o.w,E_.len);const t=clamp(o.t,w/2/E_.len,1-w/2/E_.len);
   const c=[E_.a[0]+(E_.b[0]-E_.a[0])*t,E_.a[1]+(E_.b[1]-E_.a[1])*t];return{s,...E_,c,w,t,p1:[c[0]-E_.u[0]*w/2,c[1]-E_.u[1]*w/2],p2:[c[0]+E_.u[0]*w/2,c[1]+E_.u[1]*w/2]}}
-function across(o,g){g=g||openingGeom(o);if(!g)return null;const q=[g.c[0]+g.n[0]*0.25,g.c[1]+g.n[1]*0.25];return S.spaces.find(x=>x!==g.s&&x.geo&&x.level===g.s.level&&inPoly(q,x.geo))||null}
+function across(o,g){g=g||openingGeom(o);if(!g)return null;const q=[g.c[0]+g.n[0]*0.25,g.c[1]+g.n[1]*0.25];const L=spIndex().at(q,g.s.level).filter(x=>x!==g.s);if(L.length<2)return L[0]||null;const ord=new Map(S.spaces.map((s,i)=>[s.id,i]));return L.sort((a,b)=>ord.get(a.id)-ord.get(b.id))[0]}
 function isExteriorOpening(o){const g=openingGeom(o);if(!g)return false;const nb=across(o,g);return!nb||!roofed(nb)}
 /* Horas de sol directo (día 21 de cada mes) en una fachada, separadas en horas calurosas y frescas. */
 const SUNCACHE=new Map();
@@ -1445,7 +1537,7 @@ view('sitio','01','Sitio',app=>{
     <p class="hint">Norte = 0 cuando el fondo del terreno apunta al norte. Gíralo en sentido horario según tu plano de localización. COS, CUS y CAS vienen del plan de desarrollo urbano de tu ciudad.</p></div>`);
   pn.append(c1,nowCard(),c2,styleCard('Colores del plano',S.style.wind,[['winter','Viento de invierno','color'],['summer','Viento de verano','color']],draw),styleCard('Sol',S.style.sun,[['today','Recorrido del sol','color']],draw));
   const map={pW:'lotW',pL:'lotL',pF:'front',pN:'northDeg',pCos:'cos',pCus:'cus',pCas:'cas'};
-  for(const id in map){const i=$('#'+id,pn);i.addEventListener('change',()=>{const key=map[id];pr[key]=i.type==='number'?(+i.value||0):i.value;changed();rerender()})}
+  for(const id in map){const i=$('#'+id,pn);i.addEventListener('change',()=>{const key=map[id];pr[key]=i.type==='number'?(+i.value||0):i.value;if(S.normRef&&S.normRef[key])delete S.normRef[key];changed();rerender()})}
   const cc=H(`<details class="card sty" id="cardCtx"><summary><h3>Contexto: vecinos y árboles</h3></summary><div id="ctxIn"></div></details>`);pn.appendChild(cc);
   function ctxPanel(){const C_=S.context,el=$('#ctxIn',cc),L=S.project.lotW,D=S.project.lotL;
     el.innerHTML=`<p class="hint" style="margin-top:0">Las construcciones vecinas y los árboles proyectan sombra en el modelo 3D, en la volumetría y en las fachadas. Coordenadas en metros desde la esquina frontal izquierda del terreno.</p>
@@ -1814,18 +1906,27 @@ const FURN=[
   ['Lavado',[['Lavadora',0.60,0.65,0.70],['Secadora',0.60,0.65,0.70],['Lavadero',0.70,0.60,0.70],['Tendedero',2.50,1.20,0]]],
   ['Exterior y otros',[['Cajón de estacionamiento',2.50,5.00,0],['Giro de silla de ruedas (Ø 1.50)',1.50,1.50,0],['Asador',1.00,0.60,0.75],['Mesa de exterior',1.20,1.20,0.75]]]];
 function furnCalc(s){const c=+S.circ||0;let R_=0,S_=0;(s.furn||[]).forEach(f=>{R_+=f.l*f.a*f.q;S_+=f.l*f.f*f.q});const T_=c*(R_+S_);return{R:R_,S:S_,T:T_,A:R_+S_+T_}}
-regDrawing('program','Programa arquitectónico',820,()=>Math.max(220,90+S.spaces.length*24),(svg,P)=>{const F=P.font,sp=sortedSpaces();const W=820;
+/* En programas grandes la tabla para el documento se resume por zona (cuadro de áreas); la lista completa va en Excel y Word. */
+const PROG_ROWS=80;const progByZone=()=>S.spaces.length>PROG_ROWS;
+function progZoneRows(){return ZONE_KEYS.map(z=>{const L=S.spaces.filter(s=>s.zone===z);if(!L.length)return null;const q=L.reduce((a,s)=>a+(s.qty||1),0);return{z,n:L.length,q,a:L.reduce((a,s)=>a+(+s.area||0)*(s.qty||1),0),lv:[...new Set(L.map(s=>s.level))].sort((a,b)=>a-b)}}).filter(Boolean)}
+regDrawing('program','Programa arquitectónico',820,()=>Math.max(220,90+(progByZone()?progZoneRows().length+2:S.spaces.length)*24),(svg,P)=>{const F=P.font,sp=sortedSpaces();const W=820;
+  if(progByZone()){ET(svg,'prog.title','Programa arquitectónico · cuadro de áreas por zona',{x:16,y:28,'font-size':17,'font-weight':700,fill:P.ink,'font-family':F});
+    const cols=[['Zona',16,'start'],['Niveles',300,'start'],['Partidas',520,'end'],['Espacios',620,'end'],['Total m²',800,'end']];cols.forEach(([t,x,a])=>E('text',{x,y:58,'text-anchor':a,'font-size':10.5,'font-weight':700,fill:P.muted,'font-family':F,text:t.toUpperCase()},svg));E('line',{x1:16,x2:W-16,y1:66,y2:66,stroke:P.line},svg);
+    const R=progZoneRows();let tot=0;R.forEach((r,i)=>{const y=86+i*24;tot+=r.a;E('rect',{x:16,y:y-14,width:10,height:10,rx:2,fill:zc(r.z).c},svg);const lv=r.lv.length>3?lvName(r.lv[0])+' a '+lvName(r.lv[r.lv.length-1]):r.lv.map(lvName).join(', ');
+      [[zc(r.z).n,32,'start',700],[lv,300,'start'],[String(r.n),520,'end'],[String(r.q),620,'end'],[f2(r.a),800,'end',700]].forEach(([t,x,a,w])=>E('text',{x,y:y-4,'text-anchor':a,'font-size':11.5,'font-weight':w||400,fill:P.ink,'font-family':F,text:t},svg));E('line',{x1:16,x2:W-16,y1:y+4,y2:y+4,stroke:P.line2},svg)});
+    const y=86+R.length*24+8;E('text',{x:16,y,'font-size':12,'font-weight':700,fill:P.ink,'font-family':F,text:`Área útil ${f2(tot)} m² · con muros (${f0(S.walls*100)} %) ≈ ${f2(tot/(1-S.walls))} m² construidos`},svg);
+    E('text',{x:16,y:y+18,'font-size':10.5,fill:P.muted,'font-family':F,text:`${S.spaces.length} partidas en total: la lista completa sale en Excel y Word.`},svg);return}
   ET(svg,'prog.title','Programa arquitectónico',{x:16,y:28,'font-size':17,'font-weight':700,fill:P.ink,'font-family':F});
-  const cols=[['Espacio',16,'start'],['Zona',250,'start'],['Nivel',380,'start'],['Mobiliario m²',560,'end'],['Área m²',680,'end'],['Ponderación',800,'end']];
+  const cols=[['Espacio',16,'start'],['Zona',214,'start'],['Nivel',318,'start'],['Cant.',446,'end'],['Mobiliario m²',540,'end'],['Área m²',624,'end'],['Total m²',712,'end'],['Pond.',800,'end']];
   cols.forEach(([t,x,a])=>E('text',{x,y:58,'text-anchor':a,'font-size':10.5,'font-weight':700,fill:P.muted,'font-family':F,text:t.toUpperCase()},svg));E('line',{x1:16,x2:W-16,y1:66,y2:66,stroke:P.line},svg);
-  let tot=0;sp.forEach((s,i)=>{const y=86+i*24;const fc=furnCalc(s);tot+=+s.area||0;E('rect',{x:16,y:y-14,width:10,height:10,rx:2,fill:spColor(s)},svg);
-    [[s.name,32,'start',700],[zc(s.zone).n,250,'start'],[s.level?'Superior':'Planta baja',380,'start'],[fc.A?f2(fc.A):'—',560,'end'],[f2(s.area),680,'end',700],[String(weightOf(s.id)),800,'end']].forEach(([t,x,a,w])=>E('text',{x,y:y-4,'text-anchor':a,'font-size':11.5,'font-weight':w||400,fill:P.ink,'font-family':F,text:t},svg));
+  let tot=0;sp.forEach((s,i)=>{const y=86+i*24;const fc=furnCalc(s);const q=s.qty||1;tot+=(+s.area||0)*q;E('rect',{x:16,y:y-14,width:10,height:10,rx:2,fill:spColor(s)},svg);
+    [[s.name,32,'start',700],[zc(s.zone).n,214,'start'],[lvName(s.level),318,'start'],[String(q),446,'end'],[fc.A?f2(fc.A):'—',540,'end'],[f2(s.area),624,'end'],[f2((+s.area||0)*q),712,'end',700],[String(weightOf(s.id)),800,'end']].forEach(([t,x,a,w])=>E('text',{x,y:y-4,'text-anchor':a,'font-size':11.5,'font-weight':w||400,fill:P.ink,'font-family':F,text:t},svg));
     E('line',{x1:16,x2:W-16,y1:y+4,y2:y+4,stroke:P.line2},svg)});
   const y=86+sp.length*24+8;E('text',{x:16,y,'font-size':12,'font-weight':700,fill:P.ink,'font-family':F,text:`Área útil ${f2(tot)} m² · con muros (${f0(S.walls*100)} %) ≈ ${f2(tot/(1-S.walls))} m² construidos`},svg)});
 
 view('programa','05','Programa',app=>{
   const v=H(`<div class="view"></div>`);app.appendChild(v);
-  v.appendChild(headBlock('05','Programa','Calcula el área de cada espacio a partir de sus muebles: área del mueble + área de uso + circulación. Así cada metro cuadrado del programa queda justificado.'));
+  v.appendChild(headBlock('05','Programa','Calcula el área de cada espacio a partir de sus muebles: área del mueble + área de uso + circulación. Así cada metro cuadrado del programa queda justificado. Para espacios repetidos (habitaciones tipo, oficinas, locales) usa Cantidad.'));
   const left=H(`<div class="stack"></div>`);v.appendChild(left);
   if(!S.relSel||!S.spaces.some(s=>s.id===S.relSel)){const f=S.spaces.find(s=>(s.furn||[]).length)||S.spaces.find(roofed)||S.spaces[0];S.relSel=f&&f.id}
   const tb=board('Mobiliario del espacio',null);left.appendChild(tb);const fig=tb.querySelector('.fig');
@@ -1837,10 +1938,9 @@ view('programa','05','Programa',app=>{
   const cfg=H(`<div class="card" id="pgCfg"><h3>Criterios</h3><div class="fields">${field('Circulación % de (mueble + uso)','pgC',Math.round(S.circ*100),'type="number" min="0" max="100" step="1"')}${field('Muros % de lo construido','pgM',Math.round(S.walls*100),'type="number" min="0" max="40" step="1"')}</div>
     <p class="hint">Área del mueble = largo × ancho. Área de uso = largo × franja frente al mueble (0.60 m general; 0.70 clóset, WC y lavado; 0.75 escritorios y mesas; 0.90 estufa, refrigerador y tarja). Circulación = porcentaje de la suma.</p></div>`);
   pn.append(lc,cfg);
-  function renderList(){const L=$('.list',lc);L.innerHTML=sortedSpaces().map(s=>{const c=furnCalc(s);return`<div class="li ${S.relSel===s.id?'sel':''}" data-id="${s.id}" tabindex="0" role="button"><span class="dot" style="background:${spColor(s)}"></span><span>${esc(s.name)}</span><span class="m">${c.A?f2(c.A)+' → ':''}${f2(s.area)} m²</span></div>`}).join('')||'<p class="hint" style="margin:0">Sin espacios todavía.</p>';
-    $$('.li',L).forEach(el=>{const pick=()=>{S.relSel=el.dataset.id;renderAll()};el.onclick=pick;el.onkeydown=e=>{if(e.key==='Enter')pick()}})}
+  function renderList(){const L=$('.list',lc);const sp=sortedSpaces();fillMore(L,sp,s=>{const c=furnCalc(s);return`<div class="li ${S.relSel===s.id?'sel':''}" data-id="${s.id}" tabindex="0" role="button"><span class="dot" style="background:${spColor(s)}"></span><span>${esc(s.name)}${(s.qty||1)>1?' <span class="badge">×'+s.qty+'</span>':''}</span><span class="m">${c.A?f2(c.A)+' → ':''}${f2(s.area)} m²</span></div>`},{k:80,show:sp.findIndex(s=>s.id===S.relSel),empty:'<p class="hint" style="margin:0">Sin espacios todavía.</p>',after:L=>$$('.li',L).forEach(el=>{const pick=()=>{S.relSel=el.dataset.id;renderAll()};el.onclick=pick;el.onkeydown=e=>{if(e.key==='Enter')pick()}})})}
   function renderFurn(){const s=S.spaces.find(x=>x.id===S.relSel);if(!s){fig.innerHTML='<p class="hint">Agrega un espacio para empezar.</p>';return}s.furn=s.furn||[];const c=furnCalc(s);
-    fig.innerHTML=`<div class="row" style="justify-content:space-between;margin-bottom:8px"><b style="font-size:16px">${esc(s.name)}</b><span class="pill ${c.A&&Math.abs(c.A-s.area)/Math.max(c.A,0.01)<0.1?'ok':'warn'}">Calculada ${f2(c.A)} m² · programa ${f2(s.area)} m²</span></div>
+    fig.innerHTML=`<div class="row" style="justify-content:space-between;margin-bottom:8px"><span class="row" style="gap:10px;align-items:end"><b style="font-size:16px">${esc(s.name)}</b><label class="f inline" for="pgQ" title="Cuántos espacios iguales (por ejemplo, 120 habitaciones tipo)">Cantidad<input id="pgQ" type="number" min="1" step="1" value="${s.qty||1}" style="width:84px"></label>${(s.qty||1)>1?`<span class="hint" style="margin:0">${s.qty} × ${f2(s.area)} = <b>${f2(s.qty*s.area)} m²</b></span>`:''}</span><span class="pill ${c.A&&Math.abs(c.A-s.area)/Math.max(c.A,0.01)<0.1?'ok':'warn'}">Calculada ${f2(c.A)} m² · programa ${f2(s.area)} m²</span></div>
       <div class="tbl-wrap"><table class="t"><thead><tr><th>Mueble</th><th>Largo m</th><th>Ancho m</th><th>Cant.</th><th>Franja de uso m</th><th>Mueble m²</th><th>Uso m²</th><th></th></tr></thead><tbody>
       ${s.furn.map((f,i)=>`<tr data-i="${i}"><td><input data-k="n" value="${esc(f.n)}" style="width:170px;text-align:left;font-family:var(--f-body)" aria-label="Mueble"></td><td><input data-k="l" value="${f.l}" inputmode="decimal"></td><td><input data-k="a" value="${f.a}" inputmode="decimal"></td><td><input data-k="q" value="${f.q}" inputmode="numeric" style="width:44px"></td><td><input data-k="f" value="${f.f}" inputmode="decimal"></td><td>${f2(f.l*f.a*f.q)}</td><td>${f2(f.l*f.f*f.q)}</td><td><button class="btn sm ghost" type="button" data-del aria-label="Quitar">✕</button></td></tr>`).join('')||'<tr><td colspan="8" class="txt">Sin muebles. Agrégalos desde la lista de abajo.</td></tr>'}
       </tbody><tfoot><tr><td>Total</td><td colspan="4" class="txt" style="text-align:right">Mueble ${f2(c.R)} + uso ${f2(c.S)} + circulación ${f2(c.T)}</td><td colspan="3" style="font-weight:700">${f2(c.A)} m²</td></tr></tfoot></table></div>
@@ -1848,25 +1948,37 @@ view('programa','05','Programa',app=>{
     $$('tr[data-i]',fig).forEach(tr=>{const f=s.furn[+tr.dataset.i];$$('input',tr).forEach(i=>i.addEventListener('change',()=>{const k=i.dataset.k;f[k]=k==='n'?sStr(i.value,60):k==='q'?Math.max(0,parseInt(i.value)||0):Math.max(0,+String(i.value).replace(',','.')||0);changed();renderAll()}));tr.querySelector('[data-del]').onclick=()=>{s.furn.splice(+tr.dataset.i,1);changed();renderAll()}});
     $('#fLib',fig).onchange=e=>{if(!e.target.value)return;const[g,j]=e.target.value.split('|');const it=FURN.find(x=>x[0]===g)[1][+j];s.furn.push({n:it[0],l:it[1],a:it[2],q:1,f:it[3]});changed();renderAll()};
     $('#fNew',fig).onclick=()=>{s.furn.push({n:'Mueble',l:1,a:0.5,q:1,f:0.6});changed();renderAll()};
+    $('#pgQ',fig).onchange=e=>{const q=Math.max(1,Math.min(100000,Math.round(+e.target.value||1)));if(q>1)s.qty=q;else delete s.qty;changed();renderAll()};
     $('#fApply',fig).onclick=()=>{s.area=+c.A.toFixed(2);changed();renderAll();toast(`${s.name}: ${f2(s.area)} m²`)}}
-  function renderSum(){const sp=sortedSpaces();const tot=sp.reduce((a,s)=>a+(+s.area||0),0),totR=sp.filter(roofed).reduce((a,s)=>a+(+s.area||0),0);
+  function renderSum(){const sp=sortedSpaces();const A=s=>(+s.area||0)*(s.qty||1);const tot=sp.reduce((a,s)=>a+A(s),0),totR=sp.filter(roofed).reduce((a,s)=>a+A(s),0);
     sumB.querySelector('.fig').innerHTML=`<div class="kpis"><div class="kpi"><div class="l">Área útil cubierta</div><div class="v num">${f2(totR)}<small>m²</small></div><div class="s">${sp.filter(roofed).length} espacios</div></div><div class="kpi"><div class="l">Construido estimado</div><div class="v num">${f2(totR/(1-S.walls))}<small>m²</small></div><div class="s">Con muros ${f0(S.walls*100)} %</div></div><div class="kpi"><div class="l">Exteriores</div><div class="v num">${f2(tot-totR)}<small>m²</small></div><div class="s">Patios, jardín, cochera</div></div><div class="kpi"><div class="l">Con mobiliario</div><div class="v num">${sp.filter(s=>(s.furn||[]).length).length}<small>/ ${sp.length}</small></div><div class="s">espacios justificados</div></div></div>`;
     psvg.innerHTML='';const d=DRAWINGS.program;const w=820,h=dH(d);psvg.setAttribute('viewBox',`0 0 ${w} ${h}`);d.draw(psvg,pal());editableTexts(psvg,renderSum)}
   function renderAll(){renderList();renderFurn();renderSum()}
   $('#pgC',cfg).onchange=e=>{S.circ=clamp(+e.target.value||0,0,200)/100;changed();renderAll()};$('#pgM',cfg).onchange=e=>{S.walls=clamp(+e.target.value||0,0,40)/100;changed();renderAll()};
   $('#pgAdd',lc).onclick=()=>{const id=newId();S.spaces.push({id,name:'Espacio '+(S.spaces.length+1),zone:ZONE_KEYS[0],area:9,level:0,geo:null,h:2.8,z:0,pos:[30+Math.random()*100,70+Math.random()*120],furn:[]});S.relSel=id;changed();renderAll()};
-  $('#pgCsv',sumB).onclick=()=>csvDownload('programa_mobiliario',[['Espacio','Mueble','Largo','Ancho','Cantidad','Franja','Mueble m2','Uso m2'],...S.spaces.flatMap(s=>(s.furn||[]).map(f=>[s.name,f.n,f.l,f.a,f.q,f.f,f2(f.l*f.a*f.q),f2(f.l*f.f*f.q)])),[],['Espacio','Área programa m2','Área calculada m2'],...S.spaces.map(s=>[s.name,f2(s.area),f2(furnCalc(s).A)])]);
+  $('#pgCsv',sumB).onclick=()=>csvDownload('programa_mobiliario',[['Espacio','Mueble','Largo','Ancho','Cantidad','Franja','Mueble m2','Uso m2'],...S.spaces.flatMap(s=>(s.furn||[]).map(f=>[s.name,f.n,f.l,f.a,f.q,f.f,f2(f.l*f.a*f.q),f2(f.l*f.f*f.q)])),[],['Espacio','Área programa m2','Área calculada m2','Cantidad','Área total m2'],...S.spaces.map(s=>[s.name,f2(s.area),f2(furnCalc(s).A),s.qty||1,f2(s.area*(s.qty||1))])]);
   renderAll();
 },[
   {t:'Programa',d:'Aquí justificas el área de cada espacio con sus muebles reales, como en un programa arquitectónico profesional.'},
   {sel:'#pgList',t:'Elige un espacio',d:'Toca un espacio para ver y editar sus muebles. La cifra de la derecha compara el área calculada con la del programa.'},
   {sel:'.board .fig',t:'Agrega muebles',d:'Elige muebles con medidas reales o crea los tuyos. Cambia cantidades y franjas de uso; al final usa el área calculada para el programa.'},
+  {sel:'#pgQ',t:'Espacios iguales',d:'Si tienes muchos espacios idénticos (por ejemplo, 120 habitaciones tipo), escribe cuántos en <b>Cantidad</b>. El área total, la zonificación, los coeficientes y las exportaciones lo multiplican solos.'},
   {sel:'#pgCfg',t:'Tus criterios',d:'Ajusta el porcentaje de circulación y de muros según lo que pida tu maestro o tu método.'}]);
 
 /* ================= 5 · Programa y relaciones ================= */
 const RELW=()=>({2:+S.style.rel.w2||0,1:+S.style.rel.w1||0,0:0});
 const relOf=(a,b)=>S.rel[relKey(a,b)]||0;
-function weightOf(id){const w=RELW();let t=0;S.spaces.forEach(s=>{if(s.id!==id)t+=w[relOf(id,s.id)]});return t}
+/* Ponderación de cada espacio (suma de sus relaciones). Se calcula una sola vez por cambio: con 1,000 espacios hacerlo por espacio tardaba segundos. */
+function weightOf(id){if(!WMEMO){const w=RELW();const ids=new Set(S.spaces.map(s=>s.id));WMEMO=new Map();for(const k in S.rel){const v=w[S.rel[k]]||0;if(!v)continue;const[a,b]=k.split('|');if(!ids.has(a)||!ids.has(b)||a===b)continue;WMEMO.set(a,(WMEMO.get(a)||0)+v);WMEMO.set(b,(WMEMO.get(b)||0)+v)}}return WMEMO.get(id)||0}
+/* Alcance del diagrama y la matriz: todo el programa, el resumen por zonas o una sola zona.
+   En programas grandes (más de 150 espacios) «todo» se muestra como resumen por zonas para que siga siendo legible y rápido. */
+const REL_BIG=150,REL_MAX=200;
+function relScope(){const sc=S.relScope||'';if(sc==='zonas'||(sc&&S.zones[sc]))return sc;return S.spaces.length>REL_BIG?'zonas':''}
+function scopedSpaces(){const sc=relScope();const sp=sortedSpaces();return sc&&sc!=='zonas'?sp.filter(s=>s.zone===sc):sp}
+/* Resumen por zonas: cada zona con su número de espacios y área; entre zonas, la relación más fuerte y cuántas hay. */
+function zoneRel(){const zs=ZONE_KEYS.filter(z=>S.spaces.some(s=>s.zone===z));const zOf=new Map(S.spaces.map(s=>[s.id,s.zone]));const M={};
+  for(const k in S.rel){const v=S.rel[k];const[a,b]=k.split('|');const za=zOf.get(a),zb=zOf.get(b);if(!za||!zb||za===zb)continue;const kk=relKey(za,zb);const c=M[kk]||(M[kk]={v:0,n:0});c.v=Math.max(c.v,v);c.n++}
+  const info=Object.fromEntries(zs.map(z=>{const L=S.spaces.filter(s=>s.zone===z);return[z,{n:L.reduce((a,s)=>a+(s.qty||1),0),a:L.reduce((a,s)=>a+(+s.area||0)*(s.qty||1),0)}]}));return{zs,M,info}}
 function sortedSpaces(){return S.spaces.slice().sort((a,b)=>(ZONE_KEYS.indexOf(a.zone)-ZONE_KEYS.indexOf(b.zone))||a.level-b.level)}
 function newId(){let i=1;while(S.spaces.some(s=>s.id==='E'+i))i++;return 'E'+i}
 const DW=640,DH=900;
@@ -1882,12 +1994,13 @@ function nodeShape(g,shape,r,attrs){if(shape==='square'||shape==='rounded'){cons
 const DFONTS={auto:null,public:'"Public Sans", Arial, sans-serif',saira:'"Saira Condensed", "Arial Narrow", sans-serif',mono:'"JetBrains Mono", Consolas, monospace',serif:'Georgia, "Times New Roman", serif',arial:'Arial, Helvetica, sans-serif',mano:'"Segoe Print", "Bradley Hand", "Comic Sans MS", cursive'};
 const DFONT_N={auto:'La de la página',public:'Public Sans',saira:'Saira Condensada',mono:'Monoespaciada',serif:'Con remates (serif)',arial:'Arial',mano:'Escrita a mano'};
 const BUB_SHAPES=[['circle','Círculo'],['rounded','Cuadro redondeado'],['square','Cuadrado'],['hex','Hexágono'],['octagon','Octágono'],['diamond','Rombo'],['ellipse','Óvalo'],['pill','Cápsula'],['cloud','Nube']];
-const tableRows=()=>Math.min(S.spaces.length,40);
+const tableRows=()=>relScope()==='zonas'?Math.min(zoneRel().zs.length,40):Math.min(scopedSpaces().length,40)+(scopedSpaces().length>40?1:0);
 const bubH=()=>DH+(S.style.bubble.table&&S.spaces.length?60+tableRows()*21:0);
 /* Fondo del dibujo: el de la página, un color o transparente (en PNG). */
 function drawBg(svg,mode,color,w,h){const bg=svg.querySelector('[data-bg]');if(mode==='none'){if(bg)bg.remove();svg.setAttribute('data-transparent','1')}else if(mode==='color'){if(bg)bg.setAttribute('fill',color);else E('rect',{x:0,y:0,width:w,height:h,fill:color,'data-bg':1},svg)}}
 function drawBubbles(svg,P,opts={}){
-  const B=S.style.bubble,RS=S.style.rel;const F=DFONTS[B.fontFam]||P.font;const sp=S.spaces;const pos=s=>[s.pos[0]*4,s.pos[1]*4];
+  if(relScope()==='zonas')return drawZoneBubbles(svg,P);
+  const B=S.style.bubble,RS=S.style.rel;const F=DFONTS[B.fontFam]||P.font;const all=scopedSpaces(),sp=all.slice(0,REL_MAX);const pos=s=>[s.pos[0]*4,s.pos[1]*4];
   drawBg(svg,B.bgMode,B.bgColor,DW,bubH());P=darkBgPal(P,B.bgMode,B.bgColor);const uid_='b'+Math.random().toString(36).slice(2,6);const defs=E('defs',{},svg);
   const shadow=['none','soft','hard','color'].includes(B.shadow)?B.shadow:'auto';
   if(shadow==='soft'){const f=E('filter',{id:uid_+'s',x:'-20%',y:'-20%',width:'150%',height:'150%'},defs);E('feDropShadow',{dx:1,dy:2.2,stdDeviation:2.2,'flood-color':'#0b1520','flood-opacity':.28},f)}
@@ -1895,11 +2008,11 @@ function drawBubbles(svg,P,opts={}){
   if(B.sketch){const f=E('filter',{id:uid_+'k',x:'-5%',y:'-5%',width:'110%',height:'110%'},defs);E('feTurbulence',{type:'fractalNoise',baseFrequency:0.04,numOctaves:2,seed:3},f);E('feDisplacementMap',{in:'SourceGraphic',scale:3.2},f)}
   const sk=B.sketch?`url(#${uid_}k)`:null;
   ET(svg,'bub.title','Diagrama de relaciones',{x:16,y:28,'font-size':17,'font-weight':700,fill:P.ink,'font-family':F});
-  ET(svg,'bub.sub',S.project.name,{x:16,y:46,'font-size':11,fill:P.muted,'font-family':F});
+  ET(svg,'bub.sub',S.project.name+(relScope()?' · '+zc(relScope()).n:'')+(all.length>sp.length?` · primeros ${sp.length} de ${all.length} espacios`:''),{x:16,y:46,'font-size':11,fill:P.muted,'font-family':F});
   if(!sp.length){E('text',{x:DW/2,y:DH/2,'text-anchor':'middle','font-size':14,fill:P.muted,'font-family':F,text:'Agrega espacios al programa para ver el diagrama'},svg);return}
   if(B.blobs!==false){ZONE_KEYS.forEach(z=>{const ns=sp.filter(s=>s.zone===z&&s.level===0);if(!ns.length)return;const g=E('g',{opacity:.3},svg);ns.forEach(s=>{const[x,y]=pos(s);E('circle',{cx:x,cy:y,r:nodeR(s)+16,fill:spColor(s)},g)});
       for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){if(!relOf(ns[i].id,ns[j].id))continue;const a=pos(ns[i]),b=pos(ns[j]);E('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:zc(z).c,'stroke-width':Math.min(nodeR(ns[i]),nodeR(ns[j]))*1.6,'stroke-linecap':'round'},g)}});
-    const up=sp.filter(s=>s.level===1);if(up.length){const q=[];up.forEach(s=>{const[x,y]=pos(s),r=nodeR(s)+10;for(let a=0;a<360;a+=20)q.push([x+Math.cos(rad(a))*r,y+Math.sin(rad(a))*r])});const hull=convexHull(q);E('polygon',{points:pts(hull),fill:'none',stroke:P.muted,'stroke-width':1.3,'stroke-dasharray':'6 5','stroke-linejoin':'round'},svg);
+    const up=sp.filter(s=>s.level!==0);if(up.length){const q=[];up.forEach(s=>{const[x,y]=pos(s),r=nodeR(s)+10;for(let a=0;a<360;a+=20)q.push([x+Math.cos(rad(a))*r,y+Math.sin(rad(a))*r])});const hull=convexHull(q);E('polygon',{points:pts(hull),fill:'none',stroke:P.muted,'stroke-width':1.3,'stroke-dasharray':'6 5','stroke-linejoin':'round'},svg);
       const top=hull.reduce((a,b)=>a[1]<b[1]?a:b);ET(svg,'bub.up','NIVEL SUPERIOR',{x:top[0],y:top[1]-8,'text-anchor':'middle','font-size':10.5,'font-weight':700,fill:P.muted,'font-family':F,'letter-spacing':'.06em'})}}
   const lc=inkOr(B.line,P);
   for(let i=0;i<sp.length;i++)for(let j=i+1;j<sp.length;j++){const v=relOf(sp[i].id,sp[j].id);if(!v)continue;const[a,b]=[pos(sp[i]),pos(sp[j])];const d=Math.hypot(b[0]-a[0],b[1]-a[1])||1;const ux=(b[0]-a[0])/d,uy=(b[1]-a[1])/d;const ra=nodeR(sp[i]),rb=nodeR(sp[j]);
@@ -1918,43 +2031,46 @@ function drawBubbles(svg,P,opts={}){
   if(B.table)drawSpaceTable(svg,P,F,16,DH+14,DW-32);
 }
 /* Tabla de espacios debajo del diagrama, con cuatro estilos. */
-function drawSpaceTable(svg,P,F,x0,y0,w){const B=S.style.bubble,ts=['minimal','bordes','encabezado','rayas'].includes(B.tableStyle)?B.tableStyle:'minimal';const rows=sortedSpaces().slice(0,40);const rh=21,hh=24;const ink='#16212B',mut='#5B6872',line='#C9CFD3';
+function drawSpaceTable(svg,P,F,x0,y0,w){const B=S.style.bubble,ts=['minimal','bordes','encabezado','rayas'].includes(B.tableStyle)?B.tableStyle:'minimal';const all=scopedSpaces(),rows=all.slice(0,40);const rh=21,hh=24;const ink='#16212B',mut='#5B6872',line='#C9CFD3';
   const cols=[[x0+10,'Espacio','start'],[x0+w*0.52,'Zona','start'],[x0+w*0.80,'Área m²','end'],[x0+w-6,'Pond.','end']];
   if(ts==='encabezado')E('rect',{x:x0,y:y0,width:w,height:hh,fill:ink,rx:3},svg);
   cols.forEach(([x,t,a])=>E('text',{x,y:y0+16,'text-anchor':a,'font-size':10.5,'font-weight':700,fill:ts==='encabezado'?'#FFFFFF':mut,'font-family':F,'letter-spacing':'.04em',text:t.toUpperCase()},svg));
   if(ts!=='encabezado')E('line',{x1:x0,x2:x0+w,y1:y0+hh,y2:y0+hh,stroke:ts==='bordes'?ink:line,'stroke-width':ts==='bordes'?1.2:1},svg);
   rows.forEach((s,i)=>{const y=y0+hh+i*rh;if(ts==='rayas'&&i%2===0)E('rect',{x:x0,y,width:w,height:rh,fill:'#F1EFE9'},svg);
     E('rect',{x:x0+10,y:y+6,width:10,height:10,rx:2,fill:spColor(s)},svg);
-    E('text',{x:x0+26,y:y+15,'font-size':11,fill:ink,'font-family':F,text:s.name+(s.level===1?' (N. sup.)':'')},svg);E('text',{x:cols[1][0],y:y+15,'font-size':11,fill:mut,'font-family':F,text:zc(s.zone).n},svg);
+    E('text',{x:x0+26,y:y+15,'font-size':11,fill:ink,'font-family':F,text:s.name+(s.level!==0?' ('+lvName(s.level)+')':'')+((s.qty||1)>1?' ×'+s.qty:'')},svg);E('text',{x:cols[1][0],y:y+15,'font-size':11,fill:mut,'font-family':F,text:zc(s.zone).n},svg);
     E('text',{x:cols[2][0],y:y+15,'text-anchor':'end','font-size':11,fill:ink,'font-family':F,text:f2(s.area)},svg);E('text',{x:cols[3][0],y:y+15,'text-anchor':'end','font-size':11,fill:ink,'font-family':F,text:String(weightOf(s.id))},svg);
     if(ts==='bordes'||ts==='encabezado'||ts==='minimal')E('line',{x1:x0,x2:x0+w,y1:y+rh,y2:y+rh,stroke:line,'stroke-width':ts==='minimal'?0.6:0.8},svg)});
-  const yT=y0+hh+rows.length*rh;const tot=S.spaces.filter(s=>roofed(s)).reduce((a,s)=>a+(+s.area||0),0);
+  if(all.length>rows.length)E('text',{x:x0+26,y:y0+hh+rows.length*rh+15,'font-size':11,'font-style':'italic',fill:mut,'font-family':F,text:`… y ${all.length-rows.length} espacios más (lista completa en Excel y Word)`},svg);
+  const yT=y0+hh+(rows.length+(all.length>rows.length?1:0))*rh;const tot=all.filter(s=>roofed(s)).reduce((a,s)=>a+(+s.area||0)*(s.qty||1),0);
   E('text',{x:x0+10,y:yT+17,'font-size':11,'font-weight':700,fill:ink,'font-family':F,text:'Total cubierto'},svg);E('text',{x:cols[2][0],y:yT+17,'text-anchor':'end','font-size':11,'font-weight':700,fill:ink,'font-family':F,text:f2(tot)},svg);
   if(ts==='bordes'){E('rect',{x:x0,y:y0,width:w,height:yT-y0+24,fill:'none',stroke:ink,'stroke-width':1.2},svg);[cols[1][0]-8,x0+w*0.62,x0+w*0.84].forEach(x=>E('line',{x1:x,x2:x,y1:y0,y2:yT,stroke:line,'stroke-width':.8},svg))}}
 function relayout(mode='force'){
-  const sp=S.spaces;const N=sp.length;if(!N)return;const Rr=sp.map(nodeR);
-  if(mode==='circle'){const cx=DW/2,cy=DH/2+10,rr=Math.min(DW,DH)*0.36;sortedSpaces().forEach((s,i)=>{const a=2*Math.PI*i/N-Math.PI/2;s.pos=[(cx+Math.cos(a)*rr)/4,(cy+Math.sin(a)*rr)/4]});changed();return}
-  if(mode==='zones'){const zs=ZONE_KEYS.filter(z=>sp.some(s=>s.zone===z&&s.level===0));const up=sp.filter(s=>s.level===1);const cols=zs.length+(up.length?1:0);const cw=(DW-40)/Math.max(1,cols);
+  if(relScope()==='zonas')return false;const sp=scopedSpaces().slice(0,REL_MAX);const N=sp.length;if(!N)return false;const Rr=sp.map(nodeR);
+  if(mode==='circle'){const cx=DW/2,cy=DH/2+10,rr=Math.min(DW,DH)*0.36;sp.forEach((s,i)=>{const a=2*Math.PI*i/N-Math.PI/2;s.pos=[(cx+Math.cos(a)*rr)/4,(cy+Math.sin(a)*rr)/4]});changed();return}
+  if(mode==='zones'){const zs=ZONE_KEYS.filter(z=>sp.some(s=>s.zone===z&&s.level===0));const up=sp.filter(s=>s.level!==0);const cols=zs.length+(up.length?1:0);const cw=(DW-40)/Math.max(1,cols);
     zs.forEach((z,ci)=>{const ns=sp.filter(s=>s.zone===z&&s.level===0);ns.forEach((s,i)=>{s.pos=[(20+cw*ci+cw/2+(i%2?18:-18))/4,(100+i*((DH-200)/Math.max(1,ns.length)))/4]})});
     up.forEach((s,i)=>{s.pos=[(20+cw*zs.length+cw/2)/4,(100+i*110)/4]});changed();return}
-  const P=sp.map(s=>[s.pos[0]*4,s.pos[1]*4]);
-  for(let it=0;it<700;it++){const T=1-it/700;const F=P.map(()=>[0,0]);
-    ZONE_KEYS.concat(['up']).forEach(z=>{const ns=sp.map((s,i)=>i).filter(i=>(sp[i].level===1?'up':sp[i].zone)===z);if(!ns.length)return;let cx=0,cy=0;ns.forEach(i=>{cx+=P[i][0];cy+=P[i][1]});cx/=ns.length;cy/=ns.length;ns.forEach(i=>{F[i][0]+=(cx-P[i][0])*0.012;F[i][1]+=(cy-P[i][1])*0.012})});
+  const P=sp.map(s=>[s.pos[0]*4,s.pos[1]*4]);const R=sp.map(a=>sp.map(b=>relOf(a.id,b.id)));const grp=sp.map(s=>s.level!==0?'up':s.zone);const GK=[...new Set(grp)];const IT=N>120?320:700;
+  for(let it=0;it<IT;it++){const T=1-it/IT;const F=P.map(()=>[0,0]);
+    GK.forEach(z=>{const ns=sp.map((s,i)=>i).filter(i=>grp[i]===z);if(!ns.length)return;let cx=0,cy=0;ns.forEach(i=>{cx+=P[i][0];cy+=P[i][1]});cx/=ns.length;cy/=ns.length;ns.forEach(i=>{F[i][0]+=(cx-P[i][0])*0.012;F[i][1]+=(cy-P[i][1])*0.012})});
     for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){let dx=P[j][0]-P[i][0],dy=P[j][1]-P[i][1];let d=Math.hypot(dx,dy)||0.01;const min=Rr[i]+Rr[j]+14;
-      let f=1800/(d*d);if(d<min)f+=(min-d)*0.5;const v=relOf(sp[i].id,sp[j].id);if(v){const L=Rr[i]+Rr[j]+(v===2?34:110);f-=(d-L)*(v===2?0.05:0.012)}
+      let f=1800/(d*d);if(d<min)f+=(min-d)*0.5;const v=R[i][j];if(v){const L=Rr[i]+Rr[j]+(v===2?34:110);f-=(d-L)*(v===2?0.05:0.012)}
       const fx=dx/d*f,fy=dy/d*f;F[i][0]-=fx;F[i][1]-=fy;F[j][0]+=fx;F[j][1]+=fy}
     for(let i=0;i<N;i++){const k=0.4+T;P[i][0]=clamp(P[i][0]+clamp(F[i][0],-20,20)*k,Rr[i]+12,DW-Rr[i]-12);P[i][1]=clamp(P[i][1]+clamp(F[i][1],-20,20)*k,Rr[i]+70,DH-Rr[i]-60)}}
-  sp.forEach((s,i)=>s.pos=[P[i][0]/4,P[i][1]/4]);changed();
+  sp.forEach((s,i)=>s.pos=[P[i][0]/4,P[i][1]/4]);changed();return true
 }
 function drawMatrix(svg,P){
-  const F=P.font,RS=S.style.rel,sp=sortedSpaces(),n=sp.length,rh=22,nameW=190,x0=nameW+46,y0=50;const W=x0+n*rh/2+30,Hh=y0+n*rh+40;
+  if(relScope()==='zonas')return drawZoneMatrix(svg,P);
+  const F=P.font,RS=S.style.rel,all=scopedSpaces(),sp=all.slice(0,REL_MAX),n=sp.length,rh=22,nameW=190,x0=nameW+46,y0=50;const W=x0+n*rh/2+30,Hh=y0+n*rh+40;
   svg.setAttribute('viewBox',`0 0 ${W} ${Hh}`);
-  ET(svg,'mat.title','Matriz de relaciones',{x:12,y:22,'font-size':15,'font-weight':700,fill:P.ink,'font-family':F});
+  ET(svg,'mat.title','Matriz de relaciones'+(relScope()?' · '+zc(relScope()).n:''),{x:12,y:22,'font-size':15,'font-weight':700,fill:P.ink,'font-family':F});
+  if(all.length>n)E('text',{x:12,y:38,'font-size':10.5,fill:P.muted,'font-family':F,text:`Primeros ${n} de ${all.length} espacios. Divide la zona para ver el resto.`},svg);
   if(!n){E('text',{x:12,y:60,'font-size':12,fill:P.muted,'font-family':F,text:'Sin espacios todavía'},svg);return{W,Hh}}
   ET(svg,'mat.pond','POND.',{x:nameW+20,y:y0-8,'text-anchor':'middle','font-size':9.5,'font-weight':700,fill:P.muted,'font-family':F});
   sp.forEach((s,i)=>{const y=y0+i*rh;E('rect',{x:12,y,width:nameW-12,height:rh,fill:spColor(s),stroke:P.bg,'stroke-width':1},svg);
     E('polygon',{points:pts([[nameW,y],[nameW+rh/2,y+rh/2],[nameW,y+rh]]),fill:spColor(s)},svg);
-    E('text',{x:20,y:y+15,'font-size':11,'font-weight':600,fill:'#16212B','font-family':F,text:s.name+(s.level===1?' (N. sup.)':'')},svg);
+    E('text',{x:20,y:y+15,'font-size':11,'font-weight':600,fill:'#16212B','font-family':F,text:s.name+(s.level!==0?' ('+lvName(s.level)+')':'')+((s.qty||1)>1?' ×'+s.qty:'')},svg);
     E('text',{x:nameW+20,y:y+15,'text-anchor':'middle','font-size':10.5,fill:P.ink,'font-family':P.font,text:String(weightOf(s.id))},svg)});
   for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){const cx=x0+(j-i)*rh/2,cy=y0+(i+j)*rh/2+rh/2;const v=relOf(sp[i].id,sp[j].id);
     const c=E('polygon',{class:'cell','data-a':sp[i].id,'data-b':sp[j].id,points:pts([[cx,cy-rh/2],[cx+rh/2,cy],[cx,cy+rh/2],[cx-rh/2,cy]]),fill:v===2?inkOr(RS.c2,P):v===1?RS.c1:P.bg,stroke:P.line,'stroke-width':1,style:'cursor:pointer'},svg);
@@ -1962,17 +2078,39 @@ function drawMatrix(svg,P){
   const lg=E('g',{transform:`translate(12 ${Hh-16})`},svg);[[inkOr(RS.c2,P),RS.n2+' '+RS.w2],[RS.c1,RS.n1+' '+RS.w1],[P.bg,RS.n0+' 0']].forEach(([c,t],i)=>{E('rect',{x:i*110,y:-10,width:12,height:12,fill:c,stroke:P.line},lg);E('text',{x:i*110+17,y:0,'font-size':11,fill:P.ink,'font-family':F,text:t},lg)});
   return{W,Hh};
 }
-const mDims=()=>{const n=S.spaces.length;return{W:190+46+n*11+30,H:50+n*22+40}};
+const mDims=()=>{if(relScope()==='zonas'){const n=zoneRel().zs.length;return{W:Math.max(270+n*15+30,640),H:50+n*30+72}}const n=Math.min(REL_MAX,scopedSpaces().length);return{W:190+46+n*11+30,H:50+n*22+40}};
+function drawZoneMatrix(svg,P){const F=P.font,RS=S.style.rel,{zs,M,info}=zoneRel(),n=zs.length,rh=30,nameW=250,x0=nameW+20,y0=50;const W=Math.max(x0+n*rh/2+30,640),Hh=y0+n*rh+72;svg.setAttribute('viewBox',`0 0 ${W} ${Hh}`);
+  ET(svg,'mat.title','Matriz de relaciones por zona',{x:12,y:22,'font-size':15,'font-weight':700,fill:P.ink,'font-family':F});
+  zs.forEach((z,i)=>{const y=y0+i*rh;const c=zc(z).c;E('rect',{x:12,y,width:nameW-12,height:rh,fill:c,stroke:P.bg,'stroke-width':1,'data-z':z,style:'cursor:pointer'},svg);E('polygon',{points:pts([[nameW,y],[nameW+rh/2,y+rh/2],[nameW,y+rh]]),fill:c},svg);
+    E('text',{x:20,y:y+19,'font-size':12,'font-weight':600,fill:'#16212B','font-family':F,'pointer-events':'none',text:`${zc(z).n} · ${info[z].n} esp. · ${f0(info[z].a)} m²`},svg)});
+  for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){const cx=x0+(j-i)*rh/2,cy=y0+(i+j)*rh/2+rh/2;const c=M[relKey(zs[i],zs[j])];const v=c?c.v:0;
+    const g=E('polygon',{points:pts([[cx,cy-rh/2],[cx+rh/2,cy],[cx,cy+rh/2],[cx-rh/2,cy]]),fill:v===2?inkOr(RS.c2,P):v===1?RS.c1:P.bg,stroke:P.line,'stroke-width':1},svg);E('title',{text:`${zc(zs[i]).n} ↔ ${zc(zs[j]).n}: ${c?c.n+' relaciones':'sin relación'}`},g);
+    if(c&&c.n>1)E('text',{x:cx,y:cy+4,'text-anchor':'middle','font-size':10,'font-weight':700,fill:v===2?'#fff':P.ink,'font-family':F,text:String(c.n)},svg)}
+  E('text',{x:12,y:Hh-46,'font-size':10.5,fill:P.muted,'font-family':F,text:'Cada rombo resume las relaciones entre los espacios de dos zonas: color de la más fuerte y cuántas hay.'},svg);E('text',{x:12,y:Hh-32,'font-size':10.5,fill:P.muted,'font-family':F,text:'Toca una zona (o elígela en «Mostrar») para ver y editar su matriz detallada.'},svg);
+  const lg=E('g',{transform:`translate(12 ${Hh-12})`},svg);[[inkOr(RS.c2,P),RS.n2],[RS.c1,RS.n1],[P.bg,RS.n0]].forEach(([c,t],i)=>{E('rect',{x:i*110,y:-10,width:12,height:12,fill:c,stroke:P.line},lg);E('text',{x:i*110+17,y:0,'font-size':11,fill:P.ink,'font-family':F,text:t},lg)});return{W,Hh}}
+/* Diagrama por zonas: una burbuja por zona (tamaño según su área) y líneas más gruesas cuantas más relaciones las unen. */
+function drawZoneBubbles(svg,P){const B=S.style.bubble,RS=S.style.rel;const F=DFONTS[B.fontFam]||P.font;const{zs,M,info}=zoneRel();const Hh=bubH();drawBg(svg,B.bgMode,B.bgColor,DW,Hh);P=darkBgPal(P,B.bgMode,B.bgColor);
+  ET(svg,'bub.title','Diagrama de relaciones por zona',{x:16,y:28,'font-size':17,'font-weight':700,fill:P.ink,'font-family':F});ET(svg,'bub.sub',S.project.name+' · '+S.spaces.length+' espacios',{x:16,y:46,'font-size':11,fill:P.muted,'font-family':F});
+  if(!zs.length)return;const maxA=Math.max(...zs.map(z=>info[z].a),1);const R=z=>clamp(26+Math.sqrt(info[z].a/maxA)*58,26,84);const cx=DW/2,cy=DH/2,rr=Math.min(DW,DH)/2-110;
+  const pos=Object.fromEntries(zs.map((z,i)=>{const a=-Math.PI/2+i*2*Math.PI/zs.length;return[z,zs.length===1?[cx,cy]:[cx+Math.cos(a)*rr,cy+Math.sin(a)*rr]]}));const maxN=Math.max(1,...Object.values(M).map(c=>c.n));
+  Object.entries(M).forEach(([k,c])=>{const[a,b]=k.split('|');if(!pos[a]||!pos[b])return;E('line',{x1:pos[a][0],y1:pos[a][1],x2:pos[b][0],y2:pos[b][1],stroke:c.v===2?inkOr(RS.c2,P):RS.c1,'stroke-width':1+Math.sqrt(c.n/maxN)*9,'stroke-linecap':'round',opacity:.75},svg);
+    const mx=(pos[a][0]+pos[b][0])/2,my=(pos[a][1]+pos[b][1])/2;E('text',{x:mx,y:my-4,'text-anchor':'middle','font-size':10,'font-weight':700,fill:P.ink,stroke:P.bg,'stroke-width':3,'paint-order':'stroke','font-family':F,text:String(c.n)},svg)});
+  zs.forEach(z=>{const[x,y]=pos[z],r=R(z);E('circle',{cx:x,cy:y,r,fill:zc(z).c,stroke:P.ink,'stroke-width':1.2},svg);const L=wrapName(zc(z).n,12);L.forEach((t,i)=>E('text',{x,y:y-4+(i-(L.length-1)/2)*13,'text-anchor':'middle','font-size':12,'font-weight':700,fill:'#16212B','font-family':F,text:t},svg));
+    E('text',{x,y:y+12+(L.length-1)*6.5,'text-anchor':'middle','font-size':10,fill:'#16212B','font-family':F,text:`${info[z].n} esp. · ${f0(info[z].a)} m²`},svg)});
+  if(B.table){let y=DH+30;E('text',{x:16,y,'font-size':12,'font-weight':700,fill:P.ink,'font-family':F,text:'Zonas del programa'},svg);zs.slice(0,40).forEach((z,i)=>{const yy=y+18+i*21;E('rect',{x:16,y:yy-11,width:12,height:12,rx:2,fill:zc(z).c},svg);E('text',{x:36,y:yy,'font-size':11,fill:P.ink,'font-family':F,text:zc(z).n},svg);E('text',{x:DW-16,y:yy,'text-anchor':'end','font-size':11,fill:P.ink,'font-family':F,text:`${info[z].n} espacios · ${f2(info[z].a)} m²`},svg)})}}
 regDrawing('bubbles','Diagrama de relaciones',DW,()=>bubH(),(s,P)=>drawBubbles(s,P));
 regDrawing('matrix','Matriz de relaciones',()=>mDims().W,()=>mDims().H,(s,P)=>drawMatrix(s,P));
 
 view('relaciones','06','Relaciones',app=>{
   const v=H(`<div class="view"></div>`);app.appendChild(v);
-  v.appendChild(headBlock('06','Programa y relaciones','Escribe tu programa de espacios, marca sus relaciones en la matriz y acomoda el diagrama. Arrastra las burbujas; toca dos veces una burbuja para renombrarla.'));
+  v.appendChild(headBlock('06','Programa y relaciones','Escribe tu programa de espacios, marca sus relaciones en la matriz y acomoda el diagrama. Arrastra las burbujas; toca dos veces una burbuja para renombrarla. En programas grandes trabaja por zonas.'));
   const left=H(`<div class="stack"></div>`);v.appendChild(left);
   const bar=H(`<div class="row"></div>`);
   const lay=H(`<div class="menu-wrap"><button class="btn sm pri" type="button" id="bLay">Acomodar ▾</button><div class="menu" hidden><button type="button" data-l="force">Automático por relaciones</button><button type="button" data-l="zones">En columnas por zona</button><button type="button" data-l="circle">En círculo</button></div></div>`);
-  const lb=lay.querySelector('button'),lm=lay.querySelector('.menu');lb.onclick=()=>{lm.hidden=!lm.hidden};$$('[data-l]',lm).forEach(b=>b.onclick=()=>{lm.hidden=true;relayout(b.dataset.l);drawB();toast('Diagrama acomodado')});
+  const lb=lay.querySelector('button'),lm=lay.querySelector('.menu');lb.onclick=()=>{lm.hidden=!lm.hidden};$$('[data-l]',lm).forEach(b=>b.onclick=()=>{lm.hidden=true;if(relayout(b.dataset.l)){drawB();toast('Diagrama acomodado')}});
+  const big=S.spaces.length>REL_BIG,scNow=relScope();if(scNow==='zonas'){lb.disabled=true;lb.title='En el resumen por zonas las burbujas se acomodan solas. Elige una zona para acomodar sus espacios.'}
+  const scW=H(`<label class="f inline relsc" for="rScope">Mostrar<select id="rScope">${big?'':`<option value="">Todo el programa</option>`}<option value="zonas">${big?'Resumen por zonas (programa grande)':'Resumen por zonas'}</option>${ZONE_KEYS.filter(z=>S.spaces.some(s=>s.zone===z)).map(z=>`<option value="${z}">Zona: ${esc(zc(z).n)} (${S.spaces.filter(s=>s.zone===z).length})</option>`).join('')}</select></label>`);
+  const scS=scW.querySelector('select');scS.value=scNow;scS.onchange=()=>{S.relScope=scS.value;changed();rerender()};bar.appendChild(scW);
   let z1;bar.append(lay,zoomButtons(()=>z1),exportButtons((s,P)=>drawBubbles(s,P),DW,()=>bubH(),'diagrama_relaciones'));
   const b1=board('Diagrama de relaciones',bar);left.appendChild(b1);const fig1=b1.querySelector('.fig');fig1.classList.add('interactive');fig1.style.maxWidth='760px';
   const svg=E('svg',{role:'img','aria-label':'Diagrama de burbujas'});fig1.appendChild(svg);
@@ -1984,7 +2122,7 @@ view('relaciones','06','Relaciones',app=>{
     $$('.dr',svg).forEach(g=>{const s=S.spaces.find(x=>x.id===g.dataset.id);dragOn(g,svg,{start:(p)=>({ox:s.pos[0]*4-p.x,oy:s.pos[1]*4-p.y,moved:false}),
       move:(p,p0,c)=>{if(Math.abs(p.x-p0.x)+Math.abs(p.y-p0.y)>2)c.moved=true;s.pos=[clamp(p.x+c.ox,10,DW-10)/4,clamp(p.y+c.oy,60,DH-50)/4];g.setAttribute('transform',`translate(${s.pos[0]*4} ${s.pos[1]*4})`)},
       end:(c)=>{if(!c.moved){const now=Date.now();if(lastTap.id===s.id&&now-lastTap.t<450){editPopover(g,s.name,val=>{if(val&&val.trim()){s.name=val.trim();changed();drawB();drawM();renderList()}})}lastTap={id:s.id,t:now};S.relSel=s.id;renderList()}changed();drawB()}})})};
-  const drawM=()=>{msvg.innerHTML='';const dm=drawMatrix(msvg,pal());msvg.style.maxWidth=Math.round(dm.W*1.15)+'px';editableTexts(msvg,drawM);$$('.cell',msvg).forEach(c=>c.addEventListener('click',()=>{const k=relKey(c.dataset.a,c.dataset.b);const v=S.rel[k]||0;const nv=v===0?2:v===2?1:0;if(nv)S.rel[k]=nv;else delete S.rel[k];changed();drawM();drawB();renderList()}))};
+  const drawM=()=>{msvg.innerHTML='';const dm=drawMatrix(msvg,pal());msvg.style.maxWidth=Math.round(dm.W*1.15)+'px';editableTexts(msvg,drawM);$$('[data-z]',msvg).forEach(r=>r.addEventListener('click',()=>{S.relScope=r.dataset.z;changed();rerender()}));$$('.cell',msvg).forEach(c=>c.addEventListener('click',()=>{const k=relKey(c.dataset.a,c.dataset.b);const v=S.rel[k]||0;const nv=v===0?2:v===2?1:0;if(nv)S.rel[k]=nv;else delete S.rel[k];changed();drawM();drawB();renderList()}))};
   // panel
   const pn=H(`<div class="panel"></div>`);v.appendChild(pn);
   const lc=H(`<div class="card" id="cardProg"><h3>Programa<small id="pTot"></small></h3><div class="list" id="pList"></div><div class="row" style="margin-top:8px"><button class="btn sm pri" id="pAdd" type="button">Agregar espacio</button><button class="btn sm" id="pXls" type="button">Importar Excel</button><button class="btn sm" id="pTpl" type="button">Plantilla</button></div></div>`);
@@ -2014,19 +2152,19 @@ view('relaciones','06','Relaciones',app=>{
     $$('.zrow',L).forEach(r=>{const k=r.dataset.k;const[c,t]=r.querySelectorAll('input');c.addEventListener('input',()=>{S.zones[k].c=c.value;changed();drawB();drawM();renderList()});t.addEventListener('change',()=>{S.zones[k].n=t.value.trim()||S.zones[k].n;changed();drawB();renderList()});
       r.querySelector('button').onclick=()=>{delete S.zones[k];syncDerived();changed();renderZones();renderList()}})}
   $('#zAdd',zc_).onclick=()=>{let i=1;while(S.zones['z'+i])i++;S.zones['z'+i]={n:'Zona '+i,c:pickColor()};S.zoneOrder.push('z'+i);syncDerived();changed();renderZones()};
-  function renderList(){const L=$('#pList',lc);const sp=sortedSpaces();L.innerHTML=sp.length?sp.map(s=>`<div class="li ${S.relSel===s.id?'sel':''}" data-id="${s.id}" tabindex="0" role="button"><span class="dot" style="background:${spColor(s)}"></span><span>${esc(s.name)}${s.level===1?' <span class="badge">N. sup.</span>':''}</span><span class="m">${f2(s.area)} m²</span></div>`).join(''):'<p class="hint" style="margin:0">Tu programa está vacío. Agrega tu primer espacio o importa un Excel con columnas Espacio, Zona, Área y Nivel.</p>';
-    const built=S.spaces.filter(s=>roofed(s)).reduce((a,s)=>a+(+s.area||0),0);$('#pTot',lc).textContent=`${S.spaces.length} espacios · ${f2(built)} m² cubiertos`;
-    $$('.li',L).forEach(el=>{const pick=()=>{S.relSel=el.dataset.id;renderList();drawB()};el.onclick=pick;el.onkeydown=e=>{if(e.key==='Enter')pick()}});renderEd();renderZones()}
+  function renderList(){const L=$('#pList',lc);const sp=sortedSpaces();fillMore(L,sp,s=>`<div class="li ${S.relSel===s.id?'sel':''}" data-id="${s.id}" tabindex="0" role="button"><span class="dot" style="background:${spColor(s)}"></span><span>${esc(s.name)}${s.level!==0?' <span class="badge">'+esc(lvName(s.level))+'</span>':''}${(s.qty||1)>1?' <span class="badge">×'+s.qty+'</span>':''}</span><span class="m">${f2(s.area)} m²</span></div>`,{k:80,show:sp.findIndex(s=>s.id===S.relSel),empty:'<p class="hint" style="margin:0">Tu programa está vacío. Agrega tu primer espacio o importa un Excel con columnas Espacio, Zona, Área y Nivel.</p>',after:L=>$$('.li',L).forEach(el=>{const pick=()=>{S.relSel=el.dataset.id;renderList();drawB()};el.onclick=pick;el.onkeydown=e=>{if(e.key==='Enter')pick()}})});
+    const built=S.spaces.filter(s=>roofed(s)).reduce((a,s)=>a+(+s.area||0)*(s.qty||1),0);$('#pTot',lc).textContent=`${S.spaces.length} espacios · ${f2(built)} m² cubiertos`;
+    renderEd();renderZones()}
   function renderEd(){const s=S.spaces.find(x=>x.id===S.relSel);if(!s){ed.innerHTML=`<h3>Espacio</h3><p class="hint" style="margin:0">Elige un espacio de la lista o toca una burbuja para editarlo.</p>`;return}
     const RS=S.style.rel;const rels=S.spaces.filter(o=>o.id!==s.id&&relOf(s.id,o.id)).map(o=>`<span class="pill">${relOf(s.id,o.id)===2?'●':'◐'} ${esc(o.name)}</span>`).join(' ');
     ed.innerHTML=`<h3>Espacio</h3><div class="fields">${field('Nombre','eN',s.name,'type="text"','full')}<label class="f" for="eZ">Zona<select id="eZ">${ZONE_KEYS.map(z=>`<option value="${z}" ${z===s.zone?'selected':''}>${esc(zc(z).n)}</option>`).join('')}</select></label>${field('Área m²','eA',s.area,'type="number" step="0.01" min="0"')}
-      <label class="f" for="eL">Nivel<select id="eL"><option value="0" ${s.level===0?'selected':''}>Planta baja</option><option value="1" ${s.level===1?'selected':''}>Nivel superior</option></select></label>
+      <label class="f" for="eL">Nivel<select id="eL">${S.levels.slice().sort((a,b)=>b.n-a.n).map(l=>`<option value="${l.n}" ${s.level===l.n?'selected':''}>${esc(l.name)}</option>`).join('')}</select></label>
       <label class="f" for="eS">Forma<select id="eS"><option value="">Igual que todas</option>${BUB_SHAPES.map(([k,l])=>`<option value="${k}" ${s.shape===k?'selected':''}>${l}</option>`).join('')}</select></label>
       <label class="f" for="eC">Color propio<input type="color" id="eC" value="${spColor(s)}"></label>${field('Tamaño (0 = auto)','eR',s.r||0,'type="number" step="1" min="0" max="90"')}</div>
       <p class="hint">${esc(RS.n2)} ● · ${esc(RS.n1)} ◐: ${rels||'ninguna todavía. Toca casillas en la matriz.'}</p><div class="row" style="margin-top:8px">${s.color?'<button class="btn sm" id="eCr" type="button">Usar color de la zona</button>':''}<button class="btn sm" id="eDel" type="button">Eliminar espacio</button></div>`;
     const up=()=>{changed();renderList();drawB();drawM()};
     $('#eN',ed).onchange=e=>{s.name=e.target.value.trim()||s.name;up()};$('#eZ',ed).onchange=e=>{s.zone=e.target.value;up()};$('#eA',ed).onchange=e=>{s.area=+e.target.value||0;up()};
-    $('#eL',ed).onchange=e=>{s.level=+e.target.value;if(s.level===1&&!s.z)s.z=2.9;if(s.level===0)s.z=0;up()};$('#eS',ed).onchange=e=>{s.shape=e.target.value||undefined;up()};
+    $('#eL',ed).onchange=e=>{s.level=+e.target.value;s.z=levelOf(s.level).z;up()};$('#eS',ed).onchange=e=>{s.shape=e.target.value||undefined;up()};
     $('#eC',ed).addEventListener('input',e=>{s.color=e.target.value;changed();drawB();drawM()});$('#eC',ed).addEventListener('change',()=>renderList());$('#eR',ed).onchange=e=>{s.r=+e.target.value||undefined;up()};
     if(s.color)$('#eCr',ed).onclick=()=>{delete s.color;up()};
     const del=$('#eDel',ed);let armed=0;del.onclick=()=>{if(Date.now()-armed<3000){S.spaces=S.spaces.filter(x=>x.id!==s.id);Object.keys(S.rel).forEach(k=>{if(k.split('|').includes(s.id))delete S.rel[k]});S.relSel=null;changed();renderList();drawB();drawM();toast('Espacio eliminado')}else{armed=Date.now();del.textContent='¿Eliminar? Toca otra vez'}}}
@@ -2036,6 +2174,7 @@ view('relaciones','06','Relaciones',app=>{
 },[
   {t:'Programa y relaciones',d:'Aquí armas la lista de espacios, decides cuáles se relacionan y obtienes la matriz y el diagrama de burbujas.'},
   {sel:'#cardProg',t:'Tu programa',d:'Agrega espacios uno por uno o importa un Excel. Toca un espacio para cambiar su nombre, zona, área, nivel, forma o color.'},
+  {sel:'#rScope',t:'Qué mostrar',d:'Elige ver todo el programa, el resumen por zonas o una sola zona. En programas grandes (más de 150 espacios) la matriz y el diagrama se resumen por zona; toca una zona en la matriz para ver y editar su detalle.'},
   {sel:'.board:nth-of-type(2) svg',t:'Matriz',d:'Toca una casilla para cambiar la relación: primero fuerte, luego débil y luego ninguna. La ponderación se suma sola.'},
   {sel:'.board svg',t:'Diagrama',d:'Arrastra las burbujas con el dedo o el mouse. Toca dos veces para renombrar. Usa dos dedos (o Ctrl + rueda) para acercar.'},
   {sel:'#cardZonas',t:'Personaliza',d:'Cambia nombres y colores de las zonas, la forma de las burbujas, los nombres y valores de las relaciones y los colores de las líneas.'}]);
@@ -2045,11 +2184,13 @@ const isPerm=s=>s.perm!=null?s.perm:(s.zone==='exterior'&&/jard|patio|verde|past
 const isRoofed=s=>roofed(s);
 let ZFREEZE=null;
 function viewMaxY(){if(ZFREEZE)return ZFREEZE;const pr=S.project;if(S.zoning.full)return pr.lotL;let m=0;S.spaces.forEach(s=>{if(s.geo&&!(!roofed(s)&&bbox(s.geo).h>pr.lotL*0.35))m=Math.max(m,bbox(s.geo).y1)});(S.zoning.notes||[]).forEach(n=>m=Math.max(m,n.y1||0,n.y2||0));return Math.min(pr.lotL,Math.max(Math.min(pr.lotL,10),Math.ceil(m+3.5)))}
-function zoneMetrics(){const pr=S.project,lot=pr.lotW*pr.lotL||1;let pb=0,up=0,perm=0;S.spaces.forEach(s=>{if(!s.geo)return;const a=polyArea(s.geo);if(isPerm(s)){perm+=a;return}if(!roofed(s))return;if(s.level===1)up+=a;else pb+=a});
-  return{lot,pb,up,total:pb+up,perm,cos:pb/lot,cus:(pb+up)/lot,cas:perm/lot}}
-function relChecks(){const out=[];const sp=S.spaces;for(let i=0;i<sp.length;i++)for(let j=i+1;j<sp.length;j++){const v=relOf(sp[i].id,sp[j].id);if(v!==2)continue;const a=sp[i],b=sp[j];if(!a.geo||!b.geo)continue;
+function zoneMetrics(){const pr=S.project,lot=pr.lotW*pr.lotL||1;let pb=0,up=0,sot=0,perm=0;S.spaces.forEach(s=>{if(!s.geo)return;const a=polyArea(s.geo)*(s.qty||1);if(isPerm(s)){perm+=a;return}if(!roofed(s))return;if(s.level>0)up+=a;else if(s.level<0)sot+=a;else pb+=a});
+  return{lot,pb,up,sot,total:pb+up+sot,perm,cos:pb/lot,cus:(pb+up)/lot,cas:perm/lot}}
+/* Relaciones fuertes que ya están dibujadas: se recorren las relaciones (no todas las parejas de espacios), así un programa de 1,000 espacios se revisa al instante. */
+function relChecks(){const out=[];const byId=new Map(S.spaces.map(s=>[s.id,s]));const ord=new Map(S.spaces.map((s,i)=>[s.id,i]));const ks=Object.keys(S.rel).filter(k=>S.rel[k]===2).map(k=>k.split('|')).filter(([x,y])=>byId.has(x)&&byId.has(y)&&x!==y).map(([x,y])=>ord.get(x)<ord.get(y)?[x,y]:[y,x]).sort((p,q)=>ord.get(p[0])-ord.get(q[0])||ord.get(p[1])-ord.get(q[1]));
+  for(const[x,y]of ks){const a=byId.get(x),b=byId.get(y);if(!a.geo||!b.geo)continue;
   const sameLevel=a.level===b.level;const d=polyDist(a.geo,b.geo);out.push({a,b,d,ok:sameLevel?d<=0.35:true,note:sameLevel?'':'distinto nivel (por escalera)'})}return out}
-function overlaps(){const out=[];const sp=S.spaces.filter(s=>s.geo&&roofed(s));for(let i=0;i<sp.length;i++)for(let j=i+1;j<sp.length;j++){const a=sp[i],b=sp[j];if(a.level!==b.level)continue;const A=bbox(a.geo),B=bbox(b.geo);
+function overlaps(){const out=[];const sp=S.spaces.filter(s=>s.geo&&roofed(s));const BB=sp.map(s=>bbox(s.geo));for(let i=0;i<sp.length;i++)for(let j=i+1;j<sp.length;j++){const a=sp[i],b=sp[j];if(a.level!==b.level)continue;const A=BB[i],B=BB[j];if(A.x0>=B.x1||B.x0>=A.x1||A.y0>=B.y1||B.y0>=A.y1)continue;
   const x0=Math.max(A.x0,B.x0),x1=Math.min(A.x1,B.x1),y0=Math.max(A.y0,B.y0),y1=Math.min(A.y1,B.y1);if(x1-x0<0.06||y1-y0<0.06)continue;let n=0;for(let x=x0+0.05;x<x1;x+=0.1)for(let y=y0+0.05;y<y1;y+=0.1)if(inPoly([x,y],a.geo)&&inPoly([x,y],b.geo))n++;if(n*0.01>0.05)out.push({a,b,area:n*0.01})}return out}
 function zoningFrame(){const pr=S.project,Ymax=viewMaxY();const k=Math.min(30,560/pr.lotW);const m={l:70,r:40,t:76,b:70};return{k,Ymax,m,W:m.l+pr.lotW*k+m.r,Hh:m.t+Ymax*k+m.b,X:x=>m.l+x*k,Y:y=>m.t+(Ymax-y)*k}}
 let HATCH_N=0;
@@ -2085,20 +2226,22 @@ function drawZoning(svg,P,opts={}){
   if(!opts.bare)ET(svg,'zon.title','Zonificación',{x:16,y:26,'font-size':17,'font-weight':700,fill:P.ink,'font-family':F});
   if(!opts.bare)ET(svg,'zon.sub',`${S.project.name} · terreno ${f2(pr.lotW)} × ${f2(pr.lotL)} m`,{x:16,y:44,'font-size':11,fill:P.muted,'font-family':F});
   E('rect',{x:X(0),y:Y(Ymax),width:pr.lotW*k,height:Ymax*k,fill:P.ground,stroke:'none'},svg);
-  const bg=S.zoning.bg;if(bg&&bg.src&&bg.show!==false){const h=bg.w*(bg.aspect||1);E('image',{href:bg.src,x:X(bg.x),y:Y(bg.y+h),width:bg.w*k,height:h*k,opacity:bg.op??0.5,preserveAspectRatio:'none'},svg)}
+  const bg=S.zoning.bg;if(bg&&bg.src&&bg.show!==false){const h=bg.w*(bg.aspect||1);E('image',{href:assetSrc(bg.src),x:X(bg.x),y:Y(bg.y+h),width:bg.w*k,height:h*k,opacity:bg.op??0.5,preserveAspectRatio:'none'},svg)}
   if(ZS.showGrid!==false){const g=+ZS.grid||1;for(let x=g;x<pr.lotW-1e-6;x+=g)E('line',{x1:X(x),x2:X(x),y1:Y(0),y2:Y(Ymax),stroke:P.line2,'stroke-width':.6},svg);for(let y=g;y<Ymax-1e-6;y+=g)E('line',{x1:X(0),x2:X(pr.lotW),y1:Y(y),y2:Y(y),stroke:P.line2,'stroke-width':.6},svg)}
   (S.zoning.ref||[]).forEach(r=>{if(S.zoning.refShow===false)return;E(r.closed?'polygon':'polyline',{points:pts(r.pts.map(([x,y])=>[X(x),Y(y)])),fill:'none',stroke:P.muted,'stroke-width':.9,opacity:S.zoning.refOp??0.7},svg)});
   E('line',{x1:X(0),x2:X(pr.lotW),y1:Y(pr.front),y2:Y(pr.front),stroke:P.muted,'stroke-width':1,'stroke-dasharray':'6 4'},svg);
   const order=S.spaces.filter(s=>s.geo).sort((a,b)=>(a.level-b.level)||(roofed(a)-roofed(b)));
-  const shown=s=>lvl==='all'||(lvl==='0'&&s.level===0)||(lvl==='1'&&s.level===1);const upC=ZS.upper||'#7A4FD6';
-  order.forEach(s=>{if(!shown(s))return;const up=s.level===1;const g=E('g',{class:opts.interactive?'dr':null,'data-id':s.id},svg);
+  const shown=s=>lvl==='all'||String(s.level)===lvl;const upC=ZS.upper||'#7A4FD6';
+  // al ver un solo nivel, el de abajo se dibuja punteado como referencia para acomodar los pisos
+  if(lvl!=='all'){const n=+lvl;S.spaces.filter(s=>s.geo&&s.level===n-1&&roofed(s)).forEach(s=>E('polygon',{points:pts(s.geo.map(([x,y])=>[X(x),Y(Math.min(y,Ymax))])),fill:'none',stroke:P.ink,'stroke-opacity':.35,'stroke-width':0.8,'stroke-dasharray':'3 3','pointer-events':'none'},svg))}
+  order.forEach(s=>{if(!shown(s))return;const up=lvl==='all'?s.level!==0:false;const g=E('g',{class:opts.interactive?'dr':null,'data-id':s.id},svg);
     const poly=s.geo.map(([x,y])=>[X(x),Y(Math.min(y,Ymax))]);
     E('polygon',{class:'shp',points:pts(poly),fill:up?P.bg:spColor(s),'fill-opacity':up?.93:(roofed(s)?ZS.op:ZS.op*0.62),stroke:up?upC:inkOr('#16212B',P),'stroke-width':(up?1.6:1)*(ZS.stroke||1),'stroke-dasharray':up?'7 4':null},g);
     if(s.hatch&&s.hatch!=='none')E('polygon',{points:pts(poly),fill:hp(s.hatch),stroke:'none'},g);
     if(opts.sel===s.id)E('polygon',{points:pts(poly),fill:'none',stroke:P.accent,'stroke-width':2.6},g);
     if(s.hideLabel||ZS.labels==='none')return;
     const bb=bbox(s.geo);const c=s.lpos||(isRect(s.geo)?[bb.x0+bb.w/2,Math.min(bb.y0+bb.h/2,(bb.y0+Ymax)/2)]:polyCentroid(s.geo));const area=polyArea(s.geo);
-    const L=ZS.labels==='area'?[]:wrapName(s.name,Math.max(6,Math.floor(bb.w*k/6.2)));const fs=clamp(Math.min(bb.w*k/((Math.max(4,...L.map(t=>t.length)))*0.58),bb.h*k/((L.length+1)*1.25)),6.5,12)*(ZS.font||1);
+    const L=ZS.labels==='area'?[]:wrapName(s.name+((s.qty||1)>1?' ×'+s.qty:''),Math.max(6,Math.floor(bb.w*k/6.2)));const fs=clamp(Math.min(bb.w*k/((Math.max(4,...L.map(t=>t.length)))*0.58),bb.h*k/((L.length+1)*1.25)),6.5,12)*(ZS.font||1);
     const tc=up?upC:'#16212B',halo=up?{stroke:P.bg,'stroke-width':3,'paint-order':'stroke'}:{};
     L.forEach((t,i)=>E('text',{x:X(c[0]),y:Y(c[1])+(i-L.length/2)*fs*1.15+fs*0.4,'text-anchor':'middle','font-size':fs,'font-weight':700,'font-style':up?'italic':null,fill:tc,'font-family':F,...halo,text:t},g));
     if(ZS.labels!=='name')E('text',{x:X(c[0]),y:Y(c[1])+(L.length/2)*fs*1.15+fs*0.5,'text-anchor':'middle','font-size':fs*0.82,fill:tc,'font-family':F,...halo,text:f2(area)+' m²'},g)});
@@ -2118,14 +2261,32 @@ function drawZoning(svg,P,opts={}){
   if(!opts.noScale){const sx=X(0),sy=Hh-24;for(let i=0;i<5;i++)E('rect',{x:sx+i*k,y:sy,width:k,height:6,fill:i%2?P.bg:P.ink,stroke:P.ink,'stroke-width':.8},svg);E('text',{x:sx+5*k+6,y:sy+7,'font-size':10,fill:P.ink,'font-family':F,text:'5 m'},svg);
   drawNorth(svg,W-28,40,11,+pr.northDeg||0,P)}
   if(ZS.legend){const used=ZONE_KEYS.filter(z=>S.spaces.some(s=>s.geo&&s.zone===z));used.forEach((z,i)=>{const x=X(0)+k*6+(i%3)*96,y=Hh-30+Math.floor(i/3)*14;E('rect',{x,y:y-9,width:10,height:10,fill:zc(z).c,stroke:P.ink,'stroke-width':.5},svg);E('text',{x:x+14,y,'font-size':10,fill:P.ink,'font-family':F,text:zc(z).n},svg)})}
-  else if(lvl!=='0'&&S.spaces.some(s=>s.level===1)){E('line',{x1:X(pr.lotW)-150,x2:X(pr.lotW)-126,y1:Hh-21,y2:Hh-21,stroke:upC,'stroke-width':1.6,'stroke-dasharray':'7 4'},svg);ET(svg,'zon.up','Nivel superior',{x:X(pr.lotW)-120,y:Hh-17,'font-size':10.5,fill:P.ink,'font-family':F})}
+  else if(lvl==='all'&&S.spaces.some(s=>s.level!==0&&s.geo)){E('line',{x1:X(pr.lotW)-150,x2:X(pr.lotW)-126,y1:Hh-21,y2:Hh-21,stroke:upC,'stroke-width':1.6,'stroke-dasharray':'7 4'},svg);ET(svg,'zon.up','Nivel superior',{x:X(pr.lotW)-120,y:Hh-17,'font-size':10.5,fill:P.ink,'font-family':F})}
 }
 regDrawing('zoning','Zonificación',()=>zoningFrame().W,()=>zoningFrame().Hh,(s,P)=>drawZoning(s,P));
 
+/* Niveles del proyecto: nombre, desplante y altura de entrepiso; agregar pisos o sótanos y quitar los vacíos. */
+function editLevels(done){const b=H(`<div><p class="hint" style="margin-top:0">Cada espacio pertenece a un nivel. El desplante es la altura del piso sobre el terreno (negativo en sótanos) y la altura es de piso a piso. Al cambiar el desplante de un nivel, sus espacios se mueven con él.</p><div class="tbl-wrap"><table class="t lvt"><thead><tr><th>Nivel</th><th>Nombre</th><th>Desplante m</th><th>Altura m</th><th>Espacios</th><th></th></tr></thead><tbody></tbody></table></div>
+  <div class="row" style="margin-top:10px"><button class="btn sm" type="button" data-a="up">+ Nivel arriba</button><button class="btn sm" type="button" data-a="down">+ Sótano</button><span style="flex:1"></span><button class="btn sm" type="button" data-a="even" title="Acomoda los desplantes con la altura de cada nivel">Apilar automáticamente</button></div></div>`);
+  const tb=$('tbody',b);const draw=()=>{sortLevels();tb.innerHTML=S.levels.slice().reverse().map(l=>{const c=S.spaces.filter(s=>s.level===l.n).length;return`<tr data-n="${l.n}"><td class="num">${l.n}</td><td><input data-k="name" value="${esc(l.name)}" maxlength="40" aria-label="Nombre del nivel ${l.n}"></td><td><input data-k="z" value="${f2(l.z)}" inputmode="decimal" aria-label="Desplante del nivel ${l.n}"></td><td><input data-k="h" value="${f2(l.h)}" inputmode="decimal" aria-label="Altura del nivel ${l.n}"></td><td class="num">${c}</td><td>${c||l.n===0?'':`<button class="btn sm ghost" type="button" data-del="${l.n}" aria-label="Quitar ${esc(l.name)}">Quitar</button>`}</td></tr>`}).join('');
+    $$('input',tb).forEach(i=>i.onchange=()=>{const n=+i.closest('tr').dataset.n;const l=S.levels.find(x=>x.n===n);const k=i.dataset.k;
+      if(k==='name')l.name=i.value.trim()||levelName(n);else{const v=+String(i.value).replace(',','.');if(!Number.isFinite(v))return draw();if(k==='z'){const dz=v-l.z;l.z=v;S.spaces.forEach(s=>{if(s.level===n)s.z=+((+s.z||0)+dz).toFixed(3)})}else l.h=Math.max(0.5,v)}changed();done&&done()});
+    $$('[data-del]',tb).forEach(x=>x.onclick=()=>{const n=+x.dataset.del;S.levels=S.levels.filter(l=>l.n!==n);if(S.zoning.level===String(n))S.zoning.level='0';changed();draw();done&&done()})};
+  b.addEventListener('click',e=>{const a=e.target.dataset&&e.target.dataset.a;if(!a)return;sortLevels();
+    if(a==='up'){const t=S.levels[S.levels.length-1];const n=t.n+1;S.levels.push({n,name:levelName(n),z:+(t.z+t.h).toFixed(2),h:t.h})}
+    if(a==='down'){const lo=S.levels[0];const n=lo.n-1;S.levels.unshift({n,name:levelName(n),z:+(lo.z-3).toFixed(2),h:3})}
+    if(a==='even'){const i0=S.levels.findIndex(l=>l.n===0);let z=0;for(let i=i0;i<S.levels.length;i++){const l=S.levels[i];const dz=z-l.z;l.z=+z.toFixed(2);S.spaces.forEach(s=>{if(s.level===l.n)s.z=+((+s.z||0)+dz).toFixed(3)});z+=l.h}z=0;for(let i=i0-1;i>=0;i--){const l=S.levels[i];z-=l.h;const dz=z-l.z;l.z=+z.toFixed(2);S.spaces.forEach(s=>{if(s.level===l.n)s.z=+((+s.z||0)+dz).toFixed(3)})}}
+    changed();draw();done&&done()});
+  draw();modal('Niveles del proyecto',b,{wide:true,onClose:()=>done&&done()})}
 view('zonas','07','Zonificación',app=>{
   const Z=S.zoning;if(!Z.notes)Z.notes=[];const v=H(`<div class="view"></div>`);app.appendChild(v);
-  const seg=segmented([['all','Ambos niveles'],['0','Planta baja'],['1','Nivel superior']],Z.level,val=>{Z.level=val;changed();draw()});
-  const hd=headBlock('07','Zonificación',(isSimple()?'Dibuja y acomoda tus espacios en el terreno. Arrastra para mover; con un espacio elegido, mueve sus esquinas o vértices. Usa Rectángulo para dibujar espacios y Puerta o Ventana para colocarlas en los muros.':'Dibuja y acomoda tus espacios en el terreno. Arrastra para mover; con un espacio elegido, mueve sus esquinas o vértices. Usa las herramientas para dibujar polígonos, textos, flechas y cotas.'));hd.appendChild(seg);v.appendChild(hd);
+  // niveles: selector con todos los niveles del proyecto, y botones para agregar pisos o sótanos y editarlos
+  const seg=H(`<div class="lvbar" id="zLevels"><label class="f inline" for="zLvSel">Nivel<select id="zLvSel"></select></label><button class="btn sm" type="button" id="zLvUp" title="Agregar un nivel arriba">+ Nivel</button><button class="btn sm adv" type="button" id="zLvEd" title="Nombres, desplantes y alturas">Niveles…</button></div>`);
+  const fillLv=()=>{const sel=$('#zLvSel',seg);sel.innerHTML=`<option value="all">Todos los niveles</option>`+S.levels.slice().sort((a,b)=>b.n-a.n).map(l=>{const c=S.spaces.filter(s=>s.geo&&s.level===l.n).length;return`<option value="${l.n}">${esc(l.name)}${c?' · '+c:''}</option>`}).join('');sel.value=Z.level};
+  fillLv();$('#zLvSel',seg).onchange=e=>{Z.level=e.target.value;changed();draw();e.target.blur()};
+  $('#zLvUp',seg).onclick=()=>{sortLevels();const t=S.levels[S.levels.length-1];const n=t.n+1;S.levels.push({n,name:levelName(n),z:+(t.z+t.h).toFixed(2),h:t.h});Z.level=String(n);changed();fillLv();draw();toast(levelName(n)+' agregado: dibuja sus espacios')};
+  $('#zLvEd',seg).onclick=()=>editLevels(()=>{fillLv();draw()});
+  const hd=headBlock('07','Zonificación',(isSimple()?'Dibuja y acomoda tus espacios en el terreno. Arrastra para mover; con un espacio elegido, mueve sus esquinas o vértices. Usa Rectángulo para dibujar espacios y Puerta o Ventana para colocarlas en los muros.':'Dibuja y acomoda tus espacios en el terreno. Arrastra para mover; con un espacio elegido, mueve sus esquinas o vértices. Usa las herramientas para dibujar polígonos, textos, flechas y cotas. Elige arriba el nivel que dibujas: sótanos y pisos sin límite.'));hd.appendChild(seg);v.appendChild(hd);
   const left=H(`<div class="stack"></div>`);v.appendChild(left);
   let tool='sel',draft=null,z;
   const tb=H(`<div class="tools" id="zTools" role="toolbar" aria-label="Herramientas"></div>`);
@@ -2166,13 +2327,13 @@ view('zonas','07','Zonificación',app=>{
       Z.selOp=id;Z.sel=null;Z.selNote=null;changed();draw();return false}
     if(tool==='text'){const id=uid('n');Z.notes.push({id,type:'text',x1:p[0],y1:p[1],text:'Texto',size:1,color:'#16212B'});Z.selNote=id;Z.sel=null;changed();setTool('sel');setTimeout(()=>{const t=$(`[data-n="${id}"] text`,svg);if(t)editPopover(t,'Texto',v=>{const n=Z.notes.find(x=>x.id===id);if(n&&v!=null){n.text=v;changed();draw()}})},50);return false}
     ZFREEZE=zoningFrame().Ymax;draft={type:tool,a:p,b:null};const mv=ev=>{draft.b=toM(svgPoint(svg,ev)).map(snap);quick()};const up=ev=>{svg.removeEventListener('pointermove',mv);svg.removeEventListener('pointerup',up);ZFREEZE=null;if(!draft||!draft.b){draft=null;return}
-      const[a,c]=[draft.a,draft.b];if(tool==='rect'){const w=Math.abs(c[0]-a[0]),h=Math.abs(c[1]-a[1]);if(w>=0.3&&h>=0.3){const id=newId();S.spaces.push({id,name:'Espacio '+(S.spaces.length+1),zone:$('#zNew',tb).value,area:+(w*h).toFixed(2),level:Z.level==='1'?1:0,geo:R(Math.min(a[0],c[0]),Math.min(a[1],c[1]),w,h),h:2.8,z:Z.level==='1'?2.9:0,pos:[30+Math.random()*100,70+Math.random()*120]});Z.sel=id;changed()}}
+      const[a,c]=[draft.a,draft.b];if(tool==='rect'){const w=Math.abs(c[0]-a[0]),h=Math.abs(c[1]-a[1]);if(w>=0.3&&h>=0.3){const id=newId();S.spaces.push({id,name:'Espacio '+(S.spaces.length+1),zone:$('#zNew',tb).value,area:+(w*h).toFixed(2),level:Z.level==='all'?0:+Z.level,geo:R(Math.min(a[0],c[0]),Math.min(a[1],c[1]),w,h),h:2.8,z:levelOf(Z.level==='all'?0:+Z.level).z,pos:[30+Math.random()*100,70+Math.random()*120]});Z.sel=id;changed()}}
       else if(Math.hypot(c[0]-a[0],c[1]-a[1])>0.2){const id=uid('n');Z.notes.push({id,type:tool,x1:a[0],y1:a[1],x2:c[0],y2:c[1],color:'#16212B',size:1});Z.selNote=id;changed()}
       draft=null;setTool('sel')};
     try{svg.setPointerCapture(e.pointerId)}catch(_){}svg.addEventListener('pointermove',mv);svg.addEventListener('pointerup',up);return false}
   svg.addEventListener('pointermove',e=>{if(draft&&draft.type==='poly'){draft.hover=toM(svgPoint(svg,e)).map(snap);quick()}});
   svg.addEventListener('dblclick',e=>{if(tool==='poly'&&draft)finishPoly()});
-  function finishPoly(){if(!draft||draft.pts.length<3){toast('Un polígono necesita al menos 3 puntos');return}const id=newId();const g=draft.pts.map(q=>[+q[0].toFixed(3),+q[1].toFixed(3)]);S.spaces.push({id,name:'Espacio '+(S.spaces.length+1),zone:$('#zNew',tb).value,area:+polyArea(g).toFixed(2),level:Z.level==='1'?1:0,geo:g,h:2.8,z:Z.level==='1'?2.9:0,free:true,pos:[30+Math.random()*100,70+Math.random()*120]});Z.sel=id;draft=null;changed();setTool('sel')}
+  function finishPoly(){if(!draft||draft.pts.length<3){toast('Un polígono necesita al menos 3 puntos');return}const id=newId();const g=draft.pts.map(q=>[+q[0].toFixed(3),+q[1].toFixed(3)]);S.spaces.push({id,name:'Espacio '+(S.spaces.length+1),zone:$('#zNew',tb).value,area:+polyArea(g).toFixed(2),level:Z.level==='all'?0:+Z.level,geo:g,h:2.8,z:levelOf(Z.level==='all'?0:+Z.level).z,free:true,pos:[30+Math.random()*100,70+Math.random()*120]});Z.sel=id;draft=null;changed();setTool('sel')}
   const dragZ=(el,o)=>dragOn(el,svg,{start:(p,e)=>{ZFREEZE=zoningFrame().Ymax;return o.start?o.start(p,e):{}},move:o.move,end:(c,e)=>{ZFREEZE=null;o.end&&o.end(c,e)}});
   function bind(){const{k}=zoningFrame();if(tool!=='sel')return;
     $$('.dr',svg).forEach(g=>{const s=S.spaces.find(x=>x.id===g.dataset.id);let lastT=0;dragZ(g,{start:p=>({p0:p,g0:s.geo.map(q=>q.slice()),lp0:s.lpos?s.lpos.slice():null,moved:false}),
@@ -2209,13 +2370,15 @@ view('zonas','07','Zonificación',app=>{
       <div class="kpi"><div class="l">CUS</div><div class="v num">${f2(mm.cus)}</div><div class="s"><span class="pill ${st(mm.cus,pr.cus)}">máx ${pr.cus}</span></div></div>
       <div class="kpi"><div class="l">CAS (permeable)</div><div class="v num">${f2(mm.cas)}</div><div class="s"><span class="pill ${st(mm.cas,pr.cas,true)}">mín ${pr.cas} · ${f0(mm.perm)} m²</span></div></div>`;
     const rc=relChecks();const bad=rc.filter(r=>!r.ok);const ov=overlaps();
-    const rows=S.spaces.filter(s=>s.geo&&roofed(s)).map(s=>{const a=polyArea(s.geo),d=s.area?(a-s.area)/s.area*100:0;return`<tr><td>${esc(s.name)}</td><td>${f2(a)}</td><td>${f2(s.area)}</td><td><span class="pill ${Math.abs(d)<=10?'ok':Math.abs(d)<=25?'warn':'bad'}">${d>0?'+':''}${f0(d)}%</span></td></tr>`}).join('');
-    ana.innerHTML=`<div class="card"><h3>Áreas: dibujo contra programa</h3><div class="tbl-wrap"><table class="t"><thead><tr><th>Espacio</th><th>Dibujo m²</th><th>Programa m²</th><th>Dif.</th></tr></thead><tbody>${rows||'<tr><td colspan="4" class="txt">Coloca espacios cubiertos en el plano para comparar.</td></tr>'}</tbody></table></div></div>
+    /* Con varios niveles se comparan solo los espacios del nivel que estás viendo; primero los que más se alejan del programa. */
+    const lvSel=Z.level!=null&&Z.level!=='all'?+Z.level:null;const AR=S.spaces.filter(s=>s.geo&&roofed(s)&&(lvSel==null||s.level===lvSel)).map(s=>{const a=polyArea(s.geo),d=s.area?(a-s.area)/s.area*100:0;return{s,a,d}});const many=AR.length>60;if(many)AR.sort((p,q)=>Math.abs(q.d)-Math.abs(p.d));
+    const rows=AR.slice(0,60).map(({s,a,d})=>`<tr><td>${esc(s.name)}</td><td>${f2(a)}</td><td>${f2(s.area)}</td><td><span class="pill ${Math.abs(d)<=10?'ok':Math.abs(d)<=25?'warn':'bad'}">${d>0?'+':''}${f0(d)}%</span></td></tr>`).join('');
+    ana.innerHTML=`<div class="card"><h3>Áreas: dibujo contra programa${lvSel!=null&&S.levels.length>1?'<small>'+esc(lvName(lvSel))+'</small>':''}</h3><div class="tbl-wrap"><table class="t"><thead><tr><th>Espacio</th><th>Dibujo m²</th><th>Programa m²</th><th>Dif.</th></tr></thead><tbody>${rows||'<tr><td colspan="4" class="txt">Coloca espacios cubiertos en el plano para comparar.</td></tr>'}</tbody></table></div>${many?`<p class="hint">Se muestran los 60 espacios que más se alejan del programa, de ${AR.length}.</p>`:''}</div>
       <div class="card"><h3>Revisión</h3><p style="margin:0 0 8px"><span class="pill ${bad.length?'bad':'ok'}">${rc.length-bad.length} de ${rc.length} relaciones fuertes colindan</span></p>
-      ${bad.map(r=>`<div style="font-size:12.5px;padding:3px 0">✗ ${esc(r.a.name)} ↔ ${esc(r.b.name)} <span class="num" style="color:var(--muted)">a ${f2(r.d)} m</span></div>`).join('')}
-      ${rc.filter(r=>r.note).map(r=>`<div style="font-size:12.5px;padding:3px 0;color:var(--muted)">↕ ${esc(r.a.name)} ↔ ${esc(r.b.name)}: ${r.note}</div>`).join('')}
+      ${capJoin(bad,30,r=>`<div style="font-size:12.5px;padding:3px 0">✗ ${esc(r.a.name)} ↔ ${esc(r.b.name)} <span class="num" style="color:var(--muted)">a ${f2(r.d)} m</span></div>`,'relaciones más que no colindan')}
+      ${capJoin(rc.filter(r=>r.note),20,r=>`<div style="font-size:12.5px;padding:3px 0;color:var(--muted)">↕ ${esc(r.a.name)} ↔ ${esc(r.b.name)}: ${r.note}</div>`,'relaciones más entre niveles')}
       <p style="margin:10px 0 6px"><span class="pill ${ov.length?'warn':'ok'}">${ov.length?ov.length+' encimados':'Sin espacios encimados'}</span></p>
-      ${ov.map(o=>`<div style="font-size:12.5px;padding:3px 0">⚠ ${esc(o.a.name)} y ${esc(o.b.name)} <span class="num" style="color:var(--muted)">${f2(o.area)} m²</span></div>`).join('')}
+      ${capJoin(ov,30,o=>`<div style="font-size:12.5px;padding:3px 0">⚠ ${esc(o.a.name)} y ${esc(o.b.name)} <span class="num" style="color:var(--muted)">${f2(o.area)} m²</span></div>`,'encimados más')}
       <p class="hint">Dos espacios colindan si quedan a 35 cm o menos (grosor de un muro). Las relaciones entre niveles se resuelven con la escalera.</p></div>`}
   function editor(){const s=S.spaces.find(x=>x.id===Z.sel);const n=Z.selNote&&Z.notes.find(x=>x.id===Z.selNote);const o=Z.selOp&&S.openings.find(x=>x.id===Z.selOp);
     if(o){const g=openingGeom(o);const nb=across(o,g);const b=bearingOf(g.n);const fs=facadeSun(b);
@@ -2233,10 +2396,10 @@ view('zonas','07','Zonificación',app=>{
       $('#nDel',edc).onclick=()=>{Z.notes=Z.notes.filter(x=>x!==n);Z.selNote=null;changed();draw()}}
     else if(!s||!s.geo){edc.innerHTML=`<h3>Espacio</h3><p class="hint" style="margin:0">Toca un espacio del plano para editarlo. Con la herramienta <b>Rectángulo</b>${isSimple()?'':' o <b>Polígono</b>'} dibujas uno nuevo. Atajos: V mover, R rectángulo, P polígono, T texto, F flecha, C cota, Supr eliminar, flechas para empujar.</p>`}
     else{const bb=bbox(s.geo),rect=isRect(s.geo)&&!s.free;
-      edc.innerHTML=`<h3>${esc(s.name)}<small>${esc(zc(s.zone).n)}${s.level===1?' · nivel superior':''}</small></h3><div class="fields">
+      edc.innerHTML=`<h3>${esc(s.name)}<small>${esc(zc(s.zone).n)}${s.level!==0?' · '+esc(lvName(s.level)):''}</small></h3><div class="fields">
         ${field('Nombre','zN',s.name,'type="text"','full')}
         <label class="f" for="zZn">Zona<select id="zZn">${ZONE_KEYS.map(k=>`<option value="${k}" ${k===s.zone?'selected':''}>${esc(zc(k).n)}</option>`).join('')}</select></label>
-        <label class="f" for="zLv">Nivel<select id="zLv"><option value="0" ${s.level===0?'selected':''}>Planta baja</option><option value="1" ${s.level===1?'selected':''}>Nivel superior</option></select></label>
+        <label class="f" for="zLv">Nivel<select id="zLv">${S.levels.slice().sort((a,b)=>b.n-a.n).map(l=>`<option value="${l.n}" ${s.level===l.n?'selected':''}>${esc(l.name)}</option>`).join('')}</select></label>
         ${field('X m','zX',f2(bb.x0),'type="number" step="0.05"')}${field('Y m','zY',f2(bb.y0),'type="number" step="0.05"')}
         ${rect?field('Ancho m','zW',f2(bb.w),'type="number" step="0.05" min="0.3"')+field('Largo m','zH',f2(bb.h),'type="number" step="0.05" min="0.3"'):''}
         ${field('Altura m','zHt',s.h??2.8,'type="number" step="0.1" min="0"')}${field('Desplante m','zZ',s.z??0,'type="number" step="0.1" min="0"')}
@@ -2253,7 +2416,7 @@ view('zonas','07','Zonificación',app=>{
       const setG=()=>{if(rect){s.geo=R(num('zX'),num('zY'),Math.max(0.3,num('zW')),Math.max(0.3,num('zH')))}else{const dx=num('zX')-bb.x0,dy=num('zY')-bb.y0;s.geo=s.geo.map(([x,y])=>[x+dx,y+dy])}delete s.lpos;changed();draw()};
       ['zX','zY','zW','zH'].forEach(id=>{const i=$('#'+id,edc);if(i)i.onchange=setG});
       const on=(id,fn,ev='change')=>{const i=$('#'+id,edc);if(i)i.addEventListener(ev,()=>{fn(i);changed();draw()})};
-      on('zN',i=>s.name=i.value.trim()||s.name);on('zZn',i=>s.zone=i.value);on('zLv',i=>{s.level=+i.value;s.z=s.level?Math.max(s.z||0,2.9):0});on('zHt',i=>s.h=+i.value);on('zZ',i=>s.z=+i.value);on('zC',i=>s.color=i.value,'input');on('zHa',i=>s.hatch=i.value);on('zP',i=>s.perm=i.checked);on('zFr',i=>s.free=i.checked);on('zHl',i=>s.hideLabel=i.checked);on('zFin',i=>{if(i.value)s.fin=i.value;else delete s.fin});
+      on('zN',i=>s.name=i.value.trim()||s.name);on('zZn',i=>s.zone=i.value);on('zLv',i=>{s.level=+i.value;s.z=levelOf(s.level).z});on('zHt',i=>s.h=+i.value);on('zZ',i=>s.z=+i.value);on('zC',i=>s.color=i.value,'input');on('zHa',i=>s.hatch=i.value);on('zP',i=>s.perm=i.checked);on('zFr',i=>s.free=i.checked);on('zHl',i=>s.hideLabel=i.checked);on('zFin',i=>{if(i.value)s.fin=i.value;else delete s.fin});
       const cen=()=>{const c=polyCentroid(s.geo);return c};
       $('#zRot',edc).onclick=()=>{const[cx,cy]=cen();s.geo=s.geo.map(([x,y])=>[+(cx-(y-cy)).toFixed(3),+(cy+(x-cx)).toFixed(3)]);delete s.lpos;changed();draw()};
       $('#zMir',edc).onclick=()=>{const[cx]=cen();const n=s.geo.length;S.openings.forEach(o=>{if(o.sp===s.id){o.e=(2*n-2-o.e)%n;o.t=1-o.t}});s.geo=s.geo.map(([x,y])=>[+(2*cx-x).toFixed(3),y]).reverse();delete s.lpos;changed();draw()};
@@ -2276,6 +2439,7 @@ view('zonas','07','Zonificación',app=>{
   draw();
 },[
   {t:'Zonificación',d:'Aquí acomodas cada espacio de tu programa dentro del terreno, a escala real en metros.'},
+  {sel:'#zLevels',t:'Niveles',d:'Elige el nivel que dibujas; el de abajo se ve punteado para alinear muros. Con <b>+ Nivel</b> agregas un piso arriba y en <b>Niveles…</b> renombras, cambias desplantes y alturas, agregas sótanos o apilas todo automáticamente.'},
   {sel:'#zTools',t:'Herramientas',d:'<b>Mover</b> para arrastrar; <b>Rectángulo</b> y <b>Polígono</b> para dibujar espacios nuevos; <b>Texto</b>, <b>Flecha</b> y <b>Cota</b> para anotar. Elige la zona antes de dibujar.'},
   {sel:'.board svg',t:'Edita sobre el plano',d:'Toca un espacio para elegirlo y arrastra sus esquinas. En forma libre mueves cada vértice y con los rombos agregas uno nuevo. Dos dedos o Ctrl + rueda para acercar.'},
   {sel:'#zEd',t:'Medidas exactas',d:'En el panel escribes posición, medidas, altura, color, achurado y si es área permeable. También giras, duplicas o haces espejo.'},
@@ -2283,12 +2447,37 @@ view('zonas','07','Zonificación',app=>{
 
 /* ================= 8 · Normativa ================= */
 const NGRP={dim:'Dimensiones de los locales',luz:'Iluminación y ventilación natural',acc:'Puertas, pasillos y accesibilidad',predio:'Predio, coeficientes y estacionamiento',rel:'Relaciones con puerta'};
-regDrawing('norm','Revisión normativa',820,()=>Math.max(260,120+normChecks().length*17+Object.keys(NGRP).length*30),(svg,P)=>{const F=P.font,ch=normChecks();let y=30;
+/* Para el documento: en proyectos grandes cada grupo muestra primero lo que no cumple y lo que hay que revisar (hasta 30) y resume el resto; la lista completa va en Excel. */
+const NORM_G=30;const NSORT={bad:0,warn:1,ok:2};
+function normGroups(ch){return Object.entries(NGRP).map(([g,t])=>{const L=ch.filter(x=>x.grp===g).sort((a,b)=>NSORT[a.st]-NSORT[b.st]);return L.length?{g,t,L:L.slice(0,NORM_G),rest:L.slice(NORM_G)}:null}).filter(Boolean)}
+regDrawing('norm','Revisión normativa',820,()=>{const G=normGroups(normChecks());return Math.max(260,90+G.reduce((a,x)=>a+28+x.L.length*17+(x.rest.length?17:0),0))},(svg,P)=>{const F=P.font,ch=normChecks();let y=30;
   ET(svg,'norm.title','Revisión normativa',{x:16,y,'font-size':17,'font-weight':700,fill:P.ink,'font-family':F});y+=18;
-  const c={ok:0,warn:0,bad:0};ch.forEach(x=>c[x.st]++);E('text',{x:16,y,'font-size':11,fill:P.muted,'font-family':F,text:`${S.project.name} · ${c.ok} cumplen · ${c.warn} por revisar · ${c.bad} no cumplen`},svg);y+=22;
+  const c={ok:0,warn:0,bad:0};ch.forEach(x=>c[x.st]++);E('text',{x:16,y,'font-size':11,fill:P.muted,'font-family':F,text:`${S.project.name} · ${c.ok} cumplen · ${c.warn} por revisar · ${c.bad} no cumplen · ${S.normPack?S.normPack.nombre+(S.normPack.uso?' ('+S.normPack.uso+')':''):'valores de referencia'}`},svg);y+=22;
   const col={ok:P.ok,warn:P.warn,bad:P.bad},sym={ok:'✓',warn:'!',bad:'✗'};
-  Object.entries(NGRP).forEach(([g,t])=>{const L=ch.filter(x=>x.grp===g);if(!L.length)return;E('text',{x:16,y:y+8,'font-size':12,'font-weight':700,fill:P.ink,'font-family':F,text:t},svg);y+=22;
-    L.forEach(x=>{E('circle',{cx:24,cy:y-4,r:6,fill:col[x.st]},svg);E('text',{x:24,y:y-0.5,'text-anchor':'middle','font-size':8.5,'font-weight':700,fill:'#fff','font-family':F,text:sym[x.st]},svg);E('text',{x:38,y,'font-size':11,fill:P.ink,'font-family':F,text:x.msg},svg);y+=17});y+=6})});
+  normGroups(ch).forEach(({t,L,rest})=>{E('text',{x:16,y:y+8,'font-size':12,'font-weight':700,fill:P.ink,'font-family':F,text:t},svg);y+=22;
+    L.forEach(x=>{E('circle',{cx:24,cy:y-4,r:6,fill:col[x.st]},svg);E('text',{x:24,y:y-0.5,'text-anchor':'middle','font-size':8.5,'font-weight':700,fill:'#fff','font-family':F,text:sym[x.st]},svg);E('text',{x:38,y,'font-size':11,fill:P.ink,'font-family':F,text:x.msg},svg);y+=17});
+    if(rest.length){const n={ok:0,warn:0,bad:0};rest.forEach(x=>n[x.st]++);E('text',{x:38,y,'font-size':11,'font-style':'italic',fill:P.muted,'font-family':F,text:`… y ${rest.length} revisiones más (${n.ok} cumplen${n.warn?', '+n.warn+' por revisar':''}${n.bad?', '+n.bad+' no cumplen':''}). La lista completa sale en Excel.`},svg);y+=17}y+=6})});
+/* ---------- Normativa por paquetes de estado y municipio ----------
+   Cada paquete es un archivo chico en assets/norma que se pide solo al usarlo (así crecer a todo México no hace pesada la página).
+   Trae valores con su documento y artículo, otros requisitos para citar y los usos de suelo con COS, CUS y CAS. */
+const NPK={index:null,packs:new Map(),fail:false};
+function normIndex(){if(NPK.index)return Promise.resolve(NPK.index);if(location.protocol==='file:'){NPK.fail=true;return Promise.resolve([])}return fetch(assetURL('norma/index.json'),{credentials:'same-origin'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(j=>{NPK.index=(Array.isArray(j.paquetes)?j.paquetes:[]).filter(p=>p&&/^[a-z0-9-]{2,40}$/.test(p.id)&&/^[a-z0-9-]{2,60}\.json$/.test(p.archivo)).map(p=>({id:p.id,nombre:sStr(p.nombre,120),estado:sStr(p.estado,60),municipio:sStr(p.municipio,80),archivo:p.archivo,revisado:sStr(p.revisado,20)}));NPK.fail=false;return NPK.index})
+  .catch(()=>{NPK.fail=true;return[]})}
+function normPackLoad(id){if(NPK.packs.has(id))return Promise.resolve(NPK.packs.get(id));return normIndex().then(ix=>{const m=ix.find(p=>p.id===id);if(!m)return null;return fetch(assetURL('norma/'+m.archivo),{credentials:'same-origin'}).then(r=>r.ok?r.json():null).then(j=>{if(!j)return null;const pk=cleanPack(j,m);NPK.packs.set(id,pk);return pk})}).catch(()=>null)}
+/* Todo lo que llega de un paquete se valida (números con rango y textos cortos). */
+function cleanPack(j,m){const F=j.fuentes&&typeof j.fuentes==='object'?j.fuentes:{};const fu=k=>sStr(F[k],160);const lim={ilum:[0,100],vent:[0,100],oper:[0,100],door:[0.5,3],hall:[0.5,5],parking:[0,50],cajon:[5,40],dot:[50,1000]};
+  const valores={};Object.keys(lim).forEach(k=>{const x=(j.valores||{})[k];if(x&&Number.isFinite(+x.v)){const v=clamp(+x.v,...lim[k]);valores[k]={v,src:[fu(x.f),sStr(x.ref,240)].filter(Boolean).join(' · ')}}});
+  const otros=(Array.isArray(j.otros)?j.otros:[]).slice(0,60).map(o=>({t:sStr(o.t,120),v:sStr(o.v,400),src:[fu(o.f),sStr(o.ref,200)].filter(Boolean).join(' · ')})).filter(o=>o.t);
+  const usos=(Array.isArray(j.usos)?j.usos:[]).slice(0,120).map(u=>({clave:sStr(u.clave,20),nombre:sStr(u.nombre,120),cos:clamp(+u.cos||0,0,10),cus:clamp(+u.cus||0,0,50),cas:clamp(+u.cas||0,0,1),src:[fu(u.f),sStr(u.ref,200)].filter(Boolean).join(' · ')})).filter(u=>u.clave);
+  return{id:m.id,nombre:m.nombre,estado:m.estado,municipio:m.municipio,revisado:m.revisado,valores,otros,usos}}
+/* Aplicar un paquete: parte de los valores de referencia y pone encima los del reglamento, cada uno con su fuente. */
+function applyNormPack(pk,uso){const d=defaultNorm();const N=S.norm;['ilum','vent','oper','door','hall','parking','cajon'].forEach(k=>N[k]=d[k]);N.t=d.t;const ref={};
+  if(pk){Object.entries(pk.valores).forEach(([k,x])=>{if(k==='dot')S.res.dot=x.v;else N[k]=x.v;ref[k]=x.src});const u=pk.usos.find(x=>x.clave===uso)||(pk.usos.length===1?pk.usos[0]:null);
+    if(u){S.project.cos=u.cos;S.project.cus=u.cus;S.project.cas=u.cas;ref.cos=ref.cus=ref.cas=u.src}
+    S.normPack={id:pk.id,nombre:pk.nombre,revisado:pk.revisado,uso:u?u.clave:''}}else S.normPack=null;
+  S.normRef=ref;changed()}
+const NREF_N={ilum:'Iluminación',vent:'Ventilación',oper:'Parte que abre',door:'Puerta accesible',hall:'Pasillo',parking:'Cajones por vivienda',cajon:'Área por cajón',dot:'Dotación de agua',cos:'COS',cus:'CUS',cas:'CAS'};
 view('normativa','08','Normativa',app=>{
   const v=H(`<div class="view"></div>`);app.appendChild(v);const N=S.norm;
   v.appendChild(headBlock('08','Normativa','Revisión automática del anteproyecto: dimensiones mínimas, iluminación y ventilación, accesibilidad, estacionamiento, coeficientes y restricciones. Los valores son de referencia y se ajustan al reglamento de tu municipio.'));
@@ -2297,31 +2486,49 @@ view('normativa','08','Normativa',app=>{
   const list=H(`<div class="stack" id="nList"></div>`);left.appendChild(list);
   const wb=board('Sol en cada ventana',null);left.appendChild(wb);
   const pn=H(`<div class="panel"></div>`);v.appendChild(pn);
+  const pkc=H(`<div class="card" id="nPack"><h3>Reglamento aplicable</h3><p class="hint" style="margin:0">Cargando los reglamentos disponibles…</p></div>`);
+  function renderPack(){normIndex().then(ix=>{if(!document.body.contains(pkc))return;const cur=S.normPack;const L=mxLocate(S.project.lat,S.project.lon);const st=L&&L.inMx?L.state:'';
+    const sug=!cur&&ix.find(p=>p.estado===st);const pk=cur&&NPK.packs.get(cur.id);
+    pkc.innerHTML=`<h3>Reglamento aplicable</h3>${NPK.fail?`<p class="hint" style="margin:0 0 8px">Los reglamentos por estado se cargan en la página publicada en internet; aquí se usan los valores de referencia.</p>`:''}
+      ${sug?`<div class="noti info" style="margin:0 0 8px"><b>Hay normativa de ${esc(sug.estado)}</b><p style="margin:4px 0 6px">${esc(sug.nombre)} (revisada ${esc(sug.revisado)}).</p><button class="btn sm pri" type="button" id="nSug">Usarla en este proyecto</button></div>`:''}
+      <div class="fields"><label class="f full" for="nPkSel">Normativa<select id="nPkSel"><option value="">Valores de referencia generales</option>${ix.map(p=>`<option value="${p.id}" ${cur&&cur.id===p.id?'selected':''}>${esc(p.nombre)}</option>`).join('')}</select></label>
+      ${pk&&pk.usos.length?`<label class="f full" for="nUso">Uso de suelo (zona del programa de desarrollo urbano)<select id="nUso">${pk.usos.map(u=>`<option value="${esc(u.clave)}" ${cur.uso===u.clave?'selected':''}>${esc(u.clave)} · ${esc(u.nombre)} (COS ${u.cos}, CUS ${u.cus}, CAS ${u.cas})</option>`).join('')}</select></label>`:''}</div>
+      <p class="hint">${cur?`Revisado ${esc(cur.revisado||'')}. Los valores vienen de los artículos citados; confírmalos con la versión vigente de tu municipio.`:'Elige el reglamento de tu municipio cuando esté disponible; mientras, se usan valores de referencia de uso común (normas técnicas de la Ciudad de México).'}</p>
+      ${ix.length?'':'<p class="hint" style="margin:0">Pronto habrá más estados y municipios.</p>'}`;
+    const sel=$('#nPkSel',pkc);if(sel)sel.onchange=async e=>{const id=e.target.value;if(!id){applyNormPack(null);rerender();toast('Valores de referencia generales');return}const p=await normPackLoad(id);if(!p)return toast('No se pudo cargar ese reglamento');applyNormPack(p,'');rerender();toast('Reglamento aplicado: '+p.nombre)};
+    const us=$('#nUso',pkc);if(us)us.onchange=e=>{applyNormPack(pk,e.target.value);rerender()};
+    const sb=$('#nSug',pkc);if(sb)sb.onclick=async()=>{const p=await normPackLoad(sug.id);if(!p)return toast('No se pudo cargar ese reglamento');applyNormPack(p,'');rerender();toast('Reglamento aplicado: '+p.nombre)};
+    if(cur&&!pk)normPackLoad(cur.id).then(p=>{if(p&&document.body.contains(pkc))renderPack()})})}
   const tc=H(`<div class="card" id="nTypes"><h3>Tipo de cada local</h3><div class="list" style="max-height:420px"></div><p class="hint">El tipo decide qué mínimos se aplican. Se adivina por el nombre; cámbialo si no corresponde.</p></div>`);
   const rc=H(`<details class="card sty" id="nRules"><summary><h3>Valores de la norma</h3></summary><div id="nRin"></div></details>`);
-  pn.append(tc,rc);
+  const otc=H(`<details class="card sty" id="nOtros"><summary><h3>Otros requisitos para citar</h3></summary><div id="nOin"></div></details>`);
+  pn.append(pkc,tc,rc,otc);renderPack();
   function render(){const ch=normChecks();const c={ok:0,warn:0,bad:0};ch.forEach(x=>c[x.st]++);const score=ch.length?Math.round(c.ok/ch.length*100):0;
     kp.innerHTML=`<div class="kpi"><div class="l">Cumplimiento</div><div class="v num">${score}<small>%</small></div><div class="s">${ch.length} revisiones</div></div><div class="kpi"><div class="l">Cumplen</div><div class="v num" style="color:var(--ok)">${c.ok}</div><div class="s">Sin observaciones</div></div><div class="kpi"><div class="l">Por revisar</div><div class="v num" style="color:var(--warn)">${c.warn}</div><div class="s">Revisa a mano o mejora</div></div><div class="kpi"><div class="l">No cumplen</div><div class="v num" style="color:var(--bad)">${c.bad}</div><div class="s">Corrige antes de entregar</div></div>`;
     list.innerHTML='';const exp=board('Reporte',exportButtons((s,P)=>DRAWINGS.norm.draw(s,P),820,()=>dH(DRAWINGS.norm),'normativa'));exp.querySelector('.fig').remove();list.appendChild(exp);
     Object.entries(NGRP).forEach(([g,t])=>{const L=ch.filter(x=>x.grp===g);if(!L.length)return;const n={ok:0,warn:0,bad:0};L.forEach(x=>n[x.st]++);
-      const card=H(`<details class="card sty nck" ${n.bad||n.warn?'open':''}><summary><h3>${esc(t)}<small>${n.ok} ✓ · ${n.warn} ! · ${n.bad} ✗</small></h3></summary><div class="nl">${L.sort((a,b)=>({bad:0,warn:1,ok:2})[a.st]-({bad:0,warn:1,ok:2})[b.st]).map(x=>`<div class="nr ${x.st}"><span class="pill ${x.st}">${{ok:'Cumple',warn:'Revisar',bad:'No cumple'}[x.st]}</span><span>${esc(x.msg)}</span>${x.s&&x.s.geo?`<button class="btn sm ghost" type="button" data-go="${x.s.id}">Ver</button>`:''}</div>`).join('')}</div></details>`);
+      const card=H(`<details class="card sty nck" ${n.bad||n.warn?'open':''}><summary><h3>${esc(t)}<small>${n.ok} ✓ · ${n.warn} ! · ${n.bad} ✗</small></h3></summary><div class="nl"></div></details>`);
+      fillMore($('.nl',card),L.sort((a,b)=>({bad:0,warn:1,ok:2})[a.st]-({bad:0,warn:1,ok:2})[b.st]),x=>`<div class="nr ${x.st}"><span class="pill ${x.st}">${{ok:'Cumple',warn:'Revisar',bad:'No cumple'}[x.st]}</span><span>${esc(x.msg)}</span>${x.s&&x.s.geo?`<button class="btn sm ghost" type="button" data-go="${x.s.id}">Ver</button>`:''}</div>`,{k:40,after:goBtns});
       list.appendChild(card)});
-    $$('[data-go]',list).forEach(b=>b.onclick=()=>{S.zoning.sel=b.dataset.go;S.zoning.level=String(S.spaces.find(s=>s.id===b.dataset.go).level);location.hash='zonas'});
+    function goBtns(el){$$('[data-go]',el).forEach(b=>b.onclick=()=>{S.zoning.sel=b.dataset.go;S.zoning.level=String(S.spaces.find(s=>s.id===b.dataset.go).level);location.hash='zonas'})}
     const rows=S.openings.filter(o=>o.type==='window'&&isExteriorOpening(o)).map(o=>{const g=openingGeom(o);const b=bearingOf(g.n);const f=facadeSun(b);return{o,g,b,f}}).sort((a,b)=>b.f.hot-a.f.hot);
-    wb.querySelector('.fig').innerHTML=rows.length?`<div class="tbl-wrap"><table class="t"><thead><tr><th>Local</th><th>Mira al</th><th>Ancho × alto</th><th>Sol h/día</th><th>Sol en horas calurosas</th><th>Sol en horas frescas</th><th>Recomendación</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.g.s.name)}</td><td>${compass16(r.b)} · ${f0(r.b)}°</td><td>${f2(r.o.w)} × ${f2(r.o.h)}</td><td>${f1(r.f.all)}</td><td>${f1(r.f.hot)}</td><td>${f1(r.f.cool)}</td><td class="txt">${r.f.hot>2?'Protégela: volado, celosía o vegetación':r.f.hot>0.8?'Volado o alero corto':r.f.cool>1?'Buena para ganancia solar en invierno':'Sin problema'}</td></tr>`).join('')}</tbody></table></div><p class="hint">Promedio diario del día 21 de cada mes con el clima de la serie elegida. Diseña el volado exacto en Carta solar.</p>`:'<p class="hint">Dibuja ventanas en Zonificación para ver cuánto sol reciben.</p>';
-    const L=$('.list',tc);L.innerHTML=S.spaces.filter(s=>s.geo).map(s=>`<div class="li" style="grid-template-columns:14px minmax(0,1fr) auto;cursor:default"><span class="dot" style="background:${spColor(s)}"></span><span>${esc(s.name)}</span><select data-id="${s.id}" aria-label="Tipo de ${esc(s.name)}">${RTYPES.map(([k,l])=>`<option value="${k}" ${guessType(s)===k?'selected':''}>${l}</option>`).join('')}</select></div>`).join('')||'<p class="hint" style="margin:0">Coloca espacios en Zonificación.</p>';
-    $$('select[data-id]',L).forEach(sel=>sel.onchange=()=>{const s=S.spaces.find(x=>x.id===sel.dataset.id);s.type=sel.value;changed();render()});
+    wb.querySelector('.fig').innerHTML=rows.length?`<div class="tbl-wrap"><table class="t"><thead><tr><th>Local</th><th>Mira al</th><th>Ancho × alto</th><th>Sol h/día</th><th>Sol en horas calurosas</th><th>Sol en horas frescas</th><th>Recomendación</th></tr></thead><tbody>${rows.slice(0,80).map(r=>`<tr><td>${esc(r.g.s.name)}</td><td>${compass16(r.b)} · ${f0(r.b)}°</td><td>${f2(r.o.w)} × ${f2(r.o.h)}</td><td>${f1(r.f.all)}</td><td>${f1(r.f.hot)}</td><td>${f1(r.f.cool)}</td><td class="txt">${r.f.hot>2?'Protégela: volado, celosía o vegetación':r.f.hot>0.8?'Volado o alero corto':r.f.cool>1?'Buena para ganancia solar en invierno':'Sin problema'}</td></tr>`).join('')}</tbody></table></div>${rows.length>80?`<p class="hint">Se muestran las 80 ventanas con más sol de ${rows.length}. Todas salen en Excel (hoja Aberturas).</p>`:''}<p class="hint">Promedio diario del día 21 de cada mes con el clima de la serie elegida. Diseña el volado exacto en Carta solar.</p>`:'<p class="hint">Dibuja ventanas en Zonificación para ver cuánto sol reciben.</p>';
+    fillMore($('.list',tc),S.spaces.filter(s=>s.geo),s=>`<div class="li" style="grid-template-columns:14px minmax(0,1fr) auto;cursor:default"><span class="dot" style="background:${spColor(s)}"></span><span>${esc(s.name)}</span><select data-id="${s.id}" aria-label="Tipo de ${esc(s.name)}">${RTYPES.map(([k,l])=>`<option value="${k}" ${guessType(s)===k?'selected':''}>${l}</option>`).join('')}</select></div>`,{k:50,empty:'<p class="hint" style="margin:0">Coloca espacios en Zonificación.</p>',after:L=>$$('select[data-id]',L).forEach(sel=>sel.onchange=()=>{const s=S.spaces.find(x=>x.id===sel.dataset.id);s.type=sel.value;changed();render()})});
     const R_=$('#nRin',rc);R_.innerHTML=`<div class="fields">${field('Iluminación % del piso','nIl',N.ilum,'type="number" step="0.5"')}${field('Ventilación % del piso','nVe',N.vent,'type="number" step="0.5"')}${field('Parte que abre de la ventana %','nOp',N.oper,'type="number" step="5"')}${field('Puerta accesible m','nDo',N.door,'type="number" step="0.05"')}${field('Pasillo accesible m','nHa',N.hall,'type="number" step="0.05"')}${field('Cajones requeridos','nPk',N.parking,'type="number" step="1"')}${field('Área por cajón m²','nCj',N.cajon,'type="number" step="0.5"')}</div>
       <div class="tbl-wrap" style="margin-top:10px"><table class="t"><thead><tr><th>Local</th><th>Área mín. m²</th><th>Lado mín. m</th><th>Altura mín. m</th></tr></thead><tbody>${Object.keys(N.t).map(k=>`<tr><td>${esc(RTN[k])}</td>${[0,1,2].map(i=>`<td><input data-t="${k}" data-i="${i}" value="${N.t[k][i]}" inputmode="decimal"></td>`).join('')}</tr>`).join('')}</tbody></table></div>
+      ${Object.keys(S.normRef||{}).length?`<div class="nsrc"><b>De dónde sale cada valor</b>${Object.entries(S.normRef).map(([k,v])=>`<p><span>${esc(NREF_N[k]||k)}</span>${esc(v)}</p>`).join('')}<p class="hint" style="margin:6px 0 0">Los demás valores son de referencia. Si cambias uno a mano, deja de citarse el reglamento.</p></div>`:''}
       <p class="hint">Referencia: normas técnicas complementarias de uso común en México (por ejemplo, las de la Ciudad de México). Cada municipio publica su propio reglamento de construcción: confírmalos con él.</p><div class="row" style="margin-top:6px"><button class="btn sm" id="nRst" type="button">Valores de referencia</button></div>`;
-    [['nIl','ilum'],['nVe','vent'],['nOp','oper'],['nDo','door'],['nHa','hall'],['nPk','parking'],['nCj','cajon']].forEach(([id,k])=>$('#'+id,R_).onchange=e=>{N[k]=Math.max(0,+e.target.value||0);changed();render()});
-    $$('input[data-t]',R_).forEach(i=>i.onchange=()=>{N.t[i.dataset.t][+i.dataset.i]=Math.max(0,+String(i.value).replace(',','.')||0);changed();render()});$('#nRst',R_).onclick=()=>{S.norm=defaultNorm();changed();rerender()}}
+    [['nIl','ilum'],['nVe','vent'],['nOp','oper'],['nDo','door'],['nHa','hall'],['nPk','parking'],['nCj','cajon']].forEach(([id,k])=>$('#'+id,R_).onchange=e=>{N[k]=Math.max(0,+e.target.value||0);if(S.normRef)delete S.normRef[k];changed();render()});
+    const pk=S.normPack&&NPK.packs.get(S.normPack.id);const OI=$('#nOin',otc);OI.innerHTML=pk&&pk.otros.length?pk.otros.map(o=>`<div class="nrow"><b>${esc(o.t)}</b><p>${esc(o.v)}</p><small>${esc(o.src)}</small></div>`).join(''):'<p class="hint" style="margin:0">Cuando elijas el reglamento de tu municipio aquí aparecen otros requisitos (escaleras, superficies mínimas…) con su artículo, listos para citar en tu documento.</p>';
+    $$('input[data-t]',R_).forEach(i=>i.onchange=()=>{N.t[i.dataset.t][+i.dataset.i]=Math.max(0,+String(i.value).replace(',','.')||0);changed();render()});$('#nRst',R_).onclick=()=>{applyNormPack(null);rerender()}}
   render();
 },[
   {t:'Normativa',d:'La página revisa tu zonificación contra valores mínimos de reglamento y te dice qué cumple, qué revisar y qué corregir.'},
+  {sel:'#nPack',t:'Reglamento de tu municipio',d:'Elige la normativa de tu estado y municipio (y el uso de suelo de tu predio): los mínimos, el COS, el CUS y el CAS se ajustan solos y cada valor muestra el artículo de donde sale, listo para citar.'},
   {sel:'#nKpi',t:'Resumen',d:'El porcentaje de cumplimiento sube conforme corriges. Toca “Ver” en cualquier observación para ir directo al espacio.'},
   {sel:'#nTypes',t:'Tipos de local',d:'Cada espacio tiene un tipo (recámara, cocina, baño…) que define sus mínimos. Corrígelo si el nombre engañó a la página.'},
-  {sel:'#nRules',t:'Tu reglamento',d:'Ajusta los mínimos al reglamento de tu municipio. Los que vienen son de referencia.'}]);
+  {sel:'#nRules',t:'Valores y fuentes',d:'Aquí ves cada mínimo y el artículo de donde sale. Si tu municipio todavía no tiene paquete, escribe los valores de tu reglamento; si cambias uno a mano, ese valor deja de citarse.'},
+  {sel:'#nOtros',t:'Para tu marco legal',d:'Otros requisitos del reglamento elegido (escaleras, superficies mínimas, licencias…) con su artículo, listos para copiar a tu documento.'}]);
 
 /* ================= Acabados realistas: texturas, cielo, vegetación y personas =================
    Las imágenes viven en la carpeta assets/ junto a la página y se cargan solo cuando se usan.
@@ -2522,11 +2729,11 @@ function m3SelCard(card){if(!card)return;const ED=M3ED;const ents=ED.sel.map(m3E
       ${field('Altura m','m3sH',f2(h),'type="number" step="0.05" min="0"')}${field('Desplante m','m3sB',f2(+s.z||0),'type="number" step="0.05" min="0"')}
       <label class="f ${vol?'':'full'}" for="m3sF">${vol?'Muros':'Acabado'}<select id="m3sF"><option value="">Automático (${esc(MATS[finOf({...s,fin:null})]||'')})</option>${(vol?MAT_WALL:MAT_FLOOR).concat(s.fin&&!(vol?MAT_WALL:MAT_FLOOR).includes(s.fin)?[s.fin]:[]).map(k=>`<option value="${k}" ${s.fin===k?'selected':''}>${esc(MATS[k])}</option>`).join('')}</select></label>
       ${vol?`<label class="f" for="m3sR">Azotea<select id="m3sR"><option value="">Automática (${esc(MATS[S.style.m3d.roofMat||'azotea'])})</option>${MAT_ROOF.concat(['pasto']).concat(s.rfin&&!MAT_ROOF.concat(['pasto']).includes(s.rfin)?[s.rfin]:[]).map(k=>`<option value="${k}" ${s.rfin===k?'selected':''}>${esc(k==='pasto'?'Azotea verde (pasto)':MATS[k])}</option>`).join('')}</select></label>`:''}</div>
-      <div class="mini"><span>Área ${f2(a)} m²</span><span>${h<0.1?'Superficie sin techo':h<0.5?'Plataforma':'Volumen cubierto'}</span><span>${s.level===1?'Nivel superior':'Planta baja'}</span>${s.area&&!s.m3?`<span>Programa ${f2(s.area)} m²</span>`:''}</div>
+      <div class="mini"><span>Área ${f2(a)} m²</span><span>${h<0.1?'Superficie sin techo':h<0.5?'Plataforma':'Volumen cubierto'}</span><span>${esc(lvName(s.level))}</span>${s.area&&!s.m3?`<span>Programa ${f2(s.area)} m²</span>`:''}</div>
       <div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sZm">Encuadrar</button><button class="btn sm" type="button" id="m3sZo">Ver en zonificación</button>${grpBtns()}<button class="btn sm" type="button" id="m3sDel">${s.m3?'Borrar':'Quitar del plano'}</button></div>`;
     bind('m3sN',i=>{s.name=i.value.trim()||s.name});bind('m3sZ',i=>{s.zone=i.value});bind('m3sC',i=>{s.color=i.value});bind('m3sH',i=>{s.h=Math.max(0,+i.value||0)});
-    bind('m3sB',i=>{s.z=Math.max(0,+i.value||0);s.level=s.z>=2?1:0});bind('m3sF',i=>{if(i.value)s.fin=i.value;else delete s.fin});bind('m3sR',i=>{if(i.value)s.rfin=i.value;else delete s.rfin});
-    btn('m3sZo',()=>{S.zoning.sel=s.id;S.zoning.level=s.level===1?'1':'0';location.hash='zonas'});wire();return}
+    bind('m3sB',i=>{s.z=+i.value||0;s.level=levelForZ(s.z)});bind('m3sF',i=>{if(i.value)s.fin=i.value;else delete s.fin});bind('m3sR',i=>{if(i.value)s.rfin=i.value;else delete s.rfin});
+    btn('m3sZo',()=>{S.zoning.sel=s.id;S.zoning.level=String(s.level);location.hash='zonas'});wire();return}
   if(ents.length===1&&ents[0].k!=='sp'){const e=ents[0],o=e.o;
     if(e.k==='bld'){card.innerHTML=`<h3>${esc(o.name||'Construcción vecina')}<small>Contexto</small></h3>${ctx}<div class="fields">${field('Frente m','m3bW',f2(o.w),'type="number" step="0.1" min="0.5"')}${field('Fondo m','m3bD',f2(o.d),'type="number" step="0.1" min="0.5"')}${field('Altura m','m3bH',f2(o.h),'type="number" step="0.1" min="0.5"')}</div><div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sZm">Encuadrar</button><button class="btn sm" type="button" id="m3sDel">Borrar</button></div>`;
       bind('m3bW',i=>{o.w=Math.max(0.5,+i.value||o.w)});bind('m3bD',i=>{o.d=Math.max(0.5,+i.value||o.d)});bind('m3bH',i=>{o.h=Math.max(0.5,+i.value||o.h)})}
@@ -2699,7 +2906,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     const o=c.position.clone().sub(M.target());const r=Math.max(2,sph.radius/Math.sin(Math.min(fv,fh))*1.1);M.flyTo({t:sph.center,th:Math.atan2(o.x,o.z),ph:Math.acos(clamp(o.y/o.length(),-1,1)),r})}
   // ----- crear y cambiar espacios -----
   function freeName(){let n=S.spaces.length+1;const used=new Set(S.spaces.map(s=>s.name));while(used.has('Espacio '+n))n++;return'Espacio '+n}
-  function newSpace(g,z,o={}){const id=newId();const s={id,name:o.name||freeName(),zone:o.zone&&S.zones[o.zone]?o.zone:(S.zones[ED.zone]?ED.zone:ZONE_KEYS[0]),area:+polyArea(g).toFixed(2),level:z>=2?1:0,geo:g,h:o.h||0,z:+z.toFixed(3),m3:true,pos:[30+Math.random()*100,70+Math.random()*120]};
+  function newSpace(g,z,o={}){const id=newId();const s={id,name:o.name||freeName(),zone:o.zone&&S.zones[o.zone]?o.zone:(S.zones[ED.zone]?ED.zone:ZONE_KEYS[0]),area:+polyArea(g).toFixed(2),level:levelForZ(z),geo:g,h:o.h||0,z:+z.toFixed(3),m3:true,pos:[30+Math.random()*100,70+Math.random()*120]};
     if(!isRect(g))s.free=true;if(ED.grp)s.grp=ED.grp;S.spaces.push(s);commit(['sp:'+id]);return s}
   const syncA=(s,geo=true)=>{if(s.m3)s.area=+polyArea(s.geo).toFixed(2);if(!geo)return;if(isRect(s.geo))delete s.free;else s.free=true;delete s.lpos};
   function cleanPoly(pts){let g=pts.map(([x,y])=>[+x.toFixed(3),+y.toFixed(3)]);g=g.filter((q,i)=>{const n=g[(i+1)%g.length];return Math.hypot(n[0]-q[0],n[1]-q[1])>1e-3});
@@ -2792,7 +2999,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     if(!pushable(en)){status(HELP.push);vcbShow('Distancia',null);return}HV=en;hlFace(hovG,en);
     status(en.k==='bld'?'Arrastra para cambiar esta cara del vecino':en.part==='side'?'Arrastra para recorrer este muro':en.part==='bot'?'Arrastra para cambiar el desplante':(en.s.h??2.8)<0.1?'Arrastra hacia arriba para levantar esta superficie':'Arrastra para cambiar la altura · con Ctrl creas un volumen nuevo encima')}
   function pushClick(sp,e){if(!PU){pushHover(sp);if(HV)startPush(HV,e&&(e.ctrlKey||e.metaKey),sp);return}endPush()}
-  function setPushCopy(P,on){if(on&&!P.copy){const s=P.s;const id=newId();const c={...JSON.parse(JSON.stringify(s)),id,name:s.name+' (nivel)',geo:P.g0.map(q=>q.slice()),z:+(P.z0+P.h0).toFixed(3),h:0,m3:true,pos:[s.pos[0]+12,s.pos[1]+12]};c.level=c.z>=2?1:0;delete c.fin;delete c.rfin;delete c.grp;if(ED.grp)c.grp=ED.grp;S.spaces.push(c);P.copy=c;s.h=P.h0}
+  function setPushCopy(P,on){if(on&&!P.copy){const s=P.s;const id=newId();const c={...JSON.parse(JSON.stringify(s)),id,name:s.name+' (nivel)',geo:P.g0.map(q=>q.slice()),z:+(P.z0+P.h0).toFixed(3),h:0,m3:true,pos:[s.pos[0]+12,s.pos[1]+12]};c.level=levelForZ(c.z);delete c.fin;delete c.rfin;delete c.grp;if(ED.grp)c.grp=ED.grp;S.spaces.push(c);P.copy=c;s.h=P.h0}
     else if(!on&&P.copy){const id=P.copy.id;S.spaces=S.spaces.filter(x=>x.id!==id);P.copy=null;M.refresh(['sp:'+id])}}
   function startPush(en,ctrl,sp){const P={en,base:en.point.clone(),d:0,copy:null,sp0:sp||lastSp};
     if(en.k==='sp'){const s=en.s;Object.assign(P,{s,g0:s.geo.map(q=>q.slice()),h0:s.h??2.8,z0:+s.z||0,lv0:s.level});P.n=en.part==='top'?AX.z.clone():en.part==='bot'?AX.z.clone().negate():(()=>{const n=edgeInfo(s.geo,en.edge).n;return new T.Vector3(n[0],0,-n[1])})();
@@ -2810,7 +3017,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
   function applyPush(d){const P=PU;P.d=d;const keys=[];
     if(P.s){const s=P.s;if(P.copy){P.copy.h=Math.max(0,+d.toFixed(3));keys.push('sp:'+P.copy.id)}
       else if(P.en.part==='top')s.h=Math.max(0,+(P.h0+d).toFixed(3));
-      else if(P.en.part==='bot'){const dd=clamp(d,-P.h0,P.z0);s.z=+(P.z0-dd).toFixed(3);s.h=+(P.h0+dd).toFixed(3);s.level=s.z>=2?1:0}
+      else if(P.en.part==='bot'){const dd=clamp(d,-P.h0,P.z0);s.z=+(P.z0-dd).toFixed(3);s.h=+(P.h0+dd).toFixed(3);s.level=levelForZ(s.z)}
       else{const g=m3MoveEdge(P.g0,P.en.edge,d).map(q=>[+q[0].toFixed(3),+q[1].toFixed(3)]);if(m3Simple(g)&&polyArea(g)>0.05&&signedArea(g)*signedArea(P.g0)>0)s.geo=g}keys.push('sp:'+s.id)}
     else{const b=P.b,b0=P.b0,n=P.n;if(n.y>0)b.h=Math.max(0.3,+(b0.h+d).toFixed(2));else if(n.x>0)b.w=Math.max(0.3,+(b0.w+d).toFixed(2));else if(n.x<0){const w=Math.max(0.3,b0.w+d);b.x=+(b0.x+b0.w-w).toFixed(2);b.w=+w.toFixed(2)}
       else if(n.z>0){const dd=Math.max(0.3,b0.d+d);b.y=+(b0.y+b0.d-dd).toFixed(2);b.d=+dd.toFixed(2)}else b.d=Math.max(0.3,+(b0.d+d).toFixed(2));keys.push('ctx')}
@@ -2839,7 +3046,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
   function startStretch(hp){const s=hp.s;MV={stretch:hp,keys:['sp:'+s.id],base:hp.point.clone(),g0:s.geo.map(q=>q.slice()),h0:s.h??2.8,z0:+s.z||0,delta:new T.Vector3(),C:m3OpC([s.id])};LASTMV=null;clr(hovG);
     status(hp.kind==='top'?'Mueve hacia arriba o abajo · escribe la distancia y Enter':'Mueve y haz clic en el destino · flechas fijan un eje · escribe la distancia y Enter')}
   function shiftEnt(k,o0,d){const e=m3Ent(k);if(!e)return null;const o=e.o,dx=d.x,dy=-d.z,dz=d.y;
-    if(e.k==='sp'){o.geo=o0.geo.map(([x,y])=>[+(x+dx).toFixed(3),+(y+dy).toFixed(3)]);o.z=Math.max(0,+((+o0.z||0)+dz).toFixed(3));if(Math.abs(dz)>1e-6)o.level=o.z>=2?1:0;else o.level=o0.level;if(o0.lpos)o.lpos=[o0.lpos[0]+dx,o0.lpos[1]+dy];return k}
+    if(e.k==='sp'){o.geo=o0.geo.map(([x,y])=>[+(x+dx).toFixed(3),+(y+dy).toFixed(3)]);o.z=Math.max(0,+((+o0.z||0)+dz).toFixed(3));if(Math.abs(dz)>1e-6)o.level=levelForZ(o.z);else o.level=o0.level;if(o0.lpos)o.lpos=[o0.lpos[0]+dx,o0.lpos[1]+dy];return k}
     if(e.k==='bld'||e.k==='tree'){o.x=+(o0.x+dx).toFixed(2);o.y=+(o0.y+dy).toFixed(2);return'ctx'}
     if(e.k==='op'){const s=S.spaces.find(x=>x.id===o.sp);if(!s)return null;const E_=edgeInfo(s.geo,o.e);const w=Math.min(o.w,E_.len);o.t=clamp(o0.t+(dx*E_.u[0]+dy*E_.u[1])/E_.len,w/2/E_.len,1-w/2/E_.len);return'sp:'+s.id}return null}
   function applyMove(d){MV.delta=d.clone();
@@ -2964,7 +3171,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     if(sps.length===1&&!ED.edit){const s=sps[0];if(closed(s))it.push(['Editar grupo','doble clic',()=>enterGroup(s.grp,s)]);else it.push(['Editar forma','doble clic',()=>enterEdit(s)])}
     if(sps.length>1&&sps.every(s=>s.grp&&s.grp===sps[0].grp)&&closed(sps[0]))it.push(['Editar grupo','doble clic',()=>enterGroup(sps[0].grp,sps[0])]);
     if(ED.edit)it.push(['Terminar de editar la forma','Esc',exitEdit]);if(ED.grp)it.push(['Cerrar grupo','Esc',exitGroup]);
-    if(ents.length)it.push(['Encuadrar selección','',zoomSel]);if(sps.length===1)it.push(['Ver en zonificación','',()=>{S.zoning.sel=sps[0].id;S.zoning.level=sps[0].level===1?'1':'0';location.hash='zonas'}]);
+    if(ents.length)it.push(['Encuadrar selección','',zoomSel]);if(sps.length===1)it.push(['Ver en zonificación','',()=>{S.zoning.sel=sps[0].id;S.zoning.level=String(sps[0].level);location.hash='zonas'}]);
     it.push(['Ver todo','Mayús+Z',()=>M.extents()]);if(ents.length)it.push(['Información','',()=>{const c=document.getElementById('m3Sel');if(c){c.scrollIntoView({block:'nearest',behavior:'smooth'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),900)}}]);
     menuEl=H(`<div class="m3menu" role="menu">${it.map(([t,k],i)=>`<button type="button" role="menuitem" data-i="${i}">${esc(t)}${k?`<small>${esc(k)}</small>`:''}</button>`).join('')}</div>`);host.appendChild(menuEl);
     const W_=host.clientWidth,H_=host.clientHeight;const mw=menuEl.offsetWidth,mh=menuEl.offsetHeight;menuEl.style.left=Math.max(4,Math.min(sp.x,W_-mw-6))+'px';menuEl.style.top=Math.max(4,Math.min(sp.y,H_-mh-6))+'px';
@@ -3547,7 +3754,7 @@ const QUAL={economica:'Económica',media:'Media',residencial:'Residencial',lujo:
 const TANKS=[450,600,750,1100,1700,2500,5000],CIST=[1200,2800,5000,10000,20000];
 const DAYS=[31,28,31,30,31,30,31,31,30,31,30,31];
 const mxn=x=>'$'+Math.round(x).toLocaleString('es-MX');
-const roofArea=()=>{const mm=zoneMetrics();return Math.max(mm.pb,S.spaces.filter(s=>s.geo&&roofed(s)&&s.level===1).reduce((a,s)=>a+polyArea(s.geo),0))};
+const roofArea=()=>{const mm=zoneMetrics();return Math.max(mm.pb,S.spaces.filter(s=>s.geo&&roofed(s)&&s.level>0).reduce((a,s)=>a+polyArea(s.geo),0))};
 function water(){const R_=S.res,cs=climateSeries(),A=roofArea();const cap=cs.pp.map(p=>(p||0)*A*R_.coef);const dem=DAYS.map(d=>R_.people*R_.dot*d);const daily=R_.people*R_.dot;
   const ann=cap.reduce((a,b)=>a+b,0),annD=dem.reduce((a,b)=>a+b,0);const pick=(arr,v)=>arr.find(x=>x>=v)||arr[arr.length-1];
   return{A,cap,dem,ann,annD,cov:annD?Math.min(1,ann/annD):0,daily,tinaco:pick(TANKS,daily),cisterna:pick(CIST,daily*3),pluvial:pick(CIST,Math.min(Math.max(...cap),annD/4))}}
@@ -3557,8 +3764,9 @@ function energy(){const R_=S.res;const psh=MESES.map((_,m)=>clearSkyDay(m)*R_.cl
 function envelope(sys){const R_=S.res;sys=sys||{wall:R_.wall,roof:R_.roof,glass:R_.glass};const cs=climateSeries();let hm=0;cs.tmax.forEach((t,m)=>{if(t!=null&&t>(cs.tmax[hm]??-99))hm=m});const To=cs.tmax[hm]??32,Ti=25;
   const p=solarPos(hm,21,15);const alt=Math.max(p.alt,1);const AM=1/Math.sin(rad(alt));const dni=p.alt>0?1000*Math.pow(0.7,Math.pow(AM,0.678))*R_.cloud:0,dif=0.1*dni;const a=(COLORS_EXT[R_.color]||COLORS_EXT.medio)[1];
   const Uw=WALLS[sys.wall][1],Ur=ROOFS[sys.roof][1],[,Ug,SH]=GLASS[sys.glass];let Qw=0,Qgc=0,Qgs=0,Aw=0,Ag=0;
-  exteriorEdges().forEach(ed=>{const s=ed.s;const B=bearingOf(ed.n);const cosT=Math.cos(rad(p.alt))*Math.cos(rad(angDiff(p.az,B)));const I=Math.max(0,dni*cosT)+dif*0.5;
-    const win=S.openings.filter(o=>o.sp===s.id&&o.e===ed.i&&o.type==='window'&&isExteriorOpening(o)).reduce((t,o)=>t+Math.min(o.w,ed.len)*o.h,0);const door=S.openings.filter(o=>o.sp===s.id&&o.e===ed.i&&o.type==='door').reduce((t,o)=>t+o.w*o.h,0);
+  const OPS=new Map();S.openings.forEach(o=>{const k=o.sp+'|'+o.e;const L=OPS.get(k);if(L)L.push(o);else OPS.set(k,[o])});
+  exteriorEdges().forEach(ed=>{const s=ed.s;const B=bearingOf(ed.n);const cosT=Math.cos(rad(p.alt))*Math.cos(rad(angDiff(p.az,B)));const I=Math.max(0,dni*cosT)+dif*0.5;const ops=OPS.get(s.id+'|'+ed.i)||[];
+    const win=ops.filter(o=>o.type==='window'&&isExteriorOpening(o)).reduce((t,o)=>t+Math.min(o.w,ed.len)*o.h,0);const door=ops.filter(o=>o.type==='door').reduce((t,o)=>t+o.w*o.h,0);
     const A=Math.max(0,ed.len*(+s.h||2.8)*ed.frac-win-door);Aw+=A;Ag+=win;Qw+=Uw*A*(To+a*I/17-Ti);Qgc+=Ug*win*(To-Ti);Qgs+=win*SH*I});
   const Ar=roofArea();const Iroof=dni*Math.sin(rad(alt))+dif;const Qr=Ur*Ar*(To+a*Iroof/17-Ti-3.9/17*0);
   const tot=Qw+Qr+Qgc+Qgs;return{hm,To,Ti,Aw,Ar,Ag,Qw,Qr,Qgc,Qgs,tot,perM2:tot/Math.max(1,zoneMetrics().total),sun:p}}
@@ -3631,16 +3839,21 @@ function drawIso(svg,P,fr,o){
   const pen=o.style==='pen';const ink=P.ink;
   E('polygon',{points:pts(ground.map(p=>T(p,0))),fill:pen?P.bg:P.ground,stroke:ink,'stroke-width':pen?1:0.8},svg);
   items.filter(i=>i.flat).forEach(it=>E('polygon',{points:pts(it.pts.map(p=>T(p,it.z+it.h))),fill:pen?P.bg:it.color,'fill-opacity':pen?1:.5,stroke:ink,'stroke-width':.5},svg));
+  /* Caras que nunca se ven: muros compartidos entre dos espacios del mismo nivel y techos con otro espacio igual encima.
+     Se omiten (también en la sombra), así un edificio de 1,000 locales dibuja solo su piel y no miles de caras escondidas. */
+  const k2=p=>Math.round(p[0]*100)+','+Math.round(p[1]*100),kz=z=>Math.round(z*100);const EK=new Map(),FK=new Set(),TK=new Set();const ek=(a,q,z)=>{const A=k2(a),B=k2(q);return(A<B?A+'>'+B:B+'>'+A)+'@'+kz(z)};const fk=(it,z)=>it.pts.map(k2).sort().join(';')+'@'+kz(z);
+  items.filter(i=>!i.flat).forEach(it=>{FK.add(fk(it,it.z));TK.add(fk(it,it.z+it.h));it.pts.forEach((a,i)=>{const k=ek(a,it.pts[(i+1)%it.pts.length],it.z);const L=EK.get(k);if(L)L.push(it);else EK.set(k,[it])})});
+  const inner=(it,a,q)=>(EK.get(ek(a,q,it.z))||[]).some(o=>o.pts!==it.pts&&o.h>=it.h-1e-6);const capped=it=>FK.has(fk(it,it.z+it.h));const based=it=>it.z>0&&TK.has(fk(it,it.z));
   const MS=S.style.mass;if(sd&&!pen){const g=E('g',{opacity:MS.shadow},svg);const ink=inkOr(MS.shadowColor,P);items.filter(i=>!i.flat).forEach(it=>{const o1=[sd[0]*it.z,sd[1]*it.z],o2=[sd[0]*(it.z+it.h),sd[1]*(it.z+it.h)];const sh=(p,o)=>T([p[0]+o[0],p[1]+o[1]],0);
-    E('polygon',{points:pts(it.pts.map(p=>sh(p,o2))),fill:ink},g);if(it.z>0)E('polygon',{points:pts(it.pts.map(p=>sh(p,o1))),fill:ink},g);
-    it.pts.forEach((p,i)=>{const q=it.pts[(i+1)%it.pts.length];E('polygon',{points:pts([sh(p,o1),sh(q,o1),sh(q,o2),sh(p,o2)]),fill:ink},g)})})}
+    if(!capped(it))E('polygon',{points:pts(it.pts.map(p=>sh(p,o2))),fill:ink},g);if(it.z>0&&!based(it))E('polygon',{points:pts(it.pts.map(p=>sh(p,o1))),fill:ink},g);
+    it.pts.forEach((p,i)=>{const q=it.pts[(i+1)%it.pts.length];if(!inner(it,p,q))E('polygon',{points:pts([sh(p,o1),sh(q,o1),sh(q,o2),sh(p,o2)]),fill:ink},g)})})}
   const solids=items.filter(i=>!i.flat).map(it=>{const cc=polyCentroid(it.pts);const r=rot(cc);return{...it,key:r[0]+r[1]-3*it.z}}).sort((a,b)=>b.key-a.key);
   solids.forEach(it=>{const p=it.pts;const ccw=signedArea(p)>0;const walls=[];
     for(let i=0;i<p.length;i++){const a=p[i],q=p[(i+1)%p.length];const dx=q[0]-a[0],dy=q[1]-a[1];const L=Math.hypot(dx,dy)||1;const n=ccw?[dy/L,-dx/L]:[-dy/L,dx/L];const nr=rot([n[0]+c[0],n[1]+c[1]]);
-      if(nr[0]+nr[1]<-1e-6){const m=rot([(a[0]+q[0])/2,(a[1]+q[1])/2]);walls.push({a,q,n,depth:m[0]+m[1]})}}
+      if(nr[0]+nr[1]<-1e-6&&!inner(it,a,q)){const m=rot([(a[0]+q[0])/2,(a[1]+q[1])/2]);walls.push({a,q,n,depth:m[0]+m[1]})}}
     walls.sort((x,y)=>y.depth-x.depth).forEach(w=>{const lit=su?(w.n[0]*su[0]+w.n[1]*su[1])>0:false;const col=pen?P.bg:lit?mix(it.color,'#FFFFFF',+MS.wallLight):mix(it.color,'#16212B',+MS.wallDark);
       E('polygon',{class:'shp',points:pts([T(w.a,it.z),T(w.q,it.z),T(w.q,it.z+it.h),T(w.a,it.z+it.h)]),fill:col,stroke:MS.edges===false&&!pen?col:ink,'stroke-width':pen?1.1:.7,'stroke-linejoin':'round'},svg)});
-    E('polygon',{points:pts(p.map(q=>T(q,it.z+it.h))),fill:pen?P.bg:mix(it.color,'#FFFFFF',.08),stroke:MS.edges===false&&!pen?mix(it.color,'#FFFFFF',.08):ink,'stroke-width':pen?1.1:.7,'stroke-linejoin':'round'},svg)});
+    if(!capped(it))E('polygon',{points:pts(p.map(q=>T(q,it.z+it.h))),fill:pen?P.bg:mix(it.color,'#FFFFFF',.08),stroke:MS.edges===false&&!pen?mix(it.color,'#FFFFFF',.08):ink,'stroke-width':pen?1.1:.7,'stroke-linejoin':'round'},svg)});
   return{T,s};
 }
 function sunFor(m,h){const p=solarPos(m,21,h);return p.alt>0?p:null}
@@ -3686,7 +3899,7 @@ function drawBoard(svg,P,opts={}){const B=S.board;const ui=!!opts.ui;
       case'pen':{const p=(el.pts||[]).map(([u,v])=>[el.x+u*el.w,el.y+v*el.h]);E('polyline',{points:pts(p),fill:'none',stroke:el.stroke||'#16212B','stroke-width':sw||2.5,'stroke-linecap':'round','stroke-linejoin':'round'},g);if(ui)E('rect',{x:el.x,y:el.y,width:Math.max(1,el.w),height:Math.max(1,el.h),fill:'transparent'},g);break}
       case'text':{const L=textLines(el,P);const fs=+el.fs||14;const empty=!L.join('').trim();const lines=empty&&ui?[el.ph||'Texto']:L;if(ui)E('rect',{x:el.x,y:el.y,width:el.w,height:Math.max(el.h,lines.length*fs*1.25),fill:'transparent'},g);
         const ax=el.align==='middle'?el.x+el.w/2:el.align==='end'?el.x+el.w:el.x;lines.forEach((t,i)=>E('text',{x:ax,y:el.y+fs*0.95+i*fs*1.25,'text-anchor':el.align||'start','font-size':fs,'font-weight':el.fw||400,'font-style':el.italic?'italic':null,'letter-spacing':el.ls?el.ls+'px':null,fill:empty?'#9AA3A8':(el.color||'#16212B'),'font-family':el.font||P.font,text:t},g));break}
-      case'image':if(el.src)E('image',{href:el.src,x:el.x,y:el.y,width:el.w,height:el.h,preserveAspectRatio:el.fit==='cover'?'xMidYMid slice':'xMidYMid meet'},g);break;
+      case'image':if(el.src)E('image',{href:assetSrc(el.src),x:el.x,y:el.y,width:el.w,height:el.h,preserveAspectRatio:el.fit==='cover'?'xMidYMid slice':'xMidYMid meet'},g);break;
       case'palette':{const pl=S.concept.palette||[];const n=Math.max(1,pl.length),sw_=el.w/n;pl.forEach((c,i)=>E('rect',{x:el.x+i*sw_+2,y:el.y,width:sw_-4,height:el.h,rx:3,fill:c,stroke:'#16212B','stroke-width':.6},g));break}
       case'legend':{const used=ZONE_KEYS.filter(z=>S.spaces.some(s=>s.zone===z));const cw=Math.max(90,el.w/Math.max(1,used.length));used.forEach((z,i)=>{E('rect',{x:el.x+i*cw,y:el.y,width:11,height:11,fill:zc(z).c,stroke:'#16212B','stroke-width':.5},g);E('text',{x:el.x+i*cw+16,y:el.y+10,'font-size':10.5,fill:'#16212B','font-family':P.font,text:zc(z).n},g)});if(ui)E('rect',{x:el.x,y:el.y,width:el.w,height:Math.max(14,el.h),fill:'transparent'},g);break}
       case'drawing':{const inner=E('svg',{x:Math.min(el.x,el.x+el.w),y:Math.min(el.y,el.y+el.h),width:Math.abs(el.w),height:Math.abs(el.h),overflow:'hidden'},g);drawRef(inner,P,el.ref,Math.abs(el.w),Math.abs(el.h));if(ui)E('rect',{x:el.x,y:el.y,width:el.w,height:el.h,fill:'transparent'},g);break}
@@ -3782,7 +3995,7 @@ view('concepto','12','Concepto',app=>{
   $('#bSize',tb).onchange=e=>{const[,w,h]=BOARD_SIZES[e.target.value];const kx=w/BD.w,ky=h/BD.h;BD.els.forEach(el=>{el.x*=kx;el.y*=ky;el.w*=kx;el.h*=ky;if(el.type==='text')el.fs=(el.fs||14)*Math.min(kx,ky)});BD.w=w;BD.h=h;BD.size=e.target.value;changed();drawL()};
   let armed=0;resetB.onclick=()=>{if(Date.now()-armed<3000){const nb=defaultBoard(S);S.board=nb;changed();rerender();toast('Lámina restablecida')}else{armed=Date.now();resetB.textContent='¿Reemplazar? Toca otra vez';setTimeout(()=>resetB.textContent='Plantilla',3000)}};
   $('#fileBoardImg').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{let src=String(r.result);if(src.length>1500000){const c=document.createElement('canvas');const k=Math.sqrt(1500000/src.length);c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);src=c.toDataURL('image/jpeg',0.82)}
-    const w=Math.min(400,BD.w*0.5),h=w*img.height/img.width;addEl({type:'image',src,x:(BD.w-w)/2,y:(BD.h-h)/2,w,h,stroke:'none'})};img.src=String(r.result)};r.readAsDataURL(f)};
+    const w=Math.min(400,BD.w*0.5),h=w*img.height/img.width;addEl({type:'image',src:putAsset(src),x:(BD.w-w)/2,y:(BD.h-h)/2,w,h,stroke:'none'})};img.src=String(r.result)};r.readAsDataURL(f)};
   // ficha
   const c1=H(`<div class="card" id="kFicha"></div>`);
   function renderFicha(){c1.innerHTML=`<h3>Ficha del concepto</h3><div class="fields">${field('Nombre del concepto','kT',C.title,'type="text" placeholder="Ej. Patio que respira"','full')}
@@ -4171,10 +4384,10 @@ function settings(tab='perfil'){const b=H(`<div class="set"><div class="tabs" ro
       $$('[data-v]',d).forEach(c=>c.onchange=()=>{const id=c.dataset.v;PREFS.hidden=PREFS.hidden||[];if(c.checked)PREFS.hidden=PREFS.hidden.filter(x=>x!==id);else if(visibleViews().length>1)PREFS.hidden.push(id);else c.checked=true;savePrefs();buildRail();route()});
       $('#sTut',d).onclick=()=>{resetTutorials();toast('Los tutoriales se mostrarán otra vez')};
       $$('[data-pm]',d).forEach(x=>{x.setAttribute('aria-pressed',String(x.dataset.pm===(isSimple()?'simple':'full')));x.onclick=()=>{setMode(x.dataset.pm);show('apartados')}});return d},
-    privacidad:()=>{const d=H(`<div><ul class="plist"><li>Tu proyecto, tu perfil y tus preferencias se guardan <b>solo en este navegador</b>.</li><li>La página no tiene servidor, cuentas, cookies ni rastreadores, y tiene bloqueado el envío de datos a cualquier otro sitio. Solo descarga sus herramientas de exportación desde un CDN con huella de seguridad, consulta su propio archivo de versión y, si tú lo permites, pide el clima a Open-Meteo con las coordenadas redondeadas.</li><li>Los archivos que abres (Excel, DXF, EPW, imágenes, modelos) se leen dentro de tu equipo y se revisan antes de usarse.</li><li>Para llevar tu trabajo a otro equipo usa <b>Guardar</b> y luego <b>Abrir</b> el archivo .json.</li></ul>
+    privacidad:()=>{const d=H(`<div><ul class="plist"><li>Tu proyecto, sus fotos, tu perfil y tus preferencias se guardan <b>solo en este navegador</b>.</li><li>La página no tiene servidor, cuentas, cookies ni rastreadores, y tiene bloqueado el envío de datos a cualquier otro sitio. Solo descarga sus herramientas de exportación desde un CDN con huella de seguridad, consulta su propio archivo de versión y, si tú lo permites, pide el clima a Open-Meteo con las coordenadas redondeadas.</li><li>Los archivos que abres (Excel, DXF, EPW, imágenes, modelos) se leen dentro de tu equipo y se revisan antes de usarse.</li><li>Para llevar tu trabajo a otro equipo usa <b>Guardar</b> y luego <b>Abrir</b> el archivo .json.</li></ul>
       <h4>Datos de clima en línea</h4><label class="chk"><input type="checkbox" id="pvOn" ${PREFS.online===true?'checked':''}> Permitir consultar Open-Meteo para el clima de mi terreno y el clima de ahora</label><p class="hint">Solo se envían las coordenadas del terreno redondeadas a ~1 km. La ubicación del dispositivo se pide solo cuando tocas «Usar mi ubicación» y no se guarda fuera de este navegador.</p>
       <div class="row" style="margin-top:10px"><button class="btn sm" id="pvSave" type="button">Guardar una copia del proyecto</button><button class="btn sm" id="pvAll" type="button">Borrar todo de este navegador</button></div></div>`);
-      $('#pvSave',d).onclick=saveProject;$('#pvOn',d).onchange=e=>{PREFS.online=e.target.checked;savePrefs();rerender()};let armed=0;$('#pvAll',d).onclick=e=>{if(Date.now()-armed<3500){try{Object.keys(localStorage).filter(k=>k.startsWith('taller-sitio')).forEach(k=>localStorage.removeItem(k))}catch(_){}location.reload()}else{armed=Date.now();e.currentTarget.textContent='Se borra proyecto y perfil. ¿Seguro? Toca otra vez'}};return d},
+      $('#pvSave',d).onclick=saveProject;$('#pvOn',d).onchange=e=>{PREFS.online=e.target.checked;savePrefs();rerender()};let armed=0;$('#pvAll',d).onclick=e=>{if(Date.now()-armed<3500){wipeAll().then(()=>location.reload())}else{armed=Date.now();e.currentTarget.textContent='Se borra proyecto, fotos y perfil. ¿Seguro? Toca otra vez'}};return d},
     version:()=>{const d=H(`<div>${notesHTML(APP.version,APP.date,APP.notes,APP.fixes)}
       <p class="hint">Las actualizaciones solo las publica quien administra esta página. Cuando hay una nueva, aparece un aviso abajo; al actualizar no se pierde tu proyecto.</p>
       ${APP.email||APP.url?`<p><b>Soporte:</b> ${APP.email?`<a href="mailto:${esc(encodeURIComponent(APP.email).replace(/%40/g,'@'))}">${esc(APP.email)}</a>`:''}${APP.email&&APP.url?' · ':''}${APP.url?`<a href="${esc(APP.url)}" target="_blank" rel="noopener noreferrer">formulario</a>`:''}</p>`:''}
@@ -4182,7 +4395,7 @@ function settings(tab='perfil'){const b=H(`<div class="set"><div class="tabs" ro
       $('#vrChk',d).onclick=()=>checkUpdates(true);$('#vrHis',d).onclick=()=>{m.close();openHistory()};$('#vrRep',d).onclick=()=>{m.close();openReport()};return d},
     acerca:()=>H(`<div><p style="margin-top:0"><b>Taller de Sitio</b> es una herramienta libre para el análisis de sitio y las primeras decisiones de diseño arquitectónico.</p>
       <p><b>Licencia:</b> dominio público (CC0 1.0). Puedes usarla, copiarla, modificarla y compartirla sin pedir permiso.</p>
-      <p><b>Datos y métodos (citados para que puedas verificarlos):</b> registros climáticos del Servicio Meteorológico Nacional (SMN-CONAGUA); clima por punto y clima de ahora de Open-Meteo (CC BY 4.0) con el reanálisis ERA5 de Copernicus; estados de Natural Earth y localidades de GeoNames (CC BY 4.0); posición solar con las ecuaciones de NOAA Global Monitoring Laboratory; confort adaptativo de ASHRAE 55; estadística de viento de Windfinder para La Paz. Los datos que tú cargues siguen siendo tuyos.</p>
+      <p><b>Datos y métodos (citados para que puedas verificarlos):</b> registros climáticos del Servicio Meteorológico Nacional (SMN-CONAGUA); clima por punto y clima de ahora de Open-Meteo (CC BY 4.0) con el reanálisis ERA5 de Copernicus; estados de Natural Earth y localidades de GeoNames (CC BY 4.0); posición solar con las ecuaciones de NOAA Global Monitoring Laboratory; confort adaptativo de ASHRAE 55; estadística de viento de Windfinder para La Paz; mínimos de normativa y usos de suelo transcritos de los reglamentos oficiales que cita cada paquete con su artículo (para La Paz: Reglamento de Construcciones para el Estado de Baja California Sur y Programa de Desarrollo Urbano del Centro de Población de La Paz), que siempre conviene confirmar con la versión vigente. Los datos que tú cargues siguen siendo tuyos.</p>
       <p><b>Componentes de terceros:</b> letras Public Sans, Saira Condensed y JetBrains Mono (SIL Open Font License); three.js, PptxGenJS, docx y jsPDF (licencia MIT); SheetJS (Apache 2.0).</p>
       <p><b>Marcas:</b> SketchUp es marca de Trimble Inc.; AutoCAD y Revit son marcas de Autodesk, Inc.; Rhino es marca de Robert McNeel &amp; Associates. Taller de Sitio no está afiliado a ninguna de esas empresas ni cuenta con su respaldo; los nombres solo se usan para describir compatibilidad (formatos de archivo) y la forma de trabajar de las herramientas. El cubo de orientación y las herramientas de modelado son diseño propio.</p></div>`)};
   $$('[data-tab]',b).forEach(x=>x.onclick=()=>show(x.dataset.tab));show(tab)}
@@ -4206,8 +4419,8 @@ function shortcuts(){modal('Atajos de teclado',H(`<div><div class="tbl-wrap"><ta
   ${[['Ctrl + Z','Deshacer'],['Ctrl + Y  /  Ctrl + Shift + Z','Rehacer'],['Ctrl + S','Guardar proyecto'],['Ctrl + O','Abrir archivo'],['Ctrl + E','Exportar'],['Ctrl + rueda / dos dedos','Acercar y alejar dibujos'],['Arrastrar el fondo','Mover la vista'],['Flechas (Shift = más)','Mover lo seleccionado'],['Supr','Borrar lo seleccionado'],['Ctrl + D','Duplicar'],['Esc','Soltar selección o cancelar'],['V R P T F C','Herramientas de zonificación'],['[  ]','Mandar atrás o al frente (lámina)']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div><h3 style="margin:14px 0 6px">Modelo 3D</h3><div class="tbl-wrap"><table class="t"><tbody>
   ${[['Espacio','Seleccionar (Mayús + clic alterna, Ctrl + clic suma, Ctrl + A todo)'],['Arrastrar con Seleccionar','Recuadro: hacia la derecha elige lo de adentro; hacia la izquierda lo que toca'],['Clic derecho','Menú (en el celular, mantener presionado)'],['H','Mano: desplazar la vista'],['L  /  A','Línea / arco de dos puntos (tangente a la línea anterior)'],['R','Rectángulo (sobre un muro: ventana o puerta)'],['C','Círculo; escribe 6s para un hexágono'],['P','Empujar o tirar (Ctrl crea un volumen encima; doble clic repite)'],['M','Mover (Ctrl copia; luego 3x repite o /3 reparte)'],['Q','Rotar (se pega cada 15°; Ctrl copia)'],['F','Equidistancia'],['T','Medir y dejar guías'],['B','Pintar (Alt + clic copia un acabado)'],['E','Borrar (sobre la línea entre dos espacios, los une)'],['G  /  Mayús + G','Agrupar / desagrupar'],['Doble clic','Editar la forma o entrar a un grupo (Esc para salir)'],['Escribir 3.5  o  4,3  y Enter','Medida exacta (-2 va hacia el otro lado)'],['→  ←  ↑','Fijar eje rojo, verde o azul'],['Botón central / Mayús + central','Girar / desplazar'],['Rueda','Acercar hacia el puntero'],['Mayús + Z','Ver todo'],['O  /  I','Entrar / salir de pantalla completa']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div></div>`))}
 function updModeMenu(){const b=$('#mMode');if(b)b.textContent=isSimple()?'Cambiar a modo completo':'Cambiar a modo sencillo'}
-function boot(){
-  restoreState();applyPrefs();applyMode();updModeMenu();$('#btnBell').onclick=openBell;$$('[data-mode-set]').forEach(b=>b.onclick=()=>{setMode(b.dataset.modeSet);updModeMenu()});buildRail();syncDerived();updAvatar();$('#btnProfile').onclick=()=>settings('perfil');const setTopH=()=>document.documentElement.style.setProperty('--top-h',$('.top').offsetHeight+'px');setTopH();addEventListener('resize',setTopH);
+async function boot(){
+  await storageInit();restoreState();applyPrefs();applyMode();updModeMenu();$('#btnBell').onclick=openBell;$$('[data-mode-set]').forEach(b=>b.onclick=()=>{setMode(b.dataset.modeSet);updModeMenu()});buildRail();syncDerived();updAvatar();$('#btnProfile').onclick=()=>settings('perfil');const setTopH=()=>document.documentElement.style.setProperty('--top-h',$('.top').offsetHeight+'px');setTopH();addEventListener('resize',setTopH);
   const pn=$('#projName');pn.value=S.project.name;pn.addEventListener('change',()=>{S.project.name=pn.value.trim()||'Proyecto';changed();rerender()});
   $('#btnSave').onclick=saveProject;$('#btnOpen').onclick=()=>$('#fileAny').click();$('#btnExport').onclick=openExport;
   $('#btnUndo').onclick=undo;$('#btnRedo').onclick=redo;

@@ -1,0 +1,13 @@
+{"id":"bcs-la-paz","nombre":"Baja California Sur · La Paz","estado":"Baja California Sur","municipio":"La Paz","revisado":"2026-11",
+ "fuentes":{"rc":"Reglamento de Construcciones para el Estado de Baja California Sur","pdu":"Programa de Desarrollo Urbano del Centro de Población de La Paz (PDUCP)"},
+ "valores":{
+  "ilum":{"v":12.5,"f":"rc","ref":"Art. 91: la superficie de ventanas será por lo menos 1/8 de la superficie del piso"},
+  "hall":{"v":0.90,"f":"rc","ref":"Art. 94, fr. III: pasillos de 1.40 m, excepto en interiores de vivienda unifamiliar, donde pueden ser de 0.90 m"},
+  "door":{"v":1.00,"f":"rc","ref":"Art. 98: anchura libre mínima de 1.00 m en la puerta de acceso a casa habitación unifamiliar"},
+  "dot":{"v":250,"f":"rc","ref":"Art. 135, fr. I: depósitos de agua de 250 litros por habitante al día"}},
+ "otros":[
+  {"t":"Escaleras en casa unifamiliar","v":"Ancho libre mínimo 0.90 m; huella mínima 0.25 m; peralte máximo 0.18 m","f":"rc","ref":"Art. 95, fr. III y V"},
+  {"t":"Superficie mínima de vivienda","v":"45 m² en vivienda nueva de interés social; 24 m² en mejoramiento de vivienda existente; más de 90 m² en vivienda de interés medio","f":"rc","ref":"Art. 4, fr. II, inciso j), Tabla A"},
+  {"t":"Licencia de construcción","v":"Documento que expide la autoridad para autorizar a los propietarios a construir","f":"rc","ref":"Art. 64"}],
+ "usos":[
+  {"clave":"H4","nombre":"Vivienda unifamiliar","cos":0.60,"cus":1.20,"cas":0.40,"f":"pdu","ref":"Normas para la intensidad de uso de suelo (p. 268); zonificación secundaria (p. 238)"}]}
