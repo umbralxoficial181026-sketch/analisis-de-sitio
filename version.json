@@ -1,18 +1,21 @@
 {
- "version": "1.2.0",
+ "version": "1.2.1",
  "date": "2026-11-01",
  "notes": [
-  "Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).",
-  "Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.",
-  "Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.",
-  "Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.",
-  "Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.",
-  "Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.",
-  "Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."
+  "Modelado con lógica de objetos: cada espacio es un objeto completo; con doble clic entras a editar su forma y ahí Mover estira esquinas y muros, y Borrar quita una esquina.",
+  "Selección con recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. El clic derecho abre un menú (en el celular, mantén presionado).",
+  "Herramientas nuevas: Rotar (Q) con transportador que se pega cada 15°, Círculo y polígono (C; escribe 6s para un hexágono), Pintar (B) para muros y azoteas, y Orbitar.",
+  "El imán ahora te ayuda a alinear: líneas punteadas hacia puntos que ya tocaste, paralela y perpendicular a una arista (en magenta) e intersección de guías.",
+  "Un rectángulo dibujado sobre un muro crea una ventana, o una puerta si llega al piso. El arco se pega tangente a la línea anterior.",
+  "Borrar la línea que separa dos espacios los une en uno solo. Doble clic con Empujar/Tirar repite la última medida.",
+  "Las medidas negativas van hacia el otro lado (-2) y después de copiar puedes escribir /3 para repartir las copias."
  ],
  "fixes": [
-  "Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.",
-  "La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."
+  "Si la página se abrió mientras se publicaba, las texturas se vuelven a buscar solas y se encienden sin recargar; también hay un botón para buscarlas de nuevo.",
+  "El imán ya no se pega a esquinas o aristas que quedan escondidas detrás de un muro o un árbol.",
+  "Empujar un muro visto de frente ya no salta, y escribir una medida negativa ya no sube la altura.",
+  "El arco con la flecha tecleada se curva hacia afuera, y un eje fijado con las flechas se suelta al terminar cada tramo.",
+  "Mover toma el objeto aunque hagas clic justo en su esquina, y el giro con inercia funciona también en equipos lentos."
  ],
  "aviso": null
 }

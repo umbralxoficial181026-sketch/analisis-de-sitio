@@ -333,8 +333,9 @@ svg line,svg polyline,svg polygon,svg path{stroke-linejoin:round}
 .m3host{position:relative}
 .m3host canvas{cursor:default}
 .m3host[data-tool=pan] canvas{cursor:grab}.m3host[data-tool=pan] canvas:active{cursor:grabbing}
-.m3host[data-tool=line] canvas,.m3host[data-tool=arc] canvas,.m3host[data-tool=rect] canvas,.m3host[data-tool=tape] canvas,.m3host[data-tool=offset] canvas,.m3host[data-tool=push] canvas{cursor:crosshair}
+.m3host[data-tool=line] canvas,.m3host[data-tool=arc] canvas,.m3host[data-tool=rect] canvas,.m3host[data-tool=circle] canvas,.m3host[data-tool=tape] canvas,.m3host[data-tool=offset] canvas,.m3host[data-tool=push] canvas,.m3host[data-tool=rotate] canvas,.m3host[data-tool=paint] canvas{cursor:crosshair}
 .m3host[data-tool=move] canvas{cursor:move}.m3host[data-tool=erase] canvas{cursor:cell}
+.m3host[data-tool=orbit] canvas{cursor:grab}.m3host[data-tool=orbit] canvas:active{cursor:grabbing}
 .m3tools{display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--paper)}
 .m3t{padding:4px 6px;gap:4px;min-height:32px}
 .m3t svg{flex:none}
@@ -359,6 +360,33 @@ body:has(.board.m3full){overflow:hidden}
 .m3mk{position:absolute;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.4)}
 .m3mk.k-end{background:#1f9d3a}.m3mk.k-mid{background:#13a3b8}.m3mk.k-edge{background:#d62828;border-radius:2px}.m3mk.k-face{background:#2f6bff;border-radius:2px}
 .m3mk.k-x,.m3mk.k-y,.m3mk.k-z{width:9px;height:9px;margin:-4.5px 0 0 -4.5px}.m3mk.k-x{background:#d62828}.m3mk.k-y{background:#1f9d3a}.m3mk.k-z{background:#2343c4}
+.m3mk.k-int{background:#16212b;border-radius:2px;transform-origin:center}.m3mk.k-int::after{content:'';position:absolute;inset:2px;border:2px solid #fff;border-width:0 2px;transform:rotate(45deg)}
+.m3mk.k-par,.m3mk.k-perp{width:9px;height:9px;margin:-4.5px 0 0 -4.5px;background:#c22fc2}
+.m3mk.k-ax,.m3mk.k-ay{width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:2px;background:#fff;border-color:#d62828}.m3mk.k-ay{border-color:#1f9d3a}
+.m3mk.k-tan{background:#10a6b8}.m3mk.k-semi{background:#2f6bff}
+/* recuadro de selección: hacia la derecha (dentro) línea continua, hacia la izquierda (toca) punteada */
+.m3box{position:absolute;left:0;top:0;border:1.5px solid #2f6bff;background:rgba(47,107,255,.08)}
+.m3box.cross{border-style:dashed;border-color:#1f9d3a;background:rgba(31,157,58,.07)}
+.m3box[hidden]{display:none}
+/* menú del clic derecho */
+.m3menu{position:absolute;z-index:8;min-width:190px;max-width:260px;padding:4px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+.m3menu button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;padding:7px 10px;border:0;border-radius:5px;background:none;color:inherit;font:500 13px var(--f-body);text-align:left;cursor:pointer}
+.m3menu button:hover,.m3menu button:focus-visible{background:var(--accent-soft);outline:none}
+.m3menu small{font:600 10.5px var(--f-mono);color:var(--muted)}
+/* paleta de acabados de Pintar */
+.m3pal{position:absolute;right:10px;top:142px;z-index:4;width:176px;max-height:calc(100% - 212px);overflow:auto;padding:8px;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+.m3pal[hidden]{display:none}
+.m3pal>b{display:block;font:600 11px var(--f-display);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.m3pal .sw{display:grid;gap:2px}
+.m3pal .sw button{display:flex;width:100%;justify-content:flex-start;align-items:center;gap:8px;margin:0;padding:3px 5px;border:1px solid transparent;border-radius:5px;background:none;color:var(--ink);font:500 12px var(--f-body);text-align:left;cursor:pointer}
+.m3pal .sw button:hover{background:var(--accent-soft)}
+.m3pal .sw button[aria-selected=true]{border-color:var(--accent);background:var(--accent-soft)}
+.m3pal .sw span{flex:none;width:22px;height:22px;border-radius:4px;border:1px solid rgba(0,0,0,.18);background-size:cover;background-position:center}
+.m3pal p{margin:6px 0 0;font-size:11px;line-height:1.3;color:var(--muted)}
+/* aviso de contexto (editar forma o grupo) y resaltado de la ficha */
+.m3ctx{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:0 0 10px;padding:6px 8px 6px 10px;border-radius:6px;background:var(--accent-soft);color:var(--ink);font-size:12.5px;font-weight:600}
+#m3Sel.flash{animation:m3flash .9s ease}
+@keyframes m3flash{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 3px var(--accent)}}
 .m3tip{position:absolute;left:0;top:0;font:600 11px/1.3 var(--f-body);background:rgba(255,255,252,.95);color:#16212b;border:1px solid rgba(0,0,0,.14);border-radius:4px;padding:1px 6px;white-space:nowrap}
 .m3labs span{position:absolute;left:0;top:0;font:600 11.5px/1.35 var(--f-mono);background:rgba(22,33,43,.88);color:#fff;border-radius:4px;padding:1px 6px;white-space:nowrap}
 .m3labs span.g{background:rgba(122,79,214,.92)}
@@ -384,14 +412,14 @@ body:has(.board.m3full){overflow:hidden}
 .m3cube .chome:hover{border-color:var(--ink)}
 :root[data-theme=dark] .m3cube .cl,:root[data-theme=dark] .m3cube .cring{color:#e4eaec;border-color:rgba(228,234,236,.45)}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .m3cube .cl{color:#e4eaec}:root:not([data-theme=light]) .m3cube .cring{border-color:rgba(228,234,236,.45)}}
-@media (max-width:700px){.m3cube{transform:scale(.82);transform-origin:top right}.m3vcb input{width:92px}.m3st{font-size:11px;max-width:calc(100% - 120px)}.m3zone{margin-left:0}}
+@media (max-width:700px){.m3cube{transform:scale(.82);transform-origin:top right}.m3vcb input{width:92px}.m3st{font-size:11px;max-width:calc(100% - 120px)}.m3zone{margin-left:0}.m3pal{top:118px;right:6px;width:138px;max-height:calc(100% - 176px);padding:6px}.m3pal .sw button{font-size:11px;gap:6px}.m3pal .sw span{width:18px;height:18px}.m3pal p{display:none}}
 @media (max-width:700px),(pointer:coarse){.m3t kbd{display:none}.m3t{min-width:38px;min-height:38px;justify-content:center}}
 @media (max-width:700px){
   .board.m3full .m3tools.m3float{top:auto;bottom:calc(58px + env(safe-area-inset-bottom,0px));left:8px;right:8px;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;max-height:none;padding:4px;scrollbar-width:none}
   .m3float .m3sep{width:1px;height:24px;margin:0 3px;flex:none}.m3float .m3t{flex:none}.m3float .m3zone{display:none}
   .m3full .m3st{top:8px;bottom:auto;left:8px;max-width:calc(100% - 126px)}}
 </style>
-<script id="app-meta" type="application/json">{"version":"1.2.0","date":"2026-11-01","channel":"web","support":{"email":"","url":""},"notes":["Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).","Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.","Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.","Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.","Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.","Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.","Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."],"fixes":["Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.","La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."],"history":[{"version":"1.1.0","date":"2026-11-01","notes":["Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.","Fachadas y cortes con acabados realistas, árboles de la región y figura humana.","Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).","Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.","Carta solar con estilos, letra a elegir y fondo de color o transparente.","Campanita de notificaciones y notas de actualización en el menú.","Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.","Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."],"fixes":["Las imágenes exportadas (PNG, PDF y SVG) salían con otra letra; ahora usan la misma tipografía de la página."]}]}</script>
+<script id="app-meta" type="application/json">{"version":"1.2.1","date":"2026-11-01","channel":"web","support":{"email":"","url":""},"notes":["Modelado con lógica de objetos: cada espacio es un objeto completo; con doble clic entras a editar su forma y ahí Mover estira esquinas y muros, y Borrar quita una esquina.","Selección con recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. El clic derecho abre un menú (en el celular, mantén presionado).","Herramientas nuevas: Rotar (Q) con transportador que se pega cada 15°, Círculo y polígono (C; escribe 6s para un hexágono), Pintar (B) para muros y azoteas, y Orbitar.","El imán ahora te ayuda a alinear: líneas punteadas hacia puntos que ya tocaste, paralela y perpendicular a una arista (en magenta) e intersección de guías.","Un rectángulo dibujado sobre un muro crea una ventana, o una puerta si llega al piso. El arco se pega tangente a la línea anterior.","Borrar la línea que separa dos espacios los une en uno solo. Doble clic con Empujar/Tirar repite la última medida.","Las medidas negativas van hacia el otro lado (-2) y después de copiar puedes escribir /3 para repartir las copias."],"fixes":["Si la página se abrió mientras se publicaba, las texturas se vuelven a buscar solas y se encienden sin recargar; también hay un botón para buscarlas de nuevo.","El imán ya no se pega a esquinas o aristas que quedan escondidas detrás de un muro o un árbol.","Empujar un muro visto de frente ya no salta, y escribir una medida negativa ya no sube la altura.","El arco con la flecha tecleada se curva hacia afuera, y un eje fijado con las flechas se suelta al terminar cada tramo.","Mover toma el objeto aunque hagas clic justo en su esquina, y el giro con inercia funciona también en equipos lentos."],"history":[{"version":"1.2.0","date":"2026-11-01","notes":["Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).","Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.","Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.","Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.","Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.","Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.","Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."],"fixes":["Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.","La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."]},{"version":"1.1.0","date":"2026-11-01","notes":["Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.","Fachadas y cortes con acabados realistas, árboles de la región y figura humana.","Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).","Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.","Carta solar con estilos, letra a elegir y fondo de color o transparente.","Campanita de notificaciones y notas de actualización en el menú.","Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.","Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."],"fixes":["Las imágenes exportadas (PNG, PDF y SVG) salían con otra letra; ahora usan la misma tipografía de la página."]}]}</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="fSoft" x="-10%" y="-10%" width="125%" height="130%"><feDropShadow dx="0.8" dy="1.6" stdDeviation="1.4" flood-color="#0b1520" flood-opacity="0.22"/></filter><filter id="fSketch" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs></svg>
 <header class="top">
   <div class="top-in">
@@ -593,7 +621,7 @@ function sanitizeProject(o){
     const g=sPts(s.geo);return{id,name:sStr(s.name,80)||'Espacio',zone:o.zones[s.zone]?s.zone:Object.keys(o.zones)[0],area:sNum(s.area,0,0,1e6),level:s.level===1?1:0,geo:g&&g.length>=3?g:null,h:sNum(s.h,2.8,0,300),z:sNum(s.z,0,0,300),pos:[sNum((s.pos||[])[0],80,-1e4,1e4),sNum((s.pos||[])[1],110,-1e4,1e4)],
       ...(isHex(s.color)?{color:s.color}:{}),...(['circle','rounded','square','hex','ellipse','diamond','octagon','pill','cloud'].includes(s.shape)?{shape:s.shape}:{}),...(s.r?{r:sNum(s.r,0,0,200)}:{}),...(['diag','cross','dots','lines','grass'].includes(s.hatch)?{hatch:s.hatch}:{}),
       ...(typeof s.perm==='boolean'?{perm:s.perm}:{}),...(s.free?{free:true}:{}),...(s.m3?{m3:true}:{}),...(typeof s.grp==='string'&&/^[A-Za-z0-9_-]{1,20}$/.test(s.grp)?{grp:s.grp}:{}),...(s.hideLabel?{hideLabel:true}:{}),...(Array.isArray(s.lpos)?{lpos:[sNum(s.lpos[0],0),sNum(s.lpos[1],0)]}:{}),
-      ...(['recp','rec','est','com','estcom','coc','ban','lav','pas','estac','otro','ext'].includes(s.type)?{type:s.type}:{}),...(['aplanado','block','ladrillo','concreto','madera','azotea','teja','pasto','tierra','adoquin','banqueta','asfalto'].includes(s.fin)?{fin:s.fin}:{}),
+      ...(['recp','rec','est','com','estcom','coc','ban','lav','pas','estac','otro','ext'].includes(s.type)?{type:s.type}:{}),...(['aplanado','block','ladrillo','concreto','madera','azotea','teja','pasto','tierra','adoquin','banqueta','asfalto'].includes(s.fin)?{fin:s.fin}:{}),...(['aplanado','block','ladrillo','concreto','madera','azotea','teja','pasto','tierra','adoquin','banqueta','asfalto'].includes(s.rfin)?{rfin:s.rfin}:{}),
       ...(Array.isArray(s.furn)?{furn:s.furn.slice(0,60).map(f=>({n:sStr(f.n,60)||'Mueble',l:sNum(f.l,1,0,50),a:sNum(f.a,0.5,0,50),q:sNum(f.q,1,0,200)|0,f:sNum(f.f,0.6,0,10)}))}:{})}});
   Object.keys(o.rel).forEach(k=>{const[a,b]=k.split('|');if(!ids.has(a)||!ids.has(b))delete o.rel[k]});
   const So=o.solar||{};o.solar=cleanObj(d.solar,(v,k)=>typeof v==='number'?sNum(So[k],v,-1e4,1e4):typeof v==='boolean'?(typeof So[k]==='boolean'?So[k]:v):(['all','1','2'].includes(So[k])?So[k]:v));
@@ -2287,30 +2315,46 @@ const MATS={aplanado:'Aplanado pintado',block:'Block de concreto',ladrillo:'Ladr
   pasto:'Pasto',tierra:'Tierra y grava',adoquin:'Adoquín',banqueta:'Concreto escobillado',asfalto:'Asfalto'};
 const MAT_WALL=['aplanado','block','ladrillo','concreto','madera'],MAT_ROOF=['azotea','concreto','teja','madera'],MAT_FLOOR=['pasto','tierra','adoquin','banqueta','concreto','madera'];
 const VEG={mezquite:'Mezquite',palma:'Palma',paloverde:'Palo verde',bugambilia:'Bugambilia'};
-const IMGC=new Map(),DATAC=new Map();
+const IMGC=new Map(),DATAC=new Map(),DFAIL=new Map();
 /* Las texturas se apagan por completo solo si la página se abrió como archivo local (el navegador no deja usarlas en 3D)
-   o si en el servidor no existe la carpeta assets. Si falta una sola imagen, solo ese material queda en color. */
+   o si en el servidor no existe la carpeta assets. Si falta una sola imagen, solo ese material queda en color.
+   Ningún fallo se queda guardado: si la página se abrió mientras se publicaba, las imágenes se vuelven a pedir solas. */
 let ASSET_FAIL=location.protocol==='file:',ASSET_WHY=ASSET_FAIL?'file':'';
-function assetImg(path){if(IMGC.has(path))return IMGC.get(path);const p=new Promise((res,rej)=>{const im=new Image();im.decoding='async';im.onload=()=>res(im);im.onerror=()=>{console.warn('No se encontró la imagen',ASSET_BASE+path);rej(new Error('img'))};im.src=ASSET_BASE+path});p.catch(()=>{});IMGC.set(path,p);return p}
+const RETRY=[1500,5000,14000];
+/* En la página publicada cada versión pide sus imágenes con su número, así nunca se usa una respuesta vieja guardada por el navegador. */
+function assetURL(path,n=0){const web=typeof APP!=='undefined'&&APP.channel==='web';const q=[];if(web&&APP.version)q.push('v='+encodeURIComponent(APP.version));if(n)q.push('r='+n);return ASSET_BASE+path+(q.length?'?'+q.join('&'):'')}
+function assetImg(path){const c=IMGC.get(path);if(c)return c;
+  const p=new Promise((res,rej)=>{let n=0;const go=()=>{const im=new Image();im.decoding='async';im.onload=()=>res(im);
+      im.onerror=()=>{if(n<RETRY.length&&!ASSET_FAIL){setTimeout(go,RETRY[n++])}else{console.warn('No se encontró la imagen',ASSET_BASE+path);if(IMGC.get(path)===p)IMGC.delete(path);rej(new Error('img'))}};im.src=assetURL(path,n)};go()});
+  p.catch(()=>{});IMGC.set(path,p);return p}
+let PROBE_T=0,PROBE_N=0;
 function assetFail(why){if(ASSET_FAIL)return;ASSET_FAIL=true;ASSET_WHY=why||'server';if(current&&['modelo','fachadas','laminas'].includes(current.id))rerender()}
-/* Revisa una sola vez si la carpeta assets está publicada junto a la página. */
-function assetProbe(){if(ASSET_FAIL||!/^https?:$/.test(location.protocol))return;const im=new Image();im.onerror=()=>assetFail('server');im.src=ASSET_BASE+'tex/s/aplanado.webp'}
-const assetWhy=()=>ASSET_WHY==='file'?'Las texturas se ven en la página publicada en internet; aquí, abierta como archivo, se muestran colores.':'No se encontraron las imágenes de acabados en el servidor (carpeta assets); por ahora se muestran colores.';
-/* Color de respaldo de cada acabado: se ve mientras llega la imagen o si esa imagen falta. */
+/* Revisa si la carpeta assets está publicada junto a la página; si no, vuelve a revisar más tarde y en cuanto aparece, se encienden las texturas. */
+function assetProbe(manual){if(!/^https?:$/.test(location.protocol))return;clearTimeout(PROBE_T);
+  const one=p=>new Promise(r=>{const im=new Image();im.onload=()=>r(true);im.onerror=()=>r(false);im.src=assetURL(p,PROBE_N?PROBE_N:0)});PROBE_N++;
+  Promise.all([one('tex/s/aplanado.webp'),one('ui/icon-192.png')]).then(([a,b])=>{
+    if(a||b){if(ASSET_FAIL&&ASSET_WHY==='server'){ASSET_FAIL=false;ASSET_WHY='';IMGC.clear();DATAC.clear();DFAIL.clear();if(manual)toast('Listo: ya se encontraron las texturas');if(current&&['modelo','fachadas','laminas'].includes(current.id))rerender()}return}
+    if(!ASSET_FAIL)assetFail('server');else if(manual)toast('Todavía no se encuentran las imágenes en el servidor');
+    PROBE_T=setTimeout(()=>assetProbe(false),PROBE_N<4?8000:60000)})}
+addEventListener('online',()=>{if(ASSET_FAIL&&ASSET_WHY==='server')assetProbe(false)});
+const assetWhy=()=>ASSET_WHY==='file'?'Las texturas se ven en la página publicada en internet; aquí, abierta como archivo, se muestran colores.':'No se encontraron las imágenes de acabados en el servidor (carpeta assets); por ahora se muestran colores y se vuelve a revisar solo.';
+/* Color de respaldo de cada acabado: se ve mientras llega la imagen o si esa imagen falta (nunca negro). */
 const MAT_COL={aplanado:'#e6dfd2',block:'#bcb8b0',ladrillo:'#b0644b',concreto:'#b8b5ae',madera:'#9c6f49',azotea:'#a9533e',teja:'#b25a3e',pasto:'#7b9f58',tierra:'#c6b18e',adoquin:'#a89886',banqueta:'#cdc8be',asfalto:'#575b5e',sky:'#cfe0ee'};
 const PHC=new Map();function phImg(c){if(PHC.has(c))return PHC.get(c);const cv=document.createElement('canvas');cv.width=cv.height=2;const x=cv.getContext('2d');if(c!=='clear'){x.fillStyle=c;x.fillRect(0,0,2,2)}PHC.set(c,cv);return cv}
 /* Textura de three.js que se llena cuando llega la imagen (siempre de forma asíncrona); mientras tanto usa un color. */
-function assetTex(T,path,onReady,ph){const t=new T.Texture(phImg(ph||'#d8d3ca'));t.wrapS=t.wrapT=T.RepeatWrapping;t.encoding=T.sRGBEncoding;t.needsUpdate=true;
-  assetImg(path).then(im=>{t.image=im;t.needsUpdate=true;onReady&&onReady()}).catch(()=>{});return t}
+function assetTex(T,path,onReady,ph){const t=new T.Texture(phImg(ph||'#d8d3ca'));t.wrapS=t.wrapT=T.RepeatWrapping;t.encoding=T.sRGBEncoding;t.needsUpdate=true;t.userData={path};
+  assetImg(path).then(im=>{t.image=im;t.userData.ok=true;t.needsUpdate=true;onReady&&onReady()}).catch(()=>{t.userData.fail=true});return t}
 const texPath=(k,small)=>`tex/${small?'s/':''}${k}.webp`;
-/* Imagen como data URL, para usarla dentro de SVG que luego se exporta a PNG o PDF. */
-function assetData(path){if(DATAC.has(path))return DATAC.get(path);const p=fetch(ASSET_BASE+path,{credentials:'same-origin'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.blob()})
-  .then(b=>new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(String(fr.result));fr.onerror=rej;fr.readAsDataURL(b)})).then(u=>{DATAC.set(path,u);return u});
-  p.catch(()=>{DATAC.set(path,null)});DATAC.set(path,p);return p}
+/* Imagen como data URL, para usarla dentro de SVG que luego se exporta a PNG o PDF. También se reintenta. */
+function assetData(path){const c=DATAC.get(path);if(typeof c==='string')return Promise.resolve(c);if(c)return c;
+  const get=n=>fetch(assetURL(path,n),{credentials:'same-origin'}).then(r=>{if(!r.ok)throw new Error(r.status);return r.blob()}).catch(e=>{if(n<RETRY.length&&!ASSET_FAIL)return new Promise(r=>setTimeout(r,RETRY[n])).then(()=>get(n+1));throw e});
+  const p=get(0).then(b=>new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(String(fr.result));fr.onerror=rej;fr.readAsDataURL(b)})).then(u=>{DATAC.set(path,u);DFAIL.delete(path);return u});
+  p.catch(()=>{if(DATAC.get(path)===p)DATAC.delete(path);DFAIL.set(path,Date.now())});DATAC.set(path,p);return p}
 const dataNow=path=>{const v=DATAC.get(path);return typeof v==='string'?v:null};
-/* Pide las imágenes que falten y vuelve a dibujar el apartado actual una sola vez cuando lleguen. */
-let DATA_WAIT=null;function dataNeed(paths){const miss=paths.filter(p=>!DATAC.has(p));if(!miss.length)return;const all=Promise.all(miss.map(p=>assetData(p).catch(()=>null)));
-  if(!DATA_WAIT)DATA_WAIT=all.then(()=>{DATA_WAIT=null;if(current&&['fachadas','laminas'].includes(current.id))rerender()})}
+/* Pide las imágenes que falten y vuelve a dibujar el apartado actual una sola vez cuando lleguen.
+   Una imagen que falló se vuelve a pedir pasados 30 segundos (sin ciclos de redibujo). */
+let DATA_WAIT=null;function dataNeed(paths){if(ASSET_FAIL)return;const now=Date.now();const miss=paths.filter(p=>!DATAC.has(p)&&!(DFAIL.has(p)&&now-DFAIL.get(p)<30000));if(!miss.length)return;const all=Promise.all(miss.map(p=>assetData(p).catch(()=>null)));
+  if(!DATA_WAIT)DATA_WAIT=all.then(r=>{DATA_WAIT=null;if(r.some(Boolean)&&current&&['fachadas','laminas'].includes(current.id))rerender()})}
 /* Acabado de cada espacio: el que elige el usuario o uno automático según su tipo. */
 function finOf(s,st){st=st||S.style.m3d;if(s.fin&&MATS[s.fin])return s.fin;const flat=(s.h??2.8)<0.1;
   if(!flat)return st.wallMat||'aplanado';const n=norm(s.name);
@@ -2329,33 +2373,45 @@ function realKit(T,renderer,small,onReady){const aniso=Math.min(8,renderer.capab
     const d=new T.MeshDepthMaterial({depthPacking:T.RGBADepthPacking,map:t,alphaTest:.5});return{m,d,meta:TEXMETA['veg_'+kind]||[4,5]}};
   return{tex,mat,veg,lin}}
 
-/* ================= Modelado 3D tipo SketchUp =================
-   Herramientas, imán (inferencias), caja de medidas, grupos y cubo de orientación.
-   Todo lo que se dibuja o cambia aquí modifica el proyecto (S.spaces, S.openings, S.context, S.zoning.notes),
-   así que se refleja en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se puede deshacer. */
-const M3ED={tool:'sel',sel:[],grp:null,guides:[],full:false,zone:'',snap:true,typed:''};
+/* ================= Modelado 3D con la lógica de un modelador de bloques =================
+   Diseño propio inspirado en cómo trabajan los modeladores tipo SketchUp:
+   · cada espacio es un objeto sólido (como un grupo): se elige, se mueve, se rota y se copia completo;
+   · doble clic entra a «editar la forma»: ahí Mover estira esquinas y muros;
+   · un motor de inferencias propone puntos (extremo, medio, arista, cara, intersección) y direcciones
+     (ejes rojo, verde y azul, paralela y perpendicular a una arista, alineado con un punto ya tocado);
+   · la caja de medidas acepta valores en cualquier momento (un negativo invierte la dirección);
+   · todo modifica el proyecto (S), así que se refleja en zonificación, fachadas, áreas, normativa y láminas. */
+const M3ED={tool:'sel',sel:[],grp:null,edit:null,guides:[],full:false,zone:'',snap:true,typed:'',paint:'aplanado',circN:24};
 addEventListener('hashchange',()=>{if(location.hash!=='#modelo')M3ED.full=false});
 // [clave, nombre, tecla, avanzada, ayuda]
-const M3TOOLS=[['sel','Seleccionar','Espacio',0,'Seleccionar (Espacio): clic elige, Mayús+clic suma, arrastrar gira, doble clic entra a un grupo'],
+const M3TOOLS=[['sel','Seleccionar','Espacio',0,'Seleccionar (Espacio): clic elige · arrastrar hace un recuadro · doble clic edita la forma o entra a un grupo · clic derecho abre el menú'],
+  ['orbit','Orbitar','',0,'Orbitar: arrastra para girar la vista (también con el botón central del mouse)'],
   ['pan','Mano','H',0,'Mano (H): arrastra para desplazar la vista'],
-  ['line','Línea','L',1,'Línea (L): al cerrar la figura se crea un espacio; si cruzas un espacio de lado a lado, lo divide'],
-  ['arc','Arco','A',1,'Arco de dos puntos (A): sobre un muro lo vuelve curvo'],
-  ['rect','Rectángulo','R',0,'Rectángulo (R): dos clics o escribe 4,3 y Enter'],
-  ['push','Empujar/Tirar','P',0,'Empujar/Tirar (P): arriba cambia la altura, un muro lo recorre; con Ctrl crea un volumen nuevo encima'],
-  ['move','Mover','M',0,'Mover (M): Ctrl hace una copia; después escribe 3x para repetirla'],
+  ['line','Línea','L',1,'Línea (L): al cerrar la figura se crea un espacio; de lado a lado divide un espacio'],
+  ['arc','Arco','A',1,'Arco de dos puntos (A): sobre un muro lo vuelve curvo; se pega tangente a la línea anterior'],
+  ['rect','Rectángulo','R',0,'Rectángulo (R): en el suelo o una azotea crea un espacio; sobre un muro crea una ventana o puerta'],
+  ['circle','Círculo','C',1,'Círculo y polígono (C): escribe el radio; 6s cambia a un hexágono'],
+  ['push','Empujar/Tirar','P',0,'Empujar/Tirar (P): arriba cambia la altura, un muro lo recorre; Ctrl crea un volumen encima; doble clic repite'],
+  ['move','Mover','M',0,'Mover (M): mueve objetos completos; Ctrl copia y luego 3x repite; dentro de «editar forma» estira esquinas y muros'],
+  ['rotate','Rotar','Q',1,'Rotar (Q): centro, referencia y ángulo; se pega cada 15°; Ctrl copia'],
   ['offset','Equidistancia','F',1,'Equidistancia (F): contorno paralelo dentro o fuera de una cara o del terreno'],
   ['tape','Medir','T',0,'Medir (T): distancias y guías; desde una arista deja una guía paralela'],
-  ['erase','Borrar','E',0,'Borrar (E): clic o arrastra sobre lo que quieras quitar']];
-const M3KEYS={' ':'sel',h:'pan',l:'line',a:'arc',r:'rect',p:'push',m:'move',f:'offset',t:'tape',e:'erase'};
+  ['paint','Pintar','B',0,'Pintar (B): elige un acabado y toca un muro o una azotea; Alt + clic copia el acabado'],
+  ['erase','Borrar','E',0,'Borrar (E): clic o arrastra; sobre la línea que separa dos espacios los une']];
+const M3KEYS={' ':'sel',h:'pan',l:'line',a:'arc',r:'rect',c:'circle',p:'push',m:'move',q:'rotate',f:'offset',t:'tape',b:'paint',e:'erase'};
 const M3ICON={sel:'<path d="M5.5 2.8v13.4l3.5-3.2 2.4 5.2 2.3-1.1-2.4-5.1h4.8z" fill="currentColor" stroke="none"/>',
+  orbit:'<circle cx="10" cy="10" r="1.5" fill="currentColor" stroke="none"/><path d="M16.4 8.4A6.6 6.6 0 0 0 4.3 6.6M3.6 11.6a6.6 6.6 0 0 0 12.1 1.8"/><path d="M4.2 3.4v3.3h3.3M15.8 16.6v-3.3h-3.3"/>',
   pan:'<path d="M6.8 10.2V5.1a1.25 1.25 0 0 1 2.5 0v4.4M9.3 9.4V3.9a1.25 1.25 0 0 1 2.5 0v5.5M11.8 9.4V5a1.25 1.25 0 0 1 2.5 0v6.4c0 3.4-2.1 5.8-5.2 5.8-2.1 0-3.4-.9-4.6-2.9l-1.9-3.2a1.25 1.25 0 0 1 2.1-1.4l1.6 2.2"/>',
   line:'<path d="M4 16L16 4"/><circle cx="4" cy="16" r="1.7" fill="currentColor"/><circle cx="16" cy="4" r="1.7" fill="currentColor"/>',
   arc:'<path d="M3.5 15A7.4 7.4 0 0 1 16.5 15"/><circle cx="3.5" cy="15" r="1.6" fill="currentColor"/><circle cx="16.5" cy="15" r="1.6" fill="currentColor"/>',
   rect:'<rect x="3.2" y="5" width="13.6" height="10" rx=".6"/>',
+  circle:'<circle cx="10" cy="10" r="6.8"/><circle cx="10" cy="10" r="1" fill="currentColor"/><path d="M10 10l4.8-4.8"/>',
   push:'<path d="M3.5 12.2l6.5 3 6.5-3-6.5-3zM3.5 12.2v2.6l6.5 3 6.5-3v-2.6M10 1.8v7.6M7.6 4.2L10 1.8l2.4 2.4"/>',
   move:'<path d="M10 2v16M2 10h16M10 2L7.8 4.2M10 2l2.2 2.2M10 18l-2.2-2.2M10 18l2.2-2.2M2 10l2.2-2.2M2 10l2.2 2.2M18 10l-2.2-2.2M18 10l-2.2 2.2"/>',
+  rotate:'<path d="M2.8 15.6h14.4M3.4 15.6a6.6 6.6 0 0 1 13.2 0"/><path d="M10 15.6l4.4-6.2"/><path d="M14.6 6.2l.4 2.9-2.9.4"/>',
   offset:'<rect x="2.6" y="2.6" width="14.8" height="14.8" rx=".6"/><rect x="6.2" y="6.2" width="7.6" height="7.6" rx=".4" stroke-dasharray="2 1.5"/>',
   tape:'<rect x="2.6" y="5.6" width="10.2" height="10.2" rx="2.2"/><circle cx="7.7" cy="10.7" r="2"/><path d="M12.8 13.2h4.8v2.6h-4.8M15.2 13.2v1.3"/>',
+  paint:'<path d="M3.6 9.4L9.6 3.4l6.2 6.2-6 6z"/><path d="M3.6 9.4h12.2"/><path d="M17.2 13.6c0 1.1-.7 1.8-1.4 1.8s-1.4-.7-1.4-1.8c0-.9 1.4-2.9 1.4-2.9s1.4 2 1.4 2.9z" fill="currentColor"/>',
   erase:'<path d="M8.5 17h8.3M4.4 12.4l7.3-7.3a1.6 1.6 0 0 1 2.3 0l2.6 2.6a1.6 1.6 0 0 1 0 2.3L10.2 16.4H7.4l-3-3a.7.7 0 0 1 0-1zM8 8.8l4.8 4.8"/>',
   grp:'<rect x="2.4" y="2.4" width="15.2" height="15.2" rx="1" stroke-dasharray="2.4 1.8"/><rect x="5.4" y="5.4" width="5.2" height="5.2"/><rect x="9.4" y="9.4" width="5.2" height="5.2"/>',
   ext:'<path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/><rect x="7" y="7" width="6" height="6"/>',
@@ -2384,26 +2440,38 @@ function m3Split(geo,p,q){const r=geo.map(v=>v.slice());const ins=pt=>{for(const
   if(!ins(p)||!ins(q))return null;const idx=pt=>{let bi=-1,bd=1e9;r.forEach((v,i)=>{const d=Math.hypot(v[0]-pt[0],v[1]-pt[1]);if(d<bd){bd=d;bi=i}});return bi};
   const i=idx(p),j=idx(q),n=r.length;if(i===j||(i+1)%n===j||(j+1)%n===i)return null;if(!inPoly([(r[i][0]+r[j][0])/2,(r[i][1]+r[j][1])/2],geo))return null;
   const a=Math.min(i,j),b=Math.max(i,j);const g1=r.slice(a,b+1),g2=r.slice(b).concat(r.slice(0,a+1));if(polyArea(g1)<0.05||polyArea(g2)<0.05)return null;return[g1,g2]}
+/* Une dos polígonos que comparten (todo o parte de) un lado; regresa el contorno nuevo o null si no se tocan bien. */
+function m3Merge(A,B){const tol=0.012;const eq=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1])<tol;
+  const ins=(R,Sx)=>{const out=[];for(let i=0;i<R.length;i++){const a=R[i],b=R[(i+1)%R.length];out.push(a.slice());const L2=(b[0]-a[0])**2+(b[1]-a[1])**2;if(L2<1e-12)continue;
+    Sx.filter(p=>!eq(p,a)&&!eq(p,b)&&segDist(p,a,b)<tol).map(p=>({p,t:((p[0]-a[0])*(b[0]-a[0])+(p[1]-a[1])*(b[1]-a[1]))/L2})).filter(x=>x.t>0&&x.t<1).sort((x,y)=>x.t-y.t).forEach(x=>out.push(x.p.slice()))}return out};
+  const a=ins(A,B);let b=ins(B,A);if(signedArea(a)*signedArea(b)<0)b=b.slice().reverse();
+  const sh=(p,q)=>{for(let j=0;j<b.length;j++)if(eq(b[j],q)&&eq(b[(j+1)%b.length],p))return true;return false};
+  const ea=[],eb=[];let shared=0;for(let i=0;i<a.length;i++){const p=a[i],q=a[(i+1)%a.length];if(sh(p,q))shared++;else ea.push([p,q])}if(!shared)return null;
+  for(let j=0;j<b.length;j++){const p=b[j],q=b[(j+1)%b.length];let s=false;for(let i=0;i<a.length;i++)if(eq(a[i],q)&&eq(a[(i+1)%a.length],p)){s=true;break}if(!s)eb.push([p,q])}
+  const E=ea.concat(eb);if(E.length<3)return null;const ring=[],used=new Set();let cur=0;
+  for(;;){used.add(cur);ring.push(E[cur][0]);const end=E[cur][1];if(used.size===E.length){if(!eq(end,ring[0]))return null;break}const ni=E.findIndex((e,i)=>!used.has(i)&&eq(e[0],end));if(ni<0)return null;cur=ni}
+  return ring}
+const m3Rot=(g,c,a)=>{const co=Math.cos(a),si=Math.sin(a);return g.map(([x,y])=>[+(c[0]+(x-c[0])*co-(y-c[1])*si).toFixed(3),+(c[1]+(x-c[0])*si+(y-c[1])*co).toFixed(3)])};
 /* Ventanas y puertas: se guarda dónde estaban para volver a pegarlas al muro más cercano después de un cambio de forma. */
 function m3OpC(ids){return S.openings.filter(o=>ids.includes(o.sp)).map(o=>{const g=openingGeom(o);return{o,c:g?g.c:null}})}
 function m3Remap(list,cands,tol=0.08){const drop=new Set();list.forEach(({o,c})=>{if(!c){drop.add(o);return}let best=null;
   cands.forEach(s=>{if(!s.geo)return;for(let i=0;i<s.geo.length;i++){const a=s.geo[i],b=s.geo[(i+1)%s.geo.length];const d=segDist(c,a,b);if(!best||d<best.d){const L2=(b[0]-a[0])**2+(b[1]-a[1])**2||1;best={d,s,i,t:clamp(((c[0]-a[0])*(b[0]-a[0])+(c[1]-a[1])*(b[1]-a[1]))/L2,0,1)}}}});
   if(best&&best.d<tol){o.sp=best.s.id;o.e=best.i;o.t=best.t;const L=edgeInfo(best.s.geo,best.i).len;if(o.w>L)o.w=Math.max(0.3,+(L*0.9).toFixed(2))}else drop.add(o)});if(drop.size)S.openings=S.openings.filter(o=>!drop.has(o))}
-/* Caja de medidas: "3.5", "4,3", "4x3", "350cm", "3x" (repetir copias). */
+/* Caja de medidas: "3.5", "4,3", "4x3", "350cm", "3x" (repetir copias), "6s" (lados). */
 function vcbParse(str){const s=String(str||'').trim().toLowerCase().replace(/×/g,'x');if(!s)return null;
-  const ar=s.match(/^(?:[x*]\s*(\d+)|(\d+)\s*[x*])$/);if(ar)return{arr:+(ar[1]||ar[2])};
-  const parts=s.split(/\s*[,;x]\s*|\s+/).filter(Boolean);const out=[];for(const p of parts){const m=p.match(/^(-?\d*\.?\d+)(mm|cm|m)?$/);if(!m)return null;let v=+m[1];if(m[2]==='cm')v/=100;if(m[2]==='mm')v/=1000;out.push(v)}
+  const ar=s.match(/^(?:[x*]\s*(\d+)|(\d+)\s*[x*])$/);if(ar)return{arr:+(ar[1]||ar[2])};const sd=s.match(/^(\d+)\s*s$/);if(sd)return{sides:+sd[1]};
+  const parts=s.split(/\s*[,;x]\s*|\s+/).filter(Boolean);const out=[];for(const p of parts){const m=p.match(/^(-?\d*\.?\d+)(mm|cm|m|°)?$/);if(!m)return null;let v=+m[1];if(m[2]==='cm')v/=100;if(m[2]==='mm')v/=1000;out.push(v)}
   const dc=s.match(/^(-?\d+),(\d+)\s*(mm|cm|m)?$/);return out.length?{v:out,dec:dc?(+(dc[1]+'.'+dc[2]))/(dc[3]==='cm'?100:dc[3]==='mm'?1000:1):null}:null}
 function m3Ent(key){if(!key)return null;const i=key.indexOf(':');const k=key.slice(0,i),id=key.slice(i+1);const L=k==='sp'?S.spaces:k==='bld'?S.context.buildings:k==='tree'?S.context.trees:k==='op'?S.openings:null;const o=L&&L.find(x=>x.id===id);if(!o||(k==='sp'&&!o.geo))return null;return{k,id,o,key}}
 
 /* ---------- barra de herramientas ---------- */
 function m3Toolbar(){if(!S.zones[M3ED.zone])M3ED.zone=ZONE_KEYS.includes('privada')?'privada':ZONE_KEYS[0];
   const tb=H(`<div class="tools m3tools" id="m3Tools" role="toolbar" aria-label="Herramientas de modelado"></div>`);
-  M3TOOLS.forEach(([k,n,key,adv,tip])=>{const b=H(`<button class="btn sm m3t ${adv?'adv':''}" type="button" data-t="${k}" aria-pressed="${M3ED.tool===k}" aria-label="${n} (${key})" title="${esc(tip)}">${m3svg(k)}<kbd>${key==='Espacio'?'␣':key}</kbd></button>`);
-    b.onclick=()=>{if(M3&&M3.ed)M3.ed.setTool(k);else{M3ED.tool=k;m3TbSync()}};tb.appendChild(b)});
+  M3TOOLS.forEach(([k,n,key,adv,tip],i)=>{const b=H(`<button class="btn sm m3t ${adv?'adv':''}" type="button" data-t="${k}" aria-pressed="${M3ED.tool===k}" aria-label="${n}${key?' ('+key+')':''}" title="${esc(tip)}">${m3svg(k)}${key?`<kbd>${key==='Espacio'?'␣':key}</kbd>`:''}</button>`);
+    b.onclick=()=>{if(M3&&M3.ed)M3.ed.setTool(k);else{M3ED.tool=k;m3TbSync()}};tb.appendChild(b);if(k==='pan')tb.appendChild(H('<span class="m3sep" aria-hidden="true"></span>'))});
   const gb=H(`<button class="btn sm m3t adv" type="button" data-a="grp" aria-label="Agrupar (G)" title="Agrupar lo elegido (G) · Mayús+G desagrupa">${m3svg('grp')}<kbd>G</kbd></button>`);gb.onclick=()=>M3&&M3.ed&&M3.ed.group();
   const xb=H(`<button class="btn sm m3t" type="button" data-a="ext" aria-label="Ver todo (Mayús+Z)" title="Ver todo (Mayús+Z)">${m3svg('ext')}</button>`);xb.onclick=()=>M3&&M3.extents();
-  const zs=H(`<label class="f inline m3zone" for="m3Zone">Zona de lo nuevo<select id="m3Zone">${ZONE_KEYS.map(k=>`<option value="${k}" ${k===M3ED.zone?'selected':''}>${esc(zc(k).n)}</option>`).join('')}</select></label>`);$('select',zs).onchange=e=>{M3ED.zone=e.target.value};
+  const zs=H(`<label class="f inline m3zone" for="m3Zone">Zona de lo nuevo<select id="m3Zone">${ZONE_KEYS.map(k=>`<option value="${k}" ${k===M3ED.zone?'selected':''}>${esc(zc(k).n)}</option>`).join('')}</select></label>`);$('select',zs).onchange=e=>{M3ED.zone=e.target.value;e.target.blur()};
   tb.append(H('<span class="m3sep" aria-hidden="true"></span>'),gb,xb,zs);return tb}
 function m3TbSync(){$$('#m3Tools [data-t]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===M3ED.tool)))}
 /* Teclas del apartado 3D. */
@@ -2412,46 +2480,49 @@ function m3Key(e,setFull){const k=e.key.toLowerCase(),mod=e.ctrlKey||e.metaKey;
   if(M3&&M3.ed)return M3.ed.key(e);return false}
 function m3Changed(){changed();if(M3){M3.refresh();M3.onEdit&&M3.onEdit()}}
 
-/* ---------- información de lo elegido (como «Información de la entidad» de SketchUp) ---------- */
+/* ---------- información de lo elegido ---------- */
 function m3SelCard(card){if(!card)return;const ED=M3ED;const ents=ED.sel.map(m3Ent).filter(Boolean);const sps=ents.filter(x=>x.k==='sp').map(x=>x.o);
   const bind=(id,fn,ev='change')=>{const i=$('#'+id,card);if(i)i.addEventListener(ev,()=>{fn(i);m3Changed()})};const btn=(id,fn)=>{const b=$('#'+id,card);if(b)b.onclick=fn};
-  if(!ents.length){card.innerHTML=`<h3>Selección</h3><p class="hint" style="margin:0 0 8px">${ED.grp?'Estás editando un grupo: solo sus volúmenes se pueden cambiar. Pulsa <b>Esc</b> o haz doble clic afuera para salir.':'Con <b>Seleccionar</b> (barra espaciadora) toca un volumen para ver y cambiar sus datos aquí. Mayús + clic suma; Ctrl+A elige todo.'}</p>
+  const ctx=ED.edit?`<p class="m3ctx">Editando la forma de «${esc((S.spaces.find(s=>s.id===ED.edit)||{}).name||'')}» <button class="btn sm" type="button" id="m3sX">Terminar (Esc)</button></p>`:ED.grp?`<p class="m3ctx">Editando un grupo <button class="btn sm" type="button" id="m3sX">Cerrar grupo (Esc)</button></p>`:'';
+  const after=()=>{btn('m3sX',()=>M3&&M3.ed&&M3.ed.exitCtx())};
+  if(!ents.length){card.innerHTML=`<h3>Selección</h3>${ctx}<p class="hint" style="margin:0 0 8px">Con <b>Seleccionar</b> (barra espaciadora) toca un volumen para ver y cambiar sus datos aquí. Arrastra para elegir con un recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. Mayús + clic suma o quita; Ctrl+A elige todo.</p>
       <label class="chk"><input type="checkbox" id="m3Snap" ${ED.snap?'checked':''}> Imán: redondear a cada 5 cm</label>${ED.guides.length?`<div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3Gd">Borrar ${ED.guides.length} guía(s)</button></div>`:''}
-      <p class="hint">Atajos: <b>O</b> pantalla completa · <b>I</b> salir · <b>Mayús+Z</b> ver todo · <b>Esc</b> cancelar · <b>Ctrl+Z</b> deshacer · flechas fijan un eje mientras dibujas.</p>`;
-    $('#m3Snap',card).onchange=e=>{ED.snap=e.target.checked};btn('m3Gd',()=>{ED.guides=[];if(M3&&M3.ed)M3.ed.content();m3SelCard(card)});return}
-  const grpBtns=()=>{const g=sps.some(s=>s.grp);return`${sps.length&&!ED.grp?`<button class="btn sm adv" type="button" id="m3sG">Agrupar</button>`:''}${g&&!ED.grp?'<button class="btn sm adv" type="button" id="m3sUg">Desagrupar</button>':''}`};
-  const wire=()=>{btn('m3sG',()=>M3&&M3.ed&&M3.ed.group());btn('m3sUg',()=>M3&&M3.ed&&M3.ed.ungroup());btn('m3sDel',()=>{if(M3&&M3.ed){M3.ed.erase(ED.sel.slice());M3.ed.sel([])}})};
-  if(ents.length===1&&sps.length===1){const s=sps[0];const h=s.h??2.8;const a=polyArea(s.geo);
-    card.innerHTML=`<h3>${esc(s.name)}<small>${esc(zc(s.zone).n)}${s.grp?' · en un grupo':''}</small></h3><div class="fields">
+      <p class="hint">Atajos: <b>O</b> pantalla completa · <b>I</b> salir · <b>Mayús+Z</b> ver todo · <b>Esc</b> cancelar · <b>Ctrl+Z</b> deshacer · flechas fijan un eje mientras dibujas · clic derecho abre el menú.</p>`;
+    $('#m3Snap',card).onchange=e=>{ED.snap=e.target.checked};btn('m3Gd',()=>{ED.guides=[];if(M3&&M3.ed)M3.ed.content();m3SelCard(card)});after();return}
+  const grpBtns=()=>{const g=sps.some(s=>s.grp);return`${sps.length&&!ED.grp&&!ED.edit?`<button class="btn sm adv" type="button" id="m3sG">Agrupar</button>`:''}${g&&!ED.grp?'<button class="btn sm adv" type="button" id="m3sUg">Desagrupar</button>':''}`};
+  const wire=()=>{btn('m3sG',()=>M3&&M3.ed&&M3.ed.group());btn('m3sUg',()=>M3&&M3.ed&&M3.ed.ungroup());btn('m3sZm',()=>M3&&M3.ed&&M3.ed.zoomSel());btn('m3sDel',()=>{if(M3&&M3.ed){M3.ed.erase(ED.sel.slice());M3.ed.sel([])}});after()};
+  if(ents.length===1&&sps.length===1){const s=sps[0];const h=s.h??2.8;const a=polyArea(s.geo);const vol=h>=0.1;
+    card.innerHTML=`<h3>${esc(s.name)}<small>${esc(zc(s.zone).n)}${s.grp?' · en un grupo':''}</small></h3>${ctx}<div class="fields">
       ${field('Nombre','m3sN',s.name,'type="text" maxlength="80"','full')}
       <label class="f" for="m3sZ">Zona<select id="m3sZ">${ZONE_KEYS.map(k=>`<option value="${k}" ${k===s.zone?'selected':''}>${esc(zc(k).n)}</option>`).join('')}</select></label>
       <label class="f" for="m3sC">Color<input type="color" id="m3sC" value="${spColor(s)}"></label>
       ${field('Altura m','m3sH',f2(h),'type="number" step="0.05" min="0"')}${field('Desplante m','m3sB',f2(+s.z||0),'type="number" step="0.05" min="0"')}
-      <label class="f full" for="m3sF">Acabado en 3D y fachadas<select id="m3sF"><option value="">Automático (${esc(MATS[finOf({...s,fin:null})]||'')})</option>${(h<0.1?MAT_FLOOR:MAT_WALL).map(k=>`<option value="${k}" ${s.fin===k?'selected':''}>${esc(MATS[k])}</option>`).join('')}</select></label></div>
+      <label class="f ${vol?'':'full'}" for="m3sF">${vol?'Muros':'Acabado'}<select id="m3sF"><option value="">Automático (${esc(MATS[finOf({...s,fin:null})]||'')})</option>${(vol?MAT_WALL:MAT_FLOOR).concat(s.fin&&!(vol?MAT_WALL:MAT_FLOOR).includes(s.fin)?[s.fin]:[]).map(k=>`<option value="${k}" ${s.fin===k?'selected':''}>${esc(MATS[k])}</option>`).join('')}</select></label>
+      ${vol?`<label class="f" for="m3sR">Azotea<select id="m3sR"><option value="">Automática (${esc(MATS[S.style.m3d.roofMat||'azotea'])})</option>${MAT_ROOF.concat(['pasto']).concat(s.rfin&&!MAT_ROOF.concat(['pasto']).includes(s.rfin)?[s.rfin]:[]).map(k=>`<option value="${k}" ${s.rfin===k?'selected':''}>${esc(k==='pasto'?'Azotea verde (pasto)':MATS[k])}</option>`).join('')}</select></label>`:''}</div>
       <div class="mini"><span>Área ${f2(a)} m²</span><span>${h<0.1?'Superficie sin techo':h<0.5?'Plataforma':'Volumen cubierto'}</span><span>${s.level===1?'Nivel superior':'Planta baja'}</span>${s.area&&!s.m3?`<span>Programa ${f2(s.area)} m²</span>`:''}</div>
-      <div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sZo">Ver en zonificación</button>${grpBtns()}<button class="btn sm" type="button" id="m3sDel">${s.m3?'Borrar':'Quitar del plano'}</button></div>`;
+      <div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sZm">Encuadrar</button><button class="btn sm" type="button" id="m3sZo">Ver en zonificación</button>${grpBtns()}<button class="btn sm" type="button" id="m3sDel">${s.m3?'Borrar':'Quitar del plano'}</button></div>`;
     bind('m3sN',i=>{s.name=i.value.trim()||s.name});bind('m3sZ',i=>{s.zone=i.value});bind('m3sC',i=>{s.color=i.value});bind('m3sH',i=>{s.h=Math.max(0,+i.value||0)});
-    bind('m3sB',i=>{s.z=Math.max(0,+i.value||0);s.level=s.z>=2?1:0});bind('m3sF',i=>{if(i.value)s.fin=i.value;else delete s.fin});
+    bind('m3sB',i=>{s.z=Math.max(0,+i.value||0);s.level=s.z>=2?1:0});bind('m3sF',i=>{if(i.value)s.fin=i.value;else delete s.fin});bind('m3sR',i=>{if(i.value)s.rfin=i.value;else delete s.rfin});
     btn('m3sZo',()=>{S.zoning.sel=s.id;S.zoning.level=s.level===1?'1':'0';location.hash='zonas'});wire();return}
   if(ents.length===1&&ents[0].k!=='sp'){const e=ents[0],o=e.o;
-    if(e.k==='bld'){card.innerHTML=`<h3>${esc(o.name||'Construcción vecina')}<small>Contexto</small></h3><div class="fields">${field('Frente m','m3bW',f2(o.w),'type="number" step="0.1" min="0.5"')}${field('Fondo m','m3bD',f2(o.d),'type="number" step="0.1" min="0.5"')}${field('Altura m','m3bH',f2(o.h),'type="number" step="0.1" min="0.5"')}</div><div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sDel">Borrar</button></div>`;
+    if(e.k==='bld'){card.innerHTML=`<h3>${esc(o.name||'Construcción vecina')}<small>Contexto</small></h3>${ctx}<div class="fields">${field('Frente m','m3bW',f2(o.w),'type="number" step="0.1" min="0.5"')}${field('Fondo m','m3bD',f2(o.d),'type="number" step="0.1" min="0.5"')}${field('Altura m','m3bH',f2(o.h),'type="number" step="0.1" min="0.5"')}</div><div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sZm">Encuadrar</button><button class="btn sm" type="button" id="m3sDel">Borrar</button></div>`;
       bind('m3bW',i=>{o.w=Math.max(0.5,+i.value||o.w)});bind('m3bD',i=>{o.d=Math.max(0.5,+i.value||o.d)});bind('m3bH',i=>{o.h=Math.max(0.5,+i.value||o.h)})}
-    else if(e.k==='tree'){card.innerHTML=`<h3>${esc(o.name||'Árbol')}<small>Contexto</small></h3><div class="fields"><label class="f" for="m3tK">Especie<select id="m3tK">${Object.entries(VEG).filter(([k])=>k!=='persona').map(([k,n])=>`<option value="${k}" ${o.kind===k?'selected':''}>${esc(n)}</option>`).join('')}</select></label>${field('Altura m','m3tH',f2(o.h),'type="number" step="0.1" min="0.5"')}${field('Radio de copa m','m3tR',f2(o.r),'type="number" step="0.1" min="0.3"')}</div><div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sDel">Borrar</button></div>`;
+    else if(e.k==='tree'){card.innerHTML=`<h3>${esc(o.name||'Árbol')}<small>Contexto</small></h3>${ctx}<div class="fields"><label class="f" for="m3tK">Especie<select id="m3tK">${Object.entries(VEG).map(([k,n])=>`<option value="${k}" ${o.kind===k?'selected':''}>${esc(n)}</option>`).join('')}</select></label>${field('Altura m','m3tH',f2(o.h),'type="number" step="0.1" min="0.5"')}${field('Radio de copa m','m3tR',f2(o.r),'type="number" step="0.1" min="0.3"')}</div><div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sZm">Encuadrar</button><button class="btn sm" type="button" id="m3sDel">Borrar</button></div>`;
       bind('m3tK',i=>{o.kind=i.value});bind('m3tH',i=>{o.h=Math.max(0.5,+i.value||o.h)});bind('m3tR',i=>{o.r=Math.max(0.3,+i.value||o.r)})}
-    else{const g=openingGeom(o);card.innerHTML=`<h3>${o.type==='door'?'Puerta':'Ventana'}<small>${g?esc(g.s.name):''}</small></h3><div class="fields"><label class="f" for="m3oT">Tipo<select id="m3oT"><option value="window" ${o.type==='window'?'selected':''}>Ventana</option><option value="door" ${o.type==='door'?'selected':''}>Puerta</option></select></label>${field('Ancho m','m3oW',f2(o.w),'type="number" step="0.05" min="0.3"')}${field('Alto m','m3oH',f2(o.h),'type="number" step="0.05" min="0.3"')}${field('Antepecho m','m3oS',f2(o.sill),'type="number" step="0.05" min="0"')}</div><p class="hint">Con Mover (M) la deslizas sobre su muro.</p><div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sDel">Borrar</button></div>`;
+    else{const g=openingGeom(o);card.innerHTML=`<h3>${o.type==='door'?'Puerta':'Ventana'}<small>${g?esc(g.s.name):''}</small></h3>${ctx}<div class="fields"><label class="f" for="m3oT">Tipo<select id="m3oT"><option value="window" ${o.type==='window'?'selected':''}>Ventana</option><option value="door" ${o.type==='door'?'selected':''}>Puerta</option></select></label>${field('Ancho m','m3oW',f2(o.w),'type="number" step="0.05" min="0.3"')}${field('Alto m','m3oH',f2(o.h),'type="number" step="0.05" min="0.3"')}${field('Antepecho m','m3oS',f2(o.sill),'type="number" step="0.05" min="0"')}</div><p class="hint">Con Mover (M) la deslizas sobre su muro. Con Rectángulo (R) dibujas otra sobre cualquier muro.</p><div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sDel">Borrar</button></div>`;
       bind('m3oT',i=>{o.type=i.value;if(o.type==='door'){o.sill=0;o.h=Math.max(o.h,2)}else if(o.sill<0.3)o.sill=0.9});bind('m3oW',i=>{o.w=Math.max(0.3,+i.value||o.w)});bind('m3oH',i=>{o.h=Math.max(0.3,+i.value||o.h)});bind('m3oS',i=>{o.sill=Math.max(0,+i.value||0)})}
     wire();return}
   const tot=sps.reduce((a,s)=>a+polyArea(s.geo),0);const gs=new Set(sps.map(s=>s.grp).filter(Boolean));const nk=k=>ents.filter(x=>x.k===k).length;
-  card.innerHTML=`<h3>Selección<small>${ents.length} elementos</small></h3><div class="mini">${sps.length?`<span>${sps.length} espacio(s) · ${f2(tot)} m²</span>`:''}${nk('bld')?`<span>${nk('bld')} construcción(es) vecina(s)</span>`:''}${nk('tree')?`<span>${nk('tree')} árbol(es)</span>`:''}${nk('op')?`<span>${nk('op')} puerta(s) o ventana(s)</span>`:''}${gs.size?`<span>${gs.size===1&&sps.every(s=>s.grp)?'Un grupo':gs.size+' grupo(s)'}</span>`:''}</div>
+  card.innerHTML=`<h3>Selección<small>${ents.length} elementos</small></h3>${ctx}<div class="mini">${sps.length?`<span>${sps.length} espacio(s) · ${f2(tot)} m²</span>`:''}${nk('bld')?`<span>${nk('bld')} construcción(es) vecina(s)</span>`:''}${nk('tree')?`<span>${nk('tree')} árbol(es)</span>`:''}${nk('op')?`<span>${nk('op')} puerta(s) o ventana(s)</span>`:''}${gs.size?`<span>${gs.size===1&&sps.every(s=>s.grp)?'Un grupo':gs.size+' grupo(s)'}</span>`:''}</div>
     ${sps.length?`<div class="fields" style="margin-top:8px">${field('Altura de todos m','m3mH','','type="number" step="0.05" min="0" placeholder="—"')}<label class="f" for="m3mZ">Zona de todos<select id="m3mZ"><option value="">—</option>${ZONE_KEYS.map(k=>`<option value="${k}">${esc(zc(k).n)}</option>`).join('')}</select></label></div>`:''}
-    <div class="row" style="margin-top:8px">${grpBtns()}<button class="btn sm" type="button" id="m3sDel">Borrar o quitar del plano</button></div>`;
+    <div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="m3sZm">Encuadrar</button>${grpBtns()}<button class="btn sm" type="button" id="m3sDel">Borrar o quitar del plano</button></div>`;
   bind('m3mH',i=>{if(i.value!=='')sps.forEach(s=>s.h=Math.max(0,+i.value||0))});bind('m3mZ',i=>{if(i.value)sps.forEach(s=>s.zone=i.value)});wire()}
 
 /* ---------- editor: herramientas sobre el visor ---------- */
 function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
-  if(!S.zones[ED.zone])ED.zone=ZONE_KEYS[0];ED.sel=ED.sel.filter(k=>m3Ent(k));if(ED.grp&&!S.spaces.some(s=>s.geo&&s.grp===ED.grp))ED.grp=null;ED.typed='';
+  if(!S.zones[ED.zone])ED.zone=ZONE_KEYS[0];ED.sel=ED.sel.filter(k=>m3Ent(k));if(ED.grp&&!S.spaces.some(s=>s.geo&&s.grp===ED.grp))ED.grp=null;if(ED.edit&&!S.spaces.some(s=>s.geo&&s.id===ED.edit))ED.edit=null;ED.typed='';
   const ovl=new T.Group();M.scene.add(ovl);const selG=new T.Group(),hovG=new T.Group(),drfG=new T.Group(),gdG=new T.Group();ovl.add(selG,hovG,drfG,gdG);
-  const COL={acc:0x2f6bff,x:0xd62828,y:0x1f9d3a,z:0x2343c4,ink:isDark()?0xe4eaec:0x16212b,red:0xe0452b,guide:0x7a4fd6};
+  const COL={acc:0x2f6bff,x:0xd62828,y:0x1f9d3a,z:0x2343c4,mag:0xc22fc2,tan:0x10a6b8,ink:isDark()?0xe4eaec:0x16212b,red:0xe0452b,guide:0x7a4fd6,prot:0x2343c4};
   const keep=m=>{M.mats.push(m);return m};const LM={},FM={};
   const lm=(c,dash)=>{const k=c+'|'+(dash?1:0);return LM[k]||(LM[k]=keep(dash?new T.LineDashedMaterial({color:c,dashSize:.22,gapSize:.16,depthTest:false,transparent:true}):new T.LineBasicMaterial({color:c,depthTest:false,transparent:true})))};
   const fm=(c,op)=>{const k=c+'|'+op;return FM[k]||(FM[k]=keep(new T.MeshBasicMaterial({color:c,transparent:true,opacity:op,depthTest:false,depthWrite:false,side:T.DoubleSide})))};
@@ -2459,63 +2530,104 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
   function line(g,pts,c,dash,loop){const L=new(loop?T.LineLoop:T.Line)(new T.BufferGeometry().setFromPoints(pts),lm(c,dash));if(dash)L.computeLineDistances();L.renderOrder=30;L.frustumCulled=false;g.add(L);return L}
   function topFace(g,geo,z,c,op){const gg=new T.ShapeGeometry(new T.Shape(geo.map(([x,y])=>new T.Vector2(x-M.cx,y-M.cy))));gg.rotateX(-Math.PI/2);gg.translate(0,z,0);const m=new T.Mesh(gg,fm(c,op));m.renderOrder=29;g.add(m)}
   function quad(g,a,b,c_,d,col,op){const m=new T.Mesh(new T.BufferGeometry().setFromPoints([a,b,c_,a,c_,d]),fm(col,op));m.renderOrder=29;g.add(m)}
+  function dot(g,p,c,sz){const s=sz||M.camera.position.distanceTo(p)*0.006;line(g,[p.clone().setX(p.x-s),p.clone().setX(p.x+s)],c);line(g,[p.clone().setZ(p.z-s),p.clone().setZ(p.z+s)],c);line(g,[p.clone().setY(p.y-s),p.clone().setY(p.y+s)],c)}
   function boxLines(g,a,b,c,dash){const x0=Math.min(a.x,b.x)-.04,x1=Math.max(a.x,b.x)+.04,y0=Math.min(a.y,b.y)-.04,y1=Math.max(a.y,b.y)+.04,z0=Math.min(a.z,b.z)-.04,z1=Math.max(a.z,b.z)+.04;const P=(x,y,z)=>new T.Vector3(x,y,z);
     const c8=[P(x0,y0,z0),P(x1,y0,z0),P(x1,y0,z1),P(x0,y0,z1),P(x0,y1,z0),P(x1,y1,z0),P(x1,y1,z1),P(x0,y1,z1)];const ix=[0,1,1,2,2,3,3,0,4,5,5,6,6,7,7,4,0,4,1,5,2,6,3,7];
     const L=new T.LineSegments(new T.BufferGeometry().setFromPoints(ix.map(i=>c8[i])),lm(c,dash));if(dash)L.computeLineDistances();L.renderOrder=31;g.add(L)}
-  // ----- pantalla: marcador del imán, etiquetas, caja de medidas y estado -----
-  const hud=H(`<div class="m3hud" aria-hidden="true"><div class="m3mk" hidden></div><div class="m3tip" hidden></div><div class="m3labs"></div></div>`);
+  // ----- pantalla: marcador del imán, etiquetas, caja de medidas, estado, recuadro, menú y paleta -----
+  const hud=H(`<div class="m3hud" aria-hidden="true"><div class="m3mk" hidden></div><div class="m3tip" hidden></div><div class="m3labs"></div><div class="m3box" hidden></div></div>`);
   const vcb=H(`<div class="m3vcb"><label for="m3Vcb">Medidas</label><input id="m3Vcb" autocomplete="off" spellcheck="false" inputmode="decimal" enterkeyhint="done" placeholder="—" aria-describedby="m3St"></div>`);
-  const stb=H(`<div class="m3st" id="m3St" role="status" aria-live="polite"></div>`);host.append(hud,vcb,stb);
-  const mk=$('.m3mk',hud),tip=$('.m3tip',hud),labs=$('.m3labs',hud),vi=$('input',vcb),vl=$('label',vcb);
+  const stb=H(`<div class="m3st" id="m3St" role="status" aria-live="polite"></div>`);
+  const pal=H(`<div class="m3pal" hidden><b>Acabado</b><div class="sw" role="listbox" aria-label="Acabados"></div><p>Alt + clic copia el acabado de una cara</p></div>`);host.append(hud,vcb,stb,pal);
+  const mk=$('.m3mk',hud),tip=$('.m3tip',hud),labs=$('.m3labs',hud),boxEl=$('.m3box',hud),vi=$('input',vcb),vl=$('label',vcb);
   vi.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();ED.typed=vi.value;vi.blur();applyVcb()}else if(e.key==='Escape'){ED.typed='';vi.value='';vi.blur()}});vi.addEventListener('input',()=>{ED.typed=vi.value});
-  const KN={end:'Extremo',mid:'Punto medio',edge:'En arista',face:'En cara',x:'En eje rojo',y:'En eje verde',z:'En eje azul'};
+  function buildPal(){const sw=$('.sw',pal);sw.innerHTML=[['','Automático']].concat(Object.entries(MATS)).map(([k,n])=>`<button type="button" role="option" data-m="${k}" aria-selected="${ED.paint===k}" title="${esc(n)}"><span style="${k?(ASSET_FAIL?'background:'+MAT_COL[k]:`background-image:url(${assetURL(texPath(k,true))});background-color:${MAT_COL[k]}`):'background:repeating-linear-gradient(45deg,#ddd 0 4px,#fff 4px 8px)'}"></span>${esc(n)}</button>`).join('');
+    $$('[data-m]',sw).forEach(b=>b.onclick=()=>{ED.paint=b.dataset.m;$$('[data-m]',sw).forEach(x=>x.setAttribute('aria-selected',String(x===b)));b.blur()})}
+  buildPal();
+  const KN={end:'Extremo',mid:'Punto medio',edge:'En arista',face:'En cara',int:'Intersección',x:'En eje rojo',y:'En eje verde',z:'En eje azul',par:'Paralela a la arista',perp:'Perpendicular a la arista',ax:'Alineado con el punto',ay:'Alineado con el punto',tan:'Tangente',semi:'Semicírculo'};
   let MK=null,LB=[];
   function mark(r){MK=r&&r.k!=='plane'?r:null;placeMk()}
-  function placeMk(){if(!MK){mk.hidden=tip.hidden=true;return}const s=M.toScreen(MK.p);if(s.z>1){mk.hidden=tip.hidden=true;return}mk.hidden=tip.hidden=false;mk.className='m3mk k-'+MK.k;mk.style.transform=`translate(${s.x}px,${s.y}px)`;tip.textContent=KN[MK.k]||'';tip.style.transform=`translate(${s.x+12}px,${s.y+10}px)`}
+  function placeMk(){if(!MK){mk.hidden=tip.hidden=true;return}const s=M.toScreen(MK.p);if(s.z>1){mk.hidden=tip.hidden=true;return}mk.hidden=tip.hidden=false;mk.className='m3mk k-'+MK.k;mk.style.transform=`translate(${s.x}px,${s.y}px)`;
+    tip.textContent=(KN[MK.k]||'')+(MK.also&&KN[MK.also.k]&&KN[MK.also.k]!==KN[MK.k]?' · '+KN[MK.also.k].toLowerCase():'');tip.style.transform=`translate(${s.x+12}px,${s.y+10}px)`}
   function placeLabs(){const all=LB.concat(ED.guides.filter(g=>g.t==='pt').map(g=>({p:V(g.a).lerp(V(g.b),.5),t:f2(g.L)+' m',g:1})));while(labs.children.length<all.length)labs.appendChild(document.createElement('span'));
     [...labs.children].forEach((d,i)=>{const L=all[i];if(!L){d.hidden=true;return}const s=M.toScreen(L.p);if(s.z>1){d.hidden=true;return}d.hidden=false;d.textContent=L.t;d.className=L.g?'g':'';d.style.transform=`translate(${s.x.toFixed(1)}px,${s.y.toFixed(1)}px) translate(-50%,-50%)`})}
   let vLabel='Medidas';
-  function vcbShow(label,a,b){if(label)vLabel=label;vl.textContent=vLabel;if(ED.typed||document.activeElement===vi)return;vi.value=a==null?'':f2(a)+(b!=null?', '+f2(b):'')}
+  function vcbShow(label,a,b){if(label)vLabel=label;vl.textContent=vLabel;if(ED.typed||document.activeElement===vi)return;vi.value=a==null?'':(typeof a==='string'?a:f2(a))+(b!=null?', '+f2(b):'')}
   function vcbRender(){vi.value=ED.typed;vcb.classList.toggle('on',!!ED.typed)}
   function status(t){stb.textContent=t||'';stb.hidden=!t}
-  const HELP={sel:'Clic para elegir · Mayús+clic suma · arrastra para girar · doble clic entra a un grupo',pan:'Arrastra para desplazar la vista',
+  const HELP={sel:'Clic elige · arrastra para elegir con un recuadro · doble clic edita la forma o entra a un grupo · clic derecho: menú',orbit:'Arrastra para girar la vista',pan:'Arrastra para desplazar la vista',
     line:'Clic en el primer punto. Al cerrar la figura se crea un espacio; si cruzas un espacio de lado a lado, lo divide',arc:'Clic en el inicio y en el final del arco; luego mueve para curvarlo. Sobre un muro lo vuelve curvo',
-    rect:'Clic en una esquina y luego en la opuesta, o escribe ancho,largo (4,3) y Enter',push:'Pasa sobre una cara: arriba cambia la altura y un muro se recorre. Con Ctrl creas un volumen nuevo encima',
-    move:'Clic sobre lo que quieres mover y luego en el destino. Ctrl hace una copia',offset:'Clic en la cara de arriba de un espacio, o en el terreno, y mueve hacia adentro o afuera',
-    tape:'Clic en un punto y luego en otro para medir. Si empiezas en una arista dejas una guía paralela',erase:'Clic o arrastra sobre lo que quieras borrar'};
-  // ----- imán: extremos, puntos medios, aristas, ejes, caras y suelo -----
+    rect:'En el suelo o una azotea crea un espacio; sobre un muro crea una ventana (o una puerta si llega al piso). Escribe 4,3 y Enter para medidas exactas',
+    circle:'Clic en el centro y luego el radio (o escríbelo). Escribe 6s y Enter para un hexágono, 24s para un círculo',
+    push:'Pasa sobre una cara: arriba cambia la altura y un muro se recorre. Ctrl crea un volumen encima; doble clic repite la última medida',
+    move:'Clic sobre lo que quieres mover y luego en el destino. Ctrl copia; después escribe 3x. Doble clic con Seleccionar para estirar esquinas y muros',
+    rotate:'Clic en el centro de giro, luego en la referencia y gira (se pega cada 15°). Escribe los grados y Enter; Ctrl copia',
+    offset:'Clic en la cara de arriba de un espacio, o en el terreno, y mueve hacia adentro o afuera',tape:'Clic en un punto y luego en otro para medir. Si empiezas en una arista dejas una guía paralela',
+    paint:'Elige un acabado en la paleta y toca un muro o una azotea. Alt + clic copia el acabado de una cara',erase:'Clic o arrastra sobre lo que quieras borrar. Sobre la línea que separa dos espacios, los une'};
+  // ----- imán: puntos, intersecciones, direcciones de inferencia, aristas, caras y suelo -----
   const V=a=>new T.Vector3(a[0],a[1],a[2]);const A=v=>[+v.x.toFixed(4),+v.y.toFixed(4),+v.z.toFixed(4)];
   const AX={x:new T.Vector3(1,0,0),y:new T.Vector3(0,0,1),z:new T.Vector3(0,1,0)};const _w=new T.Vector3();
   function lineRay(P,d,ray){const u=ray.direction;_w.subVectors(P,ray.origin);const a=d.dot(d),b=d.dot(u),c=u.dot(u),dd=d.dot(_w),e=u.dot(_w);const den=a*c-b*b;if(Math.abs(den)<1e-9)return null;if((a*e-b*dd)/den<0)return null;return P.clone().addScaledVector(d,(b*e-c*dd)/den)}
   function segRay(P,Q,ray){const d=Q.clone().sub(P);const u=ray.direction;_w.subVectors(P,ray.origin);const a=d.dot(d),b=d.dot(u),c=u.dot(u),dd=d.dot(_w),e=u.dot(_w);const den=a*c-b*b;if(a<1e-12||Math.abs(den)<1e-12)return null;return P.clone().addScaledVector(d,clamp((b*e-c*dd)/den,0,1))}
   function rayPlane(ray,y){const u=ray.direction;if(Math.abs(u.y)<1e-6)return null;const s=(y-ray.origin.y)/u.y;if(s<=0)return null;return ray.origin.clone().addScaledVector(u,s)}
+  function rayPlaneN(ray,P,N){const den=ray.direction.dot(N);if(Math.abs(den)<1e-6)return null;const s=P.clone().sub(ray.origin).dot(N)/den;if(s<=0)return null;return ray.origin.clone().addScaledVector(ray.direction,s)}
   const projLine=(p,P,d)=>P.clone().addScaledVector(d,p.clone().sub(P).dot(d)/d.dot(d));
   function gridPt(p){if(!ED.snap)return;const[x,y]=PL(p);const q=W(Math.round(x/0.05)*0.05,Math.round(y/0.05)*0.05,p.y);p.x=q.x;p.z=q.z}
-  let SC={pts:[],edges:[]};
+  const axisLike=d=>Math.abs(d.x)>0.9995||Math.abs(d.z)>0.9995;const perpH=d=>new T.Vector3(-d.z,0,d.x);
+  /* Intersección de dos rectas horizontales P1+t·d1 y P2+s·d2 (en el plano de P1). */
+  function meet(P1,d1,P2,d2){const den=d1.x*d2.z-d1.z*d2.x;if(Math.abs(den)<1e-9)return null;const t=((P2.x-P1.x)*d2.z-(P2.z-P1.z)*d2.x)/den;return P1.clone().addScaledVector(d1,t)}
+  let SC={pts:[],edges:[],shared:[]};
   function collect(){const P=[],Ed=[];const addE=(a,b,o,mid=true)=>{Ed.push({a,b,...o});if(mid)P.push({p:a.clone().lerp(b,.5),k:'mid',...o})};
     if(M3IMPORT.showMass)S.spaces.forEach(s=>{if(!s.geo||s.geo.length<3)return;const z0=+s.z||0,h=s.h??2.8;const zs=h>=0.1?[z0,z0+h]:[z0];const n=s.geo.length;
-      s.geo.forEach((q,i)=>{const r=s.geo[(i+1)%n];zs.forEach(z=>{const a=W(q[0],q[1],z);P.push({p:a,k:'end',sid:s.id});addE(a,W(r[0],r[1],z),{sid:s.id,i,z})});if(zs.length>1)addE(W(q[0],q[1],zs[0]),W(q[0],q[1],zs[1]),{sid:s.id,vert:1},false)})});
+      s.geo.forEach((q,i)=>{const r=s.geo[(i+1)%n];zs.forEach(z=>{const a=W(q[0],q[1],z);P.push({p:a,k:'end',sid:s.id,vi:i});addE(a,W(r[0],r[1],z),{sid:s.id,i,z})});if(zs.length>1)addE(W(q[0],q[1],zs[0]),W(q[0],q[1],zs[1]),{sid:s.id,vert:1,vi:i},false)})});
     const pr=S.project,lc=[[0,0],[pr.lotW,0],[pr.lotW,pr.lotL],[0,pr.lotL]];lc.forEach((q,i)=>{const a=W(q[0],q[1],0);P.push({p:a,k:'end'});addE(a,W(lc[(i+1)%4][0],lc[(i+1)%4][1],0),{lot:1})});
-    if(!ED.grp)(S.context.buildings||[]).forEach(b=>{const c=[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.d],[b.x,b.y+b.d]];[0,b.h].forEach(z=>c.forEach((q,i)=>{const a=W(q[0],q[1],z);P.push({p:a,k:'end',bid:b.id});addE(a,W(c[(i+1)%4][0],c[(i+1)%4][1],z),{bid:b.id})}))});
+    if(!ED.grp&&!ED.edit)(S.context.buildings||[]).forEach(b=>{const c=[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.d],[b.x,b.y+b.d]];[0,b.h].forEach(z=>c.forEach((q,i)=>{const a=W(q[0],q[1],z);P.push({p:a,k:'end',bid:b.id});addE(a,W(c[(i+1)%4][0],c[(i+1)%4][1],z),{bid:b.id})}))});
     (S.zoning.notes||[]).forEach(n=>{if(n.type!=='line'||n.x2==null)return;const z=+n.z||0;const a=W(n.x1,n.y1,z),b=W(n.x2,n.y2,z);P.push({p:a,k:'end',nid:n.id},{p:b,k:'end',nid:n.id});addE(a,b,{nid:n.id})});
-    ED.guides.forEach((g,gi)=>{if(g.t==='pt'){const a=V(g.a),b=V(g.b);P.push({p:a,k:'end',gi},{p:b,k:'end',gi});addE(a,b,{gi})}else{const p=V(g.p),d=V(g.d);Ed.push({a:p.clone().addScaledVector(d,-400),b:p.clone().addScaledVector(d,400),gi,inf:1})}});
-    SC={pts:P,edges:Ed}}
-  let lockK=null,shiftAx=null,lastR=null,lastSp=null;
+    const GL=[];ED.guides.forEach((g,gi)=>{if(g.t==='pt'){const a=V(g.a),b=V(g.b);P.push({p:a,k:'end',gi},{p:b,k:'end',gi});addE(a,b,{gi})}else{const p=V(g.p),d=V(g.d);Ed.push({a:p.clone().addScaledVector(d,-400),b:p.clone().addScaledVector(d,400),gi,inf:1});GL.push({p,d})}});
+    // intersecciones: guía con guía y guía con aristas horizontales a la misma altura
+    for(let i=0;i<GL.length;i++){const g=GL[i];if(Math.abs(g.d.y)>1e-6)continue;for(let j=i+1;j<GL.length;j++){const h=GL[j];if(Math.abs(h.p.y-g.p.y)>1e-3||Math.abs(h.d.y)>1e-6)continue;const X=meet(g.p,g.d,h.p,h.d);if(X)P.push({p:X,k:'int'})}
+      Ed.forEach(e=>{if(e.inf||e.vert||Math.abs(e.a.y-g.p.y)>1e-3||Math.abs(e.b.y-g.p.y)>1e-3)return;const d=e.b.clone().sub(e.a);const L=d.length();if(L<1e-6)return;d.divideScalar(L);const X=meet(g.p,g.d,e.a,d);if(!X)return;const t=X.clone().sub(e.a).dot(d);if(t>1e-3&&t<L-1e-3)P.push({p:X,k:'int'})})}
+    SC={pts:P,edges:Ed,shared:sharedEdges()}}
+  /* Lados que comparten dos espacios vecinos de la misma altura (se pueden unir borrando esa línea). */
+  function sharedEdges(){const out=[];if(ED.edit)return out;const sp=S.spaces.filter(s=>s.geo&&s.geo.length>=3&&inGrp(s)&&!closed(s));
+    for(let a=0;a<sp.length;a++)for(let b=a+1;b<sp.length;b++){const A_=sp[a],B_=sp[b];if(Math.abs((+A_.z||0)-(+B_.z||0))>0.01||Math.abs((A_.h??2.8)-(B_.h??2.8))>0.01)continue;
+      for(let i=0;i<A_.geo.length;i++){const p=A_.geo[i],q=A_.geo[(i+1)%A_.geo.length];const L=Math.hypot(q[0]-p[0],q[1]-p[1]);if(L<0.05)continue;const ux=(q[0]-p[0])/L,uy=(q[1]-p[1])/L;const off=x=>Math.abs((x[0]-p[0])*uy-(x[1]-p[1])*ux);
+        for(let j=0;j<B_.geo.length;j++){const r=B_.geo[j],s=B_.geo[(j+1)%B_.geo.length];if(off(r)>0.01||off(s)>0.01)continue;const tr=(r[0]-p[0])*ux+(r[1]-p[1])*uy,ts=(s[0]-p[0])*ux+(s[1]-p[1])*uy;const t0=Math.max(0,Math.min(tr,ts)),t1=Math.min(L,Math.max(tr,ts));
+          if(t1-t0>0.05)out.push({a:A_.id,b:B_.id,p0:[p[0]+ux*t0,p[1]+uy*t0],p1:[p[0]+ux*t1,p[1]+uy*t1],z:+A_.z||0,h:A_.h??2.8})}}}return out}
+  let lockK=null,shiftAx=null,lastR=null,lastSp=null,refDir=null,refT=0;const acq=[];
   const lockDir=()=>{const k=lockK||shiftAx;return k?{k,d:AX[k]}:null};
-  /* o: {from: punto de partida, plane: solo puntos a esa altura, gz: altura del suelo de respaldo, skip: claves a ignorar, vert: eje azul, noAxis, noFace, pts: puntos extra} */
+  function acquire(r){if(!r||(r.k!=='end'&&r.k!=='mid'&&r.k!=='int'))return;const now=performance.now();for(let i=acq.length-1;i>=0;i--)if(now-acq[i].t>25000||acq[i].p.distanceTo(r.p)<1e-3)acq.splice(i,1);acq.push({p:r.p.clone(),t:now});while(acq.length>2)acq.shift()}
+  function teach(e){if(!e||e.inf||e.vert)return;const d=e.b.clone().sub(e.a);d.y=0;if(d.lengthSq()<1e-6)return;refDir=d.normalize();refT=performance.now()}
+  /* o: {from, plane: solo puntos a esa altura, gz: altura del suelo de respaldo, skip: claves a ignorar, vert: eje azul, noAxis, noFace, pts: puntos extra} */
   function snap(sp,o={}){const R=M.coarse?22:12;const ray=M.rayAt(sp).clone();const sk=o.skip;const pl=o.plane;const okZ=y=>pl==null||Math.abs(y-pl)<3e-3;
     const sd=p=>{const s=M.toScreen(p);return s.z>1?1e9:Math.hypot(s.x-sp.x,s.y-sp.y)};const skipC=c=>sk&&((c.sid&&sk.has('sp:'+c.sid))||(c.bid&&sk.has('bld:'+c.bid)));
-    let best=null;for(const c of(o.pts?SC.pts.concat(o.pts):SC.pts)){if(skipC(c)||!okZ(c.p.y))continue;const pen=c.k==='mid'?3:0;const d=sd(c.p)+pen;if(d<(c.k==='mid'?R*0.85:R)+pen&&(!best||d<best.d))best={d,p:c.p.clone(),k:c.k,c}}
-    const L=o.from?lockDir():null;if(best){if(L){best.p=projLine(best.p,o.from,L.d);best.k=L.k}return best}
-    if(o.from&&!o.noAxis){const axs=L?[L]:[{k:'x',d:AX.x},{k:'y',d:AX.y}].concat(o.vert?[{k:'z',d:AX.z}]:[]);let ab=null;
-      for(const a of axs){const q=lineRay(o.from,a.d,ray);if(!q)continue;if(a.k!=='z'&&!okZ(q.y))continue;const d=sd(q);if((L||d<10)&&(!ab||d<ab.d))ab={d,p:q,k:a.k}}
-      if(ab){if(ED.snap){const t=ab.p.clone().sub(o.from).dot(AX[ab.k]);ab.p=o.from.clone().addScaledVector(AX[ab.k],Math.round(t/0.05)*0.05)}return ab}}
-    let eb=null;for(const e of SC.edges){if(skipC(e))continue;if(pl!=null&&!(okZ(e.a.y)&&okZ(e.b.y)))continue;const q=segRay(e.a,e.b,ray);if(!q)continue;const d=sd(q);if(d<R*0.7&&(!eb||d<eb.d))eb={d,p:q,k:'edge',e}}
-    if(eb)return eb;
+    // solo cuenta lo que se ve: una esquina o arista detrás de un muro no atrae al imán
+    const vis=p=>!M.visible||M.visible(p,sk);
+    let best=null;const pc=[];for(const c of(o.pts?SC.pts.concat(o.pts):SC.pts)){if(skipC(c)||!okZ(c.p.y))continue;const pen=c.k==='mid'?3:c.k==='int'?1:0;const d=sd(c.p)+pen;if(d<(c.k==='mid'?R*0.85:R)+pen)pc.push({d,c})}
+    pc.sort((a,b)=>a.d-b.d);for(const x of pc)if(vis(x.c.p)){best={d:x.d,p:x.c.p.clone(),k:x.c.k,c:x.c};break}
+    const L=o.from?lockDir():null;if(best){if(L){best.p=projLine(best.p,o.from,L.d);best.k=L.k}else acquire(best);return best}
+    // direcciones de inferencia: ejes, paralela/perpendicular a la arista aprendida y alineación con puntos tocados
+    if(!o.noAxis&&(o.from||acq.length)){const y0=pl??(o.from?o.from.y:0);const cand=[];
+      if(o.from){if(L)cand.push({P:o.from,d:L.d,k:L.k});else{cand.push({P:o.from,d:AX.x,k:'x'},{P:o.from,d:AX.y,k:'y'});if(o.vert)cand.push({P:o.from,d:AX.z,k:'z'});
+        if(refDir&&performance.now()-refT<20000&&!axisLike(refDir))cand.push({P:o.from,d:refDir,k:'par'},{P:o.from,d:perpH(refDir),k:'perp'})}}
+      if(!L&&(pl!=null||o.from))acq.forEach(a=>{if(o.from&&a.p.distanceTo(o.from)<1e-3)return;const P=new T.Vector3(a.p.x,y0,a.p.z);cand.push({P,d:AX.x,k:'ax',src:a.p},{P,d:AX.y,k:'ay',src:a.p})});
+      const hits=[];for(const c of cand){const q=lineRay(c.P,c.d,ray);if(!q)continue;if(c.k!=='z'&&!okZ(q.y))continue;const ds=sd(q);if((L&&c.k===L.k)||ds<9)hits.push({...c,q,ds})}
+      if(hits.length){hits.sort((a,b)=>a.ds-b.ds);const h0=hits[0];let r=null;
+        if(!L&&h0.k!=='z')for(const h1 of hits.slice(1)){if(h1.k==='z'||Math.abs(h0.d.x*h1.d.z-h0.d.z*h1.d.x)<0.05)continue;const X=meet(h0.P,h0.d,h1.P,h1.d);if(X&&sd(X)<14){r={p:X,k:h0.k,line:h0,also:h1};break}}
+        if(!r){r={p:h0.q,k:h0.k,line:h0};if(ED.snap){if(h0.src)gridAxis(r.p,h0.k);else if(o.from){const t=r.p.clone().sub(o.from).dot(h0.d);r.p=o.from.clone().addScaledVector(h0.d,Math.round(t/0.05)*0.05)}}}
+        return r}}
+    const ec=[];for(const e of SC.edges){if(skipC(e))continue;if(pl!=null&&!(okZ(e.a.y)&&okZ(e.b.y)))continue;const q=segRay(e.a,e.b,ray);if(!q)continue;const d=sd(q);if(d<R*0.7)ec.push({d,p:q,k:'edge',e})}
+    ec.sort((a,b)=>a.d-b.d);const eb=ec.find(x=>x.e.inf||vis(x.p));
+    if(eb){teach(eb.e);return eb}
     if(pl==null&&!o.noFace){const h=M.hitAt(sp,sk||skipNon());if(h){const u=h.object.userData;if(['sp','bld','roof','imp','tree','op'].includes(u.k)){const n=h.face?h.face.normal:null;const p=h.point.clone();
         if(u.k==='sp'){const s=S.spaces.find(x=>x.id===u.id);if(s&&(s.h??2.8)<0.1)p.y=+s.z||0;else if(s&&n&&n.y>0.7)p.y=(+s.z||0)+(s.h??2.8)}if(n&&n.y>0.7)gridPt(p);return{p,k:'face',h,up:!!(n&&n.y>0.7)}}
       const p=h.point.clone();p.y=0;gridPt(p);return{p,k:'plane',h}}}
     const q=rayPlane(ray,o.gz??pl??0);if(q){gridPt(q);return{p:q,k:'plane'}}return null}
+  function gridAxis(p,k){const[x,y]=PL(p);const g=0.05;const q=k==='ax'?W(Math.round(x/g)*g,y,p.y):W(x,Math.round(y/g)*g,p.y);p.x=q.x;p.z=q.z}
+  const infCol=r=>r?({x:COL.x,y:COL.y,z:COL.z,par:COL.mag,perp:COL.mag,tan:COL.tan}[r.k]||COL.ink):COL.ink;
+  /* Línea elástica desde el punto anterior con el color de la inferencia y, si aplica, la línea punteada que alinea con un punto tocado. */
+  function rubber(from,r,dash){if(!r)return;line(drfG,[from,r.p],infCol(r),dash);infOnly(r)}
+  function infOnly(r){if(r)[r.line,r.also].forEach(h=>{if(h&&h.src)line(drfG,[h.src,r.p],h.k==='ax'?COL.x:COL.y,true)})}
   // ----- entidades -----
   function hitEnt(h){if(!h)return null;const u=h.object.userData;if(!u||!u.k)return null;const k=u.k;
     if(k==='sp'){const s=S.spaces.find(x=>x.id===u.id);if(!s||!s.geo)return null;const flat=(s.h??2.8)<0.1;const n=h.face?h.face.normal.clone():new T.Vector3(0,1,0);const part=flat||n.y>0.7?'top':n.y<-0.7?'bot':'side';let edge=-1;
@@ -2523,33 +2635,48 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
       return{key:'sp:'+s.id,k,id:s.id,o:s,s,part,edge,point:h.point.clone(),n}}
     if(k==='bld'||k==='tree'||k==='op'){const L=k==='bld'?S.context.buildings:k==='tree'?S.context.trees:S.openings;const o=L.find(x=>x.id===u.id);if(!o)return null;return{key:k+':'+o.id,k,id:o.id,o,point:h.point.clone(),n:h.face?h.face.normal.clone():new T.Vector3(0,1,0)}}
     return{k,point:h.point.clone()}}
-  const inGrp=s=>!ED.grp||s.grp===ED.grp;const closed=s=>!!(s.grp&&ED.grp!==s.grp);
-  function skipNon(){if(!ED.grp)return null;return new Set(S.spaces.filter(s=>s.grp!==ED.grp).map(s=>'sp:'+s.id).concat((S.context.buildings||[]).map(b=>'bld:'+b.id),(S.context.trees||[]).map(t=>'tree:'+t.id)))}
-  function selectable(en){if(!en||!en.key)return false;if(en.k==='sp')return inGrp(en.s);if(en.k==='op'){const s=S.spaces.find(x=>x.id===en.o.sp);return!!s&&inGrp(s)&&!closed(s)}return!ED.grp}
+  const inGrp=s=>(!ED.grp||s.grp===ED.grp)&&(!ED.edit||s.id===ED.edit);const closed=s=>!!(s.grp&&ED.grp!==s.grp);
+  function skipNon(){if(!ED.grp&&!ED.edit)return null;return new Set(S.spaces.filter(s=>!inGrp(s)).map(s=>'sp:'+s.id).concat((S.context.buildings||[]).map(b=>'bld:'+b.id),(S.context.trees||[]).map(t=>'tree:'+t.id)))}
+  function selectable(en){if(!en||!en.key)return false;if(en.k==='sp')return inGrp(en.s);if(en.k==='op'){const s=S.spaces.find(x=>x.id===en.o.sp);return!!s&&inGrp(s)&&!closed(s)}return!ED.grp&&!ED.edit}
   function expand(en){if(en.k==='sp'&&closed(en.s))return S.spaces.filter(x=>x.geo&&x.grp===en.s.grp).map(x=>'sp:'+x.id);return[en.key]}
   function entAt(sp){const en=hitEnt(M.hitAt(sp,skipNon()));return selectable(en)?en:null}
+  /* Lo que está bajo el puntero o, si no hay nada, el objeto al que pertenece el punto del imán (una esquina o una arista). */
+  function entNear(sp,r){const en=entAt(sp);if(en)return en;const c=r&&(r.c||r.e);if(!c)return null;
+    if(c.sid){const s=S.spaces.find(x=>x.id===c.sid);if(s&&s.geo){const e2={key:'sp:'+s.id,k:'sp',id:s.id,o:s,s,part:'top',edge:-1,point:r.p.clone(),n:AX.z.clone()};if(selectable(e2))return e2}}
+    if(c.bid){const b=(S.context.buildings||[]).find(x=>x.id===c.bid);if(b){const e2={key:'bld:'+b.id,k:'bld',id:b.id,o:b,point:r.p.clone(),n:AX.z.clone()};if(selectable(e2))return e2}}return null}
+  function wallOf(en){if(!en)return null;if(en.k==='op'){const s=S.spaces.find(x=>x.id===en.o.sp);return s&&s.geo&&inGrp(s)&&!closed(s)&&(s.h??2.8)>=0.5?{s,i:en.o.e}:null}if(en.k==='sp'&&en.part==='side'&&en.edge>=0&&inGrp(en.s)&&!closed(en.s)&&(en.s.h??2.8)>=0.5)return{s:en.s,i:en.edge};return null}
   // ----- selección, grupos y guías dibujadas -----
   function grpBox(gid){const B=new T.Box3();let any=false;S.spaces.forEach(s=>{if(s.grp!==gid||!s.geo)return;const z0=+s.z||0,h=s.h??2.8;s.geo.forEach(([x,y])=>{B.expandByPoint(W(x,y,z0));B.expandByPoint(W(x,y,z0+h));any=true})});return any?B:null}
+  function entBox(k){const e=m3Ent(k);if(!e)return null;const B=new T.Box3();
+    if(e.k==='sp'){const s=e.o,z0=+s.z||0,h=s.h??2.8;s.geo.forEach(([x,y])=>{B.expandByPoint(W(x,y,z0));B.expandByPoint(W(x,y,z0+Math.max(h,0.02)))})}
+    else if(e.k==='bld'){const b=e.o;B.expandByPoint(W(b.x,b.y,0));B.expandByPoint(W(b.x+b.w,b.y+b.d,b.h))}else if(e.k==='tree'){const t=e.o;B.expandByPoint(W(t.x-t.r,t.y-t.r,0));B.expandByPoint(W(t.x+t.r,t.y+t.r,t.h))}
+    else if(e.k==='op'){const g=openingGeom(e.o);if(!g)return null;const z0=+g.s.z||0;B.expandByPoint(W(g.p1[0],g.p1[1],z0+e.o.sill));B.expandByPoint(W(g.p2[0],g.p2[1],z0+e.o.sill+e.o.h))}return B}
   function hlEnt(g,k,c=COL.acc){const e=m3Ent(k);if(!e)return;
     if(e.k==='sp'){const m=M.meshOf(k);if(m){const E=new T.LineSegments(new T.EdgesGeometry(m.geometry,25),lm(c));E.renderOrder=31;g.add(E)}}
-    else if(e.k==='bld'){const b=e.o;boxLines(g,W(b.x,b.y,0),W(b.x+b.w,b.y+b.d,b.h),c)}
-    else if(e.k==='tree'){const t=e.o;boxLines(g,W(t.x-t.r,t.y-t.r,0),W(t.x+t.r,t.y+t.r,t.h),c)}
+    else if(e.k==='bld'||e.k==='tree'){const B=entBox(k);if(B)boxLines(g,B.min,B.max,c)}
     else if(e.k==='op'){const gg=openingGeom(e.o);if(gg){const z0=+gg.s.z||0,hh=Math.min(e.o.h,(gg.s.h??2.8)-e.o.sill);const a=W(gg.p1[0],gg.p1[1],z0+e.o.sill),b=W(gg.p2[0],gg.p2[1],z0+e.o.sill);line(g,[a,b,b.clone().setY(b.y+hh),a.clone().setY(a.y+hh)],c,false,true)}}M.need()}
   function drawSel(){clr(selG);const groups=new Set();
     ED.sel.forEach(k=>{const e=m3Ent(k);if(!e)return;if(e.k==='sp'&&closed(e.o)){groups.add(e.o.grp);return}hlEnt(selG,k);if(e.k==='sp'){const m=M.meshOf(k);if(m){const t=new T.Mesh(m.geometry,fm(COL.acc,.12));t.userData.shared=1;t.renderOrder=28;selG.add(t)}}});
-    groups.forEach(gid=>{const B=grpBox(gid);if(B)boxLines(selG,B.min,B.max,COL.acc)});if(ED.grp){const B=grpBox(ED.grp);if(B)boxLines(selG,B.min,B.max,0x8a8f96,true)}M.need()}
+    groups.forEach(gid=>{const B=grpBox(gid);if(B)boxLines(selG,B.min,B.max,COL.acc)});if(ED.grp){const B=grpBox(ED.grp);if(B)boxLines(selG,B.min,B.max,0x8a8f96,true)}
+    if(ED.edit){const s=S.spaces.find(x=>x.id===ED.edit);if(s){const z0=+s.z||0,h=s.h??2.8;s.geo.forEach(([x,y])=>{dot(selG,W(x,y,z0),COL.acc);if(h>=0.1)dot(selG,W(x,y,z0+h),COL.acc)})}}M.need()}
   function drawGuides(){clr(gdG);ED.guides.forEach(g=>{if(g.t==='pt'){const a=V(g.a),b=V(g.b);line(gdG,[a,b],COL.guide,true);const s=0.18;line(gdG,[b.clone().setX(b.x-s),b.clone().setX(b.x+s)],COL.guide);line(gdG,[b.clone().setZ(b.z-s),b.clone().setZ(b.z+s)],COL.guide)}
     else{const p=V(g.p),d=V(g.d);line(gdG,[p.clone().addScaledVector(d,-300),p.clone().addScaledVector(d,300)],COL.guide,true)}})}
   function setSel(keys){ED.sel=[...new Set(keys)].filter(k=>m3Ent(k));drawSel();const sp=ED.sel.find(k=>k.startsWith('sp:'));if(sp)S.zoning.sel=sp.slice(3);M.onSel&&M.onSel()}
   function commit(sel){changed();M.refresh();if(sel)setSel(sel);M.onEdit&&M.onEdit()}
-  function enterGroup(gid,s){cancel();ED.grp=gid;ED.sel=['sp:'+s.id];M.refresh();M.onSel&&M.onSel();status('Editando el grupo · Esc o doble clic afuera para salir')}
+  function enterGroup(gid,s){cancel();ED.edit=null;ED.grp=gid;ED.sel=['sp:'+s.id];M.refresh();M.onSel&&M.onSel();status('Editando el grupo · Esc o doble clic afuera para salir')}
   function exitGroup(){const g=ED.grp;ED.grp=null;ED.sel=S.spaces.filter(x=>x.grp===g&&x.geo).map(x=>'sp:'+x.id);M.refresh();M.onSel&&M.onSel();status(HELP[ED.tool])}
-  function group(){if(ED.grp){toast('Sal del grupo (Esc) para agrupar');return}const sps=ED.sel.map(m3Ent).filter(e=>e&&e.k==='sp').map(e=>e.o);if(!sps.length){toast('Primero elige los volúmenes con Seleccionar (Mayús + clic para varios)');return}
+  function enterEdit(s){cancel();ED.edit=s.id;ED.sel=['sp:'+s.id];M.refresh();M.onSel&&M.onSel();status('Editando la forma de «'+s.name+'»: con Mover (M) estira esquinas y muros · Borrar (E) quita una esquina · Esc para terminar')}
+  function exitEdit(){const id=ED.edit;ED.edit=null;ED.sel=id&&m3Ent('sp:'+id)?['sp:'+id]:[];M.refresh();M.onSel&&M.onSel();status(HELP[ED.tool])}
+  function exitCtx(){cancel();if(ED.edit)exitEdit();else if(ED.grp)exitGroup()}
+  function group(){if(ED.grp||ED.edit){toast('Sal primero (Esc) para agrupar');return}const sps=ED.sel.map(m3Ent).filter(e=>e&&e.k==='sp').map(e=>e.o);if(!sps.length){toast('Primero elige los volúmenes con Seleccionar (Mayús + clic o un recuadro para varios)');return}
     const gid=uid('g');const old=new Set(sps.map(s=>s.grp).filter(Boolean));S.spaces.forEach(s=>{if(sps.includes(s)||(s.grp&&old.has(s.grp)))s.grp=gid});commit(sps.map(s=>'sp:'+s.id));toast('Grupo creado. Doble clic con Seleccionar para editarlo por dentro')}
   function ungroup(){const gs=new Set(ED.sel.map(m3Ent).filter(e=>e&&e.k==='sp'&&e.o.grp).map(e=>e.o.grp));if(!gs.size){toast('Lo elegido no está agrupado');return}S.spaces.forEach(s=>{if(gs.has(s.grp))delete s.grp});if(gs.has(ED.grp))ED.grp=null;commit(ED.sel);toast('Grupo deshecho')}
   function selectAll(){setSel(S.spaces.filter(s=>s.geo&&inGrp(s)).map(s=>'sp:'+s.id))}
+  function zoomSel(){const B=new T.Box3();ED.sel.forEach(k=>{const b=entBox(k);if(b)B.union(b)});if(B.isEmpty()){M.extents();return}const sph=B.getBoundingSphere(new T.Sphere());const c=M.camera;const fv=rad(c.fov/2),fh=Math.atan(Math.tan(fv)*c.aspect);
+    const o=c.position.clone().sub(M.target());const r=Math.max(2,sph.radius/Math.sin(Math.min(fv,fh))*1.1);M.flyTo({t:sph.center,th:Math.atan2(o.x,o.z),ph:Math.acos(clamp(o.y/o.length(),-1,1)),r})}
   // ----- crear y cambiar espacios -----
-  function newSpace(g,z,o={}){const id=newId();const s={id,name:o.name||'Espacio '+(S.spaces.length+1),zone:o.zone&&S.zones[o.zone]?o.zone:(S.zones[ED.zone]?ED.zone:ZONE_KEYS[0]),area:+polyArea(g).toFixed(2),level:z>=2?1:0,geo:g,h:o.h||0,z:+z.toFixed(3),m3:true,pos:[30+Math.random()*100,70+Math.random()*120]};
+  function freeName(){let n=S.spaces.length+1;const used=new Set(S.spaces.map(s=>s.name));while(used.has('Espacio '+n))n++;return'Espacio '+n}
+  function newSpace(g,z,o={}){const id=newId();const s={id,name:o.name||freeName(),zone:o.zone&&S.zones[o.zone]?o.zone:(S.zones[ED.zone]?ED.zone:ZONE_KEYS[0]),area:+polyArea(g).toFixed(2),level:z>=2?1:0,geo:g,h:o.h||0,z:+z.toFixed(3),m3:true,pos:[30+Math.random()*100,70+Math.random()*120]};
     if(!isRect(g))s.free=true;if(ED.grp)s.grp=ED.grp;S.spaces.push(s);commit(['sp:'+id]);return s}
   const syncA=(s,geo=true)=>{if(s.m3)s.area=+polyArea(s.geo).toFixed(2);if(!geo)return;if(isRect(s.geo))delete s.free;else s.free=true;delete s.lpos};
   function cleanPoly(pts){let g=pts.map(([x,y])=>[+x.toFixed(3),+y.toFixed(3)]);g=g.filter((q,i)=>{const n=g[(i+1)%g.length];return Math.hypot(n[0]-q[0],n[1]-q[1])>1e-3});
@@ -2565,107 +2692,195 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     const near=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1])<1e-3;const ins=[];if(!near(pa,A0))ins.push(pa.map(v=>+v.toFixed(3)));m3Arc(pa,pb,sag).forEach((p,k,arr)=>{if(k===arr.length-1&&near(p,B0))return;ins.push([+p[0].toFixed(3),+p[1].toFixed(3)])});
     const g=s.geo.slice(0,i+1).concat(ins,s.geo.slice(i+1));if(!m3Simple(g)){toast('Esa curva cruza otro muro del espacio');return}const C=m3OpC([s.id]);s.geo=g;syncA(s);m3Remap(C,[s],Math.abs(sag)+0.06);commit(['sp:'+s.id]);toast('Muro curvo listo')}
   // ----- estado de las herramientas -----
-  let DR=null,AR=null,RC=null,PU=null,MV=null,TP=null,OF=null,ER=null,HV=null,press=null,LASTPU=null,LASTMV=null,toldNotes=false;
-  const busy=()=>{const t=ED.tool;return t==='line'?!!DR:t==='arc'?!!(AR||DR):t==='rect'?!!RC:t==='push'?!!PU:t==='move'?!!MV:t==='tape'?!!TP:t==='offset'?!!OF:false};
-  const axCol=r=>r&&COL[r.k]&&'xyz'.includes(r.k)?COL[r.k]:COL.ink;
-  const drPts=()=>DR?DR.pts.map(p=>({p,k:'end'})):[];
+  let DR=null,AR=null,RC=null,CI=null,PU=null,MV=null,RO=null,TP=null,OF=null,ER=null,HV=null,press=null,LASTPU=null,LASTMV=null,LASTRO=null,LASTPD=null,toldNotes=false,toldPaint=false;
+  const busy=()=>{const t=ED.tool;return t==='line'?!!DR:t==='arc'?!!(AR||DR):t==='rect'?!!RC:t==='circle'?!!CI:t==='push'?!!PU:t==='move'?!!MV:t==='rotate'?!!RO:t==='tape'?!!TP:t==='offset'?!!OF:false};
+  const axCol=infCol;const drPts=()=>DR?DR.pts.map(p=>({p,k:'end'})):[];
   function drawDR(){if(DR&&DR.pts.length>1)line(drfG,DR.pts,COL.ink)}
   function drawPlane(r){if(r&&r.k==='face'&&!r.up){const q=rayPlane(M.rayAt(lastSp).clone(),0);if(q){gridPt(q);return{p:q,k:'plane'}}}return r}
+  const sgn=x=>x<0?-1:1;
   // LÍNEA
   function lineHover(sp){const from=DR&&DR.pts[DR.pts.length-1];let r=snap(sp,from?{from,plane:DR.z,pts:drPts()}:{});if(!from)r=drawPlane(r);lastR=r;mark(r);clr(drfG);LB=[];drawDR();
-    if(from&&r){line(drfG,[from,r.p],axCol(r));const L=from.distanceTo(r.p);vcbShow('Longitud',L);LB=[{p:from.clone().lerp(r.p,.5),t:f2(L)+' m'}]}else vcbShow('Longitud',null);
+    if(from&&r){rubber(from,r);const L=from.distanceTo(r.p);vcbShow('Longitud',L);LB=[{p:from.clone().lerp(r.p,.5),t:f2(L)+' m'}]}else{infOnly(r);vcbShow('Longitud',null)}
     status(DR?'Clic para el siguiente punto · en el primer punto cierras la figura · Enter, Esc o doble clic terminan':HELP.line)}
   function addPt(p){if(!DR){DR={pts:[p],z:p.y};return}const first=DR.pts[0],last=DR.pts[DR.pts.length-1];if(p.distanceTo(last)<1e-3)return;
-    if(DR.pts.length>=3&&p.distanceTo(first)<1e-3){closeDR();return}if(DR.pts.length===1&&trySplit(first,p)){DR=null;clr(drfG);return}DR.pts.push(p);M.need()}
+    if(DR.pts.length>=3&&p.distanceTo(first)<1e-3){closeDR();return}if(DR.pts.length===1&&trySplit(first,p)){DR=null;clr(drfG);return}DR.pts.push(p);const d=p.clone().sub(last);d.y=0;if(d.lengthSq()>1e-6){refDir=d.normalize();refT=performance.now()}M.need()}
   function closeDR(){const g=cleanPoly(DR.pts.map(PL));const z=Math.max(0,DR.z);DR=null;AR=null;clr(drfG);LB=[];if(!g){toast('La figura es demasiado pequeña o se cruza');return}newSpace(g,z);status('Espacio creado. Usa Empujar/Tirar (P) para darle altura')}
   function commitDR(){if(DR&&DR.pts.length>=2){const z=+Math.max(0,DR.z).toFixed(3);const nn=[];for(let i=0;i<DR.pts.length-1;i++){const a=PL(DR.pts[i]),b=PL(DR.pts[i+1]);nn.push({id:uid('n'),type:'line',x1:+a[0].toFixed(3),y1:+a[1].toFixed(3),x2:+b[0].toFixed(3),y2:+b[1].toFixed(3),z,color:'#16212B',size:1,w:1.4})}
       S.zoning.notes=(S.zoning.notes||[]).concat(nn);DR=null;AR=null;clr(drfG);commit();if(!toldNotes){toldNotes=true;toast('Las líneas sueltas quedan como trazos; también se ven en la zonificación')}}else{DR=null;AR=null;clr(drfG)}}
-  // ARCO
+  // ARCO (de dos puntos, con inferencia de tangente y semicírculo)
   const arcFrom=()=>AR&&AR.a?AR.a:DR?DR.pts[DR.pts.length-1]:null;
-  function bulgeAt(a,b,q){const P=PL(a),Q=PL(b),X=PL(q);const c=Math.hypot(Q[0]-P[0],Q[1]-P[1])||1;const ux=(Q[0]-P[0])/c,uy=(Q[1]-P[1])/c;let s=(X[0]-P[0])*(-uy)+(X[1]-P[1])*ux;if(ED.snap)s=Math.round(s/0.05)*0.05;return s}
+  function bulgeAt(a,b,q){const P=PL(a),Q=PL(b),X=PL(q);const c=Math.hypot(Q[0]-P[0],Q[1]-P[1])||1;const ux=(Q[0]-P[0])/c,uy=(Q[1]-P[1])/c;return(X[0]-P[0])*(-uy)+(X[1]-P[1])*ux}
   const arc3=(a,b,s)=>m3Arc(PL(a),PL(b),s).map(([x,y])=>W(x,y,a.y));
+  function apex(a,b,s){const P=PL(a),Q=PL(b);const c=Math.hypot(Q[0]-P[0],Q[1]-P[1])||1;const ux=(Q[0]-P[0])/c,uy=(Q[1]-P[1])/c;return W((P[0]+Q[0])/2-uy*s,(P[1]+Q[1])/2+ux*s,a.y)}
+  function tangentS(a,b){if(!DR||DR.pts.length<2||DR.pts[DR.pts.length-1].distanceTo(a)>1e-6)return null;const pr=PL(DR.pts[DR.pts.length-2]),P=PL(a),Q=PL(b);const dx=P[0]-pr[0],dy=P[1]-pr[1],cx=Q[0]-P[0],cy=Q[1]-P[1];const c=Math.hypot(cx,cy);if(c<1e-6||Math.hypot(dx,dy)<1e-6)return null;
+    const al=Math.atan2(cx*dy-cy*dx,cx*dx+cy*dy);if(Math.abs(al)>rad(170))return null;return c/2*Math.tan(al/2)}
   function arcHover(sp){clr(drfG);LB=[];drawDR();const a=arcFrom();
-    if(!a){const r=drawPlane(snap(sp,{}));lastR=r;mark(r);vcbShow('Longitud',null);status(HELP.arc);return}
-    if(!AR||!AR.b){const r=snap(sp,{from:a,plane:a.y,pts:drPts()});lastR=r;mark(r);if(r){line(drfG,[a,r.p],axCol(r));vcbShow('Longitud',a.distanceTo(r.p))}status('Clic en el final del arco (o escribe la distancia entre extremos)');return}
-    const q=rayPlane(M.rayAt(sp).clone(),a.y);mark(null);if(!q)return;const s=bulgeAt(a,AR.b,q);AR.s=s;const pts=arc3(a,AR.b,s);line(drfG,[a,...pts],COL.acc);vcbShow('Flecha',Math.abs(s));LB=[{p:pts[Math.floor((pts.length-1)/2)],t:'flecha '+f2(Math.abs(s))+' m'}];
-    status(AR.wall?'Mueve para curvar el muro · clic para terminar o escribe la flecha y Enter':'Mueve para curvar · clic para terminar o escribe la flecha y Enter')}
+    if(!a){const r=drawPlane(snap(sp,{}));lastR=r;mark(r);infOnly(r);vcbShow('Longitud',null);status(HELP.arc);return}
+    if(!AR||!AR.b){const r=snap(sp,{from:a,plane:a.y,pts:drPts()});lastR=r;mark(r);if(r){rubber(a,r);vcbShow('Longitud',a.distanceTo(r.p))}status('Clic en el final del arco (o escribe la distancia entre extremos)');return}
+    const q=rayPlane(M.rayAt(sp).clone(),a.y);mark(null);if(!q)return;let s=bulgeAt(a,AR.b,q);let k=null;const c=a.distanceTo(AR.b);
+    const tS=tangentS(a,AR.b);const close=s2=>{const p1=M.toScreen(apex(a,AR.b,s)),p2=M.toScreen(apex(a,AR.b,s2));return Math.hypot(p1.x-p2.x,p1.y-p2.y)<10};
+    if(tS!=null&&Math.abs(tS)>0.01&&close(tS)){s=tS;k='tan'}else if(close(c/2*sgn(s))){s=c/2*sgn(s);k='semi'}else if(ED.snap)s=Math.round(s/0.05)*0.05;
+    AR.s=s;const pts=arc3(a,AR.b,s);line(drfG,[a,...pts],k==='tan'?COL.tan:COL.acc);if(k){MK={p:apex(a,AR.b,s),k};placeMk()}vcbShow('Flecha',Math.abs(s));LB=[{p:pts[Math.floor((pts.length-1)/2)],t:'flecha '+f2(Math.abs(s))+' m'}];
+    status(AR.wall?'Mueve para curvar el muro · clic para terminar o escribe la flecha y Enter':'Mueve para curvar · se pega tangente a la línea anterior · clic para terminar')}
   function arcClick(sp){arcHover(sp);const a=arcFrom();if(!a){if(lastR)AR={a:lastR.p.clone()};return}
     if(!AR||!AR.b){if(!lastR)return;const b=lastR.p.clone();if(b.distanceTo(a)<0.02)return;AR=AR||{};AR.a=a;AR.b=b;AR.wall=DR?null:onWall(a,b);return}finishArc(AR.s||0)}
+  function outSign(){const w=AR&&AR.wall;if(!w)return 1;const n=edgeInfo(w.s.geo,w.i).n;const P=PL(AR.a),Q=PL(AR.b);const ux=Q[0]-P[0],uy=Q[1]-P[1];return sgn((-uy)*n[0]+ux*n[1])}
   function finishArc(s){const a=AR.a,b=AR.b,wl=AR.wall;AR=null;clr(drfG);LB=[];if(wl){if(Math.abs(s)>=0.01)curveWall(wl.s,wl.i,PL(a),PL(b),s);return}
-    if(!DR)DR={pts:[a.clone()],z:a.y};const first=DR.pts[0];const pts=arc3(a,b,s);const closes=DR.pts.length>=2&&b.distanceTo(first)<1e-3;pts.forEach((p,k)=>{if(!(closes&&k===pts.length-1))DR.pts.push(p)});if(closes){closeDR();return}M.need()}
-  // RECTÁNGULO
-  function rectHover(sp){clr(drfG);LB=[];if(!RC){const r=drawPlane(snap(sp,{}));lastR=r;mark(r);vcbShow('Medidas',null);status(HELP.rect);return}
-    const r=snap(sp,{plane:RC.a.y,noAxis:true,gz:RC.a.y});lastR=r;mark(r);if(!r)return;const[a0,a1]=PL(RC.a),[b0,b1]=PL(r.p);RC.b=[b0,b1];const w=Math.abs(b0-a0),d=Math.abs(b1-a1),z=RC.a.y;
-    line(drfG,[W(a0,a1,z),W(b0,a1,z),W(b0,b1,z),W(a0,b1,z)],COL.acc,false,true);if(w>0.01&&d>0.01)topFace(drfG,[[a0,a1],[b0,a1],[b0,b1],[a0,b1]],z+0.01,COL.acc,.12);vcbShow('Medidas',w,d);LB=[{p:W((a0+b0)/2,(a1+b1)/2,z),t:f2(w)+' × '+f2(d)+' m'}];status('Clic en la esquina opuesta, o escribe ancho,largo (4,3) y Enter')}
-  function rectClick(sp){rectHover(sp);if(!lastR)return;if(!RC){RC={a:lastR.p.clone()};return}finishRect(PL(RC.a),PL(lastR.p))}
+    if(!DR)DR={pts:[a.clone()],z:a.y};const first=DR.pts[0];const pts=arc3(a,b,s);const closes=DR.pts.length>=2&&b.distanceTo(first)<1e-3;pts.forEach((p,k)=>{if(!(closes&&k===pts.length-1))DR.pts.push(p)});if(closes){closeDR();return}
+    if(pts.length>1){const d=pts[pts.length-1].clone().sub(pts[pts.length-2]);d.y=0;if(d.lengthSq()>1e-8){refDir=d.normalize();refT=performance.now()}}M.need()}
+  // RECTÁNGULO (en el suelo, en una azotea o sobre un muro → ventana o puerta)
+  function wallPlane(w){const s=w.s,i=w.i,a=s.geo[i],b=s.geo[(i+1)%s.geo.length];const L=Math.hypot(b[0]-a[0],b[1]-a[1]);const n=edgeInfo(s.geo,i).n;return{s,i,a,b,L,z0:+s.z||0,h:s.h??2.8,N:new T.Vector3(n[0],0,-n[1]),P:W(a[0],a[1],+s.z||0),u:[(b[0]-a[0])/L,(b[1]-a[1])/L],n}}
+  function wallUV(wp,q){const X=PL(q);return[clamp((X[0]-wp.a[0])*wp.u[0]+(X[1]-wp.a[1])*wp.u[1],0,wp.L),clamp(q.y-wp.z0,0,wp.h)]}
+  const wallPt=(wp,u,v,off=0.03)=>W(wp.a[0]+wp.u[0]*u+wp.n[0]*off,wp.a[1]+wp.u[1]*u+wp.n[1]*off,wp.z0+v);
+  function snapUV(wp,u,v){if(!ED.snap)return[u,v];return[clamp(Math.round(u/0.05)*0.05,0,wp.L),clamp(Math.round(v/0.05)*0.05,0,wp.h)]}
+  function rectHover(sp){clr(drfG);clr(hovG);LB=[];
+    if(!RC){let r=snap(sp,{});const hw=M.hitAt(sp,skipNon());const w=hw?wallOf(hitEnt(hw)):null;
+      // sobre un muro (aunque el imán tome su arista o una esquina del mismo muro) se dibuja en el muro
+      const onIt=w&&r&&(r.k==='face'?!r.up:(()=>{const wp=wallPlane(w);const[u,v]=wallUV(wp,r.p);return Math.abs(r.p.clone().sub(wp.P).dot(wp.N))<0.02&&u>-1e-3&&u<wp.L+1e-3&&v>-1e-3&&v<wp.h+1e-3})());
+      if(onIt){const wp=wallPlane(w);if(r.k==='face')r={...r,p:hw.point.clone()};lastR={...r,wall:w};mark(r.k==='face'?null:r);const[u,v]=snapUV(wp,...wallUV(wp,r.p));dot(drfG,wallPt(wp,u,v),COL.acc);quad(hovG,wallPt(wp,0,0,0.01),wallPt(wp,wp.L,0,0.01),wallPt(wp,wp.L,wp.h,0.01),wallPt(wp,0,wp.h,0.01),COL.acc,.12);status('Sobre el muro: dibuja una ventana, o una puerta si llega al piso');vcbShow('Medidas',null);return}
+      r=drawPlane(r);lastR=r;mark(r);infOnly(r);vcbShow('Medidas',null);status(HELP.rect);return}
+    if(RC.wall){const wp=RC.wp;const q=rayPlaneN(M.rayAt(sp).clone(),wp.P,wp.N);mark(null);if(!q)return;const[u,v]=snapUV(wp,...wallUV(wp,q));RC.u1=u;RC.v1=v;const u0=RC.u0,v0=RC.v0;
+      line(drfG,[wallPt(wp,u0,v0),wallPt(wp,u,v0),wallPt(wp,u,v),wallPt(wp,u0,v)],COL.acc,false,true);const w=Math.abs(u-u0),hh=Math.abs(v-v0);vcbShow('Medidas',w,hh);
+      LB=[{p:wallPt(wp,(u+u0)/2,(v+v0)/2),t:f2(w)+' × '+f2(hh)+' m · '+(Math.min(v,v0)<0.08?'puerta':'ventana')}];status('Clic en la esquina opuesta, o escribe ancho,alto (1.2,1.5) y Enter');return}
+    const r=snap(sp,{plane:RC.a.y,gz:RC.a.y});lastR=r;mark(r);if(!r)return;const[a0,a1]=PL(RC.a),[b0,b1]=PL(r.p);RC.b=[b0,b1];const w=Math.abs(b0-a0),d=Math.abs(b1-a1),z=RC.a.y;infOnly(r);
+    line(drfG,[W(a0,a1,z),W(b0,a1,z),W(b0,b1,z),W(a0,b1,z)],COL.acc,false,true);if(w>0.01&&d>0.01)topFace(drfG,[[a0,a1],[b0,a1],[b0,b1],[a0,b1]],z+0.01,COL.acc,.12);
+    const sq=w>0.2&&Math.abs(w-d)<0.02;vcbShow('Medidas',w,d);LB=[{p:W((a0+b0)/2,(a1+b1)/2,z),t:f2(w)+' × '+f2(d)+' m'+(sq?' · cuadrado':'')}];status('Clic en la esquina opuesta, o escribe ancho,largo (4,3) y Enter')}
+  function rectClick(sp){rectHover(sp);if(!lastR)return;if(!RC){if(lastR.wall){const wp=wallPlane(lastR.wall);const[u,v]=snapUV(wp,...wallUV(wp,lastR.p));RC={wall:lastR.wall,wp,u0:u,v0:v,u1:u,v1:v};return}RC={a:lastR.p.clone()};return}
+    if(RC.wall){finishOpening(RC.u1,RC.v1);return}finishRect(PL(RC.a),PL(lastR.p))}
   function finishRect(P,Q){const z=Math.max(0,RC.a.y);RC=null;clr(drfG);LB=[];const x0=Math.min(P[0],Q[0]),y0=Math.min(P[1],Q[1]),w=Math.abs(Q[0]-P[0]),d=Math.abs(Q[1]-P[1]);if(w<0.05||d<0.05){toast('El rectángulo es demasiado pequeño');return}
     newSpace(R(x0,y0,w,d).map(q=>q.map(v=>+v.toFixed(3))),z);status('Listo. Usa Empujar/Tirar (P) sobre la cara para darle altura')}
+  function finishOpening(u1,v1){const c=RC;RC=null;clr(drfG);clr(hovG);LB=[];const wp=c.wp;const u0=Math.min(c.u0,u1),u2=Math.max(c.u0,u1),va=Math.min(c.v0,v1),vb=Math.max(c.v0,v1);const w=u2-u0,hh=vb-va;
+    if(w<0.2||hh<0.2){toast('Dibuja un rectángulo de al menos 20 × 20 cm sobre el muro');return}const door=va<0.08;const o={id:uid('o'),sp:wp.s.id,e:wp.i,t:+((u0+u2)/2/wp.L).toFixed(4),type:door?'door':'window',w:+w.toFixed(3),h:+(door?vb:hh).toFixed(3),sill:door?0:+va.toFixed(3),hinge:0,side:0};
+    S.openings.push(o);commit(['op:'+o.id]);toast((door?'Puerta':'Ventana')+' de '+f2(w)+' × '+f2(o.h)+' m en «'+wp.s.name+'»');status('Listo. También se ve en la zonificación, las fachadas y la normativa')}
+  // CÍRCULO Y POLÍGONO
+  function circPts(c,r,a0){const C=PL(c);const n=ED.circN;return Array.from({length:n},(_,i)=>{const t=a0+i*2*Math.PI/n;return[C[0]+r*Math.cos(t),C[1]+r*Math.sin(t)]})}
+  function circHover(sp){clr(drfG);LB=[];if(!CI){const r=drawPlane(snap(sp,{}));lastR=r;mark(r);infOnly(r);vcbShow('Radio',null);status(HELP.circle+' · ahora: '+ED.circN+' lados');if(r)line(drfG,circPts(r.p,M.camera.position.distanceTo(r.p)*0.03,0).map(([x,y])=>W(x,y,r.p.y+0.01)),COL.acc,true,true);return}
+    const r=snap(sp,{plane:CI.c.y,from:CI.c,gz:CI.c.y});lastR=r;mark(r);if(!r)return;const C=PL(CI.c),X=PL(r.p);let rd=Math.hypot(X[0]-C[0],X[1]-C[1]);if(ED.snap&&!['end','mid','edge','int'].includes(r.k))rd=Math.round(rd/0.05)*0.05;CI.r=rd;CI.a0=Math.atan2(X[1]-C[1],X[0]-C[0]);
+    line(drfG,circPts(CI.c,rd,CI.a0).map(([x,y])=>W(x,y,CI.c.y+0.01)),COL.acc,false,true);rubber(CI.c,r,true);vcbShow('Radio',rd);LB=[{p:CI.c.clone().lerp(r.p,.5),t:'r '+f2(rd)+' m · '+ED.circN+' lados'}];status('Clic para el radio, o escribe el radio y Enter · 6s y Enter cambia los lados')}
+  function circClick(sp){circHover(sp);if(!lastR)return;if(!CI){CI={c:lastR.p.clone(),r:0,a0:0};return}finishCirc(CI.r,CI.a0)}
+  function finishCirc(r,a0){const c=CI;CI=null;clr(drfG);LB=[];if(!(r>=0.05)){toast('El radio es demasiado pequeño');return}const g=cleanPoly(circPts(c.c,r,a0||0));if(!g)return;newSpace(g,Math.max(0,c.c.y));status('Listo. Usa Empujar/Tirar (P) para darle altura')}
   // EMPUJAR / TIRAR
-  function pushable(en){if(!en)return false;if(en.k==='sp')return inGrp(en.s)&&!closed(en.s)&&(en.part!=='side'||en.edge>=0);if(en.k==='bld')return!ED.grp;return false}
+  function pushable(en){if(!en)return false;if(en.k==='sp')return inGrp(en.s)&&!closed(en.s)&&(en.part!=='side'||en.edge>=0);if(en.k==='bld')return!ED.grp&&!ED.edit;return false}
   function hlFace(g,en){if(en.k==='sp'){const s=en.s,z0=+s.z||0,h=s.h??2.8,flat=h<0.1;if(en.part==='top')topFace(g,s.geo,z0+(flat?0.02:h+0.006),COL.acc,.3);else if(en.part==='bot')topFace(g,s.geo,z0-0.006,COL.acc,.3);
       else{const a=s.geo[en.edge],b=s.geo[(en.edge+1)%s.geo.length];quad(g,W(a[0],a[1],z0),W(b[0],b[1],z0),W(b[0],b[1],z0+h),W(a[0],a[1],z0+h),COL.acc,.3)}}else if(en.k==='bld'){const b=en.o;boxLines(g,W(b.x,b.y,0),W(b.x+b.w,b.y+b.d,b.h),COL.acc)}M.need()}
-  function pushHover(sp){if(PU){pushDrag(sp);return}clr(hovG);LB=[];mark(null);const en=hitEnt(M.hitAt(sp,skipNon()));HV=null;
+  function pushEnt(sp){let en=hitEnt(M.hitAt(sp,skipNon()));if(en&&en.k==='op'){const w=wallOf(en);en=w?{key:'sp:'+w.s.id,k:'sp',id:w.s.id,o:w.s,s:w.s,part:'side',edge:w.i,point:en.point,n:en.n}:null}return en}
+  function pushHover(sp){if(PU){pushDrag(sp);return}clr(hovG);LB=[];mark(null);const en=pushEnt(sp);HV=null;
     if(en&&en.k==='sp'&&closed(en.s)){status('Este volumen está en un grupo: con Seleccionar haz doble clic para editarlo');return}
     if(!pushable(en)){status(HELP.push);vcbShow('Distancia',null);return}HV=en;hlFace(hovG,en);
     status(en.k==='bld'?'Arrastra para cambiar esta cara del vecino':en.part==='side'?'Arrastra para recorrer este muro':en.part==='bot'?'Arrastra para cambiar el desplante':(en.s.h??2.8)<0.1?'Arrastra hacia arriba para levantar esta superficie':'Arrastra para cambiar la altura · con Ctrl creas un volumen nuevo encima')}
-  function pushClick(sp,e){if(!PU){pushHover(sp);if(HV)startPush(HV,e&&(e.ctrlKey||e.metaKey));return}endPush()}
-  function setPushCopy(P,on){if(on&&!P.copy){const s=P.s;const id=newId();const c={...JSON.parse(JSON.stringify(s)),id,name:s.name+' (nivel)',geo:P.g0.map(q=>q.slice()),z:+(P.z0+P.h0).toFixed(3),h:0,m3:true,pos:[s.pos[0]+12,s.pos[1]+12]};c.level=c.z>=2?1:0;delete c.fin;S.spaces.push(c);P.copy=c;s.h=P.h0}
+  function pushClick(sp,e){if(!PU){pushHover(sp);if(HV)startPush(HV,e&&(e.ctrlKey||e.metaKey),sp);return}endPush()}
+  function setPushCopy(P,on){if(on&&!P.copy){const s=P.s;const id=newId();const c={...JSON.parse(JSON.stringify(s)),id,name:s.name+' (nivel)',geo:P.g0.map(q=>q.slice()),z:+(P.z0+P.h0).toFixed(3),h:0,m3:true,pos:[s.pos[0]+12,s.pos[1]+12]};c.level=c.z>=2?1:0;delete c.fin;delete c.rfin;delete c.grp;if(ED.grp)c.grp=ED.grp;S.spaces.push(c);P.copy=c;s.h=P.h0}
     else if(!on&&P.copy){const id=P.copy.id;S.spaces=S.spaces.filter(x=>x.id!==id);P.copy=null;M.refresh(['sp:'+id])}}
-  function startPush(en,ctrl){const P={en,base:en.point.clone(),d:0,copy:null};
-    if(en.k==='sp'){const s=en.s;Object.assign(P,{s,g0:s.geo.map(q=>q.slice()),h0:s.h??2.8,z0:+s.z||0,lv0:s.level});P.n=en.part==='top'?AX.z.clone():en.part==='bot'?AX.z.clone().negate():(()=>{const n=edgeInfo(s.geo,en.edge).n;return new T.Vector3(n[0],0,-n[1])})();if(ctrl&&en.part==='top')setPushCopy(P,true)}
+  function startPush(en,ctrl,sp){const P={en,base:en.point.clone(),d:0,copy:null,sp0:sp||lastSp};
+    if(en.k==='sp'){const s=en.s;Object.assign(P,{s,g0:s.geo.map(q=>q.slice()),h0:s.h??2.8,z0:+s.z||0,lv0:s.level});P.n=en.part==='top'?AX.z.clone():en.part==='bot'?AX.z.clone().negate():(()=>{const n=edgeInfo(s.geo,en.edge).n;return new T.Vector3(n[0],0,-n[1])})();
+      if(en.part==='top')P.base.y=P.z0+(P.h0<0.1?0:P.h0);else if(en.part==='bot')P.base.y=P.z0;if(ctrl&&en.part==='top')setPushCopy(P,true)}
     else{const b=en.o;P.b=b;P.b0={...b};const nn=en.n;P.n=Math.abs(nn.y)>0.7?new T.Vector3(0,Math.sign(nn.y),0):Math.abs(nn.x)>Math.abs(nn.z)?new T.Vector3(Math.sign(nn.x),0,0):new T.Vector3(0,0,Math.sign(nn.z))}
     PU=P;LASTPU=null;status('Mueve para '+(P.n.y?'cambiar la altura':'recorrer la cara')+' · clic para terminar · escribe la distancia y Enter · Esc cancela')}
   function pushDrag(sp){const P=PU;const r=snap(sp,{noFace:true,noAxis:true,skip:new Set([P.en.key].concat(P.copy?['sp:'+P.copy.id]:[]))});let d=null;mark(null);
-    if(r&&(r.k==='end'||r.k==='mid')){d=r.p.clone().sub(P.base).dot(P.n);mark(r)}
-    if(d==null){const q=lineRay(P.base,P.n,M.rayAt(sp).clone());if(!q)return;d=q.sub(P.base).dot(P.n);if(ED.snap)d=Math.round(d/0.05)*0.05}applyPush(d)}
+    if(r&&(r.k==='end'||r.k==='mid'||r.k==='int')){d=r.p.clone().sub(P.base).dot(P.n);mark(r)}
+    if(d==null){const s1=M.toScreen(P.base),s2=M.toScreen(P.base.clone().add(P.n));const L=Math.hypot(s2.x-s1.x,s2.y-s1.y);
+      if(L>=14&&s1.z<1&&s2.z<1){const q=lineRay(P.base,P.n,M.rayAt(sp).clone());if(!q)return;d=q.sub(P.base).dot(P.n)}
+      else{// la cara se ve de frente: se usa el movimiento vertical del mouse
+        const mpp=2*Math.tan(rad(M.camera.fov/2))*M.camera.position.distanceTo(P.base)/(M.el.clientHeight||1);const toward=M.camera.position.clone().sub(P.base).dot(P.n)>=0?1:-1;d=(P.sp0.y-sp.y)*mpp*toward}
+      if(ED.snap)d=Math.round(d/0.05)*0.05}
+    applyPush(clamp(d,-300,300))}
   function applyPush(d){const P=PU;P.d=d;const keys=[];
     if(P.s){const s=P.s;if(P.copy){P.copy.h=Math.max(0,+d.toFixed(3));keys.push('sp:'+P.copy.id)}
       else if(P.en.part==='top')s.h=Math.max(0,+(P.h0+d).toFixed(3));
       else if(P.en.part==='bot'){const dd=clamp(d,-P.h0,P.z0);s.z=+(P.z0-dd).toFixed(3);s.h=+(P.h0+dd).toFixed(3);s.level=s.z>=2?1:0}
-      else{const g=m3MoveEdge(P.g0,P.en.edge,d).map(q=>[+q[0].toFixed(3),+q[1].toFixed(3)]);if(m3Simple(g)&&polyArea(g)>0.05)s.geo=g}keys.push('sp:'+s.id)}
+      else{const g=m3MoveEdge(P.g0,P.en.edge,d).map(q=>[+q[0].toFixed(3),+q[1].toFixed(3)]);if(m3Simple(g)&&polyArea(g)>0.05&&signedArea(g)*signedArea(P.g0)>0)s.geo=g}keys.push('sp:'+s.id)}
     else{const b=P.b,b0=P.b0,n=P.n;if(n.y>0)b.h=Math.max(0.3,+(b0.h+d).toFixed(2));else if(n.x>0)b.w=Math.max(0.3,+(b0.w+d).toFixed(2));else if(n.x<0){const w=Math.max(0.3,b0.w+d);b.x=+(b0.x+b0.w-w).toFixed(2);b.w=+w.toFixed(2)}
       else if(n.z>0){const dd=Math.max(0.3,b0.d+d);b.y=+(b0.y+b0.d-dd).toFixed(2);b.d=+dd.toFixed(2)}else b.d=Math.max(0.3,+(b0.d+d).toFixed(2));keys.push('ctx')}
     M.refresh(keys);clr(hovG);hlFace(hovG,P.copy?{k:'sp',s:P.copy,part:'top'}:P.en);vcbShow('Distancia',Math.abs(d));LB=[{p:P.base.clone().addScaledVector(P.n,d),t:(d>=0?'+':'−')+f2(Math.abs(d))+' m'}];M.need()}
-  function endPush(){const P=PU;PU=null;clr(hovG);LB=[];if(P.copy&&P.copy.h<0.05){S.spaces=S.spaces.filter(x=>x!==P.copy);P.copy=null}if(P.s)syncA(P.s,P.en.part==='side');LASTPU=P;commit(P.copy?['sp:'+P.copy.id]:P.s?['sp:'+P.s.id]:ED.sel);status('Listo. Escribe otra medida y Enter para ajustarla')}
+  function endPush(){const P=PU;PU=null;clr(hovG);LB=[];if(P.copy&&P.copy.h<0.05){S.spaces=S.spaces.filter(x=>x!==P.copy);P.copy=null}if(P.s)syncA(P.s,P.en.part==='side');LASTPU=P;if(Math.abs(P.d)>1e-3)LASTPD=P.d;
+    commit(P.copy?['sp:'+P.copy.id]:P.s?['sp:'+P.s.id]:ED.sel);status('Listo. Escribe otra medida y Enter para ajustarla · doble clic en otra cara repite '+f2(Math.abs(LASTPD||0))+' m')}
   function cancelPush(){const P=PU;PU=null;if(P.s){setPushCopy(P,false);Object.assign(P.s,{geo:P.g0,h:P.h0,z:P.z0,level:P.lv0})}else Object.assign(P.b,P.b0);M.refresh();clr(hovG)}
-  // MOVER (Ctrl copia)
-  function moveHover(sp){if(MV){moveDrag(sp);return}clr(hovG);LB=[];const en=entAt(sp);HV=en;const r=snap(sp,{noFace:true});lastR=r;mark(en?r:null);
+  /* Doble clic con Empujar/Tirar: repite la última distancia en la cara señalada. */
+  function pushRepeat(sp){if(PU||LASTPD==null)return;const en=pushEnt(sp);if(!pushable(en)||(en.k==='sp'&&closed(en.s)))return;startPush(en,false,sp);applyPush(LASTPD);endPush()}
+  // MOVER (objetos completos; dentro de «editar forma», esquinas y muros)
+  function editHit(sp){const s=S.spaces.find(x=>x.id===ED.edit);if(!s)return null;const r=snap(sp,{noFace:true,noAxis:true});
+    if(r&&r.k==='end'&&r.c&&r.c.sid===s.id)return{kind:'v',s,i:r.c.vi,point:r.p.clone(),r};
+    if(r&&r.k==='mid'&&r.c&&r.c.sid===s.id&&r.c.i!=null)return{kind:'e',s,i:r.c.i,point:r.p.clone(),r};
+    if(r&&r.k==='edge'&&r.e&&r.e.sid===s.id)return r.e.vert?{kind:'v',s,i:r.e.vi,point:r.p.clone(),r}:{kind:'e',s,i:r.e.i,point:r.p.clone(),r};
+    const en=hitEnt(M.hitAt(sp,skipNon()));if(en&&en.k==='sp'&&en.s.id===s.id){if(en.part==='top'&&(s.h??2.8)>=0.1)return{kind:'top',s,point:en.point.clone()};if(en.part==='side')return{kind:'e',s,i:en.edge,point:en.point.clone()}}return null}
+  function hlPart(g,hp){const s=hp.s,z0=+s.z||0,h=s.h??2.8;const n=s.geo.length;if(hp.kind==='v'){const[x,y]=s.geo[hp.i];line(g,[W(x,y,z0),W(x,y,z0+Math.max(h,0.02))],COL.acc);dot(g,W(x,y,z0),COL.acc)}
+    else if(hp.kind==='e'){const a=s.geo[hp.i],b=s.geo[(hp.i+1)%n];quad(g,W(a[0],a[1],z0),W(b[0],b[1],z0),W(b[0],b[1],z0+h),W(a[0],a[1],z0+h),COL.acc,.3)}else topFace(g,s.geo,z0+h+0.006,COL.acc,.3);M.need()}
+  function moveHover(sp){if(MV){moveDrag(sp);return}clr(hovG);LB=[];
+    if(ED.edit){const hp=editHit(sp);HV=hp;mark(hp&&hp.r?hp.r:null);if(hp){hlPart(hovG,hp);status(hp.kind==='v'?'Clic para mover esta esquina':hp.kind==='e'?'Clic para mover este muro':'Clic para subir o bajar la azotea')}else status('Pasa sobre una esquina, un muro o la azotea de «'+(S.spaces.find(x=>x.id===ED.edit)||{}).name+'»');return}
+    const r=snap(sp,{noFace:true});lastR=r;const en=entNear(sp,r);HV=en;mark(en?r:null);
     if(en)(ED.sel.includes(en.key)?ED.sel:expand(en)).forEach(k=>hlEnt(hovG,k));status(en?'Clic para tomarlo desde este punto':HELP.move)}
-  function moveClick(sp,e){if(!MV){moveHover(sp);if(!HV||!lastR)return;startMove(HV,lastR.p.clone(),e&&(e.ctrlKey||e.metaKey));return}endMove()}
+  function moveClick(sp,e){if(!MV){moveHover(sp);if(!HV)return;if(HV.kind){startStretch(HV);return}const base=lastR&&['end','mid','edge','int'].includes(lastR.k)?lastR.p.clone():HV.point.clone();startMove(HV,base,e&&(e.ctrlKey||e.metaKey));return}endMove()}
   function startMove(en,base,ctrl){let keys=(ED.sel.includes(en.key)?ED.sel.slice():expand(en)).filter(k=>m3Ent(k));if(keys.length>1)keys=keys.filter(k=>!k.startsWith('op:'));
     MV={keys,base,snap:keys.map(k=>({k,o:JSON.parse(JSON.stringify(m3Ent(k).o))})),copy:null,delta:new T.Vector3()};LASTMV=null;setSel(keys);clr(hovG);if(ctrl)toggleCopy();
     status('Mueve y haz clic en el destino · Ctrl copia · flechas fijan un eje · escribe la distancia y Enter')}
+  function startStretch(hp){const s=hp.s;MV={stretch:hp,keys:['sp:'+s.id],base:hp.point.clone(),g0:s.geo.map(q=>q.slice()),h0:s.h??2.8,z0:+s.z||0,delta:new T.Vector3(),C:m3OpC([s.id])};LASTMV=null;clr(hovG);
+    status(hp.kind==='top'?'Mueve hacia arriba o abajo · escribe la distancia y Enter':'Mueve y haz clic en el destino · flechas fijan un eje · escribe la distancia y Enter')}
   function shiftEnt(k,o0,d){const e=m3Ent(k);if(!e)return null;const o=e.o,dx=d.x,dy=-d.z,dz=d.y;
     if(e.k==='sp'){o.geo=o0.geo.map(([x,y])=>[+(x+dx).toFixed(3),+(y+dy).toFixed(3)]);o.z=Math.max(0,+((+o0.z||0)+dz).toFixed(3));if(Math.abs(dz)>1e-6)o.level=o.z>=2?1:0;else o.level=o0.level;if(o0.lpos)o.lpos=[o0.lpos[0]+dx,o0.lpos[1]+dy];return k}
     if(e.k==='bld'||e.k==='tree'){o.x=+(o0.x+dx).toFixed(2);o.y=+(o0.y+dy).toFixed(2);return'ctx'}
     if(e.k==='op'){const s=S.spaces.find(x=>x.id===o.sp);if(!s)return null;const E_=edgeInfo(s.geo,o.e);const w=Math.min(o.w,E_.len);o.t=clamp(o0.t+(dx*E_.u[0]+dy*E_.u[1])/E_.len,w/2/E_.len,1-w/2/E_.len);return'sp:'+s.id}return null}
-  function applyMove(d){MV.delta=d.clone();const ks=new Set();MV.snap.forEach((sn,i)=>{const k=MV.copy?MV.copy.keys[i]:sn.k;if(!k)return;const r=shiftEnt(k,sn.o,d);if(r)ks.add(r)});M.refresh([...ks]);
-    LB=d.lengthSq()>1e-8?[{p:MV.base.clone().addScaledVector(d,.5),t:f2(d.length())+' m'}]:[];vcbShow('Distancia',d.length());clr(drfG);if(d.lengthSq()>1e-8)line(drfG,[MV.base,MV.base.clone().add(d)],axCol(lastR),true)}
-  function moveDrag(sp){const skip=new Set(MV.copy?MV.copy.keys.filter(Boolean):MV.keys);const r=snap(sp,{from:MV.base,skip,vert:true,noFace:true,gz:MV.base.y});lastR=r;mark(r);if(!r)return;const d=r.p.clone().sub(MV.base);if(r.k==='plane'||r.k==='x'||r.k==='y')d.y=0;applyMove(d)}
+  function applyMove(d){MV.delta=d.clone();
+    if(MV.stretch){const hp=MV.stretch,s=hp.s;const dx=+d.x.toFixed(3),dy=+(-d.z).toFixed(3);const g=MV.g0.map(q=>q.slice());const n=g.length;
+      if(hp.kind==='top'){s.h=Math.max(0,+(MV.h0+d.y).toFixed(3))}else{const vs=hp.kind==='v'?[hp.i]:[hp.i,(hp.i+1)%n];vs.forEach(i=>{g[i]=[+(MV.g0[i][0]+dx).toFixed(3),+(MV.g0[i][1]+dy).toFixed(3)]});if(m3Simple(g)&&polyArea(g)>0.05&&signedArea(g)*signedArea(MV.g0)>0)s.geo=g}
+      M.refresh(['sp:'+s.id]);clr(hovG);hlPart(hovG,hp);LB=d.lengthSq()>1e-8?[{p:MV.base.clone().addScaledVector(d,.5),t:f2(d.length())+' m'}]:[];vcbShow('Distancia',d.length());clr(drfG);if(d.lengthSq()>1e-8)line(drfG,[MV.base,MV.base.clone().add(d)],axCol(lastR),true);return}
+    const ks=new Set();MV.snap.forEach((sn,i)=>{const k=MV.copy?MV.copy.keys[i]:sn.k;if(!k)return;const r=shiftEnt(k,sn.o,d);if(r)ks.add(r)});M.refresh([...ks]);
+    LB=d.lengthSq()>1e-8?[{p:MV.base.clone().addScaledVector(d,.5),t:f2(d.length())+' m'}]:[];vcbShow('Distancia',d.length());clr(drfG);if(d.lengthSq()>1e-8){line(drfG,[MV.base,MV.base.clone().add(d)],axCol(lastR),true);infOnly(lastR)}}
+  function moveDrag(sp){if(MV.stretch&&MV.stretch.kind==='top'){const q=lineRay(MV.base,AX.z,M.rayAt(sp).clone());mark(null);if(!q)return;let dz=q.y-MV.base.y;if(ED.snap)dz=Math.round(dz/0.05)*0.05;applyMove(new T.Vector3(0,dz,0));return}
+    const skip=MV.stretch?null:new Set(MV.copy?MV.copy.keys.filter(Boolean):MV.keys);const r=snap(sp,{from:MV.base,skip,vert:!MV.stretch,noFace:true,gz:MV.base.y});lastR=r;mark(r);if(!r)return;const d=r.p.clone().sub(MV.base);if(MV.stretch||['plane','x','y','par','perp','ax','ay'].includes(r.k))d.y=0;applyMove(d)}
   function dupKeys(keys){const out={keys:[],ops:[]};const gmap={};keys.forEach(k=>{const e=m3Ent(k);if(!e||e.k==='op'){out.keys.push(null);return}const o=e.o;
-      if(e.k==='sp'){const id=newId();const c={...JSON.parse(JSON.stringify(o)),id,name:/\(copia\)$/.test(o.name)?o.name:o.name+' (copia)',m3:true,pos:[o.pos[0]+8,o.pos[1]+8]};if(o.grp)c.grp=gmap[o.grp]||(gmap[o.grp]=uid('g'));S.spaces.push(c);
+      if(e.k==='sp'){const id=newId();const c={...JSON.parse(JSON.stringify(o)),id,name:/\(copia\)$/.test(o.name)?o.name:o.name+' (copia)',m3:true,pos:[o.pos[0]+8,o.pos[1]+8]};if(o.grp&&o.grp!==ED.grp)c.grp=gmap[o.grp]||(gmap[o.grp]=uid('g'));S.spaces.push(c);
         S.openings.filter(x=>x.sp===o.id).forEach(x=>{const oid=uid('o');S.openings.push({...x,id:oid,sp:id});out.ops.push(oid)});out.keys.push('sp:'+id)}
       else{const id=uid(e.k==='bld'?'c':'t');const c={...JSON.parse(JSON.stringify(o)),id};(e.k==='bld'?S.context.buildings:S.context.trees).push(c);out.keys.push(e.k+':'+id)}});return out}
-  function restoreMove(){MV.snap.forEach(sn=>{const e=m3Ent(sn.k);if(e)Object.keys(sn.o).forEach(f=>{e.o[f]=JSON.parse(JSON.stringify(sn.o[f]))})})}
+  function restoreMove(){if(MV.stretch){const s=MV.stretch.s;s.geo=MV.g0.map(q=>q.slice());s.h=MV.h0;return}MV.snap.forEach(sn=>{const e=m3Ent(sn.k);if(e)Object.keys(sn.o).forEach(f=>{e.o[f]=JSON.parse(JSON.stringify(sn.o[f]))})})}
   function dropCopies(c){const ks=new Set(c.keys.filter(Boolean));S.spaces=S.spaces.filter(s=>!ks.has('sp:'+s.id));S.openings=S.openings.filter(o=>!c.ops.includes(o.id));S.context.buildings=S.context.buildings.filter(b=>!ks.has('bld:'+b.id));S.context.trees=S.context.trees.filter(t=>!ks.has('tree:'+t.id))}
-  function toggleCopy(){if(!MV)return;if(MV.copy){dropCopies(MV.copy);MV.copy=null;applyMove(MV.delta);M.refresh();status('Mover sin copiar · Ctrl de nuevo para copiar');return}
+  function toggleCopy(){if(!MV||MV.stretch)return;if(!MV.copy&&MV.keys.every(k=>k.startsWith('op:'))){toast('Las puertas y ventanas se copian dibujando otra con Rectángulo sobre el muro');return}
+    if(MV.copy){dropCopies(MV.copy);MV.copy=null;applyMove(MV.delta);M.refresh();status('Mover sin copiar · Ctrl de nuevo para copiar');return}
     restoreMove();MV.copy=dupKeys(MV.keys);applyMove(MV.delta);M.refresh();status('Copiando: clic en el destino · Ctrl de nuevo para mover sin copiar')}
-  function endMove(){const m=MV;MV=null;clr(drfG);LB=[];LASTMV=m;commit(m.copy?m.copy.keys.filter(Boolean):m.keys);status(m.copy?'Copia lista. Escribe 3x y Enter para hacer 3 copias en fila':'Listo. Escribe otra distancia y Enter para ajustarla')}
-  function cancelMove(){if(MV.copy)dropCopies(MV.copy);restoreMove();MV=null;M.refresh();clr(drfG)}
-  function arrayCopies(n){const L=LASTMV;if(!L||!L.copy){toast('Primero copia algo con Mover + Ctrl; luego escribe 3x');return}n=clamp(n|0,2,60);const all=L.copy.keys.filter(Boolean);
+  function endMove(){const m=MV;MV=null;clr(drfG);clr(hovG);LB=[];LASTMV=m;if(m.stretch){const s=m.stretch.s;syncA(s,m.stretch.kind!=='top');m3Remap(m.C,[s],0.5);commit(['sp:'+s.id]);status('Listo. Escribe otra distancia y Enter para ajustarla');return}
+    commit(m.copy?m.copy.keys.filter(Boolean):m.keys);status(m.copy?'Copia lista. Escribe 3x y Enter para hacer 3 copias en fila (o /3 para repartir)':'Listo. Escribe otra distancia y Enter para ajustarla')}
+  function cancelMove(){if(MV.copy)dropCopies(MV.copy);restoreMove();MV=null;M.refresh();clr(drfG);clr(hovG)}
+  function arrayCopies(n,divide){const L=LASTMV;if(!L||!L.copy){toast('Primero copia algo con Mover + Ctrl; luego escribe 3x');return}n=clamp(n|0,2,60);const all=L.copy.keys.filter(Boolean);
+    if(divide){const step=L.delta.clone().divideScalar(n);L.copy.keys.forEach((ck,i)=>{if(ck)shiftEnt(ck,L.snap[i].o,step)});for(let k=2;k<n;k++){const c=dupKeys(L.keys);c.keys.forEach((ck,i)=>{if(ck)shiftEnt(ck,L.snap[i].o,step.clone().multiplyScalar(k))});all.push(...c.keys.filter(Boolean))}LASTMV=null;commit(all);toast('Repartido en '+n+' partes iguales');return}
     for(let k=2;k<=n;k++){const c=dupKeys(L.keys);c.keys.forEach((ck,i)=>{if(ck)shiftEnt(ck,L.snap[i].o,L.delta.clone().multiplyScalar(k))});all.push(...c.keys.filter(Boolean))}LASTMV=null;commit(all);toast(n+' copias en fila')}
+  // ROTAR
+  function protractor(c,ref,cur,col){const r=M.camera.position.distanceTo(c)*0.09;const pts=[];for(let i=0;i<=72;i++){const t=i/72*Math.PI*2;pts.push(new T.Vector3(c.x+r*Math.cos(t),c.y+0.01,c.z+r*Math.sin(t)))}line(drfG,pts,col||COL.prot);
+    for(let a=0;a<360;a+=15){const t=rad(a),k=a%90===0?0.78:0.88;line(drfG,[new T.Vector3(c.x+r*k*Math.cos(t),c.y+0.01,c.z+r*k*Math.sin(t)),new T.Vector3(c.x+r*Math.cos(t),c.y+0.01,c.z+r*Math.sin(t))],col||COL.prot)}
+    if(ref)line(drfG,[c,c.clone().addScaledVector(ref,r*1.25)],COL.ink,true);if(cur)line(drfG,[c,c.clone().addScaledVector(cur,r*1.25)],COL.acc)}
+  const pdir=(c,p)=>{const d=p.clone().sub(c);d.y=0;return d.lengthSq()<1e-8?null:d.normalize()};
+  function rotTargets(sp){if(ED.sel.length)return ED.sel.filter(k=>{const e=m3Ent(k);return e&&(e.k==='sp'||e.k==='tree')});const en=entNear(sp,lastR);return en?expand(en).filter(k=>!k.startsWith('op:')&&!k.startsWith('bld:')):[]}
+  function rotHover(sp){clr(drfG);clr(hovG);LB=[];
+    if(!RO){const r=snap(sp,{});lastR=r;mark(r);if(r)protractor(r.p);const tg=rotTargets(sp);tg.forEach(k=>hlEnt(hovG,k));HV=tg;vcbShow('Ángulo',null);status(tg.length?HELP.rotate:'Elige primero lo que quieres rotar (o pasa sobre un espacio) y haz clic en el centro de giro');return}
+    RO.keys.forEach(k=>hlEnt(hovG,k));
+    if(RO.stage===1){const r=snap(sp,{from:RO.c,plane:RO.c.y,gz:RO.c.y});lastR=r;mark(r);const d=r&&pdir(RO.c,r.p);protractor(RO.c,d);status('Clic para la línea de referencia (el ángulo se mide desde ahí)');return}
+    const r=snap(sp,{from:RO.c,plane:RO.c.y,gz:RO.c.y,noAxis:true});lastR=r;mark(r&&['end','mid','int'].includes(r.k)?r:null);const d=r&&pdir(RO.c,r.p);if(!d)return;
+    const P=PL(RO.c.clone().add(RO.ref)),Q=PL(RO.c.clone().add(d)),C=PL(RO.c);const a1=Math.atan2(P[1]-C[1],P[0]-C[0]),a2=Math.atan2(Q[1]-C[1],Q[0]-C[0]);let ang=a2-a1;while(ang>Math.PI)ang-=2*Math.PI;while(ang<-Math.PI)ang+=2*Math.PI;
+    const deg15=Math.round(deg(ang)/15)*15;if(Math.abs(deg(ang)-deg15)<2.5)ang=rad(deg15);applyRot(ang);protractor(RO.c,RO.ref,d);vcbShow('Ángulo',+deg(ang).toFixed(1)+'°');LB=[{p:RO.c.clone().addScaledVector(d,M.camera.position.distanceTo(RO.c)*0.12),t:(deg(ang)>=0?'':'−')+Math.abs(deg(ang)).toFixed(1)+'°'}];
+    status('Mueve para girar (se pega cada 15°) · clic para terminar · escribe los grados y Enter · Ctrl copia')}
+  function applyRot(ang){RO.ang=ang;const C=PL(RO.c);const ks=new Set();RO.snap.forEach((sn,i)=>{const k=RO.copy?RO.copy.keys[i]:sn.k;if(!k)return;const e=m3Ent(k);if(!e)return;
+      if(e.k==='sp'){e.o.geo=m3Rot(sn.o.geo,C,ang);if(sn.o.lpos)e.o.lpos=m3Rot([sn.o.lpos],C,ang)[0];ks.add(k)}else if(e.k==='tree'){const[q]=m3Rot([[sn.o.x,sn.o.y]],C,ang);e.o.x=q[0];e.o.y=q[1];ks.add('ctx')}});M.refresh([...ks])}
+  function rotRestore(r){r.snap.forEach(sn=>{const x=m3Ent(sn.k);if(x)Object.keys(sn.o).forEach(f=>{x.o[f]=JSON.parse(JSON.stringify(sn.o[f]))})})}
+  function rotClick(sp,e){rotHover(sp);if(!RO){const tg=HV;if(!tg||!tg.length||!lastR)return;RO={stage:1,c:lastR.p.clone(),keys:tg,snap:tg.map(k=>({k,o:JSON.parse(JSON.stringify(m3Ent(k).o))})),ang:0,copy:null};setSel(tg);return}
+    if(RO.stage===1){const d=lastR&&pdir(RO.c,lastR.p);if(!d)return;RO.ref=d;RO.stage=2;if(e&&(e.ctrlKey||e.metaKey))rotCopy();return}endRot()}
+  function rotCopy(){if(!RO||RO.stage!==2)return;if(RO.copy){dropCopies(RO.copy);RO.copy=null;rotRestore(RO);applyRot(RO.ang);M.refresh();return}
+    rotRestore(RO);RO.copy=dupKeys(RO.keys);applyRot(RO.ang);M.refresh();status('Copiando al rotar · Ctrl de nuevo para rotar sin copiar')}
+  function endRot(){const r=RO;RO=null;clr(drfG);LB=[];LASTRO=r;r.keys.concat(r.copy?r.copy.keys.filter(Boolean):[]).forEach(k=>{const e=m3Ent(k);if(e&&e.k==='sp')syncA(e.o)});commit(r.copy?r.copy.keys.filter(Boolean):r.keys);status(r.copy?'Copia rotada. Escribe 3x y Enter para repetir el giro':'Listo. Escribe otros grados y Enter para ajustar')}
+  function cancelRot(){const r=RO;RO=null;if(r.copy)dropCopies(r.copy);rotRestore(r);M.refresh();clr(drfG)}
+  function rotArray(n){const L=LASTRO;if(!L||!L.copy){toast('Primero rota con Ctrl para copiar; luego escribe 3x');return}n=clamp(n|0,2,72);const all=L.copy.keys.filter(Boolean);const C=PL(L.c);
+    for(let k=2;k<=n;k++){const c=dupKeys(L.keys);c.keys.forEach((ck,i)=>{const e=m3Ent(ck);if(!e)return;const o0=L.snap[i].o;if(e.k==='sp')e.o.geo=m3Rot(o0.geo,C,L.ang*k);else if(e.k==='tree'){const[q]=m3Rot([[o0.x,o0.y]],C,L.ang*k);e.o.x=q[0];e.o.y=q[1]}});all.push(...c.keys.filter(Boolean))}LASTRO=null;commit(all);toast(n+' copias alrededor del centro')}
   // MEDIR Y GUÍAS
-  function tapeHover(sp){clr(drfG);LB=[];if(!TP){const r=snap(sp,{});lastR=r;mark(r);vcbShow('Longitud',null);status(HELP.tape);return}
+  function tapeHover(sp){clr(drfG);LB=[];if(!TP){const r=snap(sp,{});lastR=r;mark(r);infOnly(r);vcbShow('Longitud',null);status(HELP.tape);return}
     if(TP.edge){const D=TP.edge.b.clone().sub(TP.edge.a).normalize();const Pp=new T.Vector3().crossVectors(D,AX.z).normalize();const q=rayPlane(M.rayAt(sp).clone(),TP.a.y);mark(null);if(!q)return;let off=q.sub(TP.a).dot(Pp);if(ED.snap)off=Math.round(off/0.05)*0.05;TP.off=off;TP.P=Pp;TP.D=D;
       const p0=TP.a.clone().addScaledVector(Pp,off);line(drfG,[p0.clone().addScaledVector(D,-300),p0.clone().addScaledVector(D,300)],COL.guide,true);line(drfG,[TP.a,p0],COL.guide);vcbShow('Distancia',Math.abs(off));LB=[{p:TP.a.clone().lerp(p0,.5),t:f2(Math.abs(off))+' m'}];status('Mueve para colocar la guía paralela · clic o escribe la distancia');return}
-    const r=snap(sp,{from:TP.a,vert:true});lastR=r;mark(r);if(!r)return;line(drfG,[TP.a,r.p],r.k&&'xyz'.includes(r.k)?axCol(r):COL.guide,true);const L=TP.a.distanceTo(r.p);vcbShow('Longitud',L);LB=[{p:TP.a.clone().lerp(r.p,.5),t:f2(L)+' m'}];status('Clic en el segundo punto · se queda una guía')}
+    const r=snap(sp,{from:TP.a,vert:true});lastR=r;mark(r);if(!r)return;line(drfG,[TP.a,r.p],r.k&&'xyz'.includes(r.k)?axCol(r):COL.guide,true);infOnly(r);const L=TP.a.distanceTo(r.p);vcbShow('Longitud',L);LB=[{p:TP.a.clone().lerp(r.p,.5),t:f2(L)+' m'}];status('Clic en el segundo punto · se queda una guía')}
   function tapeClick(sp){tapeHover(sp);if(!TP){if(!lastR)return;const e=lastR.e;TP={a:lastR.p.clone(),edge:lastR.k==='edge'&&e&&!e.inf&&!e.vert&&Math.abs(e.a.y-e.b.y)<1e-3?e:null};return}
     if(TP.edge){if(TP.P)addGuide({t:'ln',p:A(TP.a.clone().addScaledVector(TP.P,TP.off||0)),d:A(TP.D)})}else if(lastR){const L=TP.a.distanceTo(lastR.p);if(L>0.001){addGuide({t:'pt',a:A(TP.a),b:A(lastR.p),L});toast('Medida: '+f2(L)+' m')}}TP=null;clr(drfG);LB=[]}
   function addGuide(g){ED.guides.push(g);if(ED.guides.length>80)ED.guides.shift();collect();drawGuides();M.onSel&&M.onSel()}
   // EQUIDISTANCIA
   function offFace(sp){const en=hitEnt(M.hitAt(sp,skipNon()));if(en&&en.k==='sp'&&inGrp(en.s)&&!closed(en.s)&&en.part==='top'){const s=en.s,h=s.h??2.8;return{geo:s.geo,z:(+s.z||0)+(h<0.1?0:h),s}}
-    if(en&&en.k==='lot'&&!ED.grp){const pr=S.project;return{geo:R(0,0,pr.lotW,pr.lotL),z:0,lot:1}}return null}
-  const offOk=(g,src)=>g.length>=3&&polyArea(g)>0.05&&m3Simple(g)&&Math.sign(signedArea(g))===Math.sign(signedArea(src));
+    if(en&&en.k==='lot'&&!ED.grp&&!ED.edit){const pr=S.project;return{geo:R(0,0,pr.lotW,pr.lotL),z:0,lot:1}}return null}
+  /* El contorno paralelo sirve si no se cruza y si cada lado conserva su dirección (si se invierte, la distancia es mayor que la forma). */
+  const offOk=(g,src)=>{if(g.length<3||g.length!==src.length||polyArea(g)<=0.05||!m3Simple(g)||Math.sign(signedArea(g))!==Math.sign(signedArea(src)))return false;const n=g.length;
+    for(let i=0;i<n;i++){const a=g[i],b=g[(i+1)%n],c=src[i],d=src[(i+1)%n];if((b[0]-a[0])*(d[0]-c[0])+(b[1]-a[1])*(d[1]-c[1])<=1e-9)return false}return true};
   function offHover(sp){clr(drfG);clr(hovG);LB=[];mark(null);if(!OF){const f=offFace(sp);HV=f;if(f){topFace(hovG,f.geo,f.z+0.02,COL.acc,.22);status(f.lot?'Clic en el terreno para trazar una franja paralela a los linderos':'Clic y mueve hacia adentro o afuera')}else status(HELP.offset);vcbShow('Distancia',null);return}
     const q=rayPlane(M.rayAt(sp).clone(),OF.z);if(!q)return;const Q=PL(q);let d=Math.min(...OF.geo.map((a,i)=>segDist(Q,a,OF.geo[(i+1)%OF.geo.length])));if(inPoly(Q,OF.geo))d=-d;if(ED.snap)d=Math.round(d/0.05)*0.05;OF.d=d;previewOff()}
   function previewOff(){clr(drfG);const g=m3Offset(OF.geo,OF.d);const ok=offOk(g,OF.geo);line(drfG,g.map(([x,y])=>W(x,y,OF.z+0.025)),ok?COL.acc:COL.red,false,true);vcbShow('Distancia',Math.abs(OF.d));const c=g[0]||OF.geo[0];
@@ -2673,75 +2888,133 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
   function offClick(sp){if(!OF){const f=offFace(sp);if(!f)return;OF={...f,d:0};offHover(sp);return}finishOff()}
   function finishOff(){const src=OF;OF=null;clr(drfG);clr(hovG);LB=[];const g=m3Offset(src.geo,src.d).map(q=>[+q[0].toFixed(3),+q[1].toFixed(3)]);if(Math.abs(src.d)<0.01||!offOk(g,src.geo)){toast('Esa distancia no funciona para esta forma');return}
     newSpace(g,src.z,{zone:src.s?src.s.zone:(S.zones.exterior?'exterior':ED.zone)});status('Contorno creado. Usa Empujar/Tirar (P) si quieres darle altura')}
-  // BORRAR
-  function eraseTargets(sp){const R=M.coarse?16:9;const out=[];const ray=M.rayAt(sp).clone();const near=(a,b)=>{const q=segRay(a,b,ray);if(!q)return false;const s=M.toScreen(q);return Math.hypot(s.x-sp.x,s.y-sp.y)<R};
+  // PINTAR
+  function paintTarget(sp){let en=hitEnt(M.hitAt(sp,skipNon()));if(en&&en.k==='op'){const w=wallOf(en);en=w?{key:'sp:'+w.s.id,k:'sp',s:w.s,part:'side',edge:w.i,point:en.point}:null}return en&&en.k==='sp'&&(!ED.edit||en.s.id===ED.edit)?en:null}
+  function paintHover(sp){clr(hovG);mark(null);const en=paintTarget(sp);HV=en;if(en&&en.part!=='bot'){hlFace(hovG,en);const top=en.part==='top'&&(en.s.h??2.8)>=0.1,flat=(en.s.h??2.8)<0.1;status((top?'Azotea':flat?'Piso':'Muros')+' de «'+en.s.name+'»: clic pinta con '+(ED.paint?MATS[ED.paint]:'el acabado automático')+' · Alt + clic copia su acabado')}else status(HELP.paint)}
+  function paintClick(sp,e){const en=paintTarget(sp);if(!en||en.part==='bot')return;const s=en.s,top=en.part==='top'&&(s.h??2.8)>=0.1;
+    if(e&&e.altKey){ED.paint=top?(s.rfin||''):(s.fin||'');buildPal();toast('Acabado copiado: '+(ED.paint?MATS[ED.paint]:'automático'));return}
+    if(top){if(ED.paint)s.rfin=ED.paint;else delete s.rfin}else{if(ED.paint)s.fin=ED.paint;else delete s.fin}commit(['sp:'+s.id]);
+    if(S.style.m3d.mat!=='real'&&!toldPaint){toldPaint=true;toast('Los acabados se ven en la vista Realista y en Fachadas')}}
+  // BORRAR (también une espacios y quita esquinas)
+  function eraseTargets(sp){const R=M.coarse?16:9;const out=[];const ray=M.rayAt(sp).clone();const hit=M.hitAt(sp,skipNon());const hitD=hit?hit.distance:Infinity;
+    // near: la línea pasa bajo el puntero; vis: además no la tapa otra cosa (un árbol, un muro de enfrente)
+    const near=(a,b,vis)=>{const q=segRay(a,b,ray);if(!q)return false;const s=M.toScreen(q);if(Math.hypot(s.x-sp.x,s.y-sp.y)>=R)return false;return!vis||q.distanceTo(ray.origin)<=hitD*1.02+0.15};
+    if(ED.edit){const s=S.spaces.find(x=>x.id===ED.edit);if(s){const z0=+s.z||0;for(let i=0;i<s.geo.length;i++){const p=M.toScreen(W(s.geo[i][0],s.geo[i][1],z0)),q=M.toScreen(W(s.geo[i][0],s.geo[i][1],z0+(s.h??2.8)));if(Math.min(Math.hypot(p.x-sp.x,p.y-sp.y),Math.hypot(q.x-sp.x,q.y-sp.y))<R+4)return['vx:'+s.id+':'+i]}}return[]}
     ED.guides.forEach((g,gi)=>{const a=g.t==='pt'?V(g.a):V(g.p).addScaledVector(V(g.d),-300),b=g.t==='pt'?V(g.b):V(g.p).addScaledVector(V(g.d),300);if(near(a,b))out.push('gd:'+gi)});
-    if(!ED.grp)(S.zoning.notes||[]).forEach(n=>{if(n.type!=='line'||n.x2==null)return;const z=+n.z||0;if(near(W(n.x1,n.y1,z),W(n.x2,n.y2,z)))out.push('nt:'+n.id)});
-    if(out.length)return out;const en=entAt(sp);return en?expand(en):[]}
+    if(!ED.grp)(S.zoning.notes||[]).forEach(n=>{if(n.type!=='line'||n.x2==null)return;const z=+n.z||0;if(near(W(n.x1,n.y1,z),W(n.x2,n.y2,z),true))out.push('nt:'+n.id)});
+    if(out.length)return out;
+    // la línea que separa dos espacios vecinos (la de arriba en volúmenes, la del piso en superficies)
+    for(const sh of SC.shared){const z=sh.z+(sh.h>=0.1?sh.h:0);if(near(W(sh.p0[0],sh.p0[1],z),W(sh.p1[0],sh.p1[1],z),true))return['mg:'+sh.a+':'+sh.b]}
+    const en=entAt(sp);return en?expand(en):[]}
   function hlErase(k){if(k.startsWith('gd:')){const g=ED.guides[+k.slice(3)];if(g)line(hovG,g.t==='pt'?[V(g.a),V(g.b)]:[V(g.p).addScaledVector(V(g.d),-300),V(g.p).addScaledVector(V(g.d),300)],COL.red);return}
     if(k.startsWith('nt:')){const n=(S.zoning.notes||[]).find(x=>x.id===k.slice(3));if(n){const z=+n.z||0;line(hovG,[W(n.x1,n.y1,z+.03),W(n.x2,n.y2,z+.03)],COL.red)}return}
+    if(k.startsWith('mg:')){const[,a,b]=k.split(':');const sh=SC.shared.find(x=>x.a===a&&x.b===b);if(sh){const h=sh.h>=0.1?sh.h:0;quad(hovG,W(sh.p0[0],sh.p0[1],sh.z),W(sh.p1[0],sh.p1[1],sh.z),W(sh.p1[0],sh.p1[1],sh.z+h),W(sh.p0[0],sh.p0[1],sh.z+h),COL.red,.35);line(hovG,[W(sh.p0[0],sh.p0[1],sh.z+h+.01),W(sh.p1[0],sh.p1[1],sh.z+h+.01)],COL.red)}return}
+    if(k.startsWith('vx:')){const[,id,i]=k.split(':');const s=S.spaces.find(x=>x.id===id);if(s){const[x,y]=s.geo[+i];line(hovG,[W(x,y,+s.z||0),W(x,y,(+s.z||0)+Math.max(s.h??2.8,0.02))],COL.red);dot(hovG,W(x,y,+s.z||0),COL.red)}return}
     const e=m3Ent(k);if(!e)return;if(e.k==='sp'){const m=M.meshOf(k);if(m){const t=new T.Mesh(m.geometry,fm(COL.red,.35));t.userData.shared=1;t.renderOrder=29;hovG.add(t)}}else hlEnt(hovG,k,COL.red)}
-  function eraseHover(sp){clr(hovG);mark(null);const ks=eraseTargets(sp);ks.forEach(hlErase);status(ks.length?'Clic para borrar · arrastra para borrar varios':HELP.erase)}
+  function eraseHover(sp){clr(hovG);mark(null);const ks=eraseTargets(sp);ks.forEach(hlErase);status(ks.length?(ks[0].startsWith('mg:')?'Clic para unir estos dos espacios (se borra la línea que los separa)':ks[0].startsWith('vx:')?'Clic para quitar esta esquina':'Clic para borrar · arrastra para borrar varios'):(ED.edit?'Pasa sobre una esquina para quitarla':HELP.erase))}
   function eraseMark(sp){eraseTargets(sp).forEach(k=>ER.keys.add(k));clr(hovG);ER.keys.forEach(hlErase)}
-  function erase(keys){let prog=0;const gd=keys.filter(k=>k.startsWith('gd:')).map(k=>+k.slice(3));if(gd.length){ED.guides=ED.guides.filter((_,i)=>!gd.includes(i));drawGuides()}
+  function mergeSpaces(a,b){const A_=S.spaces.find(x=>x.id===a),B_=S.spaces.find(x=>x.id===b);if(!A_||!B_)return;const ring=m3Merge(A_.geo,B_.geo);const g=ring&&cleanPoly(ring);if(!g){toast('Estos espacios no comparten un lado completo; no se pueden unir');return}
+    const C=m3OpC([A_.id,B_.id]);A_.geo=g;syncA(A_);if(B_.m3){S.spaces=S.spaces.filter(x=>x!==B_);Object.keys(S.rel||{}).forEach(r=>{if(r.split('|').includes(B_.id))delete S.rel[r]})}else{B_.geo=null;delete B_.grp}m3Remap(C,[A_]);commit(['sp:'+A_.id]);toast('Se unieron «'+A_.name+'» y «'+B_.name+'»'+(B_.m3?'':' (el segundo sigue en tu programa)'))}
+  function erase(keys){let prog=0;const mg=keys.find(k=>k.startsWith('mg:'));if(mg){const[,a,b]=mg.split(':');mergeSpaces(a,b);return}
+    const vx=keys.find(k=>k.startsWith('vx:'));if(vx){const[,id,i]=vx.split(':');const s=S.spaces.find(x=>x.id===id);if(!s)return;if(s.geo.length<=3){toast('Un espacio necesita al menos 3 esquinas');return}const C=m3OpC([s.id]);const g=s.geo.filter((_,j)=>j!==+i);if(!m3Simple(g)||polyArea(g)<0.05){toast('Quitar esa esquina cruzaría los muros');return}s.geo=g;syncA(s);m3Remap(C,[s]);commit(['sp:'+s.id]);return}
+    const gd=keys.filter(k=>k.startsWith('gd:')).map(k=>+k.slice(3));if(gd.length){ED.guides=ED.guides.filter((_,i)=>!gd.includes(i));drawGuides()}
     keys.forEach(k=>{if(k.startsWith('nt:')){S.zoning.notes=S.zoning.notes.filter(n=>n.id!==k.slice(3));return}const e=m3Ent(k);if(!e)return;
       if(e.k==='sp'){const s=e.o;S.openings=S.openings.filter(o=>o.sp!==s.id);if(s.m3){S.spaces=S.spaces.filter(x=>x!==s);Object.keys(S.rel||{}).forEach(r=>{if(r.split('|').includes(s.id))delete S.rel[r]})}else{s.geo=null;delete s.grp;prog++}}
       else if(e.k==='op')S.openings=S.openings.filter(o=>o!==e.o);else if(e.k==='bld')S.context.buildings=S.context.buildings.filter(b=>b!==e.o);else if(e.k==='tree')S.context.trees=S.context.trees.filter(t=>t!==e.o)});
-    ED.sel=ED.sel.filter(k=>m3Ent(k));if(S.zoning.sel&&!S.spaces.some(s=>s.id===S.zoning.sel&&s.geo))S.zoning.sel=null;if(ED.grp&&!S.spaces.some(s=>s.geo&&s.grp===ED.grp))ED.grp=null;
+    ED.sel=ED.sel.filter(k=>m3Ent(k));if(S.zoning.sel&&!S.spaces.some(s=>s.id===S.zoning.sel&&s.geo))S.zoning.sel=null;if(ED.grp&&!S.spaces.some(s=>s.geo&&s.grp===ED.grp))ED.grp=null;if(ED.edit&&!S.spaces.some(s=>s.geo&&s.id===ED.edit))ED.edit=null;
     if(keys.some(k=>!k.startsWith('gd:')))commit(ED.sel);else{collect();M.onSel&&M.onSel()}
     if(prog)toast(prog===1?'Se quitó del plano; sigue en tu programa (Zonificación → Sin ubicar)':prog+' espacios se quitaron del plano; siguen en tu programa')}
+  // ----- selección con recuadro y menú contextual -----
+  function boxMove(a,b){boxEl.hidden=false;const x=Math.min(a.x,b.x),y=Math.min(a.y,b.y);Object.assign(boxEl.style,{transform:`translate(${x}px,${y}px)`,width:Math.abs(b.x-a.x)+'px',height:Math.abs(b.y-a.y)+'px'});boxEl.classList.toggle('cross',b.x<a.x);status(b.x<a.x?'Recuadro hacia la izquierda: elige todo lo que toque':'Recuadro hacia la derecha: elige lo que quede completamente dentro')}
+  function boxEnd(a,b,e){boxEl.hidden=true;const cross=b.x<a.x;const x0=Math.min(a.x,b.x),x1=Math.max(a.x,b.x),y0=Math.min(a.y,b.y),y1=Math.max(a.y,b.y);const keys=[];
+    const test=B=>{if(!B)return false;const c=[];for(const x of[B.min.x,B.max.x])for(const y of[B.min.y,B.max.y])for(const z of[B.min.z,B.max.z])c.push(M.toScreen(new T.Vector3(x,y,z)));const vis=c.filter(p=>p.z<1);if(!vis.length)return false;
+      const r={x0:Math.min(...vis.map(p=>p.x)),x1:Math.max(...vis.map(p=>p.x)),y0:Math.min(...vis.map(p=>p.y)),y1:Math.max(...vis.map(p=>p.y))};return cross?(r.x1>=x0&&r.x0<=x1&&r.y1>=y0&&r.y0<=y1):(vis.length===8&&r.x0>=x0&&r.x1<=x1&&r.y0>=y0&&r.y1<=y1)};
+    const seen=new Set();S.spaces.forEach(s=>{if(!s.geo||(!inGrp(s)&&!closed(s)))return;if(closed(s)){if(seen.has(s.grp)||ED.grp||ED.edit)return;seen.add(s.grp);if(test(grpBox(s.grp)))S.spaces.forEach(x=>{if(x.geo&&x.grp===s.grp)keys.push('sp:'+x.id)});return}if(test(entBox('sp:'+s.id)))keys.push('sp:'+s.id)});
+    if(!ED.grp&&!ED.edit){(S.context.buildings||[]).forEach(o=>{const k='bld:'+o.id;if(test(entBox(k)))keys.push(k)});(S.context.trees||[]).forEach(o=>{const k='tree:'+o.id;if(test(entBox(k)))keys.push(k)})}
+    const add=e.ctrlKey||e.metaKey,tog=e.shiftKey;if(add&&tog)setSel(ED.sel.filter(k=>!keys.includes(k)));else if(add)setSel(ED.sel.concat(keys));else if(tog)setSel(ED.sel.filter(k=>!keys.includes(k)).concat(keys.filter(k=>!ED.sel.includes(k))));else setSel(keys);
+    status(keys.length?keys.length+' elemento(s) en el recuadro':HELP.sel)}
+  let menuEl=null;function closeMenu(){if(menuEl){menuEl.remove();menuEl=null;document.removeEventListener('pointerdown',outMenu,true)}}
+  const outMenu=e=>{if(menuEl&&!menuEl.contains(e.target))closeMenu()};
+  function menu(e,sp){closeMenu();const en=entAt(sp);if(en&&!ED.sel.includes(en.key))setSel(expand(en));const ents=ED.sel.map(m3Ent).filter(Boolean),sps=ents.filter(x=>x.k==='sp').map(x=>x.o);
+    const it=[];if(ents.length)it.push(['Borrar','Supr',()=>{erase(ED.sel.slice());setSel([])}]);
+    if(sps.length&&!ED.grp&&!ED.edit)it.push(['Agrupar','G',group]);if(sps.some(s=>s.grp)&&!ED.edit)it.push(['Desagrupar','Mayús+G',ungroup]);
+    if(sps.length===1&&!ED.edit){const s=sps[0];if(closed(s))it.push(['Editar grupo','doble clic',()=>enterGroup(s.grp,s)]);else it.push(['Editar forma','doble clic',()=>enterEdit(s)])}
+    if(sps.length>1&&sps.every(s=>s.grp&&s.grp===sps[0].grp)&&closed(sps[0]))it.push(['Editar grupo','doble clic',()=>enterGroup(sps[0].grp,sps[0])]);
+    if(ED.edit)it.push(['Terminar de editar la forma','Esc',exitEdit]);if(ED.grp)it.push(['Cerrar grupo','Esc',exitGroup]);
+    if(ents.length)it.push(['Encuadrar selección','',zoomSel]);if(sps.length===1)it.push(['Ver en zonificación','',()=>{S.zoning.sel=sps[0].id;S.zoning.level=sps[0].level===1?'1':'0';location.hash='zonas'}]);
+    it.push(['Ver todo','Mayús+Z',()=>M.extents()]);if(ents.length)it.push(['Información','',()=>{const c=document.getElementById('m3Sel');if(c){c.scrollIntoView({block:'nearest',behavior:'smooth'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),900)}}]);
+    menuEl=H(`<div class="m3menu" role="menu">${it.map(([t,k],i)=>`<button type="button" role="menuitem" data-i="${i}">${esc(t)}${k?`<small>${esc(k)}</small>`:''}</button>`).join('')}</div>`);host.appendChild(menuEl);
+    const W_=host.clientWidth,H_=host.clientHeight;const mw=menuEl.offsetWidth,mh=menuEl.offsetHeight;menuEl.style.left=Math.max(4,Math.min(sp.x,W_-mw-6))+'px';menuEl.style.top=Math.max(4,Math.min(sp.y,H_-mh-6))+'px';
+    // con el dedo, al soltar después de mantener presionado el navegador manda un clic justo donde quedó el menú:
+    // solo cuenta un toque que empezó dentro del menú (o Enter con el teclado)
+    let armed=false;menuEl.addEventListener('pointerdown',()=>{armed=true});
+    $$('[data-i]',menuEl).forEach(b=>b.onclick=ev=>{if(!armed&&ev.detail!==0)return;const f=it[+b.dataset.i][2];closeMenu();f()});setTimeout(()=>document.addEventListener('pointerdown',outMenu,true),0);const f=$('button',menuEl);if(f)f.focus({preventScroll:true})}
   // ----- caja de medidas -----
   function vcbKey(e){const k=e.key,t=ED.typed;if(k==='Backspace'){if(!t)return false;ED.typed=t.slice(0,-1);vcbRender();return true}if(k.length!==1)return false;
-    if(/[0-9.]/.test(k)||(k==='-'&&!t)||(t&&/^[,;x* cm]$/i.test(k))){ED.typed+=k;vcbRender();return true}return false}
-  function applyVcb(){const raw=ED.typed;ED.typed='';vcbRender();if(!raw.trim())return;const P=vcbParse(raw);if(!P){toast('No entendí la medida. Ejemplos: 3.5 · 4,3 · 350cm');return}const t=ED.tool;
-    if(P.arr){if(t==='move')arrayCopies(P.arr);else toast('Escribe 3x justo después de copiar con Mover + Ctrl');return}
-    const v=P.v,one=P.dec!=null?P.dec:v[0];const sg=x=>x<0?-1:1;
-    if(t==='line'){if(!DR){toast('Primero haz clic en el punto de inicio');return}const from=DR.pts[DR.pts.length-1];const dir=lastR?lastR.p.clone().sub(from):null;if(!dir||dir.lengthSq()<1e-9){toast('Mueve el mouse hacia donde va la línea y vuelve a escribir la medida');return}addPt(from.clone().addScaledVector(dir.normalize(),one));if(lastSp)lineHover(lastSp);return}
-    if(t==='arc'){if(AR&&AR.b){finishArc(sg(AR.s||1)*Math.abs(one));return}const a=arcFrom();if(a&&lastR){const dir=lastR.p.clone().sub(a);if(dir.lengthSq()>1e-9){AR=AR||{};AR.a=a;AR.b=a.clone().addScaledVector(dir.normalize(),one);AR.wall=DR?null:onWall(a,AR.b);if(lastSp)arcHover(lastSp);return}}toast('Primero marca el inicio del arco y apunta hacia su final');return}
-    if(t==='rect'){if(!RC){toast('Primero haz clic en la primera esquina');return}const[w,d]=v.length>1?v:[one,one];const A0=PL(RC.a),B0=RC.b||[A0[0]+1,A0[1]+1];finishRect(A0,[A0[0]+(sg(B0[0]-A0[0])*Math.abs(w)),A0[1]+(sg(B0[1]-A0[1])*Math.abs(d))]);return}
-    if(t==='push'){const P_=PU||LASTPU;if(!P_){toast('Primero empuja o tira una cara');return}PU=P_;applyPush(sg(P_.d||1)*Math.abs(one));endPush();return}
-    if(t==='move'){const m=MV||LASTMV;if(!m){toast('Primero toma algo con Mover');return}const dir=m.delta.clone();if(dir.lengthSq()<1e-9){toast('Mueve el mouse hacia donde va y vuelve a escribir la distancia');return}MV=m;applyMove(dir.normalize().multiplyScalar(Math.abs(one)));endMove();return}
-    if(t==='tape'){if(!TP){toast('Primero haz clic en el punto de inicio');return}if(TP.edge){if(!TP.P)return;TP.off=sg(TP.off||1)*Math.abs(one);addGuide({t:'ln',p:A(TP.a.clone().addScaledVector(TP.P,TP.off)),d:A(TP.D)});TP=null;clr(drfG);LB=[];return}
-      const dir=lastR?lastR.p.clone().sub(TP.a):null;if(!dir||dir.lengthSq()<1e-9)return;const b=TP.a.clone().addScaledVector(dir.normalize(),Math.abs(one));addGuide({t:'pt',a:A(TP.a),b:A(b),L:Math.abs(one)});TP=null;clr(drfG);LB=[];return}
-    if(t==='offset'){if(!OF){toast('Primero haz clic en una cara');return}OF.d=(OF.d>0?1:-1)*Math.abs(one);finishOff();return}
+    if(/[0-9.]/.test(k)||(k==='-'&&!t)||(k==='/'&&!t&&ED.tool==='move')||(t&&/^[,;x* cms°]$/i.test(k))){ED.typed+=k;vcbRender();return true}return false}
+  function applyVcb(){applyVcb0();lockK=null}
+  function applyVcb0(){const raw=ED.typed;ED.typed='';vcbRender();if(!raw.trim())return;const t=ED.tool;
+    const dv=raw.trim().match(/^\/\s*(\d+)$/);if(dv){if(t==='move')arrayCopies(+dv[1],true);else toast('Escribe /3 justo después de copiar con Mover + Ctrl');return}
+    const P=vcbParse(raw);if(!P){toast('No entendí la medida. Ejemplos: 3.5 · 4,3 · 350cm · 3x · 6s');return}
+    if(P.sides){if(t==='circle'){ED.circN=clamp(P.sides,3,48);status('Ahora con '+ED.circN+' lados');if(lastSp)circHover(lastSp)}else toast('Los lados (6s) son para la herramienta Círculo (C)');return}
+    if(P.arr){if(t==='move')arrayCopies(P.arr);else if(t==='rotate')rotArray(P.arr);else toast('Escribe 3x justo después de copiar con Mover o Rotar + Ctrl');return}
+    const v=P.v,one=P.dec!=null?P.dec:v[0];const sT=sgn(one),mag=Math.abs(one);
+    if(t==='line'){if(!DR){toast('Primero haz clic en el punto de inicio');return}const from=DR.pts[DR.pts.length-1];const dir=lastR?lastR.p.clone().sub(from):null;if(!dir||dir.lengthSq()<1e-9){toast('Mueve el mouse hacia donde va la línea y vuelve a escribir la medida');return}addPt(from.clone().addScaledVector(dir.normalize(),mag*sT));if(lastSp)lineHover(lastSp);return}
+    if(t==='arc'){if(AR&&AR.b){finishArc((AR.s?sgn(AR.s):outSign())*sT*mag);return}const a=arcFrom();if(a&&lastR){const dir=lastR.p.clone().sub(a);if(dir.lengthSq()>1e-9){AR=AR||{};AR.a=a;AR.b=a.clone().addScaledVector(dir.normalize(),mag*sT);AR.wall=DR?null:onWall(a,AR.b);if(lastSp)arcHover(lastSp);return}}toast('Primero marca el inicio del arco y apunta hacia su final');return}
+    if(t==='rect'){if(!RC){toast('Primero haz clic en la primera esquina');return}const[w,d]=v.length>1?v:[one,one];
+      if(RC.wall){const wp=RC.wp;const su=sgn((RC.u1??RC.u0+1)-RC.u0||1)*sgn(w),sv=sgn((RC.v1??RC.v0+1)-RC.v0||1)*sgn(d);finishOpening(clamp(RC.u0+su*Math.abs(w),0,wp.L),clamp(RC.v0+sv*Math.abs(d),0,wp.h));return}
+      const A0=PL(RC.a),B0=RC.b||[A0[0]+1,A0[1]+1];finishRect(A0,[A0[0]+sgn(B0[0]-A0[0])*sgn(w)*Math.abs(w),A0[1]+sgn(B0[1]-A0[1])*sgn(d)*Math.abs(d)]);return}
+    if(t==='circle'){if(!CI){toast('Primero haz clic en el centro');return}finishCirc(mag,CI.a0||0);return}
+    if(t==='push'){const P_=PU||LASTPU;if(!P_){toast('Primero empuja o tira una cara');return}PU=P_;applyPush(sgn(P_.d||1)*sT*mag);endPush();return}
+    if(t==='move'){const m=MV||LASTMV;if(!m){toast('Primero toma algo con Mover');return}const dir=m.delta.clone();if(dir.lengthSq()<1e-9){toast('Mueve el mouse hacia donde va y vuelve a escribir la distancia');return}MV=m;applyMove(dir.normalize().multiplyScalar(mag*sT));endMove();return}
+    if(t==='rotate'){const r=RO&&RO.stage===2?RO:LASTRO;if(!r){toast('Primero marca el centro y la referencia del giro');return}RO=r;applyRot(sgn(RO.ang||1)*sT*rad(mag));endRot();return}
+    if(t==='tape'){if(!TP){toast('Primero haz clic en el punto de inicio');return}if(TP.edge){if(!TP.P)return;TP.off=sgn(TP.off||1)*sT*mag;addGuide({t:'ln',p:A(TP.a.clone().addScaledVector(TP.P,TP.off)),d:A(TP.D)});TP=null;clr(drfG);LB=[];return}
+      const dir=lastR?lastR.p.clone().sub(TP.a):null;if(!dir||dir.lengthSq()<1e-9)return;const b=TP.a.clone().addScaledVector(dir.normalize(),mag*sT);addGuide({t:'pt',a:A(TP.a),b:A(b),L:mag});TP=null;clr(drfG);LB=[];return}
+    if(t==='offset'){if(!OF){toast('Primero haz clic en una cara');return}OF.d=(OF.d>0?1:-1)*sT*mag;finishOff();return}
     toast('Elige una herramienta y empieza a dibujar; luego escribe la medida')}
   // ----- eventos que manda el visor -----
-  const HOV={line:lineHover,arc:arcHover,rect:rectHover,push:pushHover,move:moveHover,tape:tapeHover,offset:offHover};
-  const ACT={line:sp=>{lineHover(sp);if(lastR)addPt(lastR.p.clone())},arc:arcClick,rect:rectClick,push:pushClick,move:moveClick,tape:tapeClick,offset:offClick};
+  const HOV={line:lineHover,arc:arcHover,rect:rectHover,circle:circHover,push:pushHover,move:moveHover,rotate:rotHover,tape:tapeHover,offset:offHover,paint:paintHover};
+  const ACT={line:sp=>{lineHover(sp);if(lastR)addPt(lastR.p.clone())},arc:arcClick,rect:rectClick,circle:circClick,push:pushClick,move:moveClick,rotate:rotClick,tape:tapeClick,offset:offClick,paint:paintClick};
   function hover(sp){const f=HOV[ED.tool];if(f)f(sp)}
-  function act(sp,e){const f=ACT[ED.tool];if(f)f(sp,e)}
-  function down(e,sp){lastSp=sp;if(ED.tool==='erase'){ER={keys:new Set()};eraseMark(sp);return}press={sp,started:false};if(!busy()){act(sp,e);press.started=true}}
+  // un eje fijado con las flechas vale para el tramo en curso: al hacer clic para terminarlo se suelta
+  function act(sp,e){const f=ACT[ED.tool];if(!f)return;const was=busy();f(sp,e);if(was)lockK=null}
+  function down(e,sp){lastSp=sp;closeMenu();if(ED.tool==='erase'){ER={keys:new Set()};eraseMark(sp);return}press={sp,started:false};if(!busy()){act(sp,e);press.started=true}}
   function up(e,sp){lastSp=sp;if(ED.tool==='erase'){const ks=ER?[...ER.keys]:[];ER=null;clr(hovG);if(ks.length)erase(ks);return}const p=press;press=null;if(!p)return;
     if(Math.hypot(sp.x-p.sp.x,sp.y-p.sp.y)>9){if(busy())act(sp,e)}else if(!p.started)act(sp,e)}
-  function move(e,sp,pressed){lastSp=sp;if(ED.tool==='erase'){if(ER&&pressed)eraseMark(sp);else eraseHover(sp);return}if(ED.tool==='sel'||ED.tool==='pan')return;hover(sp)}
-  function click(e,sp){if(ED.tool!=='sel')return;const en=entAt(sp);const add=e.shiftKey||e.ctrlKey||e.metaKey;if(!en){if(!add)setSel([]);return}
-    const ks=expand(en);if(add){const on=ks.every(k=>ED.sel.includes(k));setSel(on?ED.sel.filter(k=>!ks.includes(k)):ED.sel.concat(ks))}else setSel(ks)}
-  function dbl(e,sp){if(ED.tool==='line'&&DR){commitDR();return}if(ED.tool!=='sel')return;const en=hitEnt(M.hitAt(sp));if(en&&en.k==='sp'&&closed(en.s)){enterGroup(en.s.grp,en.s);return}
-    if(ED.grp&&!(en&&en.k==='sp'&&en.s.grp===ED.grp))exitGroup()}
-  function cancel(){let did=!!(DR||AR||RC||PU||MV||TP||OF||ER);if(DR||AR)commitDR();RC=null;if(PU)cancelPush();if(MV)cancelMove();TP=null;OF=null;ER=null;press=null;clr(drfG);clr(hovG);LB=[];mark(null);lockK=null;shiftAx=null;vcbShow(null,null);return did}
+  function move(e,sp,pressed){lastSp=sp;if(ED.tool==='erase'){if(ER&&pressed)eraseMark(sp);else eraseHover(sp);return}if(ED.tool==='sel'||ED.tool==='pan'||ED.tool==='orbit')return;hover(sp)}
+  let lastTap=null;
+  function click(e,sp){closeMenu();if(ED.tool!=='sel')return;if(e.pointerType==='touch'){const now=e.timeStamp||performance.now();// hora del toque (no de cuando se procesó: en equipos lentos importa)
+    if(lastTap&&now-lastTap.t<380&&Math.hypot(sp.x-lastTap.x,sp.y-lastTap.y)<24){lastTap=null;dbl(e,sp);return}lastTap={t:now,x:sp.x,y:sp.y}}
+    const en=entAt(sp);const add=e.ctrlKey||e.metaKey,tog=e.shiftKey;if(!en){if(!add&&!tog)setSel([]);return}
+    const ks=expand(en);if(add&&tog)setSel(ED.sel.filter(k=>!ks.includes(k)));else if(add)setSel(ED.sel.concat(ks));else if(tog){const on=ks.every(k=>ED.sel.includes(k));setSel(on?ED.sel.filter(k=>!ks.includes(k)):ED.sel.concat(ks))}else setSel(ks)}
+  function dbl(e,sp){if(ED.tool==='line'&&DR){commitDR();return}if(ED.tool==='push'){pushRepeat(sp);return}if(ED.tool!=='sel')return;const en=hitEnt(M.hitAt(sp));
+    if(en&&en.k==='sp'){if(closed(en.s)){enterGroup(en.s.grp,en.s);return}if(inGrp(en.s)&&ED.edit!==en.s.id){enterEdit(en.s);return}if(ED.edit===en.s.id)return}
+    if(ED.edit){exitEdit();return}if(ED.grp&&!(en&&en.k==='sp'&&en.s.grp===ED.grp))exitGroup()}
+  function cancel(){let did=!!(DR||AR||RC||CI||PU||MV||RO||TP||OF||ER);if(DR||AR)commitDR();RC=null;CI=null;if(PU)cancelPush();if(MV)cancelMove();if(RO)cancelRot();TP=null;OF=null;ER=null;press=null;clr(drfG);clr(hovG);LB=[];mark(null);lockK=null;shiftAx=null;vcbShow(null,null);closeMenu();boxEl.hidden=true;return did}
   function setTool(t){if(!M3TOOLS.some(x=>x[0]===t))return;const keepDR=DR&&(t==='line'||t==='arc')&&(ED.tool==='line'||ED.tool==='arc');const dr=keepDR?DR:null;if(keepDR){DR=null;AR=null}cancel();if(dr)DR=dr;
-    ED.tool=t;LASTPU=LASTMV=null;host.dataset.tool=t;m3TbSync();status(HELP[t]);if(lastSp&&t!=='sel'&&t!=='pan')hover(lastSp);else{clr(hovG)}drawDR();M.need()}
-  function nudge(dx,dy){const ks=new Set();const d=new T.Vector3(dx,0,-dy);ED.sel.forEach(k=>{const e=m3Ent(k);if(!e||e.k==='op')return;const r=shiftEnt(k,JSON.parse(JSON.stringify(e.o)),d);if(r)ks.add(r)});commit(ED.sel)}
+    ED.tool=t;LASTPU=LASTMV=LASTRO=null;host.dataset.tool=t;vi.inputMode=['rect','move','circle','rotate'].includes(t)?'text':'decimal';pal.hidden=t!=='paint';if(t==='paint')buildPal();m3TbSync();status(HELP[t]);
+    if(lastSp&&t!=='sel'&&t!=='pan'&&t!=='orbit')hover(lastSp);else clr(hovG);drawDR();M.need()}
+  function nudge(dx,dy){const d=new T.Vector3(dx,0,-dy);ED.sel.forEach(k=>{const e=m3Ent(k);if(!e||e.k==='op')return;shiftEnt(k,JSON.parse(JSON.stringify(e.o)),d)});commit(ED.sel)}
   function key(e){const k=e.key,low=k.toLowerCase(),mod=e.ctrlKey||e.metaKey;
-    if(k==='Control'||k==='Meta'){if(MV){toggleCopy();return true}if(PU&&PU.s&&PU.en.part==='top'){setPushCopy(PU,!PU.copy);applyPush(PU.d);return true}return false}
+    if(k==='Control'||k==='Meta'){if(MV&&!MV.stretch){toggleCopy();return true}if(RO&&RO.stage===2){rotCopy();return true}if(PU&&PU.s&&PU.en.part==='top'){setPushCopy(PU,!PU.copy);applyPush(PU.d);return true}return false}
     if(k==='Shift'){if(lastR&&'xyz'.includes(lastR.k||'_'))shiftAx=lastR.k;return false}
     if(!mod&&!e.altKey&&vcbKey(e))return true;
     if(k==='Enter'){if(ED.typed){applyVcb();return true}if(DR&&(ED.tool==='line'||ED.tool==='arc')){commitDR();return true}return false}
-    if(k==='Escape'){if(ED.typed){ED.typed='';vcbRender();return true}if(cancel())return true;if(ED.tool!=='sel'){setTool('sel');return true}if(ED.grp){exitGroup();return true}if(ED.sel.length)setSel([]);return true}
+    if(k==='Escape'){if(menuEl){closeMenu();return true}if(ED.typed){ED.typed='';vcbRender();return true}if(cancel())return true;if(ED.tool!=='sel'){setTool('sel');return true}if(ED.edit){exitEdit();return true}if(ED.grp){exitGroup();return true}if(ED.sel.length)setSel([]);return true}
     if(mod&&low==='a'){selectAll();return true}if(mod)return false;
     if(k==='Delete'||k==='Backspace'){if(ED.sel.length&&!busy()){erase(ED.sel.slice());setSel([])}return true}
     if(e.shiftKey&&low==='z'){M.extents();return true}if(low==='g'){e.shiftKey?ungroup():group();return true}
     const ax={ArrowRight:'x',ArrowLeft:'y',ArrowUp:'z'}[k];
     if(busy()&&(ax||k==='ArrowDown')){lockK=ax&&lockK!==ax?ax:null;status(lockK?{x:'Fijo en el eje rojo',y:'Fijo en el eje verde',z:'Fijo en el eje azul (vertical)'}[lockK]+' · la misma flecha lo suelta':'Eje libre');if(lastSp)hover(lastSp);return true}
     const nd={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[k];if(nd&&ED.sel.length&&ED.tool==='sel'){const s_=e.shiftKey?1:0.1;nudge(nd[0]*s_,nd[1]*s_);return true}
-    const t=M3KEYS[k===' '?' ':low];if(t&&!e.altKey){setTool(t);return true}return false}
+    const t=M3KEYS[k===' '?' ':low];if(t&&!e.altKey&&!e.shiftKey){setTool(t);return true}return false}
   const ku=e=>{if(e.key==='Shift'){shiftAx=null;if(lastSp&&busy())hover(lastSp)}};document.addEventListener('keyup',ku);
-  host.dataset.tool=ED.tool;status(HELP[ED.tool]);vcbShow('Medidas',null);
-  return{down,up,move,click,dbl,key,setTool,group,ungroup,erase,sel:setSel,
-    leave(){mark(null);if(!busy())clr(hovG)},cancelPress(){press=null;if(ER){ER=null;clr(hovG)}},
+  host.dataset.tool=ED.tool;vi.inputMode=['rect','move','circle','rotate'].includes(ED.tool)?'text':'decimal';pal.hidden=ED.tool!=='paint';status(ED.edit?'Editando la forma · Esc para terminar':ED.grp?'Editando un grupo · Esc para salir':HELP[ED.tool]);vcbShow('Medidas',null);
+  return{down,up,move,click,dbl,key,setTool,group,ungroup,erase,sel:setSel,zoomSel,exitCtx,menu,boxMove,boxEnd,
+    leave(){mark(null);if(!busy())clr(hovG)},cancelPress(){press=null;if(ER){ER=null;clr(hovG)}boxEl.hidden=true},
     content(partial){collect();drawSel();if(!partial)drawGuides();M.need()},
     frame(){placeMk();placeLabs()},hideTemp(on){ovl.visible=!on;hud.style.visibility=on?'hidden':''},
-    off(){document.removeEventListener('keyup',ku)}}}
+    off(){document.removeEventListener('keyup',ku);closeMenu()}}}
 
 /* ---------- cubo de orientación (diseño propio): caras, aristas y esquinas; anillo con el norte real ---------- */
 function m3Cube(M){const T=M.T;
@@ -2797,9 +3070,9 @@ function m3Build(T,host){
   const smat=(hex,o={})=>mc('s|'+hex+'|'+JSON.stringify(o),()=>new T.MeshStandardMaterial({color:lin(hex),roughness:.9,metalness:0,...o}));
   const lmat=(hex,op=1)=>mc('l|'+hex+'|'+op,()=>new T.LineBasicMaterial({color:hex,transparent:op<1,opacity:op}));
   // suelo, lote, calle y banqueta (fijos)
-  const basePicks=[];const GS=REAL?1800:600;
-  const g0=new T.Mesh(new T.PlaneGeometry(GS,GS),REAL?rmat('tierra',{rx:GS,ry:GS,tint:0xc9c3b6}):smat(C.ground,{roughness:1}));g0.rotation.x=-Math.PI/2;g0.position.y=-0.02;g0.receiveShadow=true;g0.userData.k='gnd';scene.add(g0);basePicks.push(g0);
-  const gm=st.groundMat||'tierra';const lot=new T.Mesh(new T.PlaneGeometry(pr.lotW,pr.lotL),REAL?rmat(gm,{rx:pr.lotW,ry:pr.lotL,tint:gm==='tierra'?0xe2dccf:0xffffff}):smat(C.lot,{roughness:1}));lot.rotation.x=-Math.PI/2;lot.position.copy(W(pr.lotW/2,pr.lotL/2,0.0));lot.receiveShadow=true;lot.userData.k='lot';scene.add(lot);basePicks.push(lot);
+  const basePicks=[];const GS=REAL?1800:600;const gm=st.groundMat||'tierra';
+  const g0=new T.Mesh(new T.PlaneGeometry(GS,GS),REAL?rmat(gm,{rx:GS,ry:GS,tint:gm==='tierra'?0xc9c3b6:0xd6d3cc}):smat(C.ground,{roughness:1}));g0.rotation.x=-Math.PI/2;g0.position.y=-0.02;g0.receiveShadow=true;g0.userData.k='gnd';scene.add(g0);basePicks.push(g0);
+  const lot=new T.Mesh(new T.PlaneGeometry(pr.lotW,pr.lotL),REAL?rmat(gm,{rx:pr.lotW,ry:pr.lotL,tint:gm==='tierra'?0xe2dccf:0xffffff}):smat(C.lot,{roughness:1}));lot.rotation.x=-Math.PI/2;lot.position.copy(W(pr.lotW/2,pr.lotL/2,0.0));lot.receiveShadow=true;lot.userData.k='lot';scene.add(lot);basePicks.push(lot);
   scene.add(new T.LineLoop(new T.BufferGeometry().setFromPoints([W(0,0,0.02),W(pr.lotW,0,0.02),W(pr.lotW,pr.lotL,0.02),W(0,pr.lotL,0.02)]),lmat(C.ink)));
   const str=new T.Mesh(new T.PlaneGeometry(pr.lotW+40,8),REAL?rmat('asfalto',{rx:pr.lotW+40,ry:8}):smat(C.street,{roughness:.95}));str.rotation.x=-Math.PI/2;str.position.copy(W(pr.lotW/2,-5.5,0.005));str.receiveShadow=true;str.userData.k='str';scene.add(str);basePicks.push(str);
   const walk=new T.Mesh(new T.BoxGeometry(pr.lotW+40,0.15,1.5),REAL?rmat('banqueta',{rx:pr.lotW+40,ry:1.5}):smat(0xcfcac0));walk.position.copy(W(pr.lotW/2,-0.75,0.075));walk.receiveShadow=true;walk.userData.k='walk';scene.add(walk);basePicks.push(walk);
@@ -2810,10 +3083,10 @@ function m3Build(T,host){
   const dimM=()=>smat(0xcfcac0,{roughness:1,transparent:true,opacity:.22,depthWrite:false});
   const label=(txt,size,color)=>{const m=mc('lab|'+txt+color,()=>{const c=document.createElement('canvas');c.width=128;c.height=128;const x=c.getContext('2d');x.fillStyle=color;x.font='700 84px Arial';x.textAlign='center';x.textBaseline='middle';x.fillText(txt,64,68);return new T.SpriteMaterial({map:new T.CanvasTexture(c),transparent:true,depthTest:false})});const sp=new T.Sprite(m);sp.scale.set(size,size,1);return sp};
   function disposeObj(o){o.traverse(c=>{if(c.geometry&&!c.isSprite)c.geometry.dispose()})}
-  function spaceGroup(s,partial){const G=new T.Group();G.userData.key='sp:'+s.id;const dim=!!(M3ED.grp&&s.grp!==M3ED.grp);
+  function spaceGroup(s,partial){const G=new T.Group();G.userData.key='sp:'+s.id;const dim=!!((M3ED.grp&&s.grp!==M3ED.grp)||(M3ED.edit&&s.id!==M3ED.edit));
     const h=s.h==null?2.8:+s.h,flat=h<0.1,z0=+s.z||0,fy=z0+0.012+0.008*(1-Math.min(1,polyArea(s.geo)/150));const shape=new T.Shape(s.geo.map(([x,y])=>new T.Vector2(x-cx,y-cy)));
     let geo;if(flat){geo=new T.ShapeGeometry(shape);geo.rotateX(-Math.PI/2);geo.translate(0,fy,0)}else{geo=new T.ExtrudeGeometry(shape,{depth:h,bevelEnabled:false});geo.rotateX(-Math.PI/2);geo.translate(0,z0,0)}
-    let mm;if(dim)mm=dimM();else{mm=matFor(spColor(s),flat);if(REAL){const op=+st.walls<1?{op:+st.walls}:{};const wm=rmat(finOf(s,st),op);mm=flat?wm:[rmat(st.roofMat||'azotea'),wm]}}
+    let mm;if(dim)mm=dimM();else{mm=matFor(spColor(s),flat);if(REAL){const op=+st.walls<1?{op:+st.walls}:{};const wm=rmat(finOf(s,st),op);mm=flat?wm:[rmat(s.rfin&&MATS[s.rfin]?s.rfin:(st.roofMat||'azotea')),wm]}}
     const mesh=new T.Mesh(geo,mm);mesh.castShadow=!flat&&!dim;mesh.receiveShadow=!dim;mesh.userData={k:'sp',id:s.id};G.add(mesh);
     if(!dim&&st.edges&&!flat)G.add(new T.LineSegments(new T.EdgesGeometry(geo,25),lmat(st.mat==='maqueta'?0x8a857a:REAL?0x2a2f33:0x1b252e,REAL?.3:.55)));
     if(!dim&&flat)G.add(new T.LineLoop(new T.BufferGeometry().setFromPoints(s.geo.map(([x,y])=>W(x,y,fy+0.004))),lmat(C.ink,.4)));
@@ -2823,7 +3096,7 @@ function m3Build(T,host){
       const nW=new T.Vector3(g.n[0],0,-g.n[1]);pl.position.copy(W(g.c[0],g.c[1],z0+o.sill+hh/2).add(nW.clone().multiplyScalar(0.025)));pl.rotation.y=Math.atan2(nW.x,nW.z);pl.receiveShadow=true;pl.userData={k:'op',id:o.id};G.add(pl);
       if(st.edges){const fr=new T.LineSegments(new T.EdgesGeometry(pl.geometry),lmat(0xf2efe8));fr.position.copy(pl.position);fr.rotation.copy(pl.rotation);G.add(fr)}});
     return G}
-  function ctxGroup(){const G=new T.Group();G.userData.key='ctx';const dim=!!M3ED.grp;
+  function ctxGroup(){const G=new T.Group();G.userData.key='ctx';const dim=!!(M3ED.grp||M3ED.edit);
     (S.context.buildings||[]).forEach(b=>{const m=new T.Mesh(REAL?uvWorld(T,new T.BoxGeometry(b.w,b.h,b.d)):new T.BoxGeometry(b.w,b.h,b.d),dim?dimM():REAL?rmat('aplanado',{tint:0xd8d3c8}):smat(0xc9c6bd,{roughness:.95}));m.position.copy(W(b.x+b.w/2,b.y+b.d/2,b.h/2));m.castShadow=!dim;m.receiveShadow=true;m.userData={k:'bld',id:b.id};G.add(m);
       if(st.edges&&!dim){const e=new T.LineSegments(new T.EdgesGeometry(m.geometry),lmat(0x6d695f,.5));e.position.copy(m.position);G.add(e)}boxes.push({x0:b.x-cx,x1:b.x+b.w-cx,z0:-(b.y+b.d-cy),z1:-(b.y-cy),y0:0,y1:b.h})});
     (S.context.trees||[]).forEach(t=>{if(REAL&&st.trees!=='simple'&&!dim){const kind=VEG[t.kind]?t.kind:'mezquite';const V=vegC[kind]||(vegC[kind]=K.veg(kind));if(!mats.includes(V.m))mats.push(V.m,V.d);const w=t.h*V.meta[0]/V.meta[1];
@@ -2919,29 +3192,42 @@ function m3Build(T,host){
   // ---------- selección con el rayo del mouse ----------
   const rc=new T.Raycaster(),ndc=new T.Vector2();
   function rayAt(sp){const w=el.clientWidth||1,h=el.clientHeight||1;ndc.set(sp.x/w*2-1,-(sp.y/h)*2+1);rc.setFromCamera(ndc,camera);return rc.ray}
-  function hitAt(sp,skip){rayAt(sp);const hs=rc.intersectObjects(picks,false);for(const h of hs){if(!h.object.visible)continue;const u=h.object.userData;if(skip&&u.id&&skip.has(u.k+':'+u.id))continue;if(u.k==='op'&&skip&&[...skip].some(k=>k.startsWith('sp:')&&S.openings.some(o=>o.id===u.id&&'sp:'+o.sp===k)))continue;return h}return null}
+  const treeHit=h=>{if(!h.uv||!h.object.material||!h.object.material.alphaTest)return true;const u=h.uv.x-0.5,v=h.uv.y;return((u/0.44)**2+((v-0.62)/0.4)**2<=1)||(Math.abs(u)<0.07&&v<0.45)};
+  function hitAt(sp,skip){rayAt(sp);const hs=rc.intersectObjects(picks,false);for(const h of hs){if(!h.object.visible)continue;if(h.object.userData.k==='tree'&&!treeHit(h))continue;const u=h.object.userData;if(skip&&u.id&&skip.has(u.k+':'+u.id))continue;if(u.k==='op'&&skip&&[...skip].some(k=>k.startsWith('sp:')&&S.openings.some(o=>o.id===u.id&&'sp:'+o.sp===k)))continue;return h}return null}
   function toScreen(v){const p=v.clone().project(camera);return{x:(p.x+1)/2*el.clientWidth,y:(1-p.y)/2*el.clientHeight,z:p.z}}
+  /* ¿Se ve este punto desde la cámara? (una esquina o arista detrás de un muro no debe atraer al imán). El suelo no tapa nada. */
+  const rcV=new T.Raycaster(),_d=new T.Vector3();
+  function visible(p,skip){const o=camera.position;_d.subVectors(p,o);const L=_d.length();if(L<1e-6)return true;rcV.set(o,_d.divideScalar(L));rcV.far=L-Math.max(0.04,L*0.003);
+    for(const h of rcV.intersectObjects(picks,false)){const u=h.object.userData;if(!h.object.visible||u.k==='gnd'||u.k==='lot'||u.k==='str'||u.k==='walk')continue;if(u.k==='tree'&&!treeHit(h))continue;if(skip&&u.id&&skip.has(u.k+':'+u.id))continue;
+      if(u.k==='op'&&skip){const o_=S.openings.find(x=>x.id===u.id);if(o_&&skip.has('sp:'+o_.sp))continue}return false}return true}
   function pickPoint(sp){const h=hitAt(sp);if(h)return h.point.clone();const r=rayAt(sp);if(r.direction.y<-1e-4){const t=-r.origin.y/r.direction.y;if(t>0&&t<5000)return r.origin.clone().addScaledVector(r.direction,t)}return null}
   function centerAt(sp){const P=pickPoint(sp);if(!P)return;const off=camera.position.clone().sub(P);const r=off.length();flyTo({t:P,th:Math.atan2(off.x,off.z),ph:Math.acos(clamp(off.y/r,-1,1)),r},360)}
   // ---------- mouse, rueda y dedos ----------
-  const ptr=new Map();let drag=null,pinch=null,lastMid=0,navOnly=false;
+  const ptr=new Map();let drag=null,pinch=null,lastMid=0,navOnly=false,fc=0,lastPT='mouse';// fc: cuadros dibujados (para la inercia en equipos lentos)
   const local=e=>{const r=el.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}};
   const orbitStart=sp=>({m:'orbit',P:pickPoint(sp)||target.clone(),t:performance.now()});
   const panStart=sp=>{const P=pickPoint(sp);return{m:'pan',depth:P?camera.position.distanceTo(P):sph.r,t:performance.now()}};
   const stopNav=()=>{anim=null;zoomAcc=0;vel.on=false};
-  el.addEventListener('pointerdown',e=>{const a=document.activeElement;if(a&&a!==document.body&&a.blur)a.blur();stopNav();try{el.setPointerCapture(e.pointerId)}catch(_){}
+  el.addEventListener('pointerdown',e=>{lastPT=e.pointerType;const a=document.activeElement;if(a&&a!==document.body&&a.blur)a.blur();stopNav();try{el.setPointerCapture(e.pointerId)}catch(_){}
     const sp=local(e);ptr.set(e.pointerId,{x:e.clientX,y:e.clientY,x0:e.clientX,y0:e.clientY});
     if(ptr.size>=2){if(drag&&drag.m==='tool'&&ed)ed.cancelPress();drag=null;pinch=null;navOnly=true;return}
     if(e.button===1){e.preventDefault();const now=performance.now();if(now-lastMid<330){lastMid=0;drag=null;centerAt(sp);return}lastMid=now;drag=e.shiftKey?panStart(sp):orbitStart(sp);return}
-    if(e.button===2){drag=panStart(sp);return}if(e.button!==0)return;
-    const tool=M3ED.tool;if(tool==='pan'||!ed){drag=panStart(sp);return}if(tool==='sel'){drag={m:'maybe',sp,t:performance.now()};return}
+    // botón derecho: arrastrar desplaza la vista; un clic sin arrastrar abre el menú
+    if(e.button===2){drag={...panStart(sp),right:true};return}if(e.button!==0)return;
+    const tool=M3ED.tool;if(tool==='pan'||!ed){drag=panStart(sp);return}if(tool==='orbit'){drag=orbitStart(sp);return}
+    if(tool==='sel'){const d={m:'maybe',sp,t:performance.now(),mouse:e.pointerType!=='touch'};
+      // con el dedo, mantener presionado abre el menú (no hay botón derecho)
+      if(!d.mouse)d.lp=setTimeout(()=>{if(drag===d&&ed){drag=null;ed.menu(e,sp)}},560);drag=d;return}
     drag={m:'tool',sp};ed.down(e,sp)});
   el.addEventListener('pointermove',e=>{const sp=local(e);const p=ptr.get(e.pointerId);
     if(!p){if(e.pointerType==='mouse'&&ed)ed.move(e,sp,false);return}
     const dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;
     if(ptr.size>=2){twoFinger();return}if(navOnly||!drag)return;
-    const now=performance.now(),dt=Math.max(4,now-(drag.t||now));drag.t=now;const sm=(o,n)=>o*0.35+n*0.65;
-    if(drag.m==='maybe'){if(Math.hypot(e.clientX-p.x0,e.clientY-p.y0)<6)return;drag=orbitStart(drag.sp);vel.th=vel.ph=0;return}
+    const now=performance.now(),dt=Math.max(4,now-(drag.t||now));drag.t=now;drag.f=fc;const sm=(o,n)=>o*0.35+n*0.65;
+    if(drag.m==='maybe'){if(Math.hypot(e.clientX-p.x0,e.clientY-p.y0)<6)return;clearTimeout(drag.lp);
+      // con el mouse, arrastrar con Seleccionar hace un recuadro de selección; con el dedo gira la vista
+      if(drag.mouse&&ed){drag={m:'box',sp0:drag.sp};ed.boxMove(drag.sp0,sp);return}drag=orbitStart(drag.sp);vel.th=vel.ph=0;return}
+    if(drag.m==='box'){if(ed)ed.boxMove(drag.sp0,sp);return}
     if(drag.m==='orbit'){const a=-dx*0.0075,b=-dy*0.0075;orbitBy(a,b,drag.P);vel.th=sm(vel.th,a/dt*1000);vel.ph=sm(vel.ph,b/dt*1000);vel.P=drag.P}
     else if(drag.m==='pan'){panBy(dx,dy,drag.depth);vel.px=sm(vel.px,dx/dt*1000);vel.py=sm(vel.py,dy/dt*1000);vel.depth=drag.depth}
     else if(drag.m==='tool'&&ed)ed.move(e,sp,true)});
@@ -2952,13 +3238,18 @@ function m3Build(T,host){
     Object.assign(pinch,{d,mx,my,ang})}
   const upE=e=>{const p=ptr.get(e.pointerId);ptr.delete(e.pointerId);if(!p)return;const sp=local(e);
     if(navOnly){if(!ptr.size){navOnly=false;pinch=null}return}
-    const d=drag;drag=null;if(!d)return;const ok=e.type==='pointerup';
+    const d=drag;drag=null;if(!d)return;const ok=e.type==='pointerup';clearTimeout(d.lp);
+    if(d.right&&ok&&ed&&Math.hypot(e.clientX-p.x0,e.clientY-p.y0)<5){ed.menu(e,sp);return}
+    if(d.m==='box'){if(ed){if(ok)ed.boxEnd(d.sp0,sp,e);else ed.cancelPress()}return}
     if(d.m==='maybe'){if(ok&&ed)ed.click(e,sp)}
-    else if(d.m==='orbit'||d.m==='pan'){if(ok&&performance.now()-d.t<80){vel.m=d.m;const s=d.m==='orbit'?Math.hypot(vel.th,vel.ph):Math.hypot(vel.px,vel.py);if(d.m==='orbit'?s>0.25:s>60)vel.on=true}}
+    // inercia: si se soltó justo después de mover (en equipos lentos se cuenta en cuadros dibujados, no en milisegundos)
+    else if(d.m==='orbit'||d.m==='pan'){if(ok&&(performance.now()-d.t<80||fc-(d.f??-9)<=2)){vel.m=d.m;const s=d.m==='orbit'?Math.hypot(vel.th,vel.ph):Math.hypot(vel.px,vel.py);if(d.m==='orbit'?s>0.25:s>60)vel.on=true}}
     else if(d.m==='tool'&&ed){if(ok)ed.up(e,sp);else ed.cancelPress()}};
   el.addEventListener('pointerup',upE);el.addEventListener('pointercancel',upE);
   el.addEventListener('pointerleave',()=>{if(!ptr.size&&ed)ed.leave()});
-  el.addEventListener('dblclick',e=>{if(ed)ed.dbl(e,local(e))});
+  el.addEventListener('pointerenter',()=>{const a=document.activeElement;if(a&&a!==document.body&&a.id!=='m3Vcb'&&a.matches&&a.matches('select,input[type=range],input[type=checkbox],input[type=color],button')&&a.closest('.view'))a.blur()});
+  // con el dedo el doble toque lo detecta el editor; el doble clic que el navegador agrega después se ignora (si no, entraría y saldría)
+  el.addEventListener('dblclick',e=>{if(ed&&lastPT!=='touch')ed.dbl(e,local(e))});
   el.addEventListener('contextmenu',e=>e.preventDefault());
   el.addEventListener('mousedown',e=>{if(e.button===1)e.preventDefault()});el.addEventListener('auxclick',e=>{if(e.button===1)e.preventDefault()});
   el.addEventListener('wheel',e=>{e.preventDefault();anim=null;vel.on=false;const dy=e.deltaY*(e.deltaMode===1?33:e.deltaMode===2?400:1);zoomP=pickPoint(local(e));zoomAcc+=clamp(dy,-600,600)*(e.ctrlKey?0.012:0.0014);need=true},{passive:false});
@@ -2967,21 +3258,21 @@ function m3Build(T,host){
   const ro=new ResizeObserver(resize);ro.observe(host);
   const R_={T,renderer,scene,camera,el,host,W,PL,cx,cy,coarse,mats,alive:true,raf:0,ro,
     setSun:()=>{setSun();need=true},preset,windVec:()=>{windVec();need=true},extents,flyTo,flyDir,orbitBy:(a,b)=>{stopNav();orbitBy(a,b)},home:()=>preset('iso'),resize,
-    need:()=>{need=true},refresh:keys=>keys?refreshKeys(keys):buildContent(),rayAt,hitAt,toScreen,pickPoint,meshOf:k=>{const g=root.children.find(c=>c.userData.key===k);return g&&g.children.find(c=>c.isMesh)},
+    need:()=>{need=true},refresh:keys=>keys?refreshKeys(keys):buildContent(),rayAt,hitAt,toScreen,visible,pickPoint,meshOf:k=>{const g=root.children.find(c=>c.userData.key===k);return g&&g.children.find(c=>c.isMesh)},
     target:()=>target,
     shot:async()=>{const pr0=renderer.getPixelRatio();if(ed)ed.hideTemp(true);renderer.setPixelRatio(Math.min(3,pr0*2));resize();renderer.render(scene,camera);const blob=await new Promise(r=>renderer.domElement.toBlob(r,'image/png'));renderer.setPixelRatio(pr0);resize();if(ed)ed.hideTemp(false);return blob}};
   buildContent();resize();place();setSun();
   try{ed=typeof m3Editor==='function'?m3Editor(R_):null;cube=typeof m3Cube==='function'?m3Cube(R_):null;if(ed)ed.content()}catch(e){console.error(e)}
   R_.ed=ed;R_.off=()=>{ed&&ed.off();cube&&cube.off()};
   let prev=performance.now();
-  const loop=t=>{if(!R_.alive)return;R_.raf=requestAnimationFrame(loop);if(!document.body.contains(el)){if(M3===R_)m3Dispose();else R_.alive=false;return}const dt=Math.min(0.05,Math.max(0,(t-prev)/1000));prev=t;
-    navStep(dt);pts_.visible=!!st.wind;if(st.wind&&!document.hidden){stepWind(dt);need=true}if(need){need=false;renderer.render(scene,camera);if(ed)ed.frame();if(cube)cube.update()}};
+  const loop=t=>{if(!R_.alive)return;R_.raf=requestAnimationFrame(loop);if(!document.body.contains(el)){if(M3===R_)m3Dispose();else R_.alive=false;return}fc++;const dt=Math.min(0.05,Math.max(0,(t-prev)/1000));prev=t;
+    navStep(dt);if(dome)dome.position.set(camera.position.x,0,camera.position.z);pts_.visible=!!st.wind;if(st.wind&&!document.hidden){stepWind(dt);need=true}if(need){need=false;renderer.render(scene,camera);if(ed)ed.frame();if(cube)cube.update()}};
   R_.raf=requestAnimationFrame(loop);return R_}
 
 view('modelo','09','3D',app=>{
   m3Dispose();const st=S.style.m3d;const v=H(`<div class="view"></div>`);app.appendChild(v);
   const seg=segmented([['iso','3D'],['planta','Planta'],['frente','Frente'],['lado','Lado'],['otra','Otra esquina']],'',k=>M3&&M3.preset(k));seg.id='m3Cam';
-  const hd=headBlock('09','Modelo 3D',isSimple()?'Tu zonificación como modelo tridimensional con sol, sombras y viento. Dibuja con Rectángulo (R) y dale altura con Empujar/Tirar (P): todo lo que cambies aquí se refleja en la zonificación, las fachadas, la normativa y las láminas.':'Modela tu proyecto como en SketchUp, con sol, sombras y viento reales. Todo lo que dibujes o cambies aquí se refleja en la zonificación, las fachadas, las áreas, la normativa y las láminas. Gira con el botón central del mouse (o arrastrando con Seleccionar), acerca con la rueda y pulsa O para pantalla completa.');hd.appendChild(seg);v.appendChild(hd);
+  const hd=headBlock('09','Modelo 3D',isSimple()?'Tu zonificación como modelo tridimensional con sol, sombras y viento. Dibuja con Rectángulo (R) y dale altura con Empujar/Tirar (P): todo lo que cambies aquí se refleja en la zonificación, las fachadas, la normativa y las láminas.':'Modela tu proyecto con herramientas de modelado directo (dibujar, empujar, mover, rotar, pintar) y con sol, sombras y viento reales. Todo lo que dibujes o cambies aquí se refleja en la zonificación, las fachadas, las áreas, la normativa y las láminas. Gira con el botón central del mouse (o con Orbitar), acerca con la rueda, abre el menú con clic derecho y pulsa O para pantalla completa.');hd.appendChild(seg);v.appendChild(hd);
   const left=H(`<div class="stack"></div>`);v.appendChild(left);
   const bar=H(`<div class="row"></div>`);const shotB=H(`<button class="btn sm" type="button">Captura PNG</button>`);const impB=H(`<button class="btn sm adv" type="button">Abrir OBJ / STL</button>`);
   const fullB=H(`<button class="btn sm m3fullb" type="button" title="Pantalla completa (O) · salir con I"><span class="m3in">Pantalla completa <kbd>O</kbd></span><span class="m3out">Salir <kbd>I</kbd></span></button>`);
@@ -3000,9 +3291,10 @@ view('modelo','09','3D',app=>{
   windC.appendChild(rangeRow('Velocidad','m3V',2,60,1,st.windSpeed,x=>x+' km/h'));
   const opt=(arr,v,names)=>arr.map(k=>`<option value="${k}" ${v===k?'selected':''}>${esc((names||MATS)[k])}</option>`).join('');
   const viewC=H(`<div class="card" id="m3View"><h3>Vista</h3></div>`);const vseg=segmented([['real','Realista'],['color','Colores'],['maqueta','Maqueta'],['vidrio','Vidrio']],st.mat,val=>{st.mat=val;changed();rerender()});viewC.appendChild(vseg);
-  if(st.mat==='real'){viewC.appendChild(H(`<div><div class="fields" style="margin-top:10px"><label class="f" for="m3WM">Muros<select id="m3WM" data-k="wallMat">${opt(MAT_WALL,st.wallMat)}</select></label><label class="f" for="m3RM">Azotea<select id="m3RM" data-k="roofMat">${opt(MAT_ROOF,st.roofMat)}</select></label><label class="f" for="m3PM">Techo inclinado<select id="m3PM" data-k="roofPitchMat">${opt(['teja','madera','concreto'],st.roofPitchMat)}</select></label><label class="f" for="m3GM">Terreno<select id="m3GM" data-k="groundMat">${opt(['tierra','pasto','adoquin','banqueta'],st.groundMat)}</select></label><label class="f" for="m3SK">Cielo<select id="m3SK" data-k="skyImg">${opt(['auto','dia','tarde','no'],st.skyImg,{auto:'Según la hora',dia:'Día',tarde:'Atardecer',no:'Sin cielo'})}</select></label><label class="f" for="m3TR">Árboles<select id="m3TR" data-k="trees">${opt(['real','simple'],st.trees,{real:'Realistas',simple:'Simples'})}</select></label></div><label class="chk" style="margin-top:8px"><input type="checkbox" id="m3PP" ${st.people!==false?'checked':''}> Persona a escala junto al acceso</label><p class="hint">Cada espacio puede tener su propio acabado (aquí al elegirlo, o en Zonificación). Las texturas se cargan solo al usarlas.${ASSET_FAIL?' <b>'+esc(assetWhy())+'</b>':''}</p></div>`));
+  if(st.mat==='real'){viewC.appendChild(H(`<div><div class="fields" style="margin-top:10px"><label class="f" for="m3WM">Muros<select id="m3WM" data-k="wallMat">${opt(MAT_WALL,st.wallMat)}</select></label><label class="f" for="m3RM">Azotea<select id="m3RM" data-k="roofMat">${opt(MAT_ROOF,st.roofMat)}</select></label><label class="f" for="m3PM">Techo inclinado<select id="m3PM" data-k="roofPitchMat" ${st.roof==='flat'?'disabled':''} title="Se usa con techo de dos aguas o un agua (en Acabado del modelo)">${opt(['teja','madera','concreto'],st.roofPitchMat)}</select></label><label class="f" for="m3GM">Terreno<select id="m3GM" data-k="groundMat">${opt(['tierra','pasto','adoquin','banqueta'],st.groundMat)}</select></label><label class="f" for="m3SK">Cielo<select id="m3SK" data-k="skyImg">${opt(['auto','dia','tarde','no'],st.skyImg,{auto:'Según la hora',dia:'Día',tarde:'Atardecer',no:'Sin cielo'})}</select></label><label class="f" for="m3TR">Árboles<select id="m3TR" data-k="trees">${opt(['real','simple'],st.trees,{real:'Realistas',simple:'Simples'})}</select></label></div><label class="chk" style="margin-top:8px"><input type="checkbox" id="m3PP" ${st.people!==false?'checked':''}> Persona a escala junto al acceso</label><p class="hint">Muros, azotea y terreno cambian todo el modelo; cada espacio también puede tener su propio acabado de muros y de azotea (con Pintar (B), al elegirlo aquí o en Zonificación). El techo inclinado se activa al elegir Techo: Dos aguas o Un agua. Las texturas se cargan solo al usarlas.${ASSET_FAIL?' <b>'+esc(assetWhy())+'</b>':''}</p>${ASSET_FAIL&&ASSET_WHY==='server'?'<button class="btn sm" type="button" id="m3Retry">Buscar las texturas de nuevo</button>':''}</div>`));
+    const rt=$('#m3Retry',viewC);if(rt)rt.onclick=()=>{toast('Buscando las texturas…');assetProbe(true)};
     $$('select[data-k]',viewC).forEach(x=>x.onchange=()=>{st[x.dataset.k]=x.value;changed();rebuild()});$('#m3PP',viewC).onchange=e=>{st.people=e.target.checked;changed();rebuild()}}
-  const modC=styleCard('Acabado del modelo',st,[['walls','Opacidad de muros','range',[0.15,1,0.05]],['edges','Contornos','check'],['roof','Techo','select',[['flat','Plano'],['gable','Dos aguas'],['shed','Un agua']]],['pitch','Pendiente del techo °','range',[5,45,1]],['eave','Alero m','range',[0,1.5,0.05]],['quality','Calidad','select',[['auto','Automática'],['alta','Alta'],['baja','Ligera (celulares viejos)']]]],()=>rebuild(),{open:true});
+  const modC=styleCard('Acabado del modelo',st,[['walls','Opacidad de muros','range',[0.15,1,0.05]],['edges','Contornos','check'],['roof','Techo','select',[['flat','Plano'],['gable','Dos aguas'],['shed','Un agua']]],['pitch','Pendiente del techo °','range',[5,45,1]],['eave','Alero m','range',[0,1.5,0.05]],['quality','Calidad','select',[['auto','Automática'],['alta','Alta'],['baja','Ligera (celulares viejos)']]]],()=>{rebuild();const pm=$('#m3PM',viewC);if(pm)pm.disabled=st.roof==='flat'},{open:true});
   const impC=H(`<details class="card sty" id="m3Imp"><summary><h3>Modelo importado</h3></summary><div id="m3ImpIn"></div></details>`);
   pn.append(selC,viewC,sunC,windC,modC,impC);
   function renderImp(){const el=$('#m3ImpIn',impC);const I=M3IMPORT;el.innerHTML=`<p class="hint" style="margin-top:0">${I.meshes.length?`${I.meshes.length} modelo(s) cargado(s). No se guarda en el proyecto: vuelve a abrirlo la próxima vez.`:'Exporta desde SketchUp, Revit o Rhino en OBJ o STL y ábrelo aquí para ver sus sombras y el viento.'}</p>
@@ -3032,10 +3324,11 @@ view('modelo','09','3D',app=>{
   loadLib('three').then(()=>{if(!document.body.contains(host))return;host.innerHTML='';rebuild()}).catch(e=>{host.innerHTML=`<p class="hint">${esc(e.message)}</p>`});
 },[
   {t:'Modelo 3D',d:'Tu zonificación se levanta en 3D con las alturas de cada espacio. Lo que dibujes o cambies aquí se actualiza en todo el proyecto: zonificación, fachadas, áreas, normativa y láminas.'},
-  {sel:'#m3Tools',t:'Herramientas como en SketchUp',d:'<b>Espacio</b> seleccionar · <b>H</b> mano · <b>L</b> línea · <b>A</b> arco · <b>R</b> rectángulo · <b>P</b> empujar/tirar · <b>M</b> mover (Ctrl copia) · <b>F</b> equidistancia · <b>T</b> medir · <b>E</b> borrar · <b>G</b> agrupar. Mientras usas una herramienta, escribe una medida (por ejemplo <b>3.5</b> o <b>4,3</b>) y pulsa Enter. Línea, Arco, Equidistancia y Agrupar aparecen en el modo completo.'},
+  {sel:'#m3Tools',t:'Herramientas',d:'<b>Espacio</b> seleccionar · <b>H</b> mano · <b>L</b> línea · <b>A</b> arco · <b>R</b> rectángulo · <b>C</b> círculo · <b>P</b> empujar/tirar · <b>M</b> mover (Ctrl copia) · <b>Q</b> rotar · <b>F</b> equidistancia · <b>T</b> medir · <b>B</b> pintar · <b>E</b> borrar · <b>G</b> agrupar. Mientras usas una herramienta escribe una medida (por ejemplo <b>3.5</b>, <b>4,3</b> o <b>-2</b> para el otro lado) y pulsa Enter. Las líneas de colores te ayudan a alinear: rojo y verde son los ejes del terreno, azul la vertical y magenta paralela o perpendicular a una arista. Línea, Arco, Círculo, Rotar, Equidistancia y Agrupar aparecen en el modo completo.'},
+  {sel:'#m3Board .fig',t:'Objetos y forma',d:'Cada espacio es un objeto: con Seleccionar un clic lo elige y arrastrar hace un recuadro (hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca). <b>Doble clic</b> entra a editar su forma: ahí Mover estira esquinas y muros, y Borrar quita una esquina. Borrar la línea que separa dos espacios los une. El <b>clic derecho</b> abre un menú (en el celular, mantén presionado).'},
   {sel:'.m3cube',t:'Cubo de orientación',d:'Te dice desde dónde estás mirando. Toca una cara, una arista o una esquina para ir a esa vista; arrástralo para girar. La casita regresa a la vista inicial. Las letras N, S, E y O muestran el norte real de tu terreno.'},
-  {sel:'#m3Board .board-bar',t:'Pantalla completa',d:'Pulsa <b>O</b> para modelar en pantalla completa e <b>I</b> para salir. Gira con el botón central del mouse, desplaza con Mayús + botón central o clic derecho, acerca con la rueda (hacia donde apuntas) y encuadra todo con <b>Mayús+Z</b>.'},
-  {sel:'#m3Sel',t:'Información de lo elegido',d:'Con Seleccionar toca un volumen para ver y cambiar su nombre, zona, altura, desplante y acabado. Doble clic en un grupo para editarlo por dentro; Esc para salir.'},
+  {sel:'#m3Board .board-bar',t:'Pantalla completa',d:'Pulsa <b>O</b> para modelar en pantalla completa e <b>I</b> para salir. Gira con el botón central del mouse, desplaza con Mayús + botón central o arrastrando con el botón derecho, acerca con la rueda (hacia donde apuntas) y encuadra todo con <b>Mayús+Z</b>.'},
+  {sel:'#m3Sel',t:'Información de lo elegido',d:'Con Seleccionar toca un volumen para ver y cambiar su nombre, zona, altura, desplante y acabados de muros y azotea. Doble clic en un grupo para editarlo por dentro; Esc para salir.'},
   {sel:'#m3Sun',t:'Sol real',d:'Elige mes y hora: la luz y las sombras salen de la posición real del sol en tu ciudad.'}]);
 
 /* ================= 10 · Fachadas y cortes ================= */
@@ -3803,7 +4096,7 @@ function openReport(){const vw=current?current.label:'';const b=H(`<div><p style
   setTimeout(()=>$('#rpW',b).focus(),50)}
 function shortcuts(){modal('Atajos de teclado',H(`<div><div class="tbl-wrap"><table class="t"><tbody>
   ${[['Ctrl + Z','Deshacer'],['Ctrl + Y  /  Ctrl + Shift + Z','Rehacer'],['Ctrl + S','Guardar proyecto'],['Ctrl + O','Abrir archivo'],['Ctrl + E','Exportar'],['Ctrl + rueda / dos dedos','Acercar y alejar dibujos'],['Arrastrar el fondo','Mover la vista'],['Flechas (Shift = más)','Mover lo seleccionado'],['Supr','Borrar lo seleccionado'],['Ctrl + D','Duplicar'],['Esc','Soltar selección o cancelar'],['V R P T F C','Herramientas de zonificación'],['[  ]','Mandar atrás o al frente (lámina)']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div><h3 style="margin:14px 0 6px">Modelo 3D</h3><div class="tbl-wrap"><table class="t"><tbody>
-  ${[['Espacio','Seleccionar (Mayús + clic suma, Ctrl + A todo)'],['H','Mano: desplazar la vista'],['L  /  A','Línea / arco de dos puntos'],['R','Rectángulo'],['P','Empujar o tirar (Ctrl crea un volumen encima)'],['M','Mover (Ctrl copia; luego 3x repite)'],['F','Equidistancia'],['T','Medir y dejar guías'],['E','Borrar'],['G  /  Mayús + G','Agrupar / desagrupar'],['Doble clic','Entrar a un grupo (Esc para salir)'],['Escribir 3.5  o  4,3  y Enter','Medida exacta'],['→  ←  ↑','Fijar eje rojo, verde o azul'],['Botón central / Mayús + central','Girar / desplazar'],['Rueda','Acercar hacia el puntero'],['Mayús + Z','Ver todo'],['O  /  I','Entrar / salir de pantalla completa']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div></div>`))}
+  ${[['Espacio','Seleccionar (Mayús + clic alterna, Ctrl + clic suma, Ctrl + A todo)'],['Arrastrar con Seleccionar','Recuadro: hacia la derecha elige lo de adentro; hacia la izquierda lo que toca'],['Clic derecho','Menú (en el celular, mantener presionado)'],['H','Mano: desplazar la vista'],['L  /  A','Línea / arco de dos puntos (tangente a la línea anterior)'],['R','Rectángulo (sobre un muro: ventana o puerta)'],['C','Círculo; escribe 6s para un hexágono'],['P','Empujar o tirar (Ctrl crea un volumen encima; doble clic repite)'],['M','Mover (Ctrl copia; luego 3x repite o /3 reparte)'],['Q','Rotar (se pega cada 15°; Ctrl copia)'],['F','Equidistancia'],['T','Medir y dejar guías'],['B','Pintar (Alt + clic copia un acabado)'],['E','Borrar (sobre la línea entre dos espacios, los une)'],['G  /  Mayús + G','Agrupar / desagrupar'],['Doble clic','Editar la forma o entrar a un grupo (Esc para salir)'],['Escribir 3.5  o  4,3  y Enter','Medida exacta (-2 va hacia el otro lado)'],['→  ←  ↑','Fijar eje rojo, verde o azul'],['Botón central / Mayús + central','Girar / desplazar'],['Rueda','Acercar hacia el puntero'],['Mayús + Z','Ver todo'],['O  /  I','Entrar / salir de pantalla completa']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div></div>`))}
 function updModeMenu(){const b=$('#mMode');if(b)b.textContent=isSimple()?'Cambiar a modo completo':'Cambiar a modo sencillo'}
 function boot(){
   restoreState();applyPrefs();applyMode();updModeMenu();$('#btnBell').onclick=openBell;$$('[data-mode-set]').forEach(b=>b.onclick=()=>{setMode(b.dataset.modeSet);updModeMenu()});buildRail();syncDerived();updAvatar();$('#btnProfile').onclick=()=>settings('perfil');const setTopH=()=>document.documentElement.style.setProperty('--top-h',$('.top').offsetHeight+'px');setTopH();addEventListener('resize',setTopH);
