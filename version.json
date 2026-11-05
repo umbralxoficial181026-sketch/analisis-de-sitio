@@ -1,21 +1,15 @@
 {
- "version": "1.2.1",
- "date": "2026-11-01",
+ "version": "1.2.2",
+ "date": "2026-11-04",
  "notes": [
-  "Modelado con lógica de objetos: cada espacio es un objeto completo; con doble clic entras a editar su forma y ahí Mover estira esquinas y muros, y Borrar quita una esquina.",
-  "Selección con recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. El clic derecho abre un menú (en el celular, mantén presionado).",
-  "Herramientas nuevas: Rotar (Q) con transportador que se pega cada 15°, Círculo y polígono (C; escribe 6s para un hexágono), Pintar (B) para muros y azoteas, y Orbitar.",
-  "El imán ahora te ayuda a alinear: líneas punteadas hacia puntos que ya tocaste, paralela y perpendicular a una arista (en magenta) e intersección de guías.",
-  "Un rectángulo dibujado sobre un muro crea una ventana, o una puerta si llega al piso. El arco se pega tangente a la línea anterior.",
-  "Borrar la línea que separa dos espacios los une en uno solo. Doble clic con Empujar/Tirar repite la última medida.",
-  "Las medidas negativas van hacia el otro lado (-2) y después de copiar puedes escribir /3 para repartir las copias."
+  "Capas en el 3D: botones para prender o apagar el recorrido del sol, las sombras y el viento cada uno por separado o todo a la vez.",
+  "Reloj del sol dentro del 3D (también en pantalla completa): cambia el mes y la hora, y «Recorrer el día» mueve el sol para ver cómo avanzan las sombras.",
+  "Recorrido del sol rediseñado: solsticios de verano e invierno y equinoccio con colores, el día elegido resaltado, líneas de cada hora con su número, alturas de 30° y 60° y el sol con brillo y su rayo hacia el modelo.",
+  "Viento rediseñado: estelas suaves que siguen el aire y rodean los volúmenes, más cálidas donde se acelera, y una flecha en el suelo con la dirección y la velocidad.",
+  "El terreno ya no se ve como cuadrícula repetida y la calle sigue hasta el horizonte con su línea central."
  ],
  "fixes": [
-  "Si la página se abrió mientras se publicaba, las texturas se vuelven a buscar solas y se encienden sin recargar; también hay un botón para buscarlas de nuevo.",
-  "El imán ya no se pega a esquinas o aristas que quedan escondidas detrás de un muro o un árbol.",
-  "Empujar un muro visto de frente ya no salta, y escribir una medida negativa ya no sube la altura.",
-  "El arco con la flecha tecleada se curva hacia afuera, y un eje fijado con las flechas se suelta al terminar cada tramo.",
-  "Mover toma el objeto aunque hagas clic justo en su esquina, y el giro con inercia funciona también en equipos lentos."
+  "Las líneas del sol y del viento se veían delgadas y básicas; ahora tienen grosor real y bordes suaves en cualquier pantalla."
  ],
  "aviso": null
 }
