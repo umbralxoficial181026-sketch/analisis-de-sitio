@@ -1,12 +1,14 @@
 {
- "version": "1.5.0",
- "date": "2026-11-05",
+ "version": "1.6.0",
+ "date": "2026-11-06",
  "notes": [
-  "Nuevo apartado Medio físico: macrolocalización automática (México, tu estado y tu terreno), topografía con curvas de nivel, pendiente, perfil y corte y relleno, tipo de suelo con cimentación sugerida, riesgos naturales y catálogo de flora y",
-  "Datos de la región por municipio: para La Paz, riesgos (huracanes, inundación, sismo, calor, sequía…) con su fuente oficial y un catálogo de vegetación nativa. Todo es editable.",
-  "Nuevo apartado Bioclimática: carta de Givoni con las horas del año que resuelve cada estrategia, tablas de Mahoney con sus recomendaciones de diseño y grados-día de calefacción y enfriamiento.",
-  "Sol: mapa de horas de sol directo en el terreno para los solsticios y el equinoccio, con la sombra de vecinos, árboles y tu proyecto.",
-  "Documento: las plantillas ya traen todo lo nuevo (mapas, topografía, Givoni, Mahoney, horas de sol, riesgos, suelo, flora y fauna) y el Excel suma esas hojas."
+  "Nuevo apartado Cuadro de áreas: superficies por departamento y nivel, apilamiento, m² por unidad, eficiencia, estacionamiento, costo paramétrico y cumplimiento del predio. Se calcula con el programa, antes de dibujar.",
+  "Programa tipo por departamentos: hotel, vivienda multifamiliar, oficinas, escuela, clínica, restaurante, plaza comercial y casa, con valores de referencia que tú ajustas. Está en Programa, en Cuadro de áreas y al empezar.",
+  "Planta tipo: en Zonificación › Niveles… copia un nivel dibujado, con sus puertas, ventanas y relaciones, a los niveles que quieras.",
+  "Estacionamiento con la regla de tu reglamento (por unidad, por m² construidos o un número fijo) y un botón para ponerlo en el programa, en superficie o en sótano. Normativa usa esos cajones.",
+  "Documento: nueva plantilla «Proyecto de gran escala» y datos nuevos (cuadro de áreas, apilamiento, indicadores, estacionamiento, costo y predio). El Excel suma esas hojas.",
+  "Los reportes rápidos en Word, PowerPoint y PDF ya incluyen medio físico, bioclimática, horas de sol y, en proyectos grandes, el cuadro de áreas.",
+  "Pulido general: la barra de apartados cabe completa en computadora (en celular se desliza con las orillas difuminadas), la tabla del programa ya no corta el total y el reporte de Normativa explica qué contiene."
  ],
  "fixes": [],
  "aviso": null
