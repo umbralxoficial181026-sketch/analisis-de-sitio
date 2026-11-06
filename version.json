@@ -1,14 +1,13 @@
 {
- "version": "1.6.0",
+ "version": "2.0.0",
  "date": "2026-11-06",
  "notes": [
-  "Nuevo apartado Cuadro de áreas: superficies por departamento y nivel, apilamiento, m² por unidad, eficiencia, estacionamiento, costo paramétrico y cumplimiento del predio. Se calcula con el programa, antes de dibujar.",
-  "Programa tipo por departamentos: hotel, vivienda multifamiliar, oficinas, escuela, clínica, restaurante, plaza comercial y casa, con valores de referencia que tú ajustas. Está en Programa, en Cuadro de áreas y al empezar.",
-  "Planta tipo: en Zonificación › Niveles… copia un nivel dibujado, con sus puertas, ventanas y relaciones, a los niveles que quieras.",
-  "Estacionamiento con la regla de tu reglamento (por unidad, por m² construidos o un número fijo) y un botón para ponerlo en el programa, en superficie o en sótano. Normativa usa esos cajones.",
-  "Documento: nueva plantilla «Proyecto de gran escala» y datos nuevos (cuadro de áreas, apilamiento, indicadores, estacionamiento, costo y predio). El Excel suma esas hojas.",
-  "Los reportes rápidos en Word, PowerPoint y PDF ya incluyen medio físico, bioclimática, horas de sol y, en proyectos grandes, el cuadro de áreas.",
-  "Pulido general: la barra de apartados cabe completa en computadora (en celular se desliza con las orillas difuminadas), la tabla del programa ya no corta el total y el reporte de Normativa explica qué contiene."
+  "Nuevo modo Forma libre en el 3D: un modelador completo con aristas y caras en cualquier plano. Una línea parte una cara y un contorno plano cerrado se vuelve cara solo.",
+  "Empujar/Tirar en cualquier cara, también inclinadas; hacia adentro hasta atravesar abre un hueco (ventanas en muros). Ctrl deja la cara de arranque y doble clic repite la medida.",
+  "Herramientas nuevas: Escala, Sígueme (barrer un perfil por un camino) y Equidistancia, rectángulo, círculo y arco sobre cualquier cara. Mover, rotar y escalar estiran caras, aristas y vértices.",
+  "Grupos y componentes (copias que cambian juntas): doble clic para editar por dentro, explotar y hacer único. Etiquetas con color y un esquema para ocultar y encontrar objetos.",
+  "Convertir en espacio: lo que modeles libre se vuelve local del programa (zonificación, cuadro de áreas y normativa). OBJ, STL, DAE, DXF e IFC exportan también la forma libre.",
+  "La caja de medidas hace cuentas (3.5+0.15, 4/3) y los avisos ya no estorban los clics en el visor."
  ],
  "fixes": [],
  "aviso": null

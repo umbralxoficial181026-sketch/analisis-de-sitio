@@ -154,7 +154,7 @@ table.t td.txt{font-family:var(--f-body);text-align:left;white-space:normal}
 .strat div{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;font-size:12.5px;align-items:start;padding-bottom:6px;border-bottom:1px solid var(--line-2)}
 .strat b{font-family:var(--f-display);font-size:14px;text-transform:uppercase}
 
-.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:9px 14px;border-radius:var(--r);font-size:13px;font-weight:600;z-index:50;max-width:calc(100% - 32px)}
+.toast{pointer-events:none;position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:9px 14px;border-radius:var(--r);font-size:13px;font-weight:600;z-index:50;max-width:calc(100% - 32px)}
 .drop{border:1.5px dashed var(--line);border-radius:var(--r);padding:12px;text-align:center;font-size:12.5px;color:var(--muted);cursor:pointer}
 .drop:hover,.drop.on{border-color:var(--accent);color:var(--ink)}
 .badge{font-family:var(--f-mono);font-size:10.5px;padding:1px 6px;border-radius:4px;background:var(--sun-soft);color:var(--ink);font-weight:500}
@@ -455,6 +455,9 @@ body:has(.board.m3full){overflow:hidden}
 .apr-v{font-size:12px;color:var(--muted);margin-top:4px}.apr-v b{color:var(--ink)}.apr-m{font-size:12px;margin-top:4px;line-height:1.4}
 @media (max-width:640px){.t.ptp th:nth-child(2),.t.ptp td:nth-child(2){display:none}}
 @media (max-width:640px){.t.acost th:nth-child(3),.t.acost td:nth-child(3),.t.acost th:nth-child(5),.t.acost td:nth-child(5){display:none}}
+.ftag{display:grid;grid-template-columns:30px minmax(0,1fr) auto auto;gap:6px;align-items:center;margin-top:6px}.ftag input[type=color]{width:30px;height:30px;padding:2px;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+.ftag input[data-tn]{min-width:0;border:1px solid var(--line);border-radius:6px;padding:5px 8px;background:var(--bg);color:var(--ink);font:inherit}.ftag .chk{margin:0;white-space:nowrap}
+.fol{max-height:260px}.fol .li small{font-size:11px;margin-left:4px}.m3mode{margin-right:6px}
 .lvcopy{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.lvcopy>b{font-size:13px}
 
 /* normativa por paquetes */
@@ -553,7 +556,7 @@ body:has(.board.m3full){overflow:hidden}
 .ffh{margin:4px 0 6px;font-family:var(--f-display);font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.ffh:not(:first-child){margin-top:16px}
 table.t.ff input,table.t.ff select{width:140px;text-align:left;font-family:var(--f-body)}table.t.ff td{white-space:normal}
 </style>
-<script id="app-meta" type="application/json">{"version":"1.6.0","date":"2026-11-06","channel":"web","support":{"email":"","url":""},"notes":["Nuevo apartado Cuadro de áreas: superficies por departamento y nivel, apilamiento, m² por unidad, eficiencia, estacionamiento, costo paramétrico y cumplimiento del predio. Se calcula con el programa, antes de dibujar.","Programa tipo por departamentos: hotel, vivienda multifamiliar, oficinas, escuela, clínica, restaurante, plaza comercial y casa, con valores de referencia que tú ajustas. Está en Programa, en Cuadro de áreas y al empezar.","Planta tipo: en Zonificación › Niveles… copia un nivel dibujado, con sus puertas, ventanas y relaciones, a los niveles que quieras.","Estacionamiento con la regla de tu reglamento (por unidad, por m² construidos o un número fijo) y un botón para ponerlo en el programa, en superficie o en sótano. Normativa usa esos cajones.","Documento: nueva plantilla «Proyecto de gran escala» y datos nuevos (cuadro de áreas, apilamiento, indicadores, estacionamiento, costo y predio). El Excel suma esas hojas.","Los reportes rápidos en Word, PowerPoint y PDF ya incluyen medio físico, bioclimática, horas de sol y, en proyectos grandes, el cuadro de áreas.","Pulido general: la barra de apartados cabe completa en computadora (en celular se desliza con las orillas difuminadas), la tabla del programa ya no corta el total y el reporte de Normativa explica qué contiene."],"fixes":[],"history":[{"version":"1.5.0","date":"2026-11-05","notes":["Nuevo apartado Medio físico: macrolocalización automática, topografía con curvas de nivel, pendiente, perfil y corte y relleno, tipo de suelo con cimentación sugerida, riesgos naturales y catálogo de flora y fauna con fotos.","Datos de la región por municipio: para La Paz, riesgos (huracanes, inundación, sismo, calor, sequía…) con su fuente oficial y un catálogo de vegetación nativa. Todo es editable.","Nuevo apartado Bioclimática: carta de Givoni con las horas del año que resuelve cada estrategia, tablas de Mahoney con sus recomendaciones de diseño y grados-día de calefacción y enfriamiento.","Sol: mapa de horas de sol directo en el terreno para los solsticios y el equinoccio, con la sombra de vecinos, árboles y tu proyecto.","Documento: las plantillas ya traen todo lo nuevo (mapas, topografía, Givoni, Mahoney, horas de sol, riesgos, suelo, flora y fauna) y el Excel suma esas hojas."]},{"version":"1.4.0","date":"2026-11-05","notes":["Nuevo apartado 14 · Documento: arma tu metodología con capítulos y preguntas guía, y descárgala en Word con formato APA 7.","Plantillas incluidas: metodología de diseño completa (usuario, factibilidad, marcos físico, urbano, social, económico, legal y técnico, programa, zonificación y concepto), análisis de sitio y memoria descriptiva. Guarda la tuya.","Espacios para tus fotos en cada marco (una o varias por renglón, con pie y fuente), tablas para llenar con columnas de imagen y pegado desde Excel.","Datos del proyecto que se actualizan solos: textos del terreno y del clima, dibujos, tablas, marco legal con artículos y la ficha técnica del mobiliario con la foto de cada mueble (se sube en Programa).","Word APA 7: portada de estudiante o de escuela con logo, índice con número de página, títulos por nivel, doble espacio y sangría, figuras y tablas numeradas con nota, recuadros para las fotos que falten y referencias con sangría francesa.","Referencias: armador APA 7 (libro, artículo, página web, ley o reglamento, tesis), botón «Citar» y revisión de citas sin referencia antes de entregar.","Vista previa del documento como hoja de Word y lista de pendientes (secciones vacías, fotos que faltan, fuentes de figuras).","Corregido: Las referencias ya llevan cursivas donde APA las pide (en la bibliografía, el Excel y el Word)."]},{"version":"1.3.0","date":"2026-11-04","notes":["Proyectos grandes: la página aguanta programas de 1,000 espacios o más (hoteles, hospitales, conjuntos) y cada apartado abre al instante.","Niveles sin límite: sótanos y pisos con nombre, desplante y altura propios. En Zonificación eliges el nivel que dibujas y ves el de abajo punteado para alinear muros; «Niveles…» los ordena y apila todo automáticamente.","Cantidad en el programa: un espacio puede repetirse (por ejemplo, 120 habitaciones tipo) y el área total, los coeficientes, la tabla y las exportaciones lo multiplican solos.","Relaciones por zonas: con más de 150 espacios la matriz y el diagrama se resumen por zona; toca una zona para ver y editar su detalle. El Excel trae además la lista completa de relaciones.","Normativa por municipio: elige el reglamento de tu estado y municipio y el uso de suelo de tu predio; los mínimos, el COS, el CUS y el CAS se llenan solos y cada valor dice de qué artículo sale. Primer paquete: La Paz, Baja California Sur.","Guardado grande: las fotos e imágenes se guardan aparte en tu navegador, así los proyectos con muchas fotos ya no se llenan; el archivo del proyecto (.json) las lleva dentro para pasarlo a otra computadora.","Listas largas por partes (con «Mostrar más») y tablas para el documento resumidas por zona cuando el programa es grande; la lista completa siempre sale en Excel y Word.","Corregido: Con cientos de espacios la página tardaba varios segundos en abrir Relaciones, Normativa y Recursos; ahora tarda milésimas.","Corregido: En proyectos muy grandes algunas imágenes para Word y PowerPoint salían en blanco por ser demasiado altas; ahora se ajustan solas.","Corregido: El total de m² cubiertos en Relaciones no contaba los espacios repetidos.","Corregido: La volumetría de Concepto dibujaba también los muros escondidos entre espacios vecinos; ahora dibuja solo lo que se ve y es mucho más ligera."]},{"version":"1.2.2","date":"2026-11-04","notes":["Capas en el 3D: botones para prender o apagar el recorrido del sol, las sombras y el viento cada uno por separado o todo a la vez.","Reloj del sol dentro del 3D (también en pantalla completa): cambia el mes y la hora, y «Recorrer el día» mueve el sol para ver cómo avanzan las sombras.","Recorrido del sol rediseñado: solsticios de verano e invierno y equinoccio con colores, el día elegido resaltado, líneas de cada hora con su número, alturas de 30° y 60° y el sol con brillo y su rayo hacia el modelo.","Viento rediseñado: estelas suaves que siguen el aire y rodean los volúmenes, más cálidas donde se acelera, y una flecha en el suelo con la dirección y la velocidad.","El terreno ya no se ve como cuadrícula repetida y la calle sigue hasta el horizonte con su línea central.","Corregido: Las líneas del sol y del viento se veían delgadas y básicas; ahora tienen grosor real y bordes suaves en cualquier pantalla."]},{"version":"1.2.1","date":"2026-11-01","notes":["Modelado con lógica de objetos: cada espacio es un objeto completo; con doble clic entras a editar su forma y ahí Mover estira esquinas y muros, y Borrar quita una esquina.","Selección con recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. El clic derecho abre un menú (en el celular, mantén presionado).","Herramientas nuevas: Rotar (Q) con transportador que se pega cada 15°, Círculo y polígono (C; escribe 6s para un hexágono), Pintar (B) para muros y azoteas, y Orbitar.","El imán ahora te ayuda a alinear: líneas punteadas hacia puntos que ya tocaste, paralela y perpendicular a una arista (en magenta) e intersección de guías.","Un rectángulo dibujado sobre un muro crea una ventana, o una puerta si llega al piso. El arco se pega tangente a la línea anterior.","Borrar la línea que separa dos espacios los une en uno solo. Doble clic con Empujar/Tirar repite la última medida.","Las medidas negativas van hacia el otro lado (-2) y después de copiar puedes escribir /3 para repartir las copias."],"fixes":["Si la página se abrió mientras se publicaba, las texturas se vuelven a buscar solas y se encienden sin recargar; también hay un botón para buscarlas de nuevo.","El imán ya no se pega a esquinas o aristas que quedan escondidas detrás de un muro o un árbol.","Empujar un muro visto de frente ya no salta, y escribir una medida negativa ya no sube la altura.","El arco con la flecha tecleada se curva hacia afuera, y un eje fijado con las flechas se suelta al terminar cada tramo.","Mover toma el objeto aunque hagas clic justo en su esquina, y el giro con inercia funciona también en equipos lentos."]},{"version":"1.2.0","date":"2026-11-01","notes":["Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).","Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.","Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.","Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.","Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.","Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.","Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."],"fixes":["Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.","La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."]},{"version":"1.1.0","date":"2026-11-01","notes":["Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.","Fachadas y cortes con acabados realistas, árboles de la región y figura humana.","Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).","Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.","Carta solar con estilos, letra a elegir y fondo de color o transparente.","Campanita de notificaciones y notas de actualización en el menú.","Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.","Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."],"fixes":["Las imágenes exportadas (PNG, PDF y SVG) salían con otra letra; ahora usan la misma tipografía de la página."]}]}</script>
+<script id="app-meta" type="application/json">{"version":"2.0.0","date":"2026-11-06","channel":"web","support":{"email":"","url":""},"notes":["Nuevo modo Forma libre en el 3D: un modelador completo con aristas y caras en cualquier plano. Una línea parte una cara y un contorno plano cerrado se vuelve cara solo.","Empujar/Tirar en cualquier cara, también inclinadas; hacia adentro hasta atravesar abre un hueco (ventanas en muros). Ctrl deja la cara de arranque y doble clic repite la medida.","Herramientas nuevas: Escala, Sígueme (barrer un perfil por un camino) y Equidistancia, rectángulo, círculo y arco sobre cualquier cara. Mover, rotar y escalar estiran caras, aristas y vértices.","Grupos y componentes (copias que cambian juntas): doble clic para editar por dentro, explotar y hacer único. Etiquetas con color y un esquema para ocultar y encontrar objetos.","Convertir en espacio: lo que modeles libre se vuelve local del programa (zonificación, cuadro de áreas y normativa). OBJ, STL, DAE, DXF e IFC exportan también la forma libre.","La caja de medidas hace cuentas (3.5+0.15, 4/3) y los avisos ya no estorban los clics en el visor."],"fixes":[],"history":[{"version":"1.6.0","date":"2026-11-06","notes":["Nuevo apartado Cuadro de áreas: superficies por departamento y nivel, apilamiento, m² por unidad, eficiencia, estacionamiento, costo paramétrico y cumplimiento del predio. Se calcula con el programa, antes de dibujar.","Programa tipo por departamentos: hotel, vivienda multifamiliar, oficinas, escuela, clínica, restaurante, plaza comercial y casa, con valores de referencia que tú ajustas. Está en Programa, en Cuadro de áreas y al empezar.","Planta tipo: en Zonificación › Niveles… copia un nivel dibujado, con sus puertas, ventanas y relaciones, a los niveles que quieras.","Estacionamiento con la regla de tu reglamento (por unidad, por m² construidos o un número fijo) y un botón para ponerlo en el programa, en superficie o en sótano. Normativa usa esos cajones.","Documento: nueva plantilla «Proyecto de gran escala» y datos nuevos (cuadro de áreas, apilamiento, indicadores, estacionamiento, costo y predio). El Excel suma esas hojas.","Los reportes rápidos en Word, PowerPoint y PDF ya incluyen medio físico, bioclimática, horas de sol y, en proyectos grandes, el cuadro de áreas.","Pulido general: la barra de apartados cabe completa en computadora (en celular se desliza con las orillas difuminadas), la tabla del programa ya no corta el total y el reporte de Normativa explica qué contiene."]},{"version":"1.5.0","date":"2026-11-05","notes":["Nuevo apartado Medio físico: macrolocalización automática, topografía con curvas de nivel, pendiente, perfil y corte y relleno, tipo de suelo con cimentación sugerida, riesgos naturales y catálogo de flora y fauna con fotos.","Datos de la región por municipio: para La Paz, riesgos (huracanes, inundación, sismo, calor, sequía…) con su fuente oficial y un catálogo de vegetación nativa. Todo es editable.","Nuevo apartado Bioclimática: carta de Givoni con las horas del año que resuelve cada estrategia, tablas de Mahoney con sus recomendaciones de diseño y grados-día de calefacción y enfriamiento.","Sol: mapa de horas de sol directo en el terreno para los solsticios y el equinoccio, con la sombra de vecinos, árboles y tu proyecto.","Documento: las plantillas ya traen todo lo nuevo (mapas, topografía, Givoni, Mahoney, horas de sol, riesgos, suelo, flora y fauna) y el Excel suma esas hojas."]},{"version":"1.4.0","date":"2026-11-05","notes":["Nuevo apartado 14 · Documento: arma tu metodología con capítulos y preguntas guía, y descárgala en Word con formato APA 7.","Plantillas incluidas: metodología de diseño completa (usuario, factibilidad, marcos físico, urbano, social, económico, legal y técnico, programa, zonificación y concepto), análisis de sitio y memoria descriptiva. Guarda la tuya.","Espacios para tus fotos en cada marco (una o varias por renglón, con pie y fuente), tablas para llenar con columnas de imagen y pegado desde Excel.","Datos del proyecto que se actualizan solos: textos del terreno y del clima, dibujos, tablas, marco legal con artículos y la ficha técnica del mobiliario con la foto de cada mueble (se sube en Programa).","Word APA 7: portada de estudiante o de escuela con logo, índice con número de página, títulos por nivel, doble espacio y sangría, figuras y tablas numeradas con nota, recuadros para las fotos que falten y referencias con sangría francesa.","Referencias: armador APA 7 (libro, artículo, página web, ley o reglamento, tesis), botón «Citar» y revisión de citas sin referencia antes de entregar.","Vista previa del documento como hoja de Word y lista de pendientes (secciones vacías, fotos que faltan, fuentes de figuras).","Corregido: Las referencias ya llevan cursivas donde APA las pide (en la bibliografía, el Excel y el Word)."]},{"version":"1.3.0","date":"2026-11-04","notes":["Proyectos grandes: la página aguanta programas de 1,000 espacios o más (hoteles, hospitales, conjuntos) y cada apartado abre al instante.","Niveles sin límite: sótanos y pisos con nombre, desplante y altura propios. En Zonificación eliges el nivel que dibujas y ves el de abajo punteado para alinear muros; «Niveles…» los ordena y apila todo automáticamente.","Cantidad en el programa: un espacio puede repetirse (por ejemplo, 120 habitaciones tipo) y el área total, los coeficientes, la tabla y las exportaciones lo multiplican solos.","Relaciones por zonas: con más de 150 espacios la matriz y el diagrama se resumen por zona; toca una zona para ver y editar su detalle. El Excel trae además la lista completa de relaciones.","Normativa por municipio: elige el reglamento de tu estado y municipio y el uso de suelo de tu predio; los mínimos, el COS, el CUS y el CAS se llenan solos y cada valor dice de qué artículo sale. Primer paquete: La Paz, Baja California Sur.","Guardado grande: las fotos e imágenes se guardan aparte en tu navegador, así los proyectos con muchas fotos ya no se llenan; el archivo del proyecto (.json) las lleva dentro para pasarlo a otra computadora.","Listas largas por partes (con «Mostrar más») y tablas para el documento resumidas por zona cuando el programa es grande; la lista completa siempre sale en Excel y Word.","Corregido: Con cientos de espacios la página tardaba varios segundos en abrir Relaciones, Normativa y Recursos; ahora tarda milésimas.","Corregido: En proyectos muy grandes algunas imágenes para Word y PowerPoint salían en blanco por ser demasiado altas; ahora se ajustan solas.","Corregido: El total de m² cubiertos en Relaciones no contaba los espacios repetidos.","Corregido: La volumetría de Concepto dibujaba también los muros escondidos entre espacios vecinos; ahora dibuja solo lo que se ve y es mucho más ligera."]},{"version":"1.2.2","date":"2026-11-04","notes":["Capas en el 3D: botones para prender o apagar el recorrido del sol, las sombras y el viento cada uno por separado o todo a la vez.","Reloj del sol dentro del 3D (también en pantalla completa): cambia el mes y la hora, y «Recorrer el día» mueve el sol para ver cómo avanzan las sombras.","Recorrido del sol rediseñado: solsticios de verano e invierno y equinoccio con colores, el día elegido resaltado, líneas de cada hora con su número, alturas de 30° y 60° y el sol con brillo y su rayo hacia el modelo.","Viento rediseñado: estelas suaves que siguen el aire y rodean los volúmenes, más cálidas donde se acelera, y una flecha en el suelo con la dirección y la velocidad.","El terreno ya no se ve como cuadrícula repetida y la calle sigue hasta el horizonte con su línea central.","Corregido: Las líneas del sol y del viento se veían delgadas y básicas; ahora tienen grosor real y bordes suaves en cualquier pantalla."]},{"version":"1.2.1","date":"2026-11-01","notes":["Modelado con lógica de objetos: cada espacio es un objeto completo; con doble clic entras a editar su forma y ahí Mover estira esquinas y muros, y Borrar quita una esquina.","Selección con recuadro: hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca. El clic derecho abre un menú (en el celular, mantén presionado).","Herramientas nuevas: Rotar (Q) con transportador que se pega cada 15°, Círculo y polígono (C; escribe 6s para un hexágono), Pintar (B) para muros y azoteas, y Orbitar.","El imán ahora te ayuda a alinear: líneas punteadas hacia puntos que ya tocaste, paralela y perpendicular a una arista (en magenta) e intersección de guías.","Un rectángulo dibujado sobre un muro crea una ventana, o una puerta si llega al piso. El arco se pega tangente a la línea anterior.","Borrar la línea que separa dos espacios los une en uno solo. Doble clic con Empujar/Tirar repite la última medida.","Las medidas negativas van hacia el otro lado (-2) y después de copiar puedes escribir /3 para repartir las copias."],"fixes":["Si la página se abrió mientras se publicaba, las texturas se vuelven a buscar solas y se encienden sin recargar; también hay un botón para buscarlas de nuevo.","El imán ya no se pega a esquinas o aristas que quedan escondidas detrás de un muro o un árbol.","Empujar un muro visto de frente ya no salta, y escribir una medida negativa ya no sube la altura.","El arco con la flecha tecleada se curva hacia afuera, y un eje fijado con las flechas se suelta al terminar cada tramo.","Mover toma el objeto aunque hagas clic justo en su esquina, y el giro con inercia funciona también en equipos lentos."]},{"version":"1.2.0","date":"2026-11-01","notes":["Modelado en 3D como en SketchUp: Seleccionar (Espacio), Mano (H), Línea (L), Arco (A), Rectángulo (R), Empujar/Tirar (P), Mover (M; Ctrl copia), Equidistancia (F), Medir (T), Borrar (E) y Agrupar (G).","Todo lo que modeles se refleja al instante en la zonificación, las fachadas, las áreas, la normativa y las láminas, y se deshace con Ctrl+Z.","Medidas exactas al teclear (3.5, 4,3 o 350cm) e imán a extremos, puntos medios, aristas y ejes rojo, verde y azul.","Cubo de orientación: toca una cara, arista o esquina para ir a esa vista; el anillo N, S, E, O sigue el norte real de tu terreno.","Pantalla completa para modelar: O para entrar, I para salir, con barra de herramientas flotante.","Navegación más suave: gira alrededor del punto que señalas, acerca hacia el puntero, con inercia; Mayús+Z encuadra todo.","Grupos que se editan por dentro con doble clic, copias en fila escribiendo 3x y panel con los datos de lo que elijas."],"fixes":["Las texturas no cargaban en la página publicada: ahora se avisa la causa y, si falta una imagen, solo ese material se muestra en color.","La vista Frente del 3D mostraba la parte de atrás de la casa y la vista en planta salía girada."]},{"version":"1.1.0","date":"2026-11-01","notes":["Vista realista en 3D: texturas de muros, techos y pisos, cielo según la hora, árboles por especie y persona a escala.","Fachadas y cortes con acabados realistas, árboles de la región y figura humana.","Cada espacio puede tener su propio acabado y cada árbol su especie (mezquite, palma, palo verde o bugambilia).","Diagrama de relaciones con estilos listos (Minimalista, Técnico, Colorido, Presentación y A mano), nuevas formas, sombras, letras, fondo y tabla de espacios.","Carta solar con estilos, letra a elegir y fondo de color o transparente.","Campanita de notificaciones y notas de actualización en el menú.","Foto de perfil con recorte y opción de ponerla en el rótulo de las láminas.","Ícono para agregar la página a la pantalla de inicio y vista previa al compartir el enlace."],"fixes":["Las imágenes exportadas (PNG, PDF y SVG) salían con otra letra; ahora usan la misma tipografía de la página."]}]}</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="fSoft" x="-10%" y="-10%" width="125%" height="130%"><feDropShadow dx="0.8" dy="1.6" stdDeviation="1.4" flood-color="#0b1520" flood-opacity="0.22"/></filter><filter id="fSketch" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs></svg>
 <header class="top">
   <div class="top-in">
@@ -1003,7 +1006,7 @@ function baseProject(){return{
   concept:{title:'',idea:'',analogy:'',principles:['','',''],keywords:'',palette:['#F2C77B','#A9D79A','#9DD0E4','#EBA6B8'],steps:['Forma base','Desplegado','Zonas','Volumen']},
   board:null,openings:[],context:{buildings:[],trees:[]},norm:defaultNorm(),res:defaultRes(),circ:0.30,walls:0.08,
   fac:{mode:'elev',side:'frente',cutAxis:'x',cut:null,real:true,color:true,ctx:true,person:true,sun:true,levels:true},
-  sheet:{paper:'carta',orient:'l',scale:0,draw:'zoning',n:1,of:1,clave:'ARQ-01',materia:'',asesor:'',fecha:'',notas:''},variants:[],refs:[],levels:defaultLevels(),doc:defaultDoc(),site:defaultSite(),bio:{baseH:18,baseC:18},sunh:{day:'dic',own:true},big:defaultBig()}}
+  sheet:{paper:'carta',orient:'l',scale:0,draw:'zoning',n:1,of:1,clave:'ARQ-01',materia:'',asesor:'',fecha:'',notas:''},variants:[],refs:[],levels:defaultLevels(),doc:defaultDoc(),site:defaultSite(),bio:{baseH:18,baseC:18},sunh:{day:'dic',own:true},big:defaultBig(),free:defaultFree()}}
 /* Proyecto grande: tipo, unidad clave (llaves, departamentos, personas…), departamentos que cuentan como área rentable, regla de estacionamiento y límites. */
 function defaultBig(){return{type:'',unit:'',n:0,cat:'',sell:[],park:{base:'unit',k:1,each:50,fixed:0,m2:25},maxLv:0,costPark:0.6}}
 function defaultSite(){return{pack:null,topo:{z:[0,0,0,0],plat:null},soil:{type:'',qa:null,note:''},risk:{},flora:[],fauna:[]}}
@@ -1173,6 +1176,7 @@ function sanitizeProject(o){
     flora:(Array.isArray(Si.flora)?Si.flora:[]).slice(0,200).filter(f=>f&&typeof f==='object').map(f=>({id:rid(f.id,'f'),k:sStr(f.k,30).replace(/[^a-z0-9_-]/g,''),n:sStr(f.n,80),sci:sStr(f.sci,80),h:sStr(f.h,30),uso:sStr(f.uso,160),est:f.est==='propuesta'?'propuesta':'existe',...(sImg(f.img)?{img:f.img}:{})})),
     fauna:(Array.isArray(Si.fauna)?Si.fauna:[]).slice(0,200).filter(f=>f&&typeof f==='object').map(f=>({id:rid(f.id,'a'),n:sStr(f.n,80),sci:sStr(f.sci,80),obs:sStr(f.obs,160),...(sImg(f.img)?{img:f.img}:{})}))};
   const Bi=o.bio||{};o.bio={baseH:sNum(Bi.baseH,18,5,25),baseC:sNum(Bi.baseC,18,15,30)};const Sh=o.sunh||{};o.sunh={day:['dic','eq','jun'].includes(Sh.day)?Sh.day:'dic',own:Sh.own!==false};
+  o.free=cleanFree(o.free);
   const Bg=o.big&&typeof o.big==='object'?o.big:{},Pk=Bg.park&&typeof Bg.park==='object'?Bg.park:{},db=defaultBig();
   o.big={type:/^[a-z]{0,16}$/.test(Bg.type||'')?(Bg.type||''):'',unit:sStr(Bg.unit,30),n:Math.round(sNum(Bg.n,0,0,100000)),cat:sStr(Bg.cat,12).replace(/[^a-z0-9]/g,''),sell:(Array.isArray(Bg.sell)?Bg.sell:[]).map(k=>sStr(k,40)).filter(k=>o.zones[k]).slice(0,40),
     park:{base:['unit','m2','fixed'].includes(Pk.base)?Pk.base:'unit',k:sNum(Pk.k,db.park.k,0,20),each:sNum(Pk.each,db.park.each,1,10000),fixed:Math.round(sNum(Pk.fixed,0,0,100000)),m2:sNum(Pk.m2,db.park.m2,5,80)},maxLv:Math.round(sNum(Bg.maxLv,0,0,200)),costPark:sNum(Bg.costPark,db.costPark,0,3)};
@@ -1668,7 +1672,13 @@ function meshes(){return massItems().map(it=>{const sp=S.spaces.find(s=>s.id===i
   const h=Math.max(it.h,0.02),z0=it.z,z1=it.z+h,n=p.length;const v=[...p.map(q=>[q[0],q[1],z0]),...p.map(q=>[q[0],q[1],z1])];const f=[];
   triangulate(p).forEach(([a,b,c])=>{f.push([n+a,n+b,n+c]);f.push([c,b,a])});
   for(let i=0;i<n;i++){const j=(i+1)%n;f.push([i,j,n+j]);f.push([i,n+j,n+i])}
-  return{name:sp?sp.name:it.id,zone:sp?zc(sp.zone).n:'',color:it.color,v,f,poly:p,z0,h}})}
+  return{name:sp?sp.name:it.id,zone:sp?zc(sp.zone).n:'',color:it.color,v,f,poly:p,z0,h}}).concat(freeMeshes())}
+/* Forma libre como mallas para exportar: lo suelto y cada grupo o componente de primer nivel (con lo que tenga dentro). */
+function freeMeshes(){const F=S.free;if(!F)return[];const out=[];const flat=(C,t,acc)=>{const flip=tDet(t)<0;const base=acc.v.length;C.v.forEach(p=>acc.v.push(tAp(t,p)));
+    C.f.forEach(f=>{fTris(C,f).forEach(tr=>{const q=tr.map(i=>base+i);acc.f.push(flip?[q[0],q[2],q[1]]:q)});acc.faces.push({o:(flip?f.o.slice().reverse():f.o).map(i=>base+i),h:(f.h||[]).map(h=>(flip?h.slice().reverse():h).map(i=>base+i))})});
+    (C.ins||[]).forEach(I=>{const D=F.defs[I.d];if(D&&!I.hid)flat(D,tMul(t,I.t),acc)})};
+  const r={name:'Forma libre',zone:'Forma libre',color:'#d9d4c8',v:[],f:[],faces:[],free:1};const R=F.root;flat({v:R.v,f:R.f,ins:[]},tI(),r);if(r.f.length)out.push(r);
+  (R.ins||[]).forEach(I=>{const D=F.defs[I.d];if(!D||I.hid)return;const m={name:I.n||D.n||'Grupo',zone:'Forma libre',color:'#d9d4c8',v:[],f:[],faces:[],free:1};flat(D,I.t,m);if(m.f.length)out.push(m)});return out}
 function normal(a,b,c){const u=[b[0]-a[0],b[1]-a[1],b[2]-a[2]],w=[c[0]-a[0],c[1]-a[1],c[2]-a[2]];const n=[u[1]*w[2]-u[2]*w[1],u[2]*w[0]-u[0]*w[2],u[0]*w[1]-u[1]*w[0]];const l=Math.hypot(...n)||1;return n.map(x=>x/l)}
 const xmlEsc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function toDAE(){const M=meshes();const mats=[...new Set(M.map(m=>m.color))];const cid=c=>'m'+mats.indexOf(c);
@@ -1695,7 +1705,13 @@ function toIFC(){let n=0;const L=[];const add=s=>{n++;L.push(`#${n}=${s};`);retu
   const levels={};const storeys=[];S.levels.slice().sort((a,b)=>a.n-b.n).forEach(L=>{const lv=L.n;if(!S.spaces.some(s=>s.geo&&s.level===lv))return;const z=+L.z||0;const pl=lp(bPl,z);const st=add(`IFCBUILDINGSTOREY(${gid()},${oh},${str(L.name)},$,$,${pl},$,$,.ELEMENT.,${z.toFixed(3)})`);levels[lv]={st,pl,z,els:[]};storeys.push(st)});
   if(storeys.length)add(`IFCRELAGGREGATES(${gid()},${oh},$,$,${bld},(${storeys.join(',')}))`);
   const styles={};const styleFor=c=>{if(styles[c])return styles[c];const[r,g,b]=hex2rgb(c).map(v=>(v/255).toFixed(3));const col=add(`IFCCOLOURRGB($,${r},${g},${b})`);const ss=add(`IFCSURFACESTYLESHADING(${col})`);const s=add(`IFCSURFACESTYLE($,.BOTH.,(${ss}))`);styles[c]=add(`IFCPRESENTATIONSTYLEASSIGNMENT((${s}))`);return styles[c]};
-  meshes().forEach(m=>{const sp=S.spaces.find(s=>s.name===m.name);const lv=levels[sp?sp.level:0]||levels[0]||Object.values(levels)[0];if(!lv)return;const P=m.poly.map(q=>pt(q[0],q[1]));P.push(P[0]);
+  // forma libre: superficies de caras planas (con sus huecos), una por grupo
+  const freeEls=[];meshes().filter(m=>m.free).forEach(m=>{const P=m.v.map(q=>pt(q[0],q[1],q[2]));const loop=L_=>add(`IFCPOLYLOOP((${L_.map(i=>P[i]).join(',')}))`);
+    const faces=m.faces.map(fc=>add(`IFCFACE((${[add(`IFCFACEOUTERBOUND(${loop(fc.o)},.T.)`)].concat(fc.h.map(h=>add(`IFCFACEBOUND(${loop(h)},.T.)`))).join(',')}))`));if(!faces.length)return;
+    const set=add(`IFCCONNECTEDFACESET((${faces.join(',')}))`);const sm=add(`IFCFACEBASEDSURFACEMODEL((${set}))`);add(`IFCSTYLEDITEM(${sm},(${styleFor(m.color)}),$)`);
+    const rep=add(`IFCSHAPEREPRESENTATION(${ctx},'Body','SurfaceModel',(${sm}))`);const ps=add(`IFCPRODUCTDEFINITIONSHAPE($,$,(${rep}))`);freeEls.push(add(`IFCBUILDINGELEMENTPROXY(${gid()},${oh},${str(m.name)},'Forma libre',$,${lp(bPl)},${ps},$,$)`))});
+  if(freeEls.length)add(`IFCRELCONTAINEDINSPATIALSTRUCTURE(${gid()},${oh},$,$,(${freeEls.join(',')}),${bld})`);
+  meshes().filter(m=>!m.free).forEach(m=>{const sp=S.spaces.find(s=>s.name===m.name);const lv=levels[sp?sp.level:0]||levels[0]||Object.values(levels)[0];if(!lv)return;const P=m.poly.map(q=>pt(q[0],q[1]));P.push(P[0]);
     const pl=add(`IFCPOLYLINE((${P.join(',')}))`);const prof=add(`IFCARBITRARYCLOSEDPROFILEDEF(.AREA.,${str(m.name)},${pl})`);const pos=add(`IFCAXIS2PLACEMENT3D(${pt(0,0,(m.z0-lv.z))},$,$)`);
     const sol=add(`IFCEXTRUDEDAREASOLID(${prof},${pos},${zD},${Math.max(m.h,0.02).toFixed(4)})`);add(`IFCSTYLEDITEM(${sol},(${styleFor(m.color)}),$)`);
     const rep=add(`IFCSHAPEREPRESENTATION(${ctx},'Body','SweptSolid',(${sol}))`);const ps=add(`IFCPRODUCTDEFINITIONSHAPE($,$,(${rep}))`);const epl=lp(lv.pl);
@@ -3787,17 +3803,29 @@ function vcbParse(str){const s=String(str||'').trim().toLowerCase().replace(/×/
   const ar=s.match(/^(?:[x*]\s*(\d+)|(\d+)\s*[x*])$/);if(ar)return{arr:+(ar[1]||ar[2])};const sd=s.match(/^(\d+)\s*s$/);if(sd)return{sides:+sd[1]};
   const parts=s.split(/\s*[,;x]\s*|\s+/).filter(Boolean);const out=[];for(const p of parts){const m=p.match(/^(-?\d*\.?\d+)(mm|cm|m|°)?$/);if(!m)return null;let v=+m[1];if(m[2]==='cm')v/=100;if(m[2]==='mm')v/=1000;out.push(v)}
   const dc=s.match(/^(-?\d+),(\d+)\s*(mm|cm|m)?$/);return out.length?{v:out,dec:dc?(+(dc[1]+'.'+dc[2]))/(dc[3]==='cm'?100:dc[3]==='mm'?1000:1):null}:null}
+/* Operaciones en la caja de medidas: 3.5+0.15 · 4/3 · (2+1)*1.5 · 4+0.2,3 */
+function vcbExprs(s){return String(s).split(/\s*[,;]\s*/).map(part=>{const t=part.trim();if(!/[+*/()]|\d\s*-\s*\d/.test(t)||!/^[\d.\s+\-*/()]+$/.test(t))return t;const v=vcbCalc(t);return v==null?t:String(+v.toFixed(6))}).join(',')}
+function vcbCalc(s){let i=0;const sk=()=>{while(s[i]===' ')i++};const num=()=>{sk();if(s[i]==='('){i++;const v=expr();sk();if(s[i]!==')')throw 0;i++;return v}if(s[i]==='-'){i++;return-num()}const m=/^\d*\.?\d+/.exec(s.slice(i));if(!m)throw 0;i+=m[0].length;return+m[0]};
+  const term=()=>{let v=num();for(;;){sk();const c=s[i];if(c==='*'||c==='/'){i++;const r=num();v=c==='*'?v*r:v/r}else return v}};const expr=()=>{let v=term();for(;;){sk();const c=s[i];if(c==='+'||c==='-'){i++;const r=term();v=c==='+'?v+r:v-r}else return v}};
+  try{const v=expr();sk();return i===s.length&&Number.isFinite(v)?v:null}catch(e){return null}}
 function m3Ent(key){if(!key)return null;const i=key.indexOf(':');const k=key.slice(0,i),id=key.slice(i+1);const L=k==='sp'?S.spaces:k==='bld'?S.context.buildings:k==='tree'?S.context.trees:k==='op'?S.openings:null;const o=L&&L.find(x=>x.id===id);if(!o||(k==='sp'&&!o.geo))return null;return{k,id,o,key}}
 
 /* ---------- barra de herramientas ---------- */
 function m3Toolbar(){if(!S.zones[M3ED.zone])M3ED.zone=ZONE_KEYS.includes('privada')?'privada':ZONE_KEYS[0];
-  const tb=H(`<div class="tools m3tools" id="m3Tools" role="toolbar" aria-label="Herramientas de modelado"></div>`);
-  M3TOOLS.forEach(([k,n,key,adv,tip],i)=>{const b=H(`<button class="btn sm m3t ${adv?'adv':''}" type="button" data-t="${k}" aria-pressed="${M3ED.tool===k}" aria-label="${n}${key?' ('+key+')':''}" title="${esc(tip)}">${m3svg(k)}${key?`<kbd>${key==='Espacio'?'␣':key}</kbd>`:''}</button>`);
+  const tb=H(`<div class="tools m3tools" id="m3Tools" role="toolbar" aria-label="Herramientas de modelado"></div>`);const libre=M3ED.mode==='libre';
+  const mseg=H(`<div class="seg m3mode" role="group" aria-label="Qué dibujas"><button type="button" data-md="esp" aria-pressed="${!libre}" title="Espacios del programa: cada volumen es un local con zona, muros, puertas y ventanas">Espacios</button><button type="button" data-md="libre" aria-pressed="${libre}" title="Forma libre: caras y aristas en cualquier plano, grupos y componentes (como un modelador de bloques)">Forma libre</button></div>`);
+  $$('[data-md]',mseg).forEach(b=>b.onclick=()=>m3SetMode(b.dataset.md));tb.appendChild(mseg);
+  (libre?M3FTOOLS:M3TOOLS).forEach(([k,n,key,adv,tip],i)=>{const b=H(`<button class="btn sm m3t ${adv?'adv':''}" type="button" data-t="${k}" aria-pressed="${M3ED.tool===k}" aria-label="${n}${key?' ('+key+')':''}" title="${esc(tip)}">${m3svg(k)}${key?`<kbd>${key==='Espacio'?'␣':key}</kbd>`:''}</button>`);
     b.onclick=()=>{if(M3&&M3.ed)M3.ed.setTool(k);else{M3ED.tool=k;m3TbSync()}};tb.appendChild(b);if(k==='pan')tb.appendChild(H('<span class="m3sep" aria-hidden="true"></span>'))});
-  const gb=H(`<button class="btn sm m3t adv" type="button" data-a="grp" aria-label="Agrupar (G)" title="Agrupar lo elegido (G) · Mayús+G desagrupa">${m3svg('grp')}<kbd>G</kbd></button>`);gb.onclick=()=>M3&&M3.ed&&M3.ed.group();
+  const gb=H(`<button class="btn sm m3t adv" type="button" data-a="grp" aria-label="Agrupar (G)" title="Agrupar lo elegido (G) · Mayús+G desagrupa">${m3svg('grp')}<kbd>G</kbd></button>`);gb.onclick=()=>{if(!M3||!M3.ed)return;if(M3ED.mode==='libre'&&M3.ed.free)M3.ed.free.makeGroup('g');else M3.ed.group()};
   const xb=H(`<button class="btn sm m3t" type="button" data-a="ext" aria-label="Ver todo (Mayús+Z)" title="Ver todo (Mayús+Z)">${m3svg('ext')}</button>`);xb.onclick=()=>M3&&M3.extents();
+  if(libre){tb.append(H('<span class="m3sep" aria-hidden="true"></span>'),gb,xb);return tb}
   const zs=H(`<label class="f inline m3zone" for="m3Zone">Zona de lo nuevo<select id="m3Zone">${ZONE_KEYS.map(k=>`<option value="${k}" ${k===M3ED.zone?'selected':''}>${esc(zc(k).n)}</option>`).join('')}</select></label>`);$('select',zs).onchange=e=>{M3ED.zone=e.target.value;e.target.blur()};
   tb.append(H('<span class="m3sep" aria-hidden="true"></span>'),gb,xb,zs);return tb}
+/* Cambia entre dibujar espacios del programa y forma libre. */
+function m3SetMode(m){m=m==='libre'?'libre':'esp';if(M3ED.mode===m)return;if(M3&&M3.ed)M3.ed.cancelAll&&M3.ed.cancelAll();M3ED.mode=m;PREFS.m3mode=m;savePrefs();M3ED.tool='sel';Object.assign(M3ED.fsel,{f:[],e:[],i:[]});const old=$('#m3Tools');if(old){const nb=m3Toolbar();if(old.classList.contains('m3float'))nb.classList.add('m3float');old.replaceWith(nb)}
+  if(M3&&M3.ed)M3.ed.setTool('sel');const c=document.getElementById('m3Sel');if(c)m3SelCard(c);const o=document.getElementById('m3Free');if(o){o.hidden=m!=='libre';if(m==='libre')freeOutline(o)}
+  toast(m==='libre'?'Forma libre: dibuja caras en cualquier plano, empuja cualquier cara y agrupa como en un modelador de bloques':'Espacios: cada volumen es un local del programa')}
 function m3TbSync(){$$('#m3Tools [data-t]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.t===M3ED.tool)))}
 /* Teclas del apartado 3D. */
 function m3Key(e,setFull){const k=e.key.toLowerCase(),mod=e.ctrlKey||e.metaKey;
@@ -3806,7 +3834,7 @@ function m3Key(e,setFull){const k=e.key.toLowerCase(),mod=e.ctrlKey||e.metaKey;
 function m3Changed(){changed();if(M3){M3.refresh();M3.onEdit&&M3.onEdit()}}
 
 /* ---------- información de lo elegido ---------- */
-function m3SelCard(card){if(!card)return;const ED=M3ED;const ents=ED.sel.map(m3Ent).filter(Boolean);const sps=ents.filter(x=>x.k==='sp').map(x=>x.o);
+function m3SelCard(card){if(!card)return;const ED=M3ED;if(ED.mode==='libre'){freeSelCard(card);const o=document.getElementById('m3Free');if(o)freeOutline(o);return}const ents=ED.sel.map(m3Ent).filter(Boolean);const sps=ents.filter(x=>x.k==='sp').map(x=>x.o);
   const bind=(id,fn,ev='change')=>{const i=$('#'+id,card);if(i)i.addEventListener(ev,()=>{fn(i);m3Changed()})};const btn=(id,fn)=>{const b=$('#'+id,card);if(b)b.onclick=fn};
   const ctx=ED.edit?`<p class="m3ctx">Editando la forma de «${esc((S.spaces.find(s=>s.id===ED.edit)||{}).name||'')}» <button class="btn sm" type="button" id="m3sX">Terminar (Esc)</button></p>`:ED.grp?`<p class="m3ctx">Editando un grupo <button class="btn sm" type="button" id="m3sX">Cerrar grupo (Esc)</button></p>`:'';
   const after=()=>{btn('m3sX',()=>M3&&M3.ed&&M3.ed.exitCtx())};
@@ -3844,7 +3872,7 @@ function m3SelCard(card){if(!card)return;const ED=M3ED;const ents=ED.sel.map(m3E
   bind('m3mH',i=>{if(i.value!=='')sps.forEach(s=>s.h=Math.max(0,+i.value||0))});bind('m3mZ',i=>{if(i.value)sps.forEach(s=>s.zone=i.value)});wire()}
 
 /* ---------- editor: herramientas sobre el visor ---------- */
-function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
+function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;let FX=null;
   if(!S.zones[ED.zone])ED.zone=ZONE_KEYS[0];ED.sel=ED.sel.filter(k=>m3Ent(k));if(ED.grp&&!S.spaces.some(s=>s.geo&&s.grp===ED.grp))ED.grp=null;if(ED.edit&&!S.spaces.some(s=>s.geo&&s.id===ED.edit))ED.edit=null;ED.typed='';
   const ovl=new T.Group();M.scene.add(ovl);const selG=new T.Group(),hovG=new T.Group(),drfG=new T.Group(),gdG=new T.Group();ovl.add(selG,hovG,drfG,gdG);
   const COL={acc:0x2f6bff,x:0xd62828,y:0x1f9d3a,z:0x2343c4,mag:0xc22fc2,tan:0x10a6b8,ink:isDark()?0xe4eaec:0x16212b,red:0xe0452b,guide:0x7a4fd6,prot:0x2343c4};
@@ -3908,6 +3936,9 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     const pr=S.project,lc=[[0,0],[pr.lotW,0],[pr.lotW,pr.lotL],[0,pr.lotL]];lc.forEach((q,i)=>{const a=W(q[0],q[1],0);P.push({p:a,k:'end'});addE(a,W(lc[(i+1)%4][0],lc[(i+1)%4][1],0),{lot:1})});
     if(!ED.grp&&!ED.edit)(S.context.buildings||[]).forEach(b=>{const c=[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.d],[b.x,b.y+b.d]];[0,b.h].forEach(z=>c.forEach((q,i)=>{const a=W(q[0],q[1],z);P.push({p:a,k:'end',bid:b.id});addE(a,W(c[(i+1)%4][0],c[(i+1)%4][1],z),{bid:b.id})}))});
     (S.zoning.notes||[]).forEach(n=>{if(n.type!=='line'||n.x2==null)return;const z=+n.z||0;const a=W(n.x1,n.y1,z),b=W(n.x2,n.y2,z);P.push({p:a,k:'end',nid:n.id},{p:b,k:'end',nid:n.id});addE(a,b,{nid:n.id})});
+    if(M3IMPORT.showMass&&S.free){const fw=(C,t,path)=>{const pk=path.join('/');const vw=C.v.map(p=>{const q=tAp(t,p);return W(q[0],q[1],q[2])});const used=new Set();
+        fEdges(C).forEach(e=>{used.add(e.a);used.add(e.b);addE(vw[e.a],vw[e.b],{fr:pk,vert:Math.abs(vw[e.a].x-vw[e.b].x)<1e-6&&Math.abs(vw[e.a].z-vw[e.b].z)<1e-6?1:0},true)});used.forEach(i=>P.push({p:vw[i],k:'end',fr:pk}));
+        (C.ins||[]).forEach(I=>{if(I.hid)return;const tg=I.tag&&freeTag(I.tag);if(tg&&tg.v===false)return;const D=S.free.defs[I.d];if(D&&path.length<20)fw(D,tMul(t,I.t),path.concat(I.id))})};if(P.length<60000)fw(S.free.root,tI(),[])}
     const GL=[];ED.guides.forEach((g,gi)=>{if(g.t==='pt'){const a=V(g.a),b=V(g.b);P.push({p:a,k:'end',gi},{p:b,k:'end',gi});addE(a,b,{gi})}else{const p=V(g.p),d=V(g.d);Ed.push({a:p.clone().addScaledVector(d,-400),b:p.clone().addScaledVector(d,400),gi,inf:1});GL.push({p,d})}});
     // intersecciones: guía con guía y guía con aristas horizontales a la misma altura
     for(let i=0;i<GL.length;i++){const g=GL[i];if(Math.abs(g.d.y)>1e-6)continue;for(let j=i+1;j<GL.length;j++){const h=GL[j];if(Math.abs(h.p.y-g.p.y)>1e-3||Math.abs(h.d.y)>1e-6)continue;const X=meet(g.p,g.d,h.p,h.d);if(X)P.push({p:X,k:'int'})}
@@ -3922,7 +3953,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
   let lockK=null,shiftAx=null,lastR=null,lastSp=null,refDir=null,refT=0;const acq=[];
   const lockDir=()=>{const k=lockK||shiftAx;return k?{k,d:AX[k]}:null};
   function acquire(r){if(!r||(r.k!=='end'&&r.k!=='mid'&&r.k!=='int'))return;const now=performance.now();for(let i=acq.length-1;i>=0;i--)if(now-acq[i].t>25000||acq[i].p.distanceTo(r.p)<1e-3)acq.splice(i,1);acq.push({p:r.p.clone(),t:now});while(acq.length>2)acq.shift()}
-  function teach(e){if(!e||e.inf||e.vert)return;const d=e.b.clone().sub(e.a);d.y=0;if(d.lengthSq()<1e-6)return;refDir=d.normalize();refT=performance.now()}
+  function teach(e){if(!e||e.inf||e.vert)return;const d=e.b.clone().sub(e.a);if(!(e.fr!=null&&ED.mode==='libre'))d.y=0;if(d.lengthSq()<1e-6)return;refDir=d.normalize();refT=performance.now()}
   /* o: {from, plane: solo puntos a esa altura, gz: altura del suelo de respaldo, skip: claves a ignorar, vert: eje azul, noAxis, noFace, pts: puntos extra} */
   function snap(sp,o={}){const R=M.coarse?22:12;const ray=M.rayAt(sp).clone();const sk=o.skip;const pl=o.plane;const okZ=y=>pl==null||Math.abs(y-pl)<3e-3;
     const sd=p=>{const s=M.toScreen(p);return s.z>1?1e9:Math.hypot(s.x-sp.x,s.y-sp.y)};const skipC=c=>sk&&((c.sid&&sk.has('sp:'+c.sid))||(c.bid&&sk.has('bld:'+c.bid)));
@@ -3944,7 +3975,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     const ec=[];for(const e of SC.edges){if(skipC(e))continue;if(pl!=null&&!(okZ(e.a.y)&&okZ(e.b.y)))continue;const q=segRay(e.a,e.b,ray);if(!q)continue;const d=sd(q);if(d<R*0.7)ec.push({d,p:q,k:'edge',e})}
     ec.sort((a,b)=>a.d-b.d);const eb=ec.find(x=>x.e.inf||vis(x.p));
     if(eb){teach(eb.e);return eb}
-    if(pl==null&&!o.noFace){const h=M.hitAt(sp,sk||skipNon());if(h){const u=h.object.userData;if(['sp','bld','roof','imp','tree','op'].includes(u.k)){const n=h.face?h.face.normal:null;const p=h.point.clone();
+    if(pl==null&&!o.noFace){const h=M.hitAt(sp,sk||skipNon());if(h){const u=h.object.userData;if(['sp','bld','roof','imp','tree','op','fr'].includes(u.k)){const n=h.face?h.face.normal:null;const p=h.point.clone();
         if(u.k==='sp'){const s=S.spaces.find(x=>x.id===u.id);if(s&&(s.h??2.8)<0.1)p.y=+s.z||0;else if(s&&n&&n.y>0.7)p.y=(+s.z||0)+(s.h??2.8)}if(n&&n.y>0.7)gridPt(p);return{p,k:'face',h,up:!!(n&&n.y>0.7)}}
       const p=h.point.clone();p.y=0;gridPt(p);return{p,k:'plane',h}}}
     const q=rayPlane(ray,o.gz??pl??0);if(q){gridPt(q);return{p:q,k:'plane'}}return null}
@@ -3980,7 +4011,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     if(e.k==='sp'){const m=M.meshOf(k);if(m){const E=new T.LineSegments(new T.EdgesGeometry(m.geometry,25),lm(c));E.renderOrder=31;g.add(E)}}
     else if(e.k==='bld'||e.k==='tree'){const B=entBox(k);if(B)boxLines(g,B.min,B.max,c)}
     else if(e.k==='op'){const gg=openingGeom(e.o);if(gg){const z0=+gg.s.z||0,hh=Math.min(e.o.h,(gg.s.h??2.8)-e.o.sill);const a=W(gg.p1[0],gg.p1[1],z0+e.o.sill),b=W(gg.p2[0],gg.p2[1],z0+e.o.sill);line(g,[a,b,b.clone().setY(b.y+hh),a.clone().setY(a.y+hh)],c,false,true)}}M.need()}
-  function drawSel(){clr(selG);const groups=new Set();
+  function drawSel(){clr(selG);if(FX&&ED.mode==='libre')FX.drawSel(selG);const groups=new Set();
     ED.sel.forEach(k=>{const e=m3Ent(k);if(!e)return;if(e.k==='sp'&&closed(e.o)){groups.add(e.o.grp);return}hlEnt(selG,k);if(e.k==='sp'){const m=M.meshOf(k);if(m){const t=new T.Mesh(m.geometry,fm(COL.acc,.12));t.userData.shared=1;t.renderOrder=28;selG.add(t)}}});
     groups.forEach(gid=>{const B=grpBox(gid);if(B)boxLines(selG,B.min,B.max,COL.acc)});if(ED.grp){const B=grpBox(ED.grp);if(B)boxLines(selG,B.min,B.max,0x8a8f96,true)}
     if(ED.edit){const s=S.spaces.find(x=>x.id===ED.edit);if(s){const z0=+s.z||0,h=s.h??2.8;s.geo.forEach(([x,y])=>{dot(selG,W(x,y,z0),COL.acc);if(h>=0.1)dot(selG,W(x,y,z0+h),COL.acc)})}}M.need()}
@@ -4018,7 +4049,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     const g=s.geo.slice(0,i+1).concat(ins,s.geo.slice(i+1));if(!m3Simple(g)){toast('Esa curva cruza otro muro del espacio');return}const C=m3OpC([s.id]);s.geo=g;syncA(s);m3Remap(C,[s],Math.abs(sag)+0.06);commit(['sp:'+s.id]);toast('Muro curvo listo')}
   // ----- estado de las herramientas -----
   let DR=null,AR=null,RC=null,CI=null,PU=null,MV=null,RO=null,TP=null,OF=null,ER=null,HV=null,press=null,LASTPU=null,LASTMV=null,LASTRO=null,LASTPD=null,toldNotes=false,toldPaint=false;
-  const busy=()=>{const t=ED.tool;return t==='line'?!!DR:t==='arc'?!!(AR||DR):t==='rect'?!!RC:t==='circle'?!!CI:t==='push'?!!PU:t==='move'?!!MV:t==='rotate'?!!RO:t==='tape'?!!TP:t==='offset'?!!OF:false};
+  const busy=()=>{const t=ED.tool;if(FX&&FX.HOV[t])return FX.busy();return t==='line'?!!DR:t==='arc'?!!(AR||DR):t==='rect'?!!RC:t==='circle'?!!CI:t==='push'?!!PU:t==='move'?!!MV:t==='rotate'?!!RO:t==='tape'?!!TP:t==='offset'?!!OF:false};
   const axCol=infCol;const drPts=()=>DR?DR.pts.map(p=>({p,k:'end'})):[];
   function drawDR(){if(DR&&DR.pts.length>1)line(drfG,DR.pts,COL.ink)}
   function drawPlane(r){if(r&&r.k==='face'&&!r.up){const q=rayPlane(M.rayAt(lastSp).clone(),0);if(q){gridPt(q);return{p:q,k:'plane'}}}return r}
@@ -4251,7 +4282,7 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     if(prog)toast(prog===1?'Se quitó del plano; sigue en tu programa (Zonificación → Sin ubicar)':prog+' espacios se quitaron del plano; siguen en tu programa')}
   // ----- selección con recuadro y menú contextual -----
   function boxMove(a,b){boxEl.hidden=false;const x=Math.min(a.x,b.x),y=Math.min(a.y,b.y);Object.assign(boxEl.style,{transform:`translate(${x}px,${y}px)`,width:Math.abs(b.x-a.x)+'px',height:Math.abs(b.y-a.y)+'px'});boxEl.classList.toggle('cross',b.x<a.x);status(b.x<a.x?'Recuadro hacia la izquierda: elige todo lo que toque':'Recuadro hacia la derecha: elige lo que quede completamente dentro')}
-  function boxEnd(a,b,e){boxEl.hidden=true;const cross=b.x<a.x;const x0=Math.min(a.x,b.x),x1=Math.max(a.x,b.x),y0=Math.min(a.y,b.y),y1=Math.max(a.y,b.y);const keys=[];
+  function boxEnd(a,b,e){boxEl.hidden=true;if(FX&&ED.mode==='libre'){FX.boxEnd(a,b);status('');return}const cross=b.x<a.x;const x0=Math.min(a.x,b.x),x1=Math.max(a.x,b.x),y0=Math.min(a.y,b.y),y1=Math.max(a.y,b.y);const keys=[];
     const test=B=>{if(!B)return false;const c=[];for(const x of[B.min.x,B.max.x])for(const y of[B.min.y,B.max.y])for(const z of[B.min.z,B.max.z])c.push(M.toScreen(new T.Vector3(x,y,z)));const vis=c.filter(p=>p.z<1);if(!vis.length)return false;
       const r={x0:Math.min(...vis.map(p=>p.x)),x1:Math.max(...vis.map(p=>p.x)),y0:Math.min(...vis.map(p=>p.y)),y1:Math.max(...vis.map(p=>p.y))};return cross?(r.x1>=x0&&r.x0<=x1&&r.y1>=y0&&r.y0<=y1):(vis.length===8&&r.x0>=x0&&r.x1<=x1&&r.y0>=y0&&r.y1<=y1)};
     const seen=new Set();S.spaces.forEach(s=>{if(!s.geo||(!inGrp(s)&&!closed(s)))return;if(closed(s)){if(seen.has(s.grp)||ED.grp||ED.edit)return;seen.add(s.grp);if(test(grpBox(s.grp)))S.spaces.forEach(x=>{if(x.geo&&x.grp===s.grp)keys.push('sp:'+x.id)});return}if(test(entBox('sp:'+s.id)))keys.push('sp:'+s.id)});
@@ -4260,7 +4291,11 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     status(keys.length?keys.length+' elemento(s) en el recuadro':HELP.sel)}
   let menuEl=null;function closeMenu(){if(menuEl){menuEl.remove();menuEl=null;document.removeEventListener('pointerdown',outMenu,true)}}
   const outMenu=e=>{if(menuEl&&!menuEl.contains(e.target))closeMenu()};
-  function menu(e,sp){closeMenu();const en=entAt(sp);if(en&&!ED.sel.includes(en.key))setSel(expand(en));const ents=ED.sel.map(m3Ent).filter(Boolean),sps=ents.filter(x=>x.k==='sp').map(x=>x.o);
+  function menu(e,sp){closeMenu();if(FX&&ED.mode==='libre'){const ss=ED.fsel;if(freeSelEmpty()){const hf=FX.hit(sp);if(hf.own&&hf.fi>=0)FX.setFSel({f:[hf.fi]});else if(hf.ins)FX.setFSel({i:[hf.ins]})}
+      const it=[];const any=!freeSelEmpty();if(any)it.push(['Agrupar','G',()=>FX.makeGroup('g')],['Hacer componente','',()=>FX.makeGroup('c')]);if(ss.i.length)it.push(['Explotar','Mayús+G',()=>FX.explode()]);if(ss.i.length===1)it.push(['Editar por dentro','doble clic',()=>FX.enter(ss.i[0])],['Hacer único','',()=>FX.makeUnique(ss.i[0])]);
+      if(ss.f.length)it.push(['Invertir caras','',()=>FX.flipFaces()]);if(ss.e.length)it.push(['Suavizar aristas','',()=>FX.softEdges(true)]);if(ss.f.length||ss.i.length)it.push(['Convertir en espacio','',()=>FX.toSpace()]);if(ED.fctx.length)it.push(['Salir del grupo','Esc',()=>FX.exit()]);
+      if(any)it.push(['Borrar','Supr',()=>FX.delSel()]);it.push(['Ver todo','Mayús+Z',()=>M.extents()]);showMenu(it,sp);return}
+    const en=entAt(sp);if(en&&!ED.sel.includes(en.key))setSel(expand(en));const ents=ED.sel.map(m3Ent).filter(Boolean),sps=ents.filter(x=>x.k==='sp').map(x=>x.o);
     const it=[];if(ents.length)it.push(['Borrar','Supr',()=>{erase(ED.sel.slice());setSel([])}]);
     if(sps.length&&!ED.grp&&!ED.edit)it.push(['Agrupar','G',group]);if(sps.some(s=>s.grp)&&!ED.edit)it.push(['Desagrupar','Mayús+G',ungroup]);
     if(sps.length===1&&!ED.edit){const s=sps[0];if(closed(s))it.push(['Editar grupo','doble clic',()=>enterGroup(s.grp,s)]);else it.push(['Editar forma','doble clic',()=>enterEdit(s)])}
@@ -4268,7 +4303,8 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     if(ED.edit)it.push(['Terminar de editar la forma','Esc',exitEdit]);if(ED.grp)it.push(['Cerrar grupo','Esc',exitGroup]);
     if(ents.length)it.push(['Encuadrar selección','',zoomSel]);if(sps.length===1)it.push(['Ver en zonificación','',()=>{S.zoning.sel=sps[0].id;S.zoning.level=String(sps[0].level);location.hash='zonas'}]);
     it.push(['Ver todo','Mayús+Z',()=>M.extents()]);if(ents.length)it.push(['Información','',()=>{const c=document.getElementById('m3Sel');if(c){c.scrollIntoView({block:'nearest',behavior:'smooth'});c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),900)}}]);
-    menuEl=H(`<div class="m3menu" role="menu">${it.map(([t,k],i)=>`<button type="button" role="menuitem" data-i="${i}">${esc(t)}${k?`<small>${esc(k)}</small>`:''}</button>`).join('')}</div>`);host.appendChild(menuEl);
+    showMenu(it,sp)}
+  function showMenu(it,sp){menuEl=H(`<div class="m3menu" role="menu">${it.map(([t,k],i)=>`<button type="button" role="menuitem" data-i="${i}">${esc(t)}${k?`<small>${esc(k)}</small>`:''}</button>`).join('')}</div>`);host.appendChild(menuEl);
     const W_=host.clientWidth,H_=host.clientHeight;const mw=menuEl.offsetWidth,mh=menuEl.offsetHeight;menuEl.style.left=Math.max(4,Math.min(sp.x,W_-mw-6))+'px';menuEl.style.top=Math.max(4,Math.min(sp.y,H_-mh-6))+'px';
     // con el dedo, al soltar después de mantener presionado el navegador manda un clic justo donde quedó el menú:
     // solo cuenta un toque que empezó dentro del menú (o Enter con el teclado)
@@ -4276,11 +4312,11 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
     $$('[data-i]',menuEl).forEach(b=>b.onclick=ev=>{if(!armed&&ev.detail!==0)return;const f=it[+b.dataset.i][2];closeMenu();f()});setTimeout(()=>document.addEventListener('pointerdown',outMenu,true),0);const f=$('button',menuEl);if(f)f.focus({preventScroll:true})}
   // ----- caja de medidas -----
   function vcbKey(e){const k=e.key,t=ED.typed;if(k==='Backspace'){if(!t)return false;ED.typed=t.slice(0,-1);vcbRender();return true}if(k.length!==1)return false;
-    if(/[0-9.]/.test(k)||(k==='-'&&!t)||(k==='/'&&!t&&ED.tool==='move')||(t&&/^[,;x* cms°]$/i.test(k))){ED.typed+=k;vcbRender();return true}return false}
+    if(/[0-9.]/.test(k)||(k==='-'&&!t)||(k==='/'&&!t&&(ED.tool==='move'||ED.tool==='fmove'))||(k==='('&&!t)||(t&&/^[,;x* cms°+\-/()]$/i.test(k))){ED.typed+=k;vcbRender();return true}return false}
   function applyVcb(){applyVcb0();lockK=null}
-  function applyVcb0(){const raw=ED.typed;ED.typed='';vcbRender();if(!raw.trim())return;const t=ED.tool;
-    const dv=raw.trim().match(/^\/\s*(\d+)$/);if(dv){if(t==='move')arrayCopies(+dv[1],true);else toast('Escribe /3 justo después de copiar con Mover + Ctrl');return}
-    const P=vcbParse(raw);if(!P){toast('No entendí la medida. Ejemplos: 3.5 · 4,3 · 350cm · 3x · 6s');return}
+  function applyVcb0(){let raw=ED.typed;ED.typed='';vcbRender();if(!raw.trim())return;const t=ED.tool;
+    const dv=raw.trim().match(/^\/\s*(\d+)$/);if(dv){if(t==='move')arrayCopies(+dv[1],true);else if(t==='fmove'&&FX)FX.arrayCopies(+dv[1],true);else toast('Escribe /3 justo después de copiar con Mover + Ctrl');return}
+    raw=vcbExprs(raw);const P=vcbParse(raw);if(P&&FX&&FX.HOV[t]){FX.vcb(P,raw);return}if(!P){toast('No entendí la medida. Ejemplos: 3.5 · 4,3 · 350cm · 3x · 6s');return}
     if(P.sides){if(t==='circle'){ED.circN=clamp(P.sides,3,48);status('Ahora con '+ED.circN+' lados');if(lastSp)circHover(lastSp)}else toast('Los lados (6s) son para la herramienta Círculo (C)');return}
     if(P.arr){if(t==='move')arrayCopies(P.arr);else if(t==='rotate')rotArray(P.arr);else toast('Escribe 3x justo después de copiar con Mover o Rotar + Ctrl');return}
     const v=P.v,one=P.dec!=null?P.dec:v[0];const sT=sgn(one),mag=Math.abs(one);
@@ -4300,9 +4336,9 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
   // ----- eventos que manda el visor -----
   const HOV={line:lineHover,arc:arcHover,rect:rectHover,circle:circHover,push:pushHover,move:moveHover,rotate:rotHover,tape:tapeHover,offset:offHover,paint:paintHover};
   const ACT={line:sp=>{lineHover(sp);if(lastR)addPt(lastR.p.clone())},arc:arcClick,rect:rectClick,circle:circClick,push:pushClick,move:moveClick,rotate:rotClick,tape:tapeClick,offset:offClick,paint:paintClick};
-  function hover(sp){const f=HOV[ED.tool];if(f)f(sp)}
+  function hover(sp){if(FX&&FX.HOV[ED.tool]){FX.hover(sp);return}const f=HOV[ED.tool];if(f)f(sp)}
   // un eje fijado con las flechas vale para el tramo en curso: al hacer clic para terminarlo se suelta
-  function act(sp,e){const f=ACT[ED.tool];if(!f)return;const was=busy();f(sp,e);if(was)lockK=null}
+  function act(sp,e){const f=(FX&&FX.ACT[ED.tool])||ACT[ED.tool];if(!f)return;const was=busy();f(sp,e);if(was)lockK=null}
   function down(e,sp){lastSp=sp;closeMenu();if(ED.tool==='erase'){ER={keys:new Set()};eraseMark(sp);return}press={sp,started:false};if(!busy()){act(sp,e);press.started=true}}
   function up(e,sp){lastSp=sp;if(ED.tool==='erase'){const ks=ER?[...ER.keys]:[];ER=null;clr(hovG);if(ks.length)erase(ks);return}const p=press;press=null;if(!p)return;
     if(Math.hypot(sp.x-p.sp.x,sp.y-p.sp.y)>9){if(busy())act(sp,e)}else if(!p.started)act(sp,e)}
@@ -4310,32 +4346,35 @@ function m3Editor(M){const T=M.T,ED=M3ED,W=M.W,PL=M.PL,host=M.host;
   let lastTap=null;
   function click(e,sp){closeMenu();if(ED.tool!=='sel')return;if(e.pointerType==='touch'){const now=e.timeStamp||performance.now();// hora del toque (no de cuando se procesó: en equipos lentos importa)
     if(lastTap&&now-lastTap.t<380&&Math.hypot(sp.x-lastTap.x,sp.y-lastTap.y)<24){lastTap=null;dbl(e,sp);return}lastTap={t:now,x:sp.x,y:sp.y}}
-    const en=entAt(sp);const add=e.ctrlKey||e.metaKey,tog=e.shiftKey;if(!en){if(!add&&!tog)setSel([]);return}
+    if(FX&&ED.mode==='libre'&&FX.click(e,sp))return;const en=entAt(sp);const add=e.ctrlKey||e.metaKey,tog=e.shiftKey;if(!en){if(!add&&!tog)setSel([]);return}
     const ks=expand(en);if(add&&tog)setSel(ED.sel.filter(k=>!ks.includes(k)));else if(add)setSel(ED.sel.concat(ks));else if(tog){const on=ks.every(k=>ED.sel.includes(k));setSel(on?ED.sel.filter(k=>!ks.includes(k)):ED.sel.concat(ks))}else setSel(ks)}
-  function dbl(e,sp){if(ED.tool==='line'&&DR){commitDR();return}if(ED.tool==='push'){pushRepeat(sp);return}if(ED.tool!=='sel')return;const en=hitEnt(M.hitAt(sp));
+  function dbl(e,sp){if(ED.tool==='line'&&DR){commitDR();return}if(ED.tool==='push'){pushRepeat(sp);return}if(ED.tool==='fpush'&&FX){FX.pushRepeat(sp);return}if(ED.tool==='fline'&&FX){FX.finishChain();return}if(ED.tool!=='sel')return;if(FX&&ED.mode==='libre'&&FX.dbl(e,sp))return;const en=hitEnt(M.hitAt(sp));
     if(en&&en.k==='sp'){if(closed(en.s)){enterGroup(en.s.grp,en.s);return}if(inGrp(en.s)&&ED.edit!==en.s.id){enterEdit(en.s);return}if(ED.edit===en.s.id)return}
     if(ED.edit){exitEdit();return}if(ED.grp&&!(en&&en.k==='sp'&&en.s.grp===ED.grp))exitGroup()}
-  function cancel(){let did=!!(DR||AR||RC||CI||PU||MV||RO||TP||OF||ER);if(DR||AR)commitDR();RC=null;CI=null;if(PU)cancelPush();if(MV)cancelMove();if(RO)cancelRot();TP=null;OF=null;ER=null;press=null;clr(drfG);clr(hovG);LB=[];mark(null);lockK=null;shiftAx=null;vcbShow(null,null);closeMenu();boxEl.hidden=true;return did}
-  function setTool(t){if(!M3TOOLS.some(x=>x[0]===t))return;const keepDR=DR&&(t==='line'||t==='arc')&&(ED.tool==='line'||ED.tool==='arc');const dr=keepDR?DR:null;if(keepDR){DR=null;AR=null}cancel();if(dr)DR=dr;
-    ED.tool=t;LASTPU=LASTMV=LASTRO=null;host.dataset.tool=t;vi.inputMode=['rect','move','circle','rotate'].includes(t)?'text':'decimal';pal.hidden=t!=='paint';if(t==='paint')buildPal();m3TbSync();status(HELP[t]);
+  function cancel(){let did=!!(DR||AR||RC||CI||PU||MV||RO||TP||OF||ER);if(FX&&FX.cancel())did=true;if(DR||AR)commitDR();RC=null;CI=null;if(PU)cancelPush();if(MV)cancelMove();if(RO)cancelRot();TP=null;OF=null;ER=null;press=null;clr(drfG);clr(hovG);LB=[];mark(null);lockK=null;shiftAx=null;vcbShow(null,null);closeMenu();boxEl.hidden=true;return did}
+  function setTool(t){if(!(ED.mode==='libre'?M3FTOOLS:M3TOOLS).some(x=>x[0]===t))return;const keepDR=DR&&(t==='line'||t==='arc')&&(ED.tool==='line'||ED.tool==='arc');const dr=keepDR?DR:null;if(keepDR){DR=null;AR=null}cancel();if(dr)DR=dr;
+    ED.tool=t;LASTPU=LASTMV=LASTRO=null;host.dataset.tool=t;vi.inputMode=['rect','move','circle','rotate'].includes(t)?'text':'decimal';pal.hidden=t!=='paint'&&t!=='fpaint';if(t==='paint'||t==='fpaint')buildPal();m3TbSync();status((ED.mode==='libre'&&FX&&FX.HELP[t])||HELP[t]);
     if(lastSp&&t!=='sel'&&t!=='pan'&&t!=='orbit')hover(lastSp);else clr(hovG);drawDR();M.need()}
+  function cancelAll(){cancel();clr(selG);M.need()}
   function nudge(dx,dy){const d=new T.Vector3(dx,0,-dy);ED.sel.forEach(k=>{const e=m3Ent(k);if(!e||e.k==='op')return;shiftEnt(k,JSON.parse(JSON.stringify(e.o)),d)});commit(ED.sel)}
   function key(e){const k=e.key,low=k.toLowerCase(),mod=e.ctrlKey||e.metaKey;
-    if(k==='Control'||k==='Meta'){if(MV&&!MV.stretch){toggleCopy();return true}if(RO&&RO.stage===2){rotCopy();return true}if(PU&&PU.s&&PU.en.part==='top'){setPushCopy(PU,!PU.copy);applyPush(PU.d);return true}return false}
+    if(k==='Control'||k==='Meta'){if(FX&&FX.HOV[ED.tool]&&FX.toggleCopy())return true;if(MV&&!MV.stretch){toggleCopy();return true}if(RO&&RO.stage===2){rotCopy();return true}if(PU&&PU.s&&PU.en.part==='top'){setPushCopy(PU,!PU.copy);applyPush(PU.d);return true}return false}
     if(k==='Shift'){if(lastR&&'xyz'.includes(lastR.k||'_'))shiftAx=lastR.k;return false}
     if(!mod&&!e.altKey&&vcbKey(e))return true;
-    if(k==='Enter'){if(ED.typed){applyVcb();return true}if(DR&&(ED.tool==='line'||ED.tool==='arc')){commitDR();return true}return false}
-    if(k==='Escape'){if(menuEl){closeMenu();return true}if(ED.typed){ED.typed='';vcbRender();return true}if(cancel())return true;if(ED.tool!=='sel'){setTool('sel');return true}if(ED.edit){exitEdit();return true}if(ED.grp){exitGroup();return true}if(ED.sel.length)setSel([]);return true}
-    if(mod&&low==='a'){selectAll();return true}if(mod)return false;
-    if(k==='Delete'||k==='Backspace'){if(ED.sel.length&&!busy()){erase(ED.sel.slice());setSel([])}return true}
-    if(e.shiftKey&&low==='z'){M.extents();return true}if(low==='g'){e.shiftKey?ungroup():group();return true}
+    if(k==='Enter'){if(ED.typed){applyVcb();return true}if(DR&&(ED.tool==='line'||ED.tool==='arc')){commitDR();return true}if(FX&&ED.tool==='fline'&&FX.finishChain())return true;return false}
+    if(k==='Escape'){if(menuEl){closeMenu();return true}if(ED.typed){ED.typed='';vcbRender();return true}if(cancel())return true;if(ED.tool!=='sel'){setTool('sel');return true}
+      if(FX&&ED.mode==='libre'){if(!freeSelEmpty()){FX.setFSel({});return true}if(FX.exit())return true}if(ED.edit){exitEdit();return true}if(ED.grp){exitGroup();return true}if(ED.sel.length)setSel([]);return true}
+    if(mod&&low==='a'){if(FX&&ED.mode==='libre')FX.selectAll();else selectAll();return true}if(mod)return false;
+    if(k==='Delete'||k==='Backspace'){if(FX&&ED.mode==='libre'&&!busy()&&FX.delSel())return true;if(ED.sel.length&&!busy()){erase(ED.sel.slice());setSel([])}return true}
+    if(e.shiftKey&&low==='z'){M.extents();return true}if(low==='g'){if(FX&&ED.mode==='libre'){e.shiftKey?FX.explode():FX.makeGroup('g');return true}e.shiftKey?ungroup():group();return true}
     const ax={ArrowRight:'x',ArrowLeft:'y',ArrowUp:'z'}[k];
     if(busy()&&(ax||k==='ArrowDown')){lockK=ax&&lockK!==ax?ax:null;status(lockK?{x:'Fijo en el eje rojo',y:'Fijo en el eje verde',z:'Fijo en el eje azul (vertical)'}[lockK]+' · la misma flecha lo suelta':'Eje libre');if(lastSp)hover(lastSp);return true}
-    const nd={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[k];if(nd&&ED.sel.length&&ED.tool==='sel'){const s_=e.shiftKey?1:0.1;nudge(nd[0]*s_,nd[1]*s_);return true}
-    const t=M3KEYS[k===' '?' ':low];if(t&&!e.altKey&&!e.shiftKey){setTool(t);return true}return false}
+    const nd={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[k];if(nd&&ED.sel.length&&ED.tool==='sel'&&ED.mode!=='libre'){const s_=e.shiftKey?1:0.1;nudge(nd[0]*s_,nd[1]*s_);return true}
+    const t=(ED.mode==='libre'?M3FKEYS:M3KEYS)[k===' '?' ':low];if(t&&!e.altKey&&!e.shiftKey){setTool(t);return true}return false}
   const ku=e=>{if(e.key==='Shift'){shiftAx=null;if(lastSp&&busy())hover(lastSp)}};document.addEventListener('keyup',ku);
+  FX=typeof m3FreeEd==='function'?m3FreeEd({T,M,ED,snap,rubber,line,dot,quad,mark,clr,drfG,hovG,selG,COL,fm,lm,boxLines,status,vcbShow,buildPal,setLB:a=>{LB=a},redrawSel:drawSel,clearSpSel:()=>{if(ED.sel.length)setSel([])}}):null;
   host.dataset.tool=ED.tool;vi.inputMode=['rect','move','circle','rotate'].includes(ED.tool)?'text':'decimal';pal.hidden=ED.tool!=='paint';status(ED.edit?'Editando la forma · Esc para terminar':ED.grp?'Editando un grupo · Esc para salir':HELP[ED.tool]);vcbShow('Medidas',null);
-  return{down,up,move,click,dbl,key,setTool,group,ungroup,erase,sel:setSel,zoomSel,exitCtx,menu,boxMove,boxEnd,
+  return{down,up,move,click,dbl,key,setTool,group,ungroup,erase,sel:setSel,zoomSel,exitCtx,menu,boxMove,boxEnd,cancelAll,get free(){return FX},redraw:drawSel,
     leave(){mark(null);if(!busy())clr(hovG)},cancelPress(){press=null;if(ER){ER=null;clr(hovG)}boxEl.hidden=true},
     content(partial){collect();drawSel();if(!partial)drawGuides();M.need()},
     frame(){placeMk();placeLabs()},hideTemp(on){ovl.visible=!on;hud.style.visibility=on?'hidden':''},
@@ -4360,6 +4399,507 @@ function m3Cube(M){const T=M.T;
     M.flyDir(new T.Vector3(...f[2]).addScaledVector(new T.Vector3(...f[3]),ci).addScaledVector(new T.Vector3(...f[4]),ri))};
   el.addEventListener('pointerup',fin);el.addEventListener('pointercancel',fin);$('.chome',el).onclick=()=>M.home();
   update();return{update,off(){}}}
+
+/* ================= Forma libre: núcleo de geometría =================
+   Diseño propio. Un modelo de caras planas como el de los modeladores de bloques:
+   · cada contenedor (el modelo suelto, o la definición de un grupo o componente) guarda vértices, caras y aristas sueltas;
+   · una cara es un contorno exterior y, si los tiene, huecos; sus aristas se deducen de los contornos;
+   · una línea nueva se corta donde cruza otras y parte las caras que atraviesa; un contorno cerrado y plano se vuelve cara solo;
+   · Empujar/Tirar mueve o extruye cualquier cara, y si atraviesa el volumen abre un hueco;
+   · las caras planas vecinas con el mismo acabado se funden al borrar la arista que las separa.
+   Coordenadas en metros del proyecto: x hacia el este del terreno, y hacia el fondo, z hacia arriba. */
+const FTOL=1e-4;
+const vSub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],vAdd=(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]],vMul=(a,s)=>[a[0]*s,a[1]*s,a[2]*s];
+const vDot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],vCross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const vLen=a=>Math.hypot(a[0],a[1],a[2]),vDist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2]),vLerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+const vNorm=a=>{const l=vLen(a);return l<1e-12?null:[a[0]/l,a[1]/l,a[2]/l]};
+const vRound=p=>[+(+p[0]).toFixed(5),+(+p[1]).toFixed(5),+(+p[2]).toFixed(5)];
+const fek=(a,b)=>a<b?a+'|'+b:b+'|'+a;
+/* t del punto P proyectado sobre el segmento A→B (sin recortar). */
+function fProjT(P,A,B){const d=vSub(B,A);const L=vDot(d,d);return L<1e-18?0:vDot(vSub(P,A),d)/L}
+function fNew(){return{v:[],f:[],le:[],sf:[],ins:[]}}
+/* Normal de un contorno (método de Newell): sigue la regla de la mano derecha. */
+function fNormalL(C,L){let x=0,y=0,z=0;for(let i=0;i<L.length;i++){const a=C.v[L[i]],b=C.v[L[(i+1)%L.length]];x+=(a[1]-b[1])*(a[2]+b[2]);y+=(a[2]-b[2])*(a[0]+b[0]);z+=(a[0]-b[0])*(a[1]+b[1])}const l=Math.hypot(x,y,z);return l<1e-14?[0,0,1]:[x/l,y/l,z/l]}
+function fPlane(C,f){const n=fNormalL(C,f.o);let c=[0,0,0];f.o.forEach(i=>c=vAdd(c,C.v[i]));c=vMul(c,1/f.o.length);return{n,d:vDot(n,c)}}
+/* Base del plano: u y v tales que u × v = n (así un contorno antihorario en (u,v) tiene normal n). */
+function fBasis(n){let u;if(Math.abs(n[2])>0.9){u=vNorm(vSub([1,0,0],vMul(n,n[0])))}else u=vNorm(vCross([0,0,1],n));return[u,vCross(n,u)]}
+function fArea(C,f){const{n}=fPlane(C,f);const[U,V]=fBasis(n);const A=L=>{let s=0;L.forEach((x,i)=>{const a=C.v[x],b=C.v[L[(i+1)%L.length]];s+=vDot(a,U)*vDot(b,V)-vDot(b,U)*vDot(a,V)});return s/2};return Math.abs(A(f.o))-(f.h||[]).reduce((t,h)=>t+Math.abs(A(h)),0)}
+function fCentroid(C,L){let c=[0,0,0];L.forEach(i=>c=vAdd(c,C.v[i]));return vMul(c,1/L.length)}
+/* Busca un vértice en esa posición o lo crea. */
+function fVert(C,p){for(let i=0;i<C.v.length;i++){const q=C.v[i];if(q&&Math.abs(q[0]-p[0])<FTOL&&Math.abs(q[1]-p[1])<FTOL&&Math.abs(q[2]-p[2])<FTOL)return i}C.v.push(vRound(p));return C.v.length-1}
+/* Todas las aristas: las de los contornos de las caras y las sueltas. */
+function fEdges(C){const M=new Map();const add=(a,b,fi)=>{if(a===b)return;const k=fek(a,b);let e=M.get(k);if(!e){e={k,a:Math.min(a,b),b:Math.max(a,b),f:[]};M.set(k,e)}if(fi!=null&&!e.f.includes(fi))e.f.push(fi)};
+  C.f.forEach((f,fi)=>fLoops(f).forEach(L=>L.forEach((v,i)=>add(v,L[(i+1)%L.length],fi))));C.le.forEach(([a,b])=>add(a,b,null));return M}
+const fLoops=f=>[f.o,...(f.h||[])];
+function fUsed(C){const s=new Set();C.f.forEach(f=>fLoops(f).forEach(L=>L.forEach(i=>s.add(i))));C.le.forEach(([a,b])=>{s.add(a);s.add(b)});return s}
+/* Inserta el vértice x en la arista a–b (en las caras que la usan y en las aristas sueltas). */
+function fSplitEdge(C,a,b,x){if(x===a||x===b)return;C.f.forEach(f=>fLoops(f).forEach(L=>{for(let i=0;i<L.length;i++){const p=L[i],q=L[(i+1)%L.length];if((p===a&&q===b)||(p===b&&q===a)){L.splice(i+1,0,x);i++}}}));
+  C.le=C.le.flatMap(([p,q])=>(p===a&&q===b)||(p===b&&q===a)?[[p,x],[x,q]]:[[p,q]]);const k=fek(a,b),si=C.sf.indexOf(k);if(si>=0){C.sf.splice(si,1);C.sf.push(fek(a,x),fek(x,b))}}
+/* Distancia más corta entre dos segmentos (para saber si se cruzan). */
+function fSegSeg(p1,p2,p3,p4){const d1=vSub(p2,p1),d2=vSub(p4,p3),r=vSub(p1,p3);const a=vDot(d1,d1),e=vDot(d2,d2),f=vDot(d2,r),c=vDot(d1,r),b=vDot(d1,d2);const den=a*e-b*b;if(a<1e-18||e<1e-18||Math.abs(den)<1e-14*a*e)return null;
+  const s=(b*f-c*e)/den,t=(b*s+f)/e;const P=vAdd(p1,vMul(d1,s)),Q=vAdd(p3,vMul(d2,t));return{s,t,d:vDist(P,Q),P:vLerp(P,Q,.5)}}
+/* Si el vértice x cae a media arista, la parte ahí. */
+function fSnapOnEdges(C,x){const P=C.v[x];for(const e of fEdges(C).values()){if(e.a===x||e.b===x)continue;const A=C.v[e.a],B=C.v[e.b];const t=fProjT(P,A,B);if(t>1e-7&&t<1-1e-7&&vDist(P,vLerp(A,B,t))<FTOL*5){fSplitEdge(C,e.a,e.b,x);return true}}return false}
+/* Agrega un tramo recto de p a q: se corta en los cruces, parte caras y cierra caras nuevas.
+   o.view: posición de la cámara (para orientar las caras nuevas hacia quien mira); o.noFaces: solo la arista. Regresa las aristas creadas. */
+function fAddSeg(C,p,q,o={}){const a=fVert(C,p),b=fVert(C,q);if(a===b)return[];fSnapOnEdges(C,a);fSnapOnEdges(C,b);
+  const P=C.v[a],Q=C.v[b];const pts=[[0,a],[1,b]];const tol=FTOL*5;
+  for(const e of [...fEdges(C).values()]){if(e.a===a||e.a===b||e.b===a||e.b===b)continue;const A=C.v[e.a],B=C.v[e.b];const r=fSegSeg(P,Q,A,B);
+    if(r&&r.s>1e-7&&r.s<1-1e-7&&r.t>1e-7&&r.t<1-1e-7&&r.d<tol){const x=fVert(C,r.P);if(x!==e.a&&x!==e.b)fSplitEdge(C,e.a,e.b,x);pts.push([r.s,x])}}
+  const used=fUsed(C);used.forEach(i=>{if(i===a||i===b)return;const V=C.v[i];const t=fProjT(V,P,Q);if(t>1e-7&&t<1-1e-7&&vDist(V,vLerp(P,Q,t))<tol)pts.push([t,i])});
+  pts.sort((x,y)=>x[0]-y[0]);const seq=[];pts.forEach(([,i])=>{if(seq[seq.length-1]!==i)seq.push(i)});
+  const E=fEdges(C);const keys=[];for(let i=0;i+1<seq.length;i++){const u=seq[i],w=seq[i+1];if(u===w)continue;const k=fek(u,w);if(!E.has(k))C.le.push([u,w]);keys.push(k)}
+  if(!o.noFaces)fRegenAround(C,keys,o);return keys}
+/* Planos donde la arista nueva puede partir o cerrar caras: los de las caras que la contienen y los que forma con sus aristas vecinas. */
+function fRegenAround(C,keys,o={}){const E=fEdges(C);const planes=[];const addPl=(n,pt)=>{n=vNorm(n);if(!n)return;if(n[2]<-1e-9||(Math.abs(n[2])<=1e-9&&(n[1]<-1e-9||(Math.abs(n[1])<=1e-9&&n[0]<0))))n=vMul(n,-1);const d=vDot(n,pt);
+    if(!planes.some(q=>vDot(q.n,n)>1-1e-9&&Math.abs(q.d-d)<FTOL*10))planes.push({n,d})};
+  const segs=keys.map(k=>k.split('|').map(Number));
+  segs.forEach(([a,b])=>{const A=C.v[a],B=C.v[b],dir=vSub(B,A);
+    C.f.forEach(f=>{const pl=fPlane(C,f);if(Math.abs(vDot(pl.n,A)-pl.d)<FTOL*10&&Math.abs(vDot(pl.n,B)-pl.d)<FTOL*10)addPl(pl.n,A)});
+    [a,b].forEach(x=>E.forEach(e=>{if(e.a!==x&&e.b!==x)return;const y=e.a===x?e.b:e.a;const n=vCross(dir,vSub(C.v[y],C.v[x]));if(vLen(n)>1e-9*vLen(dir)*vDist(C.v[y],C.v[x])+1e-12)addPl(n,C.v[x])}))});
+  const ks=new Set(keys);planes.slice(0,48).forEach(pl=>fRegenPlane(C,pl,ks,o))}
+/* Rehace las caras de un plano a partir de sus aristas (subdivisión plana).
+   Las regiones que caen dentro de una cara vieja heredan su acabado y su orientación; las demás solo se crean si las cierra una arista nueva. */
+function fRegenPlane(C,pl,newKeys,o={}){const n=pl.n,d=pl.d,tol=FTOL*10;const on=i=>Math.abs(vDot(n,C.v[i])-d)<tol;const[U,V]=fBasis(n);const p2=i=>{const p=C.v[i];return[vDot(p,U),vDot(p,V)]};
+  const E=fEdges(C);const excl=o.excl;const es=[];E.forEach((e,k)=>{if(excl&&excl.has(k))return;if(on(e.a)&&on(e.b))es.push(e)});
+  const old=[];C.f.forEach((f,fi)=>{if(!f.o.every(on))return;const fp=fPlane(C,f);if(Math.abs(Math.abs(vDot(fp.n,n))-1)<1e-6)old.push(fi)});
+  const adj=new Map();const addA=(x,y)=>{let L=adj.get(x);if(!L){L=[];adj.set(x,L)}if(!L.includes(y))L.push(y)};es.forEach(e=>{addA(e.a,e.b);addA(e.b,e.a)});
+  let pr=true;while(pr){pr=false;for(const[x,L]of adj){if(L.length<=1){adj.delete(x);L.forEach(y=>{const M=adj.get(y);if(M){const j=M.indexOf(x);if(j>=0)M.splice(j,1)}});pr=true}}}
+  const P2=new Map();adj.forEach((L,x)=>P2.set(x,p2(x)));const ang=(x,y)=>{const a=P2.get(x),b=P2.get(y);return Math.atan2(b[1]-a[1],b[0]-a[0])};
+  adj.forEach((L,x)=>L.sort((a,b)=>ang(x,a)-ang(x,b)));
+  const used=new Set(),cycles=[];adj.forEach((L,x)=>L.forEach(y=>{if(used.has(x+'>'+y))return;const c=[];let u=x,w=y,g=0;
+    while(!used.has(u+'>'+w)&&g++<200000){used.add(u+'>'+w);c.push(u);const Lw=adj.get(w);const i=Lw.indexOf(u);const nx=Lw[(i-1+Lw.length)%Lw.length];u=w;w=nx}if(c.length>=3)cycles.push(c)}));
+  const area=c=>{let s=0;c.forEach((x,i)=>{const a=P2.get(x),b=P2.get(c[(i+1)%c.length]);s+=a[0]*b[1]-b[0]*a[1]});return s/2};
+  const pip=(pt,L)=>{let ins=false;for(let i=0,j=L.length-1;i<L.length;j=i++){const a=L[i],b=L[j];if((a[1]>pt[1])!==(b[1]>pt[1])&&pt[0]<(b[0]-a[0])*(pt[1]-a[1])/(b[1]-a[1])+a[0])ins=!ins}return ins};
+  const regions=[],neg=[];cycles.forEach(c=>{const A=area(c);if(A>1e-10)regions.push({o:c,h:[],A});else if(A<-1e-10)neg.push(c)});
+  neg.forEach(c=>{const vs=new Set(c);let best=null;regions.forEach(r=>{if(r.o.some(x=>vs.has(x)))return;if(pip(P2.get(c[0]),r.o.map(x=>P2.get(x)))&&(!best||r.A<best.A))best=r});if(best)best.h.push(c)});
+  const inner=r=>{const loops=[r.o,...r.h].map(c=>c.map(x=>P2.get(x)||p2(x)));const ys=[...new Set(loops.flat().map(p=>p[1]))].sort((a,b)=>a-b);let best=null;
+    for(let i=0;i+1<ys.length;i++){if(ys[i+1]-ys[i]<1e-9)continue;const y=(ys[i]+ys[i+1])/2;const xs=[];loops.forEach(L=>L.forEach((a,k)=>{const b=L[(k+1)%L.length];if((a[1]>y)!==(b[1]>y))xs.push(a[0]+(y-a[1])*(b[0]-a[0])/(b[1]-a[1]))}));
+      xs.sort((a,b)=>a-b);for(let k=0;k+1<xs.length;k+=2){const w=(xs[k+1]-xs[k])*Math.min(1,(ys[i+1]-ys[i])*50);if(!best||w>best.w)best={w,p:[(xs[k]+xs[k+1])/2,y]}}}return best&&best.p};
+  const inFace=(pt,f)=>{let ins=false;fLoops(f).forEach(L=>{if(pip(pt,L.map(p2)))ins=!ins});return ins};
+  const hosted=new Set(),out=[];
+  regions.forEach(r=>{const ip=inner(r);if(!ip)return;const host=old.find(fi=>inFace(ip,C.f[fi]));const loops=[r.o,...r.h];
+    const hasNew=loops.some(L=>L.some((x,i)=>newKeys&&newKeys.has(fek(x,L[(i+1)%L.length]))));if(host==null&&!hasNew)return;
+    let flip;const src=host!=null?C.f[host]:null;if(src){hosted.add(host);flip=vDot(fPlane(C,src).n,n)<0}else flip=fOrientNew(C,r,n,old,o);
+    const fo=flip?r.o.slice().reverse():r.o.slice(),fh=r.h.map(c=>flip?c.slice():c.slice().reverse());
+    const nf={o:fo};if(fh.length)nf.h=fh;if(src){if(src.m)nf.m=src.m;if(src.c)nf.c=src.c}else if(o.mat){if(o.mat.m)nf.m=o.mat.m;if(o.mat.c)nf.c=o.mat.c}out.push(nf)});
+  // los huecos se guardan girando al revés que el contorno exterior
+  out.forEach(f=>fFixHoles(C,f));
+  // una cara vieja queda reemplazada si su interior cae dentro de alguna región nueva (al fundir caras)
+  if(out.length)old.forEach(fi=>{if(hosted.has(fi))return;const g=C.f[fi];const ip=inner({o:g.o,h:g.h||[],_p:1});if(ip&&out.some(nf=>inFace(ip,nf)))hosted.add(fi)});
+  if(!hosted.size&&!out.length)return false;C.f=C.f.filter((f,i)=>!hosted.has(i)).concat(out);return true}
+/* Los huecos giran al revés que el contorno exterior. */
+function fFixHoles(C,f){if(!f.h)return f;const n=fNormalL(C,f.o);f.h=f.h.map(h=>vDot(fNormalL(C,h),n)>0?h.slice().reverse():h);return f}
+/* Orientación de una cara nueva: igual que sus vecinas (cada arista compartida se recorre al revés en las dos caras); si no tiene vecinas, hacia quien mira; en el suelo, hacia abajo. */
+function fOrientNew(C,r,n,old,o){let vote=0;const oldS=new Set(old);const dir=new Map();C.f.forEach((f,fi)=>{if(oldS.has(fi))return;fLoops(f).forEach(L=>L.forEach((x,i)=>dir.set(x+'>'+L[(i+1)%L.length],1)))});
+  [r.o,...r.h].forEach((L,li)=>L.forEach((x,i)=>{const y=L[(i+1)%L.length];if(dir.has(x+'>'+y))vote+=li?-1:1;if(dir.has(y+'>'+x))vote-=li?-1:1}));
+  if(vote)return vote>0;const c=fCentroid(C,r.o);if(Math.abs(n[2])>0.999&&Math.abs(c[2])<0.01)return n[2]>0;if(o.view){return vDot(n,vSub(o.view,c))<0}return false}
+/* Funde caras coplanares vecinas con el mismo acabado (borra la arista que las separa). Regresa cuántas aristas quitó. */
+function fMergeCoplanar(C,only){const E=fEdges(C);const ex=new Set(),pls=[];
+  E.forEach((e,k)=>{if(e.f.length!==2)return;if(only&&!e.f.some(fi=>only.has(fi)))return;const[f1,f2]=e.f.map(i=>C.f[i]);if((f1.m||'')!==(f2.m||'')||(f1.c||'')!==(f2.c||''))return;const p1=fPlane(C,f1),p2=fPlane(C,f2);
+    if(vDot(p1.n,p2.n)>1-1e-7&&Math.abs(p1.d-p2.d)<FTOL*10&&!C.sf.includes(k)){ex.add(k);if(!pls.some(q=>vDot(q.n,p1.n)>1-1e-7&&Math.abs(q.d-p1.d)<FTOL*10))pls.push(p1)}});
+  pls.forEach(pl=>fRegenPlane(C,pl,null,{excl:ex}));C.le=C.le.filter(([a,b])=>!ex.has(fek(a,b)));return ex.size}
+/* Quita vértices sin uso, caras degeneradas y aristas sueltas repetidas o que ya son lados de caras. Regresa el mapa viejo → nuevo. */
+function fClean(C){C.f=C.f.map(f=>{const fix=L=>{const o=[];L.forEach(i=>{if(o[o.length-1]!==i)o.push(i)});while(o.length>1&&o[0]===o[o.length-1])o.pop();return o};const o={...f,o:fix(f.o)};if(f.h){o.h=f.h.map(fix).filter(h=>h.length>=3);if(!o.h.length)delete o.h}return o}).filter(f=>f.o.length>=3&&fArea(C,f)>1e-9);
+  const fe=new Set();C.f.forEach(f=>fLoops(f).forEach(L=>L.forEach((x,i)=>fe.add(fek(x,L[(i+1)%L.length])))));const seen=new Set();
+  C.le=C.le.filter(([a,b])=>{const k=fek(a,b);if(a===b||fe.has(k)||seen.has(k)||vDist(C.v[a],C.v[b])<FTOL)return false;seen.add(k);return true});
+  const used=fUsed(C);const map=new Map(),nv=[];C.v.forEach((p,i)=>{if(used.has(i)){map.set(i,nv.length);nv.push(p)}});C.v=nv;const m=i=>map.get(i);
+  C.f.forEach(f=>{f.o=f.o.map(m);if(f.h)f.h=f.h.map(h=>h.map(m))});C.le=C.le.map(([a,b])=>[m(a),m(b)]);
+  const all=new Set();C.f.forEach(f=>fLoops(f).forEach(L=>L.forEach((x,i)=>all.add(fek(x,L[(i+1)%L.length])))));C.le.forEach(([a,b])=>all.add(fek(a,b)));
+  C.sf=C.sf.map(k=>{const[a,b]=k.split('|').map(Number);return map.has(a)&&map.has(b)?fek(m(a),m(b)):null}).filter(k=>k&&all.has(k));C.sf=[...new Set(C.sf)];return map}
+/* Borra una cara (sus aristas quedan). */
+function fDelFace(C,fi){const f=C.f[fi];if(!f)return;C.f.splice(fi,1);const fe=new Set();C.f.forEach(g=>fLoops(g).forEach(L=>L.forEach((x,i)=>fe.add(fek(x,L[(i+1)%L.length])))));
+  fLoops(f).forEach(L=>L.forEach((x,i)=>{const y=L[(i+1)%L.length];if(!fe.has(fek(x,y)))C.le.push([x,y])}))}
+/* Borra una arista: si separa dos caras coplanares las une; si no, se van las caras que la usan. */
+function fDelEdge(C,a,b){const k=fek(a,b);const e=fEdges(C).get(k);if(!e)return false;C.sf=C.sf.filter(x=>x!==k);
+  if(e.f.length===2){const[f1,f2]=e.f.map(i=>C.f[i]);const p1=fPlane(C,f1),p2=fPlane(C,f2);if(vDot(p1.n,p2.n)>1-1e-7&&Math.abs(p1.d-p2.d)<FTOL*10){fRegenPlane(C,p1,null,{excl:new Set([k])});C.le=C.le.filter(([x,y])=>fek(x,y)!==k);return true}}
+  e.f.slice().sort((x,y)=>y-x).forEach(fi=>fDelFace(C,fi));C.le=C.le.filter(([x,y])=>fek(x,y)!==k);return true}
+/* ¿Se puede empujar la cara solo moviéndola? (todas sus aristas tocan una sola cara vecina, perpendicular a ella: la tapa de una caja) */
+function fMovable(C,fi){const f=C.f[fi];const{n}=fPlane(C,f);const E=fEdges(C);let ok=true,any=false;
+  fLoops(f).forEach(L=>L.forEach((x,i)=>{const e=E.get(fek(x,L[(i+1)%L.length]));const nb=e.f.filter(j=>j!==fi);if(nb.length!==1){ok=false;return}any=true;if(Math.abs(vDot(fPlane(C,C.f[nb[0]]).n,n))>1e-6)ok=false}));return ok&&any}
+/* Empujar/Tirar: d en metros a lo largo de la normal. o.copy fuerza a crear volumen nuevo (deja la cara de arranque). Regresa el índice de la cara movida o de la tapa. */
+function fPush(C,fi,d,o={}){const f=C.f[fi];if(!f||Math.abs(d)<1e-6)return fi;const{n}=fPlane(C,f);const t=vMul(n,d);
+  if(!o.copy&&fMovable(C,fi)){const vs=new Set(fLoops(f).flat());vs.forEach(i=>{C.v[i]=vRound(vAdd(C.v[i],t))});return fi}
+  const E=fEdges(C);const alone=fLoops(f).some(L=>L.some((x,i)=>E.get(fek(x,L[(i+1)%L.length])).f.length===1));
+  const mp=new Map();const nv=i=>{if(!mp.has(i)){C.v.push(vRound(vAdd(C.v[i],t)));mp.set(i,C.v.length-1)}return mp.get(i)};
+  // cara suelta empujada contra su normal: se crea un sólido nuevo (tapa hacia donde se movió, base hacia atrás);
+  // cara de un volumen: hacia afuera agrega, hacia adentro abre un hueco (la tapa sigue mirando hacia afuera)
+  const flipM=alone&&d<0;const rv=L=>flipM?L.slice().reverse():L.slice();
+  const cap={o:rv(f.o.map(nv))};if(f.h)cap.h=f.h.map(h=>rv(h.map(nv)));if(f.m)cap.m=f.m;if(f.c)cap.c=f.c;
+  const sides=[];fLoops(f).forEach(L=>L.forEach((u,i)=>{const w=L[(i+1)%L.length];const q=flipM?[w,u,nv(u),nv(w)]:[u,w,nv(w),nv(u)];const s={o:q};if(f.m)s.m=f.m;if(f.c)s.c=f.c;sides.push(s)}));
+  const keepBase=alone||o.copy;let base=null;if(keepBase){const rb=L=>flipM?L.slice():L.slice().reverse();base={o:rb(f.o)};if(f.h)base.h=f.h.map(rb);if(f.m)base.m=f.m;if(f.c)base.c=f.c}
+  C.f.splice(fi,1);if(base)C.f.push(base);C.f.push(...sides);C.f.push(cap);let capI=C.f.length-1;
+  // vértices nuevos que caen sobre vértices existentes se unen
+  fWeld(C);capI=C.f.indexOf(cap);
+  // atravesó el volumen: la tapa cae sobre una cara opuesta → se abre un hueco
+  const cp=fPlane(C,cap);const hit=C.f.findIndex((g,gi)=>{if(gi===capI)return false;const gp=fPlane(C,g);return Math.abs(Math.abs(vDot(gp.n,cp.n))-1)<1e-7&&Math.abs(gp.d-vDot(gp.n,fCentroid(C,cap.o)))<FTOL*10&&fFaceHas(C,g,fCentroid(C,cap.o))&&!(g.o.length===cap.o.length&&g.o.every(x=>cap.o.includes(x)))});
+  if(hit>=0){const capV=new Set(fLoops(cap).flat());C.f.splice(capI,1);const keys=[];cap.o.forEach((x,i)=>{const y=cap.o[(i+1)%cap.o.length];keys.push(fek(x,y));C.le.push([x,y])});
+    fRegenPlane(C,{n:fPlane(C,C.f[hit>capI?hit-1:hit]).n,d:fPlane(C,C.f[hit>capI?hit-1:hit]).d},new Set(keys),{});
+    const j=C.f.findIndex(g=>g.o.length===capV.size&&g.o.every(x=>capV.has(x))&&!g.h);if(j>=0)C.f.splice(j,1);fClean(C);return -1}
+  fDropCoincident(C);fMergeCoplanar(C);return C.f.findIndex(g=>g===cap)}
+/* Dos caras con los mismos vértices (una contra otra) se anulan: queda un solo volumen. */
+function fDropCoincident(C){const key=f=>f.h?null:f.o.slice().sort((a,b)=>a-b).join(',');const M=new Map();C.f.forEach((f,i)=>{const k=key(f);if(!k)return;const L=M.get(k);if(L)L.push(i);else M.set(k,[i])});
+  const del=new Set();M.forEach(L=>{if(L.length>=2){del.add(L[0]);del.add(L[1])}});if(!del.size)return 0;C.f=C.f.filter((f,i)=>!del.has(i));return del.size}
+/* La cara del plano (n) que contiene el punto p. */
+function fFaceAt(C,p,n){let best=-1;C.f.forEach((f,i)=>{const q=fPlane(C,f);if(n&&Math.abs(Math.abs(vDot(q.n,n))-1)>1e-6)return;if(Math.abs(vDot(q.n,p)-q.d)>FTOL*20)return;if(fFaceHas(C,f,p))best=i});return best}
+/* ¿El punto (en el plano de la cara) está dentro de la cara, contando sus huecos? */
+function fFaceHas(C,f,p){const{n}=fPlane(C,f);const[U,V]=fBasis(n);const q=[vDot(p,U),vDot(p,V)];let ins=false;fLoops(f).forEach(L=>{const P=L.map(i=>[vDot(C.v[i],U),vDot(C.v[i],V)]);for(let i=0,j=P.length-1;i<P.length;j=i++){const a=P[i],b=P[j];if((a[1]>q[1])!==(b[1]>q[1])&&q[0]<(b[0]-a[0])*(q[1]-a[1])/(b[1]-a[1])+a[0])ins=!ins}});return ins}
+/* Une vértices que quedaron en la misma posición. */
+function fWeld(C){const key=p=>p.map(x=>Math.round(x/FTOL)).join(',');const seen=new Map(),map=new Map();C.v.forEach((p,i)=>{if(!p)return;const k=key(p);if(seen.has(k))map.set(i,seen.get(k));else seen.set(k,i)});if(!map.size)return 0;
+  const m=i=>map.has(i)?map.get(i):i;C.f.forEach(f=>{f.o=f.o.map(m);if(f.h)f.h=f.h.map(h=>h.map(m))});C.le=C.le.map(([a,b])=>[m(a),m(b)]);C.sf=C.sf.map(k=>{const[a,b]=k.split('|').map(Number);return fek(m(a),m(b))});return map.size}
+/* Mueve vértices; las caras que dejan de ser planas se doblan en triángulos (como el «autodoblado»). */
+function fMoveVerts(C,idx,t){const S_=new Set(idx);const before=C.f.map(f=>fLoops(f).some(L=>L.some(i=>S_.has(i)))?fTris(C,f):null);
+  S_.forEach(i=>{C.v[i]=vRound(vAdd(C.v[i],t))});fFold(C,before)}
+function fXformVerts(C,idx,fn){const S_=new Set(idx);const before=C.f.map(f=>fLoops(f).some(L=>L.some(i=>S_.has(i)))?fTris(C,f):null);S_.forEach(i=>{C.v[i]=vRound(fn(C.v[i]))});fFold(C,before)}
+function fFold(C,before){const add=[],del=[];C.f.forEach((f,fi)=>{if(!before[fi])return;if(fFlat(C,f))return;del.push(fi);before[fi].forEach(tr=>{const g={o:tr};if(f.m)g.m=f.m;if(f.c)g.c=f.c;add.push(g)})});
+  if(!del.length)return;const D=new Set(del);C.f=C.f.filter((f,i)=>!D.has(i)).concat(add.filter(g=>fArea(C,g)>1e-9))}
+function fFlat(C,f){const{n,d}=fPlane(C,f);return fLoops(f).every(L=>L.every(i=>Math.abs(vDot(n,C.v[i])-d)<FTOL*20))}
+/* Triángulos de una cara (índices de vértice), con sus huecos. */
+function fTris(C,f){const{n}=fPlane(C,f);const[U,V]=fBasis(n);const to2=i=>{const p=C.v[i];return{x:vDot(p,U),y:vDot(p,V)}};
+  const T_=window.THREE;if(!T_||!T_.ShapeUtils){const idx=fBridge(f.o.map(to2),(f.h||[]).map(h=>h.map(to2)),f.o.concat(...(f.h||[])));return fEar(idx.map(k=>k.p)).map(t=>{const o=t.map(k=>idx[k].i);const a=C.v[o[0]],b=C.v[o[1]],c=C.v[o[2]];return vDot(vCross(vSub(b,a),vSub(c,a)),n)<0?[o[0],o[2],o[1]]:o})}
+  const ctr=f.o.map(to2),holes=(f.h||[]).map(h=>h.map(to2));const idx=f.o.concat(...(f.h||[]));const tr=T_.ShapeUtils.triangulateShape(ctr.map(p=>new T_.Vector2(p.x,p.y)),holes.map(h=>h.map(p=>new T_.Vector2(p.x,p.y))));
+  return tr.map(t=>{const o=t.map(k=>idx[k]);const a=C.v[o[0]],b=C.v[o[1]],c=C.v[o[2]];return vDot(vCross(vSub(b,a),vSub(c,a)),n)<0?[o[0],o[2],o[1]]:o})}
+/* Sin three.js: une cada hueco al contorno con un puente y recorta orejas (para exportar sin abrir el 3D). */
+function fBridge(outer,holes,ids){let poly=outer.map((p,k)=>({p:[p.x,p.y],i:ids[k]}));let off=outer.length;const hs=holes.map(h=>{const r=h.map((p,k)=>({p:[p.x,p.y],i:ids[off+k]}));off+=h.length;return r});
+  const area=L=>{let s=0;L.forEach((a,i)=>{const b=L[(i+1)%L.length];s+=a.p[0]*b.p[1]-b.p[0]*a.p[1]});return s};if(area(poly)<0)poly.reverse();
+  const X=(a,b,c,d)=>{const o=(p,q,r)=>(q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0]);return o(a,b,c)*o(a,b,d)<-1e-12&&o(c,d,a)*o(c,d,b)<-1e-12};
+  hs.sort((A,B)=>Math.max(...B.map(q=>q.p[0]))-Math.max(...A.map(q=>q.p[0]))).forEach(h=>{if(area(h)>0)h.reverse();let mi=0;h.forEach((q,k)=>{if(q.p[0]>h[mi].p[0])mi=k});const M=h[mi].p;
+    let best=-1,bd=1e18;poly.forEach((q,k)=>{const d=(q.p[0]-M[0])**2+(q.p[1]-M[1])**2;if(d>=bd)return;const segs=[];const all=[poly,...hs];if(all.some(L=>L.some((a,j)=>{const b=L[(j+1)%L.length];if(a===q||b===q||a===h[mi]||b===h[mi])return false;return X(M,q.p,a.p,b.p)})))return;bd=d;best=k});
+    if(best<0)best=0;const hr=h.slice(mi).concat(h.slice(0,mi));poly=poly.slice(0,best+1).concat(hr,[hr[0],poly[best]],poly.slice(best+1))});return poly}
+function fEar(P){const n=P.length;const idx=P.map((_,i)=>i);const tri=[];const cr=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);const ins=(q,a,b,c)=>cr(a,b,q)>=-1e-12&&cr(b,c,q)>=-1e-12&&cr(c,a,q)>=-1e-12;let g=0;
+  while(idx.length>3&&g++<n*n+10){let cut=false;for(let i=0;i<idx.length;i++){const ia=idx[(i+idx.length-1)%idx.length],ib=idx[i],ic=idx[(i+1)%idx.length];const a=P[ia],b=P[ib],c=P[ic];if(cr(a,b,c)<=1e-12)continue;
+      if(idx.some(j=>j!==ia&&j!==ib&&j!==ic&&!(P[j][0]===a[0]&&P[j][1]===a[1])&&!(P[j][0]===b[0]&&P[j][1]===b[1])&&!(P[j][0]===c[0]&&P[j][1]===c[1])&&ins(P[j],a,b,c)))continue;tri.push([ia,ib,ic]);idx.splice(i,1);cut=true;break}if(!cut)break}
+  if(idx.length===3)tri.push(idx.slice());return tri}
+/* Contorno paralelo de una cara dentro de su plano (d < 0 hacia adentro). */
+function fOffsetFace(C,fi,d,o={}){const f=C.f[fi];const{n}=fPlane(C,f);const[U,V]=fBasis(n);const p0=C.v[f.o[0]];const off0=vDot(p0,n);
+  const g=f.o.map(i=>{const p=C.v[i];return[vDot(p,U),vDot(p,V)]});const og=m3Offset(g,d);if(!og||og.length<3)return null;
+  const P=og.map(([x,y])=>vAdd(vAdd(vMul(U,x),vMul(V,y)),vMul(n,off0)));const keys=[];for(let i=0;i<P.length;i++)keys.push(...fAddSeg(C,P[i],P[(i+1)%P.length],{...o,noFaces:true}));fRegenAround(C,keys,o);return P}
+/* Sígueme: barre el perfil (una cara) a lo largo de un camino de puntos. */
+function fFollow(C,fi,path,o={}){const f=C.f[fi];if(!f||path.length<2)return false;const pf=f.o.map(i=>C.v[i]);const holes=(f.h||[]).map(h=>h.map(i=>C.v[i]));
+  const closed=vDist(path[0],path[path.length-1])<FTOL*10;const P=closed?path.slice(0,-1):path.slice();const N=P.length;if(N<2)return false;
+  const seg=i=>vNorm(vSub(P[(i+1)%N],P[i]));const dirIn=i=>closed?seg((i-1+N)%N):i>0?seg(i-1):seg(0),dirOut=i=>closed?seg(i):i<N-1?seg(i):seg(N-2);
+  const miter=i=>vNorm(vAdd(dirIn(i),dirOut(i)))||dirOut(i);
+  const proj=(pts,i,dir)=>{const m=miter(i);return pts.map(p=>{const den=vDot(dir,m);const s=Math.abs(den)<1e-9?0:vDot(vSub(P[i],p),m)/den;return vAdd(p,vMul(dir,s))})};
+  const rings=[];let cur=[pf,...holes];rings.push(cur.map(L=>proj(L,0,dirOut(0))));
+  for(let i=1;i<N;i++){cur=rings[i-1].map(L=>proj(L,i,dirIn(i)));rings.push(cur)}if(closed)rings.push(rings[N-1].map(L=>proj(L,0,dirIn(0))));
+  const pn=fNormalL({v:pf},pf.map((_,i)=>i));const fwd=vDot(pn,dirOut(0))>=0;const mat=f.m?{m:f.m}:f.c?{c:f.c}:{};
+  const faces=[];for(let r=0;r+1<rings.length;r++)rings[r].forEach((L,li)=>L.forEach((p,i)=>{const a=p,b=L[(i+1)%L.length],c=rings[r+1][li][(i+1)%L.length],d_=rings[r+1][li][i];faces.push(fwd?[a,b,c,d_]:[b,a,d_,c])}));
+  const addF=(pts,h)=>{const g={o:pts.map(p=>fVert(C,p)),...mat};if(h&&h.length)g.h=h.map(L=>L.map(p=>fVert(C,p)));if(new Set(g.o).size>=3)C.f.push(fFixHoles(C,g))};
+  C.f.splice(fi,1);if(!closed){const first=rings[0],last=rings[rings.length-1];addF(fwd?first[0].slice().reverse():first[0],first.slice(1));addF(fwd?last[0]:last[0].slice().reverse(),last.slice(1))}
+  faces.forEach(q=>{const g={o:q.map(p=>fVert(C,p)),...mat};if(new Set(g.o).size>=3){if(fFlat(C,g))C.f.push(g);else{const[a,b,c,d_]=g.o;C.f.push({o:[a,b,c],...mat},{o:[a,c,d_],...mat})}}});
+  fWeld(C);fClean(C);fMergeCoplanar(C);return true}
+/* Arco o círculo como puntos en un plano: centro c, normal n, radio r, desde el ángulo a0, N lados. */
+function fCirclePts(c,n,r,N,a0=0){const[U,V]=fBasis(n);const o=[];for(let i=0;i<N;i++){const a=a0+i/N*2*Math.PI;o.push(vAdd(c,vAdd(vMul(U,Math.cos(a)*r),vMul(V,Math.sin(a)*r))))}return o}
+/* Agrega un contorno cerrado (rectángulo, círculo, polígono): cada lado como arista y luego las caras. */
+function fAddLoop(C,pts,o={}){const keys=[];for(let i=0;i<pts.length;i++)keys.push(...fAddSeg(C,pts[i],pts[(i+1)%pts.length],{...o,noFaces:true}));fRegenAround(C,keys,o);return keys}
+/* ---------- transformaciones afines 3×4 (filas) ---------- */
+const tI=()=>[1,0,0,0,0,1,0,0,0,0,1,0];
+const tAp=(t,p)=>[t[0]*p[0]+t[1]*p[1]+t[2]*p[2]+t[3],t[4]*p[0]+t[5]*p[1]+t[6]*p[2]+t[7],t[8]*p[0]+t[9]*p[1]+t[10]*p[2]+t[11]];
+const tApV=(t,p)=>[t[0]*p[0]+t[1]*p[1]+t[2]*p[2],t[4]*p[0]+t[5]*p[1]+t[6]*p[2],t[8]*p[0]+t[9]*p[1]+t[10]*p[2]];
+function tMul(a,b){const o=new Array(12);for(let r=0;r<3;r++){for(let c=0;c<3;c++)o[r*4+c]=a[r*4]*b[c]+a[r*4+1]*b[4+c]+a[r*4+2]*b[8+c];o[r*4+3]=a[r*4]*b[3]+a[r*4+1]*b[7]+a[r*4+2]*b[11]+a[r*4+3]}return o}
+function tInv(t){const[a,b,c,,d,e,f,,g,h,i]=t;const A=e*i-f*h,B=-(d*i-f*g),Cc=d*h-e*g;const det=a*A+b*B+c*Cc;if(Math.abs(det)<1e-14)return tI();const k=1/det;
+  const m=[A*k,-(b*i-c*h)*k,(b*f-c*e)*k,0,B*k,(a*i-c*g)*k,-(a*f-c*d)*k,0,Cc*k,-(a*h-b*g)*k,(a*e-b*d)*k,0];const tr=[t[3],t[7],t[11]];const it=tApV(m,tr);m[3]=-it[0];m[7]=-it[1];m[11]=-it[2];return m}
+const tT=v=>[1,0,0,v[0],0,1,0,v[1],0,0,1,v[2]];
+/* Giro alrededor de un eje (unitario) que pasa por el punto c. */
+function tRot(c,ax,a){const[x,y,z]=ax,co=Math.cos(a),s=Math.sin(a),k=1-co;const R=[co+x*x*k,x*y*k-z*s,x*z*k+y*s,0,y*x*k+z*s,co+y*y*k,y*z*k-x*s,0,z*x*k-y*s,z*y*k+x*s,co+z*z*k,0];return tMul(tT(c),tMul(R,tT(vMul(c,-1))))}
+function tScale(c,s){return tMul(tT(c),tMul([s[0],0,0,0,0,s[1],0,0,0,0,s[2],0],tT(vMul(c,-1))))}
+const tDet=t=>t[0]*(t[5]*t[10]-t[6]*t[9])-t[1]*(t[4]*t[10]-t[6]*t[8])+t[2]*(t[4]*t[9]-t[5]*t[8]);
+/* ---------- el modelo libre del proyecto ---------- */
+function defaultFree(){return{root:fNew(),defs:{},tags:[],n:0}}
+function freeId(p){const F=S.free;F.n=(F.n||0)+1;let id=p+F.n.toString(36);while(F.defs[id]||freeFindIns(id))id=p+(++F.n).toString(36);return id}
+/* Recorre las instancias: cb(inst, contenedor padre, transformación acumulada, ruta). */
+function freeWalk(cb,C=S.free.root,t=tI(),path=[],seen=new Set()){(C.ins||[]).forEach(I=>{const D=S.free.defs[I.d];if(!D||seen.has(I.d))return;const T_=tMul(t,I.t);const P=path.concat(I.id);if(cb(I,C,T_,P,D)===false)return;seen.add(I.d);freeWalk(cb,D,T_,P,seen);seen.delete(I.d)})}
+function freeFindIns(id){let r=null;if(!S.free)return null;freeWalk((I,C,T_,P)=>{if(I.id===id){r={I,C,t:T_,path:P};return false}});return r}
+/* Contenedor y transformación de una ruta de edición (lista de instancias desde la raíz). */
+function freeCtx(path){let C=S.free.root,t=tI();for(const id of path||[]){const I=(C.ins||[]).find(x=>x.id===id);if(!I)break;const D=S.free.defs[I.d];if(!D)break;t=tMul(t,I.t);C=D}return{C,t,it:tInv(t)}}
+/* Quita las definiciones de grupos que ya no usa nadie (los componentes se conservan como biblioteca). */
+function freePurge(){const used=new Set();freeWalk(I=>{used.add(I.d)});let n=0;Object.keys(S.free.defs).forEach(k=>{if(!used.has(k)&&S.free.defs[k].kind!=='c'){delete S.free.defs[k];n++}});return n}
+function freeUses(defId){let n=0;freeWalk(I=>{if(I.d===defId)n++});return n}
+/* Limpia y valida un modelo libre que viene de un archivo (nada de lo que traiga se ejecuta ni se inserta como HTML). */
+function cleanFreeC(c,nDefs){const o=fNew();if(!c||typeof c!=='object')return o;const V=Array.isArray(c.v)?c.v.slice(0,200000):[];
+  o.v=V.map(p=>Array.isArray(p)&&p.length===3&&p.every(x=>Number.isFinite(+x)&&Math.abs(+x)<1e6)?vRound(p.map(Number)):[0,0,0]);const nv=o.v.length;const okI=i=>Number.isInteger(i)&&i>=0&&i<nv;
+  const okL=L=>Array.isArray(L)&&L.length>=3&&L.length<=5000&&L.every(okI);
+  o.f=(Array.isArray(c.f)?c.f.slice(0,200000):[]).filter(f=>f&&okL(f.o)).map(f=>{const g={o:f.o.slice()};const h=Array.isArray(f.h)?f.h.filter(okL).slice(0,500):[];if(h.length)g.h=h.map(x=>x.slice());
+    if(typeof f.m==='string'&&/^[a-z0-9_]{1,24}$/.test(f.m))g.m=f.m;if(typeof f.c==='string'&&/^#[0-9a-fA-F]{6}$/.test(f.c))g.c=f.c;return g});
+  o.le=(Array.isArray(c.le)?c.le.slice(0,200000):[]).filter(e=>Array.isArray(e)&&e.length===2&&okI(e[0])&&okI(e[1])&&e[0]!==e[1]).map(e=>[e[0],e[1]]);
+  o.sf=(Array.isArray(c.sf)?c.sf.slice(0,200000):[]).filter(k=>typeof k==='string'&&/^\d+\|\d+$/.test(k)&&k.split('|').every(x=>+x<nv));
+  o.ins=(Array.isArray(c.ins)?c.ins.slice(0,20000):[]).filter(I=>I&&typeof I.d==='string'&&nDefs.has(I.d)&&Array.isArray(I.t)&&I.t.length===12&&I.t.every(x=>Number.isFinite(+x)&&Math.abs(+x)<1e7)&&Math.abs(tDet(I.t.map(Number)))>1e-12)
+    .map(I=>{const r={id:typeof I.id==='string'&&/^[a-z0-9]{1,16}$/i.test(I.id)?I.id:'i'+Math.random().toString(36).slice(2,9),d:I.d,t:I.t.map(Number)};if(typeof I.n==='string'&&I.n.trim())r.n=I.n.slice(0,80);if(typeof I.tag==='string'&&/^[a-z0-9]{1,16}$/i.test(I.tag))r.tag=I.tag;if(I.hid===true)r.hid=true;if(I.lk===true)r.lk=true;return r});
+  return o}
+function cleanFree(F){const o=defaultFree();if(!F||typeof F!=='object')return o;const ids=Object.keys(F.defs&&typeof F.defs==='object'?F.defs:{}).filter(k=>/^[a-z0-9]{1,16}$/i.test(k)&&k!=='__proto__').slice(0,5000);const set=new Set(ids);
+  ids.forEach(k=>{const D=F.defs[k];const c=cleanFreeC(D,set);c.n=typeof D.n==='string'&&D.n.trim()?D.n.slice(0,80):'Grupo';c.kind=D.kind==='c'?'c':'g';o.defs[k]=c});o.root=cleanFreeC(F.root,set);
+  o.tags=(Array.isArray(F.tags)?F.tags.slice(0,200):[]).filter(t=>t&&typeof t.id==='string'&&/^[a-z0-9]{1,16}$/i.test(t.id)).map(t=>({id:t.id,n:typeof t.n==='string'&&t.n.trim()?t.n.slice(0,60):'Etiqueta',c:typeof t.c==='string'&&/^#[0-9a-fA-F]{6}$/.test(t.c)?t.c:'#8a8f96',v:t.v!==false}));
+  o.n=Number.isInteger(F.n)&&F.n>=0&&F.n<1e9?F.n:0;
+  // instancias que forman un ciclo (un grupo dentro de sí mismo) se quitan
+  const reach=(from,to,seen=new Set())=>{if(from===to)return true;if(seen.has(from))return false;seen.add(from);return(o.defs[from]?o.defs[from].ins:[]).some(I=>reach(I.d,to,seen))};
+  Object.entries(o.defs).forEach(([k,D])=>{D.ins=D.ins.filter(I=>!reach(I.d,k))});return o}
+/* Cuánto hay en el modelo libre (para avisos y pruebas). */
+function freeStats(){const F=S.free;if(!F)return{f:0,e:0,ins:0};let f=F.root.f.length,e=fEdges(F.root).size,ins=0;freeWalk((I,C,t,P,D)=>{ins++;f+=D.f.length;e+=fEdges(D).size});return{f,e,ins}}
+
+/* ================= Forma libre: herramientas del 3D =================
+   Las herramientas de la forma libre trabajan sobre el núcleo de forma.js con el mismo imán (inferencias) del editor de espacios.
+   Todo se guarda en S.free, así que deshacer, guardar y abrir funcionan igual que con el resto del proyecto. */
+// [clave, nombre, tecla, avanzada, ayuda]
+const M3FTOOLS=[['sel','Seleccionar','Espacio',0,'Seleccionar (Espacio): clic elige una cara, una arista o un grupo · doble clic entra al grupo · arrastra para un recuadro'],
+  ['orbit','Orbitar','',0,'Orbitar: arrastra para girar la vista (también con el botón central del mouse)'],
+  ['pan','Mano','H',0,'Mano (H): arrastra para desplazar la vista'],
+  ['fline','Línea','L',0,'Línea (L): dibuja aristas en cualquier dirección; al cerrar un contorno plano se crea una cara y una línea de lado a lado parte una cara'],
+  ['farc','Arco','A',1,'Arco de dos puntos (A): inicio, final y flecha, sobre el plano de la cara donde empiezas'],
+  ['frect','Rectángulo','R',0,'Rectángulo (R): sobre el suelo o sobre cualquier cara, también inclinada; escribe 4,3 para medidas exactas'],
+  ['fcirc','Círculo','C',1,'Círculo y polígono (C): centro y radio sobre cualquier cara; 6s cambia a un hexágono'],
+  ['fpush','Empujar/Tirar','P',0,'Empujar/Tirar (P): cualquier cara; hacia adentro hasta atravesar abre un hueco; Ctrl deja la cara de arranque; doble clic repite'],
+  ['fmove','Mover','M',0,'Mover (M): mueve lo elegido o lo que tocas; caras, aristas y vértices estiran la forma; Ctrl copia y luego 3x repite'],
+  ['frot','Rotar','Q',1,'Rotar (Q): centro, referencia y ángulo sobre el plano de la cara; se pega cada 15°; Ctrl copia'],
+  ['fscale','Escala','S',1,'Escala (S): origen, referencia y tamaño nuevo; escribe 2 para el doble o 1,1,2 por ejes'],
+  ['foff','Equidistancia','F',1,'Equidistancia (F): contorno paralelo dentro o fuera de cualquier cara'],
+  ['ffollow','Sígueme','J',1,'Sígueme (J): elige las aristas del camino y luego toca la cara del perfil'],
+  ['tape','Medir','T',0,'Medir (T): distancias y guías; desde una arista deja una guía paralela'],
+  ['fpaint','Pintar','B',0,'Pintar (B): elige un acabado y toca una cara o un grupo; Alt + clic copia el acabado'],
+  ['ferase','Borrar','E',0,'Borrar (E): una arista (si separa dos caras del mismo plano las une), una cara o un grupo']];
+const M3FKEYS={' ':'sel',h:'pan',l:'fline',a:'farc',r:'frect',c:'fcirc',p:'fpush',m:'fmove',q:'frot',s:'fscale',f:'foff',j:'ffollow',t:'tape',b:'fpaint',e:'ferase'};
+Object.assign(M3ICON,{fline:M3ICON.line,farc:M3ICON.arc,frect:M3ICON.rect,fcirc:M3ICON.circle,fpush:M3ICON.push,fmove:M3ICON.move,frot:M3ICON.rotate,foff:M3ICON.offset,fpaint:M3ICON.paint,ferase:M3ICON.erase,
+  fscale:'<rect x="2.6" y="8.4" width="9" height="9" rx=".5"/><path d="M8 2.6h9.4V12" stroke-dasharray="2 1.6"/><path d="M11 9l6-6M13.4 3h3.6v3.6"/>',
+  ffollow:'<path d="M3 16.5c4-1 5.5-4 7-8s4-5.5 7-5.5"/><rect x="1.8" y="13.4" width="4.4" height="4.4" rx=".4" fill="currentColor" stroke="none" opacity=".55"/>'});
+M3ED.mode=PREFS.m3mode==='libre'?'libre':'esp';M3ED.fctx=M3ED.fctx||[];M3ED.fsel={f:[],e:[],i:[]};
+const freeSelEmpty=()=>{const s=M3ED.fsel;return!s.f.length&&!s.e.length&&!s.i.length};
+/* Etiquetas de la forma libre */
+function freeTag(id){return S.free.tags.find(t=>t.id===id)}
+
+function m3FreeEd(X){const{T,M,ED}=X;const W=M.W;
+  const ctx=()=>freeCtx(ED.fctx);const pk=()=>ED.fctx.join('/');
+  const toPlan=v=>[v.x+M.cx,M.cy-v.z,v.y],toW=p=>W(p[0],p[1],p[2]),dirPlan=v=>[v.x,-v.z,v.y],dirW=p=>new T.Vector3(p[0],p[2],-p[1]);
+  const toLocal=v=>tAp(ctx().it,toPlan(v)),fromLocal=p=>toW(tAp(ctx().t,p));
+  const camL=()=>toLocal(M.camera.position);
+  const UP=new T.Vector3(0,1,0);
+  let LN=null,AR=null,RC=null,CI=null,PU=null,LASTPU=null,MV=null,RO=null,SCL=null,OF=null,lastR=null,lastSp=null;
+  // ----- lo que hay bajo el puntero -----
+  function hitFree(sp){const h=M.hitAt(sp);if(!h||!h.object.userData||h.object.userData.k!=='fr')return{h};const u=h.object.userData;const fi=u.fm?u.fm[h.faceIndex]:-1;const p0=pk();
+    if(u.path===p0)return{h,fi,own:true};if(!p0||u.path.startsWith(p0+'/')){const rest=u.path.slice(p0?p0.length+1:0).split('/');return{h,ins:rest[0]}}return{h,out:true}}
+  function faceNormalW(fi){const{C,t}=ctx();const n=fPlane(C,C.f[fi]).n;return dirW(vNorm(tApV(t,n))||n).normalize()}
+  function edgeAt(sp,tol){tol=tol||(M.coarse?14:7);const{C,t}=ctx();let best=null;const E=fEdges(C);if(E.size>6000)return null;
+    E.forEach(e=>{const a=toW(tAp(t,C.v[e.a])),b=toW(tAp(t,C.v[e.b]));const A=M.toScreen(a),B=M.toScreen(b);if(A.z>1||B.z>1)return;const d=segDist([sp.x,sp.y],[A.x,A.y],[B.x,B.y]);if(d<tol&&(!best||d<best.d))best={d,e,a,b}});
+    if(best&&!M.visible(best.a.clone().lerp(best.b,.5)))return null;return best}
+  // ----- dibujo de apoyo -----
+  function faceMesh(g,fi,col,op){const{C,t}=ctx();const f=C.f[fi];if(!f)return;const pts=[];fTris(C,f).forEach(tr=>tr.forEach(i=>pts.push(toW(tAp(t,C.v[i])))));const m=new T.Mesh(new T.BufferGeometry().setFromPoints(pts),X.fm(col,op));m.renderOrder=29;g.add(m);
+    fLoops(f).forEach(L=>X.line(g,L.map(i=>toW(tAp(t,C.v[i]))),col,false,true))}
+  function insBox(id){const r=freeFindIns(id);if(!r)return null;const D=S.free.defs[r.I.d];const B=new T.Box3();let any=false;const walk=(C,t)=>{C.v.forEach(p=>{B.expandByPoint(toW(tAp(t,p)));any=true});(C.ins||[]).forEach(I=>{const Dd=S.free.defs[I.d];if(Dd)walk(Dd,tMul(t,I.t))})};walk(D,r.t);return any?B:null}
+  function drawSel(g){const{C,t}=ctx();if(!C)return;ED.fsel.f.forEach(fi=>faceMesh(g,fi,X.COL.acc,0.22));const E=fEdges(C);ED.fsel.e.forEach(k=>{const e=E.get(k);if(e)X.line(g,[toW(tAp(t,C.v[e.a])),toW(tAp(t,C.v[e.b]))],X.COL.acc)});
+    ED.fsel.i.forEach(id=>{const B=insBox(id);if(B)X.boxLines(g,B.min,B.max,X.COL.acc)});if(ED.fctx.length){const B=insBox(ED.fctx[ED.fctx.length-1]);if(B)X.boxLines(g,B.min,B.max,0x8a8f96,true)}}
+  function setFSel(o){ED.fsel.f=o.f||[];ED.fsel.e=o.e||[];ED.fsel.i=o.i||[];X.redrawSel();M.onSel&&M.onSel()}
+  function commit(o={}){const{C}=ctx();if(!o.keep)fClean(C);freePurge();if(!o.keepSel){ED.fsel.f=[];ED.fsel.e=[];if(!o.keepIns)ED.fsel.i=ED.fsel.i.filter(id=>freeFindIns(id))}changed();M.refresh(['free']);X.redrawSel();M.onEdit&&M.onEdit()}
+  const live=()=>{M.refresh(['free'])};
+  // ----- inferencias: el imán del editor con caras de la forma libre -----
+  const snap=(sp,o={})=>{const r=X.snap(sp,{vert:true,...o});lastR=r;return r};
+  /* Plano para dibujar (rectángulo, círculo, arco): la cara bajo el puntero o el suelo. */
+  function planeAt(sp,r){const hf=hitFree(sp);if(hf.own&&hf.fi>=0)return{n:faceNormalW(hf.fi),fi:hf.fi};
+    if(r&&r.h&&r.h.face&&r.h.object.userData&&r.h.object.userData.k!=='gnd'&&r.h.object.userData.k!=='lot'){const n=r.h.face.normal.clone().applyMatrix3(new T.Matrix3().getNormalMatrix(r.h.object.matrixWorld)).normalize();return{n}}return{n:UP.clone()}}
+  const basisW=n=>{let U_;if(Math.abs(n.y)>0.9)U_=new T.Vector3(1,0,0).addScaledVector(n,-n.x).normalize();else U_=new T.Vector3().crossVectors(UP,n).normalize();return[U_,new T.Vector3().crossVectors(n,U_).normalize()]};
+  function onPlane(sp,P0,n,r){if(r&&r.k&&['end','mid','int','edge'].includes(r.k)){const q=r.p.clone();return q.addScaledVector(n,-q.clone().sub(P0).dot(n))}const ray=M.rayAt(sp);const den=ray.direction.dot(n);if(Math.abs(den)<1e-6)return null;const s=P0.clone().sub(ray.origin).dot(n)/den;if(s<=0)return null;return ray.origin.clone().addScaledVector(ray.direction,s)}
+  const lab=(p,txt)=>X.setLB([{p,t:txt}]);
+  // ----- Línea -----
+  function lineHover(sp){X.clr(X.drfG);const r=snap(sp,{from:LN&&LN.a});X.mark(r);if(LN&&r){X.rubber(LN.a,r);const L=LN.a.distanceTo(r.p);lab(LN.a.clone().lerp(r.p,.5),f2(L)+' m');X.vcbShow('Longitud',L)}else X.setLB([])}
+  function lineClick(sp){lineHover(sp);if(!lastR)return;addLinePt(lastR.p.clone())}
+  function addLinePt(p){if(!LN){LN={a:p,s:p};X.status('Sigue haciendo clic; Esc o Enter termina. Al cerrar un contorno plano se crea la cara');return}
+    if(p.distanceTo(LN.a)<1e-4)return;const{C}=ctx();const n0=C.f.length;fAddSeg(C,toLocal(LN.a),toLocal(p),{view:camL()});const made=C.f.length>n0;commit();
+    if(p.distanceTo(LN.s)<1e-4||(made&&p.distanceTo(LN.s)<1e-4)){LN=null;X.clr(X.drfG);X.setLB([]);return}LN.a=p}
+  // ----- Arco de dos puntos -----
+  function arcPts(A){const{a,b,n}=A;const[U_,V_]=basisW(n);const to2=p=>{const d=p.clone().sub(a);return[d.dot(U_),d.dot(V_)]};const fr2=q=>a.clone().addScaledVector(U_,q[0]).addScaledVector(V_,q[1]);return[a.clone()].concat(m3Arc([0,0],to2(b),A.s||0).map(fr2))}
+  function arcHover(sp){X.clr(X.drfG);const r=snap(sp,{from:AR&&!AR.b?AR.a:null});X.mark(r);if(!AR||!r)return;
+    if(!AR.b){X.rubber(AR.a,r);X.vcbShow('Largo',AR.a.distanceTo(r.p));return}const q=onPlane(sp,AR.a,AR.n,null);if(!q)return;const[U_,V_]=basisW(AR.n);const ab=AR.b.clone().sub(AR.a);const c=ab.length();
+    const u=ab.clone().normalize();const perp=new T.Vector3().crossVectors(AR.n,u);AR.s=q.clone().sub(AR.a).dot(perp);if(Math.abs(AR.s)>c*2)AR.s=Math.sign(AR.s)*c*2;X.line(X.drfG,arcPts(AR),X.COL.ink);X.vcbShow('Flecha',Math.abs(AR.s))}
+  function arcClick(sp){arcHover(sp);if(!lastR)return;if(!AR){const pl=planeAt(sp,lastR);AR={a:lastR.p.clone(),n:pl.n};return}if(!AR.b){if(lastR.p.distanceTo(AR.a)<1e-3)return;AR.b=lastR.p.clone();return}finishArc()}
+  function finishArc(){const pts=arcPts(AR).map(toLocal);const{C}=ctx();const keys=[];for(let i=0;i+1<pts.length;i++)keys.push(...fAddSeg(C,pts[i],pts[i+1],{noFaces:true}));fRegenAround(C,keys,{view:camL()});AR=null;X.clr(X.drfG);commit()}
+  // ----- Rectángulo -----
+  function rectCorners(R){const[U_,V_]=[R.U,R.V];const p0=R.p0;return[p0.clone(),p0.clone().addScaledVector(U_,R.du),p0.clone().addScaledVector(U_,R.du).addScaledVector(V_,R.dv),p0.clone().addScaledVector(V_,R.dv)]}
+  function rectHover(sp){X.clr(X.drfG);const r=snap(sp,RC?{noAxis:true}:{});X.mark(r);if(!RC)return;const q=onPlane(sp,RC.p0,RC.n,r);if(!q)return;const d=q.clone().sub(RC.p0);RC.du=d.dot(RC.U);RC.dv=d.dot(RC.V);
+    X.line(X.drfG,rectCorners(RC),X.COL.ink,false,true);X.vcbShow('Medidas',`${f2(Math.abs(RC.du))}, ${f2(Math.abs(RC.dv))}`)}
+  function rectClick(sp){const r=snap(sp,RC?{noAxis:true}:{});if(!r)return;if(!RC){const pl=planeAt(sp,r);const[U_,V_]=basisW(pl.n);RC={p0:r.p.clone(),n:pl.n,U:U_,V:V_,du:0,dv:0};X.status('Clic en la esquina opuesta o escribe ancho,largo');return}
+    rectHover(sp);finishRect()}
+  function finishRect(){if(!RC||Math.abs(RC.du)<1e-3||Math.abs(RC.dv)<1e-3)return;const{C}=ctx();fAddLoop(C,rectCorners(RC).map(toLocal),{view:camL()});RC=null;X.clr(X.drfG);commit()}
+  // ----- Círculo -----
+  function circHover(sp){X.clr(X.drfG);const r=snap(sp,CI?{noAxis:true}:{});X.mark(r);if(!CI)return;const q=onPlane(sp,CI.c,CI.n,r);if(!q)return;CI.r=q.distanceTo(CI.c);const[U_,V_]=basisW(CI.n);const N=ED.circN||24;
+    const pts=[];for(let i=0;i<N;i++){const a=i/N*2*Math.PI;pts.push(CI.c.clone().addScaledVector(U_,Math.cos(a)*CI.r).addScaledVector(V_,Math.sin(a)*CI.r))}X.line(X.drfG,pts,X.COL.ink,false,true);X.vcbShow('Radio',CI.r)}
+  function circClick(sp){const r=snap(sp,CI?{noAxis:true}:{});if(!r)return;if(!CI){const pl=planeAt(sp,r);CI={c:r.p.clone(),n:pl.n,r:0};X.status('Mueve para el radio o escríbelo; 6s cambia a seis lados');return}circHover(sp);finishCirc()}
+  function finishCirc(){if(!CI||CI.r<1e-3)return;const{C}=ctx();const N=ED.circN||24;const c=toLocal(CI.c);const n=vNorm(tApV(ctx().it,dirPlan(CI.n)))||[0,0,1];
+    // el primer punto queda sobre el eje U del plano en pantalla para que coincida con la vista previa
+    const[U_]=basisW(CI.n);const p1=toLocal(CI.c.clone().addScaledVector(U_,CI.r));const[u2]=fBasis(n);const a0=Math.atan2(vDot(vSub(p1,c),vCross(n,u2)),vDot(vSub(p1,c),u2));
+    fAddLoop(C,fCirclePts(c,n,vDist(p1,c),N,a0),{view:camL()});CI=null;X.clr(X.drfG);commit()}
+  // ----- Empujar/Tirar -----
+  function pushHover(sp){X.clr(X.hovG);if(!PU){const hf=hitFree(sp);if(hf.own&&hf.fi>=0){faceMesh(X.hovG,hf.fi,X.COL.acc,0.18);X.status('Clic en la cara y mueve; escribe la distancia')}else X.status('Pasa sobre una cara de la forma libre');return}
+    X.clr(X.drfG);let r=snap(sp,{from:PU.p0,noAxis:true});if(r&&['end','mid','int','edge'].includes(r.k)&&Math.abs(r.p.clone().sub(PU.p0).dot(PU.n))<1e-4)r=null;let d;if(r&&['end','mid','int','edge'].includes(r.k))d=r.p.clone().sub(PU.p0).dot(PU.n);else{const ray=M.rayAt(sp);const w=ray.origin.clone().sub(PU.p0);const b=PU.n.dot(ray.direction),dd=PU.n.dot(w),e=ray.direction.dot(w);const den=1-b*b;d=Math.abs(den)<1e-6?PU.d:(dd-b*e)/den}
+    if(ED.snap&&!(r&&['end','mid','int','edge'].includes(r.k)))d=Math.round(d/0.05)*0.05;PU.d=d;X.mark(r&&['end','mid','int','edge'].includes(r.k)?r:null);previewPush()}
+  function previewPush(){X.clr(X.drfG);const{C,t}=ctx();const f=C.f[PU.fi];if(!f)return;const off=PU.n.clone().multiplyScalar(PU.d);fLoops(f).forEach(L=>{const a=L.map(i=>toW(tAp(t,C.v[i])));const b=a.map(p=>p.clone().add(off));X.line(X.drfG,b,X.COL.acc,false,true);a.forEach((p,i)=>X.line(X.drfG,[p,b[i]],X.COL.acc))});
+    X.vcbShow('Distancia',PU.d);lab(PU.p0.clone().addScaledVector(PU.n,PU.d/2),f2(PU.d)+' m'+(PU.copy?' · cara nueva':''))}
+  // la dirección positiva es hacia el lado de la cara que se ve (en el suelo, hacia arriba)
+  const towardCam=(n,p)=>n.dot(M.camera.position.clone().sub(p))<0?n.clone().negate():n;
+  function pushClick(sp,e){if(!PU){const hf=hitFree(sp);if(!(hf.own&&hf.fi>=0))return;PU={fi:hf.fi,n:towardCam(faceNormalW(hf.fi),hf.h.point),p0:hf.h.point.clone(),d:0,copy:!!(e&&(e.ctrlKey||e.metaKey))};X.status('Mueve y haz clic, o escribe la distancia. Ctrl deja la cara de arranque');return}applyPush(PU.d)}
+  function applyPush(d){if(!PU)return;const{C,t}=ctx();const n=fPlane(C,C.f[PU.fi]).n;const nw=tApV(t,n);const s=vLen(nw)||1;const sg=dirW(nw).dot(PU.n)<0?-1:1;const r=fPush(C,PU.fi,sg*d/s,{copy:PU.copy});LASTPU={d,copy:PU.copy};PU=null;X.clr(X.drfG);X.setLB([]);commit();
+    if(r===-1)toast('Se abrió un hueco a través del volumen')}
+  function pushRepeat(sp){if(!LASTPU)return;const hf=hitFree(sp);if(!(hf.own&&hf.fi>=0))return;PU={fi:hf.fi,n:towardCam(faceNormalW(hf.fi),hf.h.point),p0:hf.h.point.clone(),d:LASTPU.d,copy:LASTPU.copy};applyPush(LASTPU.d)}
+  // ----- Mover, rotar y escalar (lo elegido o lo que se toca) -----
+  function targetsAt(sp,r){if(!freeSelEmpty())return{f:ED.fsel.f.slice(),e:ED.fsel.e.slice(),i:ED.fsel.i.slice()};if(r&&r.k==='end'&&r.c&&r.c.fr===pk()){const{C}=ctx();const q=toLocal(r.p);const vi=C.v.findIndex(v=>vDist(v,q)<1e-3);if(vi>=0)return{f:[],e:[],i:[],v:[vi]}}const ed=edgeAt(sp);if(ed)return{f:[],e:[ed.e.k],i:[]};const hf=hitFree(sp);if(hf.own&&hf.fi>=0)return{f:[hf.fi],e:[],i:[]};if(hf.ins)return{f:[],e:[],i:[hf.ins]};return null}
+  function vertsOf(tg){const{C}=ctx();const s=new Set();tg.f.forEach(fi=>{const f=C.f[fi];if(f)fLoops(f).forEach(L=>L.forEach(i=>s.add(i)))});tg.e.forEach(k=>k.split('|').forEach(x=>s.add(+x)));(tg.v||[]).forEach(i=>s.add(i));return[...s]}
+  function snapshot(){const{C}=ctx();return JSON.stringify({v:C.v,f:C.f,le:C.le,sf:C.sf,ins:C.ins})}
+  function restore(js){const{C}=ctx();const o=JSON.parse(js);C.v=o.v;C.f=o.f;C.le=o.le;C.sf=o.sf;C.ins=o.ins}
+  /* Aplica una transformación (en coordenadas del plano, mundo) a los objetivos: a las instancias en su matriz y a la geometría moviendo sus vértices. */
+  function applyXf(tg,wt,copy){const{C,t,it}=ctx();const lt=tMul(it,tMul(wt,t));// a coordenadas locales del contenedor
+    if(copy){const newIns=[];tg.i.forEach(id=>{const I=C.ins.find(x=>x.id===id);if(!I)return;const D=S.free.defs[I.d];let d=I.d;if(D&&D.kind!=='c'){d=freeId('d');S.free.defs[d]=JSON.parse(JSON.stringify(D))}const nI={...JSON.parse(JSON.stringify(I)),id:freeId('i'),d,t:tMul(lt,I.t)};C.ins.push(nI);newIns.push(nI.id)});
+      if(tg.f.length||tg.e.length){const vs=vertsOf(tg);const mp=new Map();vs.forEach(i=>{C.v.push(vRound(tAp(lt,C.v[i])));mp.set(i,C.v.length-1)});tg.f.forEach(fi=>{const f=C.f[fi];if(!f)return;const g={o:f.o.map(i=>mp.get(i))};if(f.h)g.h=f.h.map(h=>h.map(i=>mp.get(i)));if(f.m)g.m=f.m;if(f.c)g.c=f.c;if(tDet(lt)<0){g.o.reverse();if(g.h)g.h.forEach(h=>h.reverse())}C.f.push(g)});
+        tg.e.forEach(k=>{const[a,b]=k.split('|').map(Number);C.le.push([mp.get(a),mp.get(b)])});fWeld(C)}return newIns}
+    tg.i.forEach(id=>{const I=C.ins.find(x=>x.id===id);if(I)I.t=tMul(lt,I.t)});const vs=vertsOf(tg);if(vs.length)fXformVerts(C,vs,p=>tAp(lt,p));
+    if(vs.length&&tDet(lt)<0)tg.f.forEach(fi=>{const f=C.f[fi];if(f){f.o.reverse();if(f.h)f.h.forEach(h=>h.reverse())}});return null}
+  function moveHover(sp){X.clr(X.hovG);const r=snap(sp,{from:MV&&MV.p0});X.mark(r);if(!MV){const tg=targetsAt(sp,r);if(tg){if(tg.f.length===1&&freeSelEmpty())faceMesh(X.hovG,tg.f[0],X.COL.acc,0.12);X.status('Clic en el punto base que vas a mover')}return}
+    if(!r)return;X.clr(X.drfG);X.rubber(MV.p0,r);const dW=r.p.clone().sub(MV.p0);MV.dW=dW;restore(MV.snap);applyXf(MV.tg,tT(dirPlan(dW)),false);if(MV.copy)restore(MV.snap);live();X.vcbShow('Distancia',dW.length());lab(MV.p0.clone().lerp(r.p,.5),f2(dW.length())+' m'+(MV.copy?' · copia':''))}
+  function moveClick(sp,e){const r=snap(sp,{from:MV&&MV.p0});if(!r)return;if(!MV){const tg=targetsAt(sp,r);if(!tg){toast('Elige o toca algo de la forma libre para moverlo');return}MV={tg,p0:r.p.clone(),snap:snapshot(),copy:!!(e&&(e.ctrlKey||e.metaKey)),dW:new T.Vector3()};X.status('Clic en el destino o escribe la distancia. Ctrl copia');return}
+    moveHover(sp);endMove()}
+  function endMove(n){const m=MV;restore(m.snap);const wt=tT(dirPlan(m.dW));let nIns=null;if(m.copy){const k=n||1;for(let j=1;j<=k;j++)nIns=applyXf(m.tg,tT(dirPlan(m.dW.clone().multiplyScalar(j))),true)}else applyXf(m.tg,wt,false);
+    LASTMV={tg:m.tg,dW:m.dW.clone(),copy:m.copy,snap:m.snap};MV=null;X.clr(X.drfG);X.setLB([]);commit({keepIns:true});if(nIns)setFSel({i:nIns})}
+  let LASTMV=null;
+  function arrayCopies(n,div){const m=LASTMV;if(!m||!m.copy){toast('Escribe 3x justo después de copiar con Mover + Ctrl');return}restore(m.snap);const step=div?m.dW.clone().divideScalar(n):m.dW;const k=div?n-1:n;
+    for(let j=1;j<=k;j++)applyXf(m.tg,tT(dirPlan(step.clone().multiplyScalar(j))),true);commit({keepIns:true})}
+  function rotHover(sp){X.clr(X.drfG);const r=snap(sp,RO&&RO.stage===2?{noAxis:true}:{});X.mark(r);if(!RO){const tg=targetsAt(sp);X.status(tg?'Clic en el centro de giro':'Elige algo de la forma libre para rotarlo');return}if(!r)return;
+    if(RO.stage===1){X.rubber(RO.c,r);return}const q=onPlane(sp,RO.c,RO.n,null);if(!q)return;const v0=RO.ref.clone().sub(RO.c),v1=q.clone().sub(RO.c);let a=Math.atan2(new T.Vector3().crossVectors(v0,v1).dot(RO.n),v0.dot(v1));if(ED.snap)a=Math.round(a/rad(15))*rad(15);RO.a=a;
+    restore(RO.snap);applyXf(RO.tg,tRot(toPlan(RO.c),dirPlan(RO.n),a),false);if(RO.copy)restore(RO.snap);live();X.line(X.drfG,[RO.c,RO.ref],X.COL.prot);X.line(X.drfG,[RO.c,q],X.COL.prot,true);X.vcbShow('Ángulo',+(a*180/Math.PI).toFixed(1))}
+  function rotClick(sp,e){const r=snap(sp,RO&&RO.stage===2?{noAxis:true}:{});if(!r)return;if(!RO){const tg=targetsAt(sp);if(!tg){toast('Elige o toca algo de la forma libre para rotarlo');return}const pl=planeAt(sp,r);RO={tg,c:r.p.clone(),n:pl.n,stage:1,snap:snapshot(),copy:!!(e&&(e.ctrlKey||e.metaKey)),a:0};X.status('Clic en la referencia del giro');return}
+    if(RO.stage===1){if(r.p.distanceTo(RO.c)<1e-3)return;RO.ref=r.p.clone();RO.stage=2;X.status('Gira y haz clic, o escribe los grados');return}rotHover(sp);endRot()}
+  function endRot(n){const o=RO;restore(o.snap);const k=o.copy?(n||1):1;for(let j=1;j<=k;j++)applyXf(o.tg,tRot(toPlan(o.c),dirPlan(o.n),o.a*j),o.copy);RO=null;X.clr(X.drfG);commit({keepIns:true})}
+  function scaleHover(sp){X.clr(X.drfG);const r=snap(sp,{from:SCL&&SCL.o});X.mark(r);if(!SCL){X.status(targetsAt(sp)?'Clic en el punto fijo (origen) de la escala':'Elige algo de la forma libre para escalarlo');return}if(!r)return;
+    if(!SCL.ref){X.rubber(SCL.o,r);return}const u=SCL.ref.clone().sub(SCL.o);const L=u.length();const k=Math.max(0.01,r.p.clone().sub(SCL.o).dot(u.normalize())/L);SCL.k=[k,k,k];restore(SCL.snap);applyXf(SCL.tg,tScale(toPlan(SCL.o),SCL.k),false);live();X.vcbShow('Escala',+k.toFixed(3))}
+  function scaleClick(sp){const r=snap(sp,{from:SCL&&SCL.o});if(!r)return;if(!SCL){const tg=targetsAt(sp);if(!tg){toast('Elige o toca algo de la forma libre para escalarlo');return}SCL={tg,o:r.p.clone(),snap:snapshot(),k:[1,1,1]};X.status('Clic en un punto de referencia');return}
+    if(!SCL.ref){if(r.p.distanceTo(SCL.o)<1e-3)return;SCL.ref=r.p.clone();X.status('Mueve para cambiar el tamaño y haz clic, o escribe el factor (2 · 0.5 · 1,1,2)');return}scaleHover(sp);endScale()}
+  function endScale(){restore(SCL.snap);applyXf(SCL.tg,tScale(toPlan(SCL.o),SCL.k),false);SCL=null;X.clr(X.drfG);commit({keepIns:true})}
+  // ----- Equidistancia -----
+  function offHover(sp){X.clr(X.hovG);X.clr(X.drfG);if(!OF){const hf=hitFree(sp);if(hf.own&&hf.fi>=0){faceMesh(X.hovG,hf.fi,X.COL.acc,0.15);X.status('Clic en la cara y mueve hacia adentro o afuera')}return}
+    const{C,t}=ctx();const f=C.f[OF.fi];const q=onPlane(sp,OF.p0,OF.n,null);if(!q)return;const ql=toLocal(q);const{n}=fPlane(C,f);const[U,V]=fBasis(n);const to2=p=>[vDot(p,U),vDot(p,V)];const g=f.o.map(i=>to2(C.v[i]));const q2=to2(ql);
+    let dmin=1e9;g.forEach((a,i)=>{dmin=Math.min(dmin,segDist(q2,a,g[(i+1)%g.length]))});const inside=fFaceHas(C,f,ql);let d=(inside?-1:1)*dmin;if(ED.snap)d=Math.round(d/0.05)*0.05;OF.d=d;
+    const og=m3Offset(g,d);if(og&&og.length>=3){const off0=vDot(C.v[f.o[0]],n);X.line(X.drfG,og.map(([x,y])=>fromLocal(vAdd(vAdd(vMul(U,x),vMul(V,y)),vMul(n,off0)))),X.COL.acc,false,true)}X.vcbShow('Distancia',Math.abs(d))}
+  function offClick(sp){if(!OF){const hf=hitFree(sp);if(!(hf.own&&hf.fi>=0))return;OF={fi:hf.fi,n:faceNormalW(hf.fi),p0:hf.h.point.clone(),d:0};return}offHover(sp);finishOff()}
+  function finishOff(){if(!OF||Math.abs(OF.d)<1e-3)return;const{C}=ctx();fOffsetFace(C,OF.fi,OF.d,{view:camL()});OF=null;X.clr(X.drfG);X.clr(X.hovG);commit()}
+  // ----- Sígueme -----
+  function chainOf(keys){const{C}=ctx();const adj=new Map();keys.forEach(k=>{const[a,b]=k.split('|').map(Number);(adj.get(a)||adj.set(a,[]).get(a)).push(b);(adj.get(b)||adj.set(b,[]).get(b)).push(a)});
+    if([...adj.values()].some(L=>L.length>2))return null;let start=[...adj.keys()].find(x=>adj.get(x).length===1);const closed=start==null;if(closed)start=[...adj.keys()][0];const out=[start];let prev=-1,cur=start;
+    for(let g=0;g<keys.length+2;g++){const nx=adj.get(cur).find(x=>x!==prev);if(nx==null||(closed&&nx===start&&out.length>2)){if(closed)out.push(start);break}if(out.includes(nx)&&!closed)break;out.push(nx);prev=cur;cur=nx;if(out.length>keys.length+1)break}return out.map(i=>C.v[i])}
+  function followHover(sp){X.clr(X.hovG);const hf=hitFree(sp);if(hf.own&&hf.fi>=0&&ED.fsel.e.length){faceMesh(X.hovG,hf.fi,X.COL.acc,0.18);X.status('Clic en la cara del perfil')}else X.status(ED.fsel.e.length?'Toca la cara del perfil':'Primero elige con Seleccionar las aristas del camino (Mayús + clic suma)')}
+  function followClick(sp){const hf=hitFree(sp);if(!(hf.own&&hf.fi>=0))return;if(!ED.fsel.e.length){toast('Primero elige las aristas del camino con Seleccionar');return}const path=chainOf(ED.fsel.e);if(!path||path.length<2){toast('Las aristas del camino deben ir una tras otra, sin ramas');return}
+    const{C}=ctx();const c=fCentroid(C,C.f[hf.fi].o);if(vDist(path[path.length-1],c)<vDist(path[0],c))path.reverse();fFollow(C,hf.fi,path.map(p=>p.slice()));commit()}
+  // ----- Pintar y borrar -----
+  function paintHover(sp){X.clr(X.hovG);const hf=hitFree(sp);if(hf.own&&hf.fi>=0)faceMesh(X.hovG,hf.fi,X.COL.acc,0.12)}
+  function paintClick(sp,e){const hf=hitFree(sp);const{C}=ctx();const put=f=>{if(ED.paint)f.m=ED.paint;else delete f.m;delete f.c};
+    if(hf.own&&hf.fi>=0){const f=C.f[hf.fi];if(e&&e.altKey){ED.paint=f.m||'';X.buildPal();toast('Acabado copiado');return}put(f);commit({keepSel:true});return}
+    if(hf.ins){const I=C.ins.find(x=>x.id===hf.ins);const D=I&&S.free.defs[I.d];if(D){D.f.forEach(put);commit({keepSel:true})}}}
+  function eraseHover(sp){X.clr(X.hovG);const ed=edgeAt(sp);if(ed){X.line(X.hovG,[ed.a,ed.b],X.COL.red);return}const hf=hitFree(sp);if(hf.own&&hf.fi>=0)faceMesh(X.hovG,hf.fi,X.COL.red,0.2);else if(hf.ins){const B=insBox(hf.ins);if(B)X.boxLines(X.hovG,B.min,B.max,X.COL.red)}}
+  function eraseClick(sp){const{C}=ctx();const ed=edgeAt(sp);if(ed){fDelEdge(C,ed.e.a,ed.e.b);X.clr(X.hovG);commit();return}const hf=hitFree(sp);if(hf.own&&hf.fi>=0){fDelFace(C,hf.fi);X.clr(X.hovG);commit();return}
+    if(hf.ins){C.ins=C.ins.filter(x=>x.id!==hf.ins);X.clr(X.hovG);commit()}}
+  // ----- selección -----
+  function click(e,sp){const add=e.ctrlKey||e.metaKey,tog=e.shiftKey;const ed=edgeAt(sp);let it=null;if(ed)it={e:ed.e.k};else{const hf=hitFree(sp);if(hf.own&&hf.fi>=0)it={f:hf.fi};else if(hf.ins)it={i:hf.ins};else if(hf.out){X.status('Eso está fuera del grupo que editas: Esc o doble clic fuera para salir');return true}}
+    if(!it){if(!add&&!tog){setFSel({})}return false}const cur={f:ED.fsel.f.slice(),e:ED.fsel.e.slice(),i:ED.fsel.i.slice()};const k=it.f!=null?'f':it.e?'e':'i';const v=it[k];
+    if(!add&&!tog){setFSel({[k]:[v]});X.clearSpSel();return true}const has=cur[k].includes(v);if(tog?has:(add&&tog))cur[k]=cur[k].filter(x=>x!==v);else if(!has)cur[k].push(v);setFSel(cur);return true}
+  function dbl(e,sp){const hf=hitFree(sp);if(hf.ins){enter(hf.ins);return true}if(hf.own&&hf.fi>=0){const{C}=ctx();const f=C.f[hf.fi];const es=[];fLoops(f).forEach(L=>L.forEach((x,i)=>es.push(fek(x,L[(i+1)%L.length]))));setFSel({f:[hf.fi],e:es});return true}
+    if(ED.fctx.length){exit();return true}return false}
+  function enter(id){ED.fctx=ED.fctx.concat(id);setFSel({});M.refresh(['free']);X.status('Editando el grupo · Esc o doble clic fuera para salir');M.onSel&&M.onSel()}
+  function exit(){if(!ED.fctx.length)return false;const id=ED.fctx[ED.fctx.length-1];ED.fctx=ED.fctx.slice(0,-1);setFSel({i:[id]});M.refresh(['free']);X.status('');M.onSel&&M.onSel();return true}
+  function boxEnd(a,b){const cross=b.x<a.x;const x0=Math.min(a.x,b.x),x1=Math.max(a.x,b.x),y0=Math.min(a.y,b.y),y1=Math.max(a.y,b.y);const{C,t}=ctx();
+    const sc=i=>M.toScreen(toW(tAp(t,C.v[i])));const inR=p=>p.z<1&&p.x>=x0&&p.x<=x1&&p.y>=y0&&p.y<=y1;const test=ids=>{const P=ids.map(sc);return cross?P.some(inR):P.every(inR)};
+    const out={f:[],e:[],i:[]};C.f.forEach((f,fi)=>{if(test(fLoops(f).flat()))out.f.push(fi)});fEdges(C).forEach(e=>{if(test([e.a,e.b]))out.e.push(e.k)});
+    (C.ins||[]).forEach(I=>{const B=insBox(I.id);if(!B)return;const c=[];for(const x of[B.min.x,B.max.x])for(const y of[B.min.y,B.max.y])for(const z of[B.min.z,B.max.z])c.push(M.toScreen(new T.Vector3(x,y,z)));if(cross?c.some(inR):c.every(inR))out.i.push(I.id)});
+    setFSel(out);return out.f.length+out.e.length+out.i.length}
+  function selectAll(){const{C}=ctx();setFSel({f:C.f.map((f,i)=>i),e:[...fEdges(C).keys()],i:(C.ins||[]).map(I=>I.id)})}
+  // ----- grupos y componentes -----
+  function makeGroup(kind,name){const{C}=ctx();if(freeSelEmpty()){toast('Elige caras, aristas o grupos para agruparlos');return}const D={...fNew(),n:name||(kind==='c'?'Componente ':'Grupo ')+(Object.keys(S.free.defs).length+1),kind:kind||'g'};const id=freeId('d');
+    const vs=new Set();const fs=new Set(ED.fsel.f);// las aristas de las caras elegidas van con ellas
+    ED.fsel.f.forEach(fi=>{const f=C.f[fi];if(f)fLoops(f).forEach(L=>L.forEach(x=>vs.add(x)))});const es=ED.fsel.e.map(k=>k.split('|').map(Number));es.forEach(([a,b])=>{vs.add(a);vs.add(b)});
+    const mp=new Map();[...vs].forEach(i=>{D.v.push(C.v[i].slice());mp.set(i,D.v.length-1)});
+    ED.fsel.f.forEach(fi=>{const f=C.f[fi];if(!f)return;const g={o:f.o.map(i=>mp.get(i))};if(f.h)g.h=f.h.map(h=>h.map(i=>mp.get(i)));if(f.m)g.m=f.m;if(f.c)g.c=f.c;D.f.push(g)});
+    const fe=new Set();D.f.forEach(f=>fLoops(f).forEach(L=>L.forEach((x,i)=>fe.add(fek(x,L[(i+1)%L.length])))));es.forEach(([a,b])=>{const k=fek(mp.get(a),mp.get(b));if(!fe.has(k))D.le.push([mp.get(a),mp.get(b)])});
+    D.sf=C.sf.map(k=>{const[a,b]=k.split('|').map(Number);return mp.has(a)&&mp.has(b)?fek(mp.get(a),mp.get(b)):null}).filter(Boolean);
+    ED.fsel.i.forEach(iid=>{const I=C.ins.find(x=>x.id===iid);if(I)D.ins.push(I)});C.ins=C.ins.filter(I=>!ED.fsel.i.includes(I.id));
+    // fuera del grupo: se quitan las caras elegidas y las aristas que ya no usa ninguna cara
+    C.f=C.f.filter((f,i)=>!fs.has(i));const used=new Set();C.f.forEach(f=>fLoops(f).forEach(L=>L.forEach((x,i)=>used.add(fek(x,L[(i+1)%L.length])))));
+    const selE=new Set(ED.fsel.e);C.le=C.le.filter(([a,b])=>{const k=fek(a,b);return!selE.has(k)});fClean(D);S.free.defs[id]=D;const I={id:freeId('i'),d:id,t:tI()};C.ins.push(I);commit();setFSel({i:[I.id]});return I.id}
+  function explode(){const{C}=ctx();const ids=ED.fsel.i.slice();if(!ids.length){toast('Elige un grupo para explotarlo');return}const out=[];
+    ids.forEach(iid=>{const I=C.ins.find(x=>x.id===iid);if(!I)return;const D=S.free.defs[I.d];if(!D)return;const mp=D.v.map(p=>{C.v.push(vRound(tAp(I.t,p)));return C.v.length-1});const flip=tDet(I.t)<0;
+      D.f.forEach(f=>{const g={o:f.o.map(i=>mp[i])};if(f.h)g.h=f.h.map(h=>h.map(i=>mp[i]));if(f.m)g.m=f.m;if(f.c)g.c=f.c;if(flip){g.o.reverse();if(g.h)g.h.forEach(h=>h.reverse())}C.f.push(g)});D.le.forEach(([a,b])=>C.le.push([mp[a],mp[b]]));
+      D.sf.forEach(k=>{const[a,b]=k.split('|').map(Number);C.sf.push(fek(mp[a],mp[b]))});(D.ins||[]).forEach(J=>{const nJ={...JSON.parse(JSON.stringify(J)),id:freeId('i'),t:tMul(I.t,J.t)};C.ins.push(nJ);out.push(nJ.id)});
+      C.ins=C.ins.filter(x=>x.id!==iid);if(!freeUses(I.d))delete S.free.defs[I.d]});fWeld(C);fMergeCoplanar(C);commit();setFSel({i:out})}
+  function makeUnique(id){const{C}=ctx();const I=C.ins.find(x=>x.id===id);if(!I)return;const D=S.free.defs[I.d];if(!D)return;const nd=freeId('d');S.free.defs[nd]={...JSON.parse(JSON.stringify(D)),n:D.n+' (única)'};I.d=nd;commit({keepSel:true,keepIns:true})}
+  /* Convierte en espacios del proyecto las caras horizontales elegidas (o el piso de los grupos elegidos): la altura sale de la geometría que está encima. */
+  function toSpace(){const{C,t}=ctx();const made=[];const add=(D,tt,fi)=>{const f=D.f[fi];const n=vNorm(tApV(tt,fPlane(D,f).n));if(!n||Math.abs(n[2])<0.99)return false;const pts=f.o.map(i=>tAp(tt,D.v[i]));const z=Math.min(...pts.map(p=>p[2]));
+      let top=z;const all=D.v.map(p=>tAp(tt,p));const bb=bbox(pts.map(p=>[p[0],p[1]]));all.forEach(p=>{if(p[0]>=bb.x0-1e-3&&p[0]<=bb.x1+1e-3&&p[1]>=bb.y0-1e-3&&p[1]<=bb.y1+1e-3)top=Math.max(top,p[2])});
+      let geo=pts.map(p=>[+p[0].toFixed(3),+p[1].toFixed(3)]);if(signedArea(geo)<0)geo.reverse();const id=newId();const h=top-z>0.05?+(top-z).toFixed(3):0;
+      S.spaces.push({id,name:'Espacio '+(S.spaces.length+1),zone:ED.zone&&S.zones[ED.zone]?ED.zone:ZONE_KEYS[0],area:+polyArea(geo).toFixed(2),level:levelForZ(z),geo,h,z:+z.toFixed(3),m3:true,pos:[30+Math.random()*100,70+Math.random()*120]});made.push(id);return true};
+    ED.fsel.f.forEach(fi=>add(C,t,fi));ED.fsel.i.forEach(iid=>{const I=C.ins.find(x=>x.id===iid);const D=I&&S.free.defs[I.d];if(!D)return;const tt=tMul(t,I.t);let best=-1,bz=1e9;D.f.forEach((f,fi)=>{const n=vNorm(tApV(tt,fPlane(D,f).n));if(n&&n[2]<-0.99){const z=Math.min(...f.o.map(i=>tAp(tt,D.v[i])[2]));if(z<bz){bz=z;best=fi}}});if(best>=0&&add(D,tt,best))C.ins=C.ins.filter(x=>x.id!==iid)});
+    if(!made.length){toast('Elige una cara horizontal (un piso) o un volumen agrupado');return}commit();toast(made.length===1?'Se creó un espacio del programa: aparece en zonificación y en el cuadro de áreas':`Se crearon ${made.length} espacios del programa`)}
+  function flipFaces(){const{C}=ctx();ED.fsel.f.forEach(fi=>{const f=C.f[fi];if(!f)return;f.o.reverse();if(f.h)f.h.forEach(h=>h.reverse())});commit({keepSel:true})}
+  function softEdges(on){const{C}=ctx();ED.fsel.e.forEach(k=>{const i=C.sf.indexOf(k);if(on&&i<0)C.sf.push(k);if(!on&&i>=0)C.sf.splice(i,1)});commit({keepSel:true})}
+  function delSel(){const{C}=ctx();if(freeSelEmpty())return false;const fs=new Set(ED.fsel.f);
+    ED.fsel.e.forEach(k=>{const[a,b]=k.split('|').map(Number);if(fEdges(C).has(k))fDelEdge(C,a,b)});
+    if(!ED.fsel.e.length){const del=[...fs].sort((x,y)=>y-x);del.forEach(fi=>fDelFace(C,fi))}C.ins=C.ins.filter(I=>!ED.fsel.i.includes(I.id));ED.fsel.f=[];ED.fsel.e=[];ED.fsel.i=[];commit();return true}
+  // ----- caja de medidas -----
+  function vcb(P,raw){const t=ED.tool;
+    if(P.sides){if(t==='fcirc'){ED.circN=clamp(P.sides,3,96);X.status('Ahora con '+ED.circN+' lados');if(lastSp)circHover(lastSp)}else toast('Los lados (6s) son para Círculo');return true}
+    if(P.arr){if(t==='fmove')arrayCopies(P.arr);else if(t==='frot'&&RO==null&&LASTRO)toast('Escribe 3x mientras giras con Ctrl');else toast('Escribe 3x justo después de copiar con Mover + Ctrl');return true}
+    const v=P.v||[],one=P.dec!=null?P.dec:v[0];if(one==null||!Number.isFinite(one))return false;const sg=Math.sign(one)||1,mag=Math.abs(one);
+    if(t==='fline'){if(!LN){toast('Primero haz clic en el punto de inicio');return true}const dir=lastR?lastR.p.clone().sub(LN.a):null;if(!dir||dir.lengthSq()<1e-9){toast('Apunta hacia donde va la línea y vuelve a escribir');return true}addLinePt(LN.a.clone().addScaledVector(dir.normalize(),mag*sg));if(lastSp)lineHover(lastSp);return true}
+    if(t==='frect'){if(!RC){toast('Primero haz clic en la primera esquina');return true}const[w,d]=v.length>1?v:[one,one];RC.du=(Math.sign(RC.du)||1)*Math.abs(w);RC.dv=(Math.sign(RC.dv)||1)*Math.abs(d);finishRect();return true}
+    if(t==='fcirc'){if(!CI){toast('Primero haz clic en el centro');return true}CI.r=mag;finishCirc();return true}
+    if(t==='farc'){if(AR&&AR.b){AR.s=(Math.sign(AR.s)||1)*mag;finishArc();return true}toast('Marca el inicio y el final del arco; luego escribe la flecha');return true}
+    if(t==='fpush'){const P_=PU;if(!P_){toast('Primero haz clic en una cara');return true}applyPush((Math.sign(P_.d)||1)*sg*mag);return true}
+    if(t==='fmove'){if(!MV){toast('Primero toma algo con Mover');return true}if(MV.dW.lengthSq()<1e-9){toast('Mueve hacia donde va y vuelve a escribir');return true}MV.dW.setLength(mag*sg);endMove();return true}
+    if(t==='frot'){if(!RO||RO.stage!==2){toast('Primero marca el centro y la referencia');return true}RO.a=(Math.sign(RO.a)||1)*sg*rad(mag);endRot();return true}
+    if(t==='fscale'){if(!SCL){toast('Primero marca el origen de la escala');return true}SCL.k=v.length===3?v.map(x=>Math.max(0.001,Math.abs(x))):[mag,mag,mag].map(x=>Math.max(0.001,x));endScale();return true}
+    if(t==='foff'){if(!OF){toast('Primero haz clic en una cara');return true}OF.d=(Math.sign(OF.d)||-1)*mag;finishOff();return true}
+    return false}
+  let LASTRO=null;
+  function busy(){return!!(LN||AR||RC||CI||PU||MV||RO||SCL||OF)}
+  function toggleCopy(){if(MV){MV.copy=!MV.copy;if(lastSp)moveHover(lastSp);return true}if(RO&&RO.stage===2){RO.copy=!RO.copy;if(lastSp)rotHover(lastSp);return true}if(PU){PU.copy=!PU.copy;previewPush();return true}return false}
+  function cancel(){const did=busy();if(MV){restore(MV.snap);live()}if(RO){restore(RO.snap);live()}if(SCL){restore(SCL.snap);live()}LN=AR=RC=CI=PU=MV=RO=SCL=OF=null;X.clr(X.drfG);X.clr(X.hovG);X.setLB([]);return did}
+  function finishChain(){if(LN){LN=null;X.clr(X.drfG);X.setLB([]);return true}return false}
+  function hover(sp){lastSp=sp;const f=HOV[ED.tool];if(f)f(sp)}
+  const HOV={fline:lineHover,farc:arcHover,frect:rectHover,fcirc:circHover,fpush:pushHover,fmove:moveHover,frot:rotHover,fscale:scaleHover,foff:offHover,ffollow:followHover,fpaint:paintHover,ferase:eraseHover};
+  const ACT={fline:lineClick,farc:arcClick,frect:rectClick,fcirc:circClick,fpush:pushClick,fmove:moveClick,frot:rotClick,fscale:scaleClick,foff:offClick,ffollow:followClick,fpaint:paintClick,ferase:eraseClick};
+  const HELP={sel:'Clic elige una cara, una arista o un grupo · doble clic entra al grupo · arrastra para un recuadro · clic derecho: menú',fline:'Clic en el primer punto y sigue; las flechas fijan un eje (rojo, verde, azul). Un contorno plano cerrado se vuelve cara',farc:'Clic en el inicio y en el final; luego mueve para curvarlo',frect:'Clic en una esquina sobre el suelo o sobre cualquier cara, y luego en la opuesta (o escribe 4,3)',
+    fcirc:'Clic en el centro sobre cualquier cara y luego el radio (o escríbelo); 6s cambia a seis lados',fpush:'Pasa sobre una cara, haz clic y mueve; escribe la distancia. Hacia adentro, hasta atravesar, abre un hueco',fmove:'Elige algo (o toca una cara, arista o grupo), clic en el punto base y luego en el destino. Ctrl copia; luego 3x',
+    frot:'Elige algo, clic en el centro, luego en la referencia y gira (se pega cada 15°)',fscale:'Elige algo, clic en el origen, en una referencia y mueve (o escribe 2, 0.5 o 1,1,2)',foff:'Clic en una cara y mueve hacia adentro o afuera',ffollow:'Elige las aristas del camino y toca la cara del perfil',
+    fpaint:'Elige un acabado en la paleta y toca una cara o un grupo; Alt + clic copia el acabado',ferase:'Toca una arista, una cara o un grupo para borrarlo'};
+  return{HOV,ACT,HELP,hover,click,dbl,boxEnd,selectAll,busy,cancel,toggleCopy,finishChain,vcb,arrayCopies,pushRepeat,delSel,makeGroup,explode,makeUnique,toSpace,flipFaces,softEdges,enter,exit,drawSel,setFSel,ctx,
+    snapExtra(){return null},hit:hitFree}}
+
+/* ---------- panel: información, esquema y etiquetas de la forma libre ---------- */
+function freeSelCard(card){const ED=M3ED;const sel=ED.fsel;const F=S.free;const{C}=freeCtx(ED.fctx);const ed=M3&&M3.ed&&M3.ed.free;
+  const ctxH=ED.fctx.length?`<p class="m3ctx">Editando «${esc((F.defs[(freeFindIns(ED.fctx[ED.fctx.length-1])||{I:{}}).I.d]||{}).n||'Grupo')}» <button class="btn sm" type="button" id="fsX">Salir (Esc)</button></p>`:'';
+  const btn=(id,fn)=>{const b=$('#'+id,card);if(b)b.onclick=fn};const st=freeStats();
+  if(freeSelEmpty()){card.innerHTML=`<h3>Selección<small>Forma libre</small></h3>${ctxH}<p class="hint" style="margin:0 0 8px">Toca una cara, una arista o un grupo con <b>Seleccionar</b>. Doble clic en un grupo para editarlo por dentro. Arrastra para un recuadro; Mayús + clic suma o quita.</p>
+      <div class="mini"><span>${st.f} caras</span><span>${st.e} aristas</span><span>${st.ins} grupos y componentes</span></div>
+      <p class="hint">Atajos: <b>G</b> agrupar · <b>Mayús+G</b> explotar · <b>Supr</b> borrar · <b>Ctrl+A</b> todo · <b>Esc</b> salir del grupo · flechas fijan un eje mientras dibujas.</p>`;btn('fsX',()=>ed&&ed.exit());return}
+  const E=fEdges(C);const items=[];
+  if(ED.fsel.f.length===1&&!ED.fsel.e.length&&!ED.fsel.i.length){const f=C.f[ED.fsel.f[0]];if(f){const{n}=fPlane(C,f);items.push(`<h3>Cara<small>${f2(fArea(C,f))} m²</small></h3>${ctxH}<div class="mini"><span>Normal ${n.map(x=>f2(x)).join(', ')}</span><span>${f.m?esc(MATS[f.m]||f.m):'Sin acabado'}</span>${f.h?`<span>${f.h.length} hueco(s)</span>`:''}</div>`)}}
+  else if(ED.fsel.e.length===1&&!ED.fsel.f.length&&!ED.fsel.i.length){const e=E.get(ED.fsel.e[0]);if(e)items.push(`<h3>Arista<small>${f2(vDist(C.v[e.a],C.v[e.b]))} m</small></h3>${ctxH}<div class="mini"><span>${e.f.length} cara(s)</span><span>${C.sf.includes(e.k)?'Suavizada':'Visible'}</span></div>`)}
+  else if(ED.fsel.i.length===1&&!ED.fsel.f.length&&!ED.fsel.e.length){const I=(C.ins||[]).find(x=>x.id===ED.fsel.i[0]);const D=I&&F.defs[I.d];if(D){const uses=freeUses(I.d);items.push(`<h3>${esc(I.n||D.n)}<small>${D.kind==='c'?`Componente · ${uses} copia(s)`:'Grupo'}</small></h3>${ctxH}<div class="fields">${field('Nombre','fsN',I.n||D.n,'type="text" maxlength="80"','full')}
+      <label class="f" for="fsK">Tipo<select id="fsK"><option value="g" ${D.kind!=='c'?'selected':''}>Grupo</option><option value="c" ${D.kind==='c'?'selected':''}>Componente</option></select></label>
+      <label class="f" for="fsT">Etiqueta<select id="fsT"><option value="">Sin etiqueta</option>${F.tags.map(t=>`<option value="${t.id}" ${I.tag===t.id?'selected':''}>${esc(t.n)}</option>`).join('')}</select></label></div>
+      <div class="mini"><span>${D.f.length} caras</span>${D.ins.length?`<span>${D.ins.length} dentro</span>`:''}</div>`)}}
+  else items.push(`<h3>Selección<small>Forma libre</small></h3>${ctxH}<div class="mini">${ED.fsel.f.length?`<span>${ED.fsel.f.length} cara(s) · ${f2(ED.fsel.f.reduce((t,fi)=>t+(C.f[fi]?fArea(C,C.f[fi]):0),0))} m²</span>`:''}${ED.fsel.e.length?`<span>${ED.fsel.e.length} arista(s)</span>`:''}${ED.fsel.i.length?`<span>${ED.fsel.i.length} grupo(s)</span>`:''}</div>`);
+  const acts=[];if(ED.fsel.f.length||ED.fsel.e.length||ED.fsel.i.length)acts.push(['fsG','Agrupar (G)'],['fsC','Hacer componente']);if(ED.fsel.i.length)acts.push(['fsE','Explotar (Mayús+G)']);if(ED.fsel.i.length===1)acts.push(['fsIn','Editar por dentro']);
+  if(ED.fsel.i.length===1){const I=(C.ins||[]).find(x=>x.id===ED.fsel.i[0]);if(I&&freeUses(I.d)>1)acts.push(['fsU','Hacer único'])}if(ED.fsel.f.length)acts.push(['fsF','Invertir caras']);if(ED.fsel.e.length)acts.push(['fsS','Suavizar aristas'],['fsH','Mostrar aristas']);
+  if(ED.fsel.f.length||ED.fsel.i.length)acts.push(['fsP','Convertir en espacio']);acts.push(['fsD','Borrar (Supr)']);
+  card.innerHTML=items.join('')+`<div class="row" style="margin-top:8px;flex-wrap:wrap">${acts.map(([id,t])=>`<button class="btn sm" type="button" id="${id}">${esc(t)}</button>`).join('')}</div>`;
+  btn('fsX',()=>ed&&ed.exit());btn('fsG',()=>ed&&ed.makeGroup('g'));btn('fsC',()=>ed&&ed.makeGroup('c'));btn('fsE',()=>ed&&ed.explode());btn('fsIn',()=>ed&&ed.enter(ED.fsel.i[0]));btn('fsU',()=>ed&&ed.makeUnique(ED.fsel.i[0]));btn('fsF',()=>ed&&ed.flipFaces());
+  btn('fsS',()=>ed&&ed.softEdges(true));btn('fsH',()=>ed&&ed.softEdges(false));btn('fsP',()=>ed&&ed.toSpace());btn('fsD',()=>ed&&ed.delSel());
+  const nm=$('#fsN',card);if(nm)nm.onchange=()=>{const I=(C.ins||[]).find(x=>x.id===ED.fsel.i[0]);const D=I&&F.defs[I.d];if(!D)return;const v=sStr(nm.value,80);if(D.kind==='c')D.n=v||D.n;else{I.n=v||undefined;D.n=v||D.n}m3Changed()};
+  const kd=$('#fsK',card);if(kd)kd.onchange=()=>{const I=(C.ins||[]).find(x=>x.id===ED.fsel.i[0]);const D=I&&F.defs[I.d];if(D){D.kind=kd.value==='c'?'c':'g';m3Changed()}};
+  const tg=$('#fsT',card);if(tg)tg.onchange=()=>{const I=(C.ins||[]).find(x=>x.id===ED.fsel.i[0]);if(I){if(tg.value)I.tag=tg.value;else delete I.tag;m3Changed()}}}
+/* Esquema (grupos y componentes) y etiquetas. */
+function freeOutline(card){const F=S.free;const ED=M3ED;const rows=[];const walk=(C,depth,path)=>{(C.ins||[]).forEach(I=>{const D=F.defs[I.d];if(!D)return;rows.push({I,D,depth,path:path.concat(I.id)});if(depth<6)walk(D,depth+1,path.concat(I.id))})};walk(F.root,0,[]);
+  const tagRow=t=>`<div class="ftag"><input type="color" value="${t.c}" data-tc="${t.id}" aria-label="Color de ${esc(t.n)}"><input value="${esc(t.n)}" data-tn="${t.id}" maxlength="60" aria-label="Nombre de la etiqueta"><label class="chk"><input type="checkbox" data-tv="${t.id}" ${t.v!==false?'checked':''}> Ver</label><button class="btn sm ghost" type="button" data-td="${t.id}" aria-label="Quitar ${esc(t.n)}">✕</button></div>`;
+  card.innerHTML=`<h3>Esquema y etiquetas<small>${rows.length} objeto(s)</small></h3>${rows.length?`<div class="list fol">${rows.slice(0,300).map(r=>`<div class="li" data-ip="${r.path.join('/')}" style="padding-left:${8+r.depth*14}px;grid-template-columns:minmax(0,1fr) auto"><span>${r.D.kind==='c'?'◇':'▢'} ${esc(r.I.n||r.D.n)}${r.I.tag&&freeTag(r.I.tag)?` <small style="color:${freeTag(r.I.tag).c}">● ${esc(freeTag(r.I.tag).n)}</small>`:''}</span><label class="chk" title="Mostrar u ocultar"><input type="checkbox" data-ih="${r.I.id}" ${r.I.hid?'':'checked'}></label></div>`).join('')}</div>`:'<p class="hint" style="margin:0">Aquí aparecen los grupos y componentes. Elige geometría y presiona G para agrupar.</p>'}
+    <div style="margin-top:10px"><b style="font-size:12.5px">Etiquetas</b>${F.tags.map(tagRow).join('')}<div class="row" style="margin-top:6px"><button class="btn sm" type="button" id="ftAdd">Nueva etiqueta</button></div></div>`;
+  $$('[data-ip]',card).forEach(li=>li.onclick=e=>{if(e.target.closest('input,label'))return;const path=li.dataset.ip.split('/');ED.fctx=path.slice(0,-1);Object.assign(ED.fsel,{f:[],e:[],i:[path[path.length-1]]});if(M3){M3.refresh(['free']);M3.ed&&M3.ed.redraw&&M3.ed.redraw();M3.onSel&&M3.onSel()}});
+  $$('[data-ih]',card).forEach(c=>c.onchange=()=>{const r=freeFindIns(c.dataset.ih);if(r){if(c.checked)delete r.I.hid;else r.I.hid=true;m3Changed()}});
+  $$('[data-tc]',card).forEach(i=>i.onchange=()=>{const t=freeTag(i.dataset.tc);if(t){t.c=/^#[0-9a-f]{6}$/i.test(i.value)?i.value:t.c;m3Changed();freeOutline(card)}});
+  $$('[data-tn]',card).forEach(i=>i.onchange=()=>{const t=freeTag(i.dataset.tn);if(t){t.n=sStr(i.value,60)||t.n;m3Changed();freeOutline(card)}});
+  $$('[data-tv]',card).forEach(i=>i.onchange=()=>{const t=freeTag(i.dataset.tv);if(t){t.v=i.checked;m3Changed()}});
+  $$('[data-td]',card).forEach(b=>b.onclick=()=>{const id=b.dataset.td;S.free.tags=S.free.tags.filter(t=>t.id!==id);freeWalk(I=>{if(I.tag===id)delete I.tag});m3Changed();freeOutline(card)});
+  $('#ftAdd',card).onclick=()=>{const cols=['#d9822b','#2f6bff','#1f9d3a','#c22fc2','#7a4fd6','#10a6b8'];S.free.tags.push({id:freeId('t'),n:'Etiqueta '+(S.free.tags.length+1),c:cols[S.free.tags.length%cols.length],v:true});m3Changed();freeOutline(card)}}
 
 /* ================= 7 · Modelo 3D (three.js) =================
    El visor tiene partes fijas (renderizador, cámara, luces, sol, cielo, viento) y un grupo de contenido que se
@@ -4479,13 +5019,28 @@ function m3Build(T,host){
     G.add(new T.Line(new T.BufferGeometry().setFromPoints(ring),lmat(C.ink,.35)));
     [['N',0],['E',90],['S',180],['O',270]].forEach(([t,b])=>{const rr=SZ*0.75+6.5;const sp=label(t,3,isDark()?'#E4EAEC':'#16212B');sp.position.set(Math.sin(rad(b+N))*rr,0.6,-Math.cos(rad(b+N))*rr);G.add(sp)});return G}
   function notesGroup(){const G=new T.Group();G.userData.key='notes';(S.zoning.notes||[]).forEach(n=>{if(n.type!=='line'||n.x2==null)return;const z=(+n.z||0)+0.03;const L=new T.Line(new T.BufferGeometry().setFromPoints([W(n.x1,n.y1,z),W(n.x2,n.y2,z)]),lmat(isDark()&&(n.color==='#16212B'||!n.color)?0xd8e0e4:new T.Color(n.color||'#16212B').getHex()));L.userData={k:'note',id:n.id};G.add(L)});return G}
+  // forma libre: caras planas, aristas, grupos y componentes (coordenadas del proyecto, z hacia arriba)
+  function freeGroup(){const G=new T.Group();G.userData.key='free';const F=S.free;if(!F||!M3IMPORT.showMass)return G;G.matrixAutoUpdate=false;G.matrix.set(1,0,0,-cx,0,0,1,0,0,-1,0,cy,0,0,0,1);
+    const ctxP=(M3ED.fctx||[]).join('/');const tagOn=id=>{const t=id&&F.tags.find(x=>x.id===id);return!t||t.v!==false};const cache=new Map();
+    const matOf=k=>{if(k==='d')return st.mat==='maqueta'?smat(0xf6f3ec,{side:T.DoubleSide,roughness:.92}):smat(0xebe7de,{side:T.DoubleSide});if(k.startsWith('c:'))return smat(k.slice(2),{side:T.DoubleSide});const m=k.slice(2);return REAL&&st.mat==='real'?rmat(m,{side:T.DoubleSide}):smat(MAT_COL[m]||'#dddddd',{side:T.DoubleSide})};
+    const geoOf=Cn=>{if(cache.has(Cn))return cache.get(Cn);const groups=new Map();Cn.f.forEach((f,fi)=>{const k=f.c?'c:'+f.c:f.m?'m:'+f.m:'d';let g=groups.get(k);if(!g){g={p:[],n:[],uv:[],fm:[]};groups.set(k,g)}const pl=fPlane(Cn,f);const[U,V]=fBasis(pl.n);
+        fTris(Cn,f).forEach(tr=>{tr.forEach(i=>{const p=Cn.v[i];g.p.push(p[0],p[1],p[2]);g.n.push(pl.n[0],pl.n[1],pl.n[2]);g.uv.push(vDot(p,U),vDot(p,V))});g.fm.push(fi)})});
+      let geo=null,keys=[],fm=[];if(groups.size){const P=[],N=[],UV=[];geo=new T.BufferGeometry();let start=0;[...groups].forEach(([k,g],mi)=>{P.push(...g.p);N.push(...g.n);UV.push(...g.uv);fm.push(...g.fm);const cnt=g.p.length/3;geo.addGroup(start,cnt,mi);start+=cnt;keys.push(k)});
+        geo.setAttribute('position',new T.Float32BufferAttribute(P,3));geo.setAttribute('normal',new T.Float32BufferAttribute(N,3));geo.setAttribute('uv',new T.Float32BufferAttribute(UV,2));geo.computeBoundingSphere();geo.computeBoundingBox()}
+      const soft=new Set(Cn.sf);const L=[];fEdges(Cn).forEach(e=>{if(soft.has(e.k))return;const a=Cn.v[e.a],b=Cn.v[e.b];L.push(a[0],a[1],a[2],b[0],b[1],b[2])});let eg=null;if(L.length){eg=new T.BufferGeometry();eg.setAttribute('position',new T.Float32BufferAttribute(L,3))}
+      const r={geo,keys,fm:Int32Array.from(fm),eg};cache.set(Cn,r);return r};
+    const add=(Cn,parent,path)=>{const pk=path.join('/');const inside=!ctxP||pk===ctxP||pk.startsWith(ctxP+'/');const g=geoOf(Cn);
+      if(g.geo){const m=new T.Mesh(g.geo,g.keys.map(k=>inside?matOf(k):dimM()));m.castShadow=inside&&st.mat!=='vidrio';m.receiveShadow=true;m.userData={k:'fr',path:pk,fm:g.fm};parent.add(m)}
+      if(g.eg){const ls=new T.LineSegments(g.eg,lmat(inside?(REAL?0x2a2f33:C.ink):0x9aa0a6,inside?(REAL?.55:.9):.3));ls.userData.k0='fre';parent.add(ls)}
+      (Cn.ins||[]).forEach(I=>{if(I.hid||!tagOn(I.tag)||path.length>20)return;const D=F.defs[I.d];if(!D)return;const ig=new T.Group();ig.matrixAutoUpdate=false;const t=I.t;ig.matrix.set(t[0],t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8],t[9],t[10],t[11],0,0,0,1);ig.userData={k0:'fri',id:I.id};parent.add(ig);add(D,ig,path.concat(I.id))})};
+    add(F.root,G,[]);G.updateMatrixWorld(true);return G}
   function collectPicks(){picks=basePicks.slice();root.traverse(o=>{if(o.isMesh&&o.userData.k)picks.push(o)})}
   function buildContent(){disposeObj(root);root.clear();boxes.length=0;
     if(M3IMPORT.showMass)S.spaces.forEach(s=>{if(s.geo&&s.geo.length>=3)root.add(spaceGroup(s))});
-    root.add(ctxGroup(),roofGroup(),impGroup(),ringGroup(),notesGroup());collectPicks();need=true;if(ed)ed.content()}
+    root.add(freeGroup(),ctxGroup(),roofGroup(),impGroup(),ringGroup(),notesGroup());collectPicks();need=true;if(ed)ed.content()}
   // vuelve a armar solo lo indicado (mientras se arrastra); al terminar se arma todo
   function refreshKeys(keys){keys.forEach(k=>{const old=root.children.find(c=>c.userData.key===k);let nw=null;const[t,id]=k.split(':');
-      if(t==='sp'){const s=S.spaces.find(x=>x.id===id);if(s&&s.geo&&s.geo.length>=3&&M3IMPORT.showMass)nw=spaceGroup(s,true)}else if(k==='ctx'){const b0=boxes.length;nw=ctxGroup();boxes.length=b0}else if(k==='notes')nw=notesGroup();
+      if(t==='sp'){const s=S.spaces.find(x=>x.id===id);if(s&&s.geo&&s.geo.length>=3&&M3IMPORT.showMass)nw=spaceGroup(s,true)}else if(k==='ctx'){const b0=boxes.length;nw=ctxGroup();boxes.length=b0}else if(k==='notes')nw=notesGroup();else if(k==='free')nw=freeGroup();
       if(old){disposeObj(old);root.remove(old)}if(nw)root.add(nw)});collectPicks();need=true;if(ed)ed.content(true)}
   // cielo con imagen
   let dome=null,skyT=null;if(REAL&&st.skyImg!=='no'){skyT={dia:assetTex(T,'sky/dia.webp',()=>{need=true},MAT_COL.sky),tarde:assetTex(T,'sky/tarde.webp',()=>{need=true},'#e8c7a6')};Object.values(skyT).forEach(t=>{t.wrapS=T.RepeatWrapping;t.wrapT=T.ClampToEdgeWrapping});
@@ -4704,8 +5259,9 @@ view('modelo','09','3D',app=>{
     const rt=$('#m3Retry',viewC);if(rt)rt.onclick=()=>{toast('Buscando las texturas…');assetProbe(true)};
     $$('select[data-k]',viewC).forEach(x=>x.onchange=()=>{st[x.dataset.k]=x.value;changed();rebuild()});$('#m3PP',viewC).onchange=e=>{st.people=e.target.checked;changed();rebuild()}}
   const modC=styleCard('Acabado del modelo',st,[['walls','Opacidad de muros','range',[0.15,1,0.05]],['edges','Contornos','check'],['roof','Techo','select',[['flat','Plano'],['gable','Dos aguas'],['shed','Un agua']]],['pitch','Pendiente del techo °','range',[5,45,1]],['eave','Alero m','range',[0,1.5,0.05]],['quality','Calidad','select',[['auto','Automática'],['alta','Alta'],['baja','Ligera (celulares viejos)']]]],()=>{rebuild();const pm=$('#m3PM',viewC);if(pm)pm.disabled=st.roof==='flat'},{open:true});
+  const freeC=H(`<div class="card" id="m3Free" ${M3ED.mode==='libre'?'':'hidden'}></div>`);
   const impC=H(`<details class="card sty" id="m3Imp"><summary><h3>Modelo importado</h3></summary><div id="m3ImpIn"></div></details>`);
-  pn.append(selC,viewC,sunC,windC,modC,impC);
+  pn.append(selC,freeC,viewC,sunC,windC,modC,impC);
   function renderImp(){const el=$('#m3ImpIn',impC);const I=M3IMPORT;el.innerHTML=`<p class="hint" style="margin-top:0">${I.meshes.length?`${I.meshes.length} modelo(s) cargado(s). No se guarda en el proyecto: vuelve a abrirlo la próxima vez.`:'Exporta desde SketchUp, Revit o Rhino en OBJ o STL y ábrelo aquí para ver sus sombras y el viento.'}</p>
     <div class="fields"><label class="f" for="iU">Unidades del archivo<select id="iU">${[[1,'Metros'],[0.01,'Centímetros'],[0.001,'Milímetros'],[0.0254,'Pulgadas'],[0.3048,'Pies']].map(([k,l])=>`<option value="${k}" ${I.unit===k?'selected':''}>${l}</option>`).join('')}</select></label>
     <label class="f" for="iUp">Eje vertical<select id="iUp"><option value="z" ${I.up==='z'?'selected':''}>Z (SketchUp, Revit)</option><option value="y" ${I.up==='y'?'selected':''}>Y (Blender, Rhino OBJ)</option></select></label>
@@ -4734,6 +5290,7 @@ view('modelo','09','3D',app=>{
 },[
   {t:'Modelo 3D',d:'Tu zonificación se levanta en 3D con las alturas de cada espacio. Lo que dibujes o cambies aquí se actualiza en todo el proyecto: zonificación, fachadas, áreas, normativa y láminas.'},
   {sel:'#m3Tools',t:'Herramientas',d:'<b>Espacio</b> seleccionar · <b>H</b> mano · <b>L</b> línea · <b>A</b> arco · <b>R</b> rectángulo · <b>C</b> círculo · <b>P</b> empujar/tirar · <b>M</b> mover (Ctrl copia) · <b>Q</b> rotar · <b>F</b> equidistancia · <b>T</b> medir · <b>B</b> pintar · <b>E</b> borrar · <b>G</b> agrupar. Mientras usas una herramienta escribe una medida (por ejemplo <b>3.5</b>, <b>4,3</b> o <b>-2</b> para el otro lado) y pulsa Enter. Las líneas de colores te ayudan a alinear: rojo y verde son los ejes del terreno, azul la vertical y magenta paralela o perpendicular a una arista. Línea, Arco, Círculo, Rotar, Equidistancia y Agrupar aparecen en el modo completo.'},
+  {sel:'.m3mode',t:'Espacios o forma libre',d:'<b>Espacios</b> dibuja locales del programa (con zona, muros, puertas y ventanas). <b>Forma libre</b> es un modelador completo: aristas y caras en cualquier plano, Empujar/Tirar en cualquier cara (hasta atravesar abre un hueco), Escala, Sígueme, grupos y componentes, etiquetas y esquema. Lo que modeles libre se vuelve local con <b>Convertir en espacio</b>.'},
   {sel:'#m3Board .fig',t:'Objetos y forma',d:'Cada espacio es un objeto: con Seleccionar un clic lo elige y arrastrar hace un recuadro (hacia la derecha elige lo que queda dentro y hacia la izquierda lo que toca). <b>Doble clic</b> entra a editar su forma: ahí Mover estira esquinas y muros, y Borrar quita una esquina. Borrar la línea que separa dos espacios los une. El <b>clic derecho</b> abre un menú (en el celular, mantén presionado).'},
   {sel:'.m3cube',t:'Cubo de orientación',d:'Te dice desde dónde estás mirando. Toca una cara, una arista o una esquina para ir a esa vista; arrástralo para girar. La casita regresa a la vista inicial. Las letras N, S, E y O muestran el norte real de tu terreno.'},
   {sel:'.m3lay',t:'Capas: sol, sombras y viento',d:'Prende o apaga el recorrido del sol, las sombras y el viento cada uno por separado, o todo a la vez con <b>Todo</b>. El reloj cambia el mes y la hora, y <b>Recorrer el día</b> mueve el sol para ver cómo avanzan las sombras (ideal para presentar).'},
@@ -5741,7 +6298,8 @@ function openReport(){const vw=current?current.label:'';const b=H(`<div><p style
   setTimeout(()=>$('#rpW',b).focus(),50)}
 function shortcuts(){modal('Atajos de teclado',H(`<div><div class="tbl-wrap"><table class="t"><tbody>
   ${[['Ctrl + Z','Deshacer'],['Ctrl + Y  /  Ctrl + Shift + Z','Rehacer'],['Ctrl + S','Guardar proyecto'],['Ctrl + O','Abrir archivo'],['Ctrl + E','Exportar'],['Ctrl + rueda / dos dedos','Acercar y alejar dibujos'],['Arrastrar el fondo','Mover la vista'],['Flechas (Shift = más)','Mover lo seleccionado'],['Supr','Borrar lo seleccionado'],['Ctrl + D','Duplicar'],['Esc','Soltar selección o cancelar'],['V R P T F C','Herramientas de zonificación'],['[  ]','Mandar atrás o al frente (lámina)']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div><h3 style="margin:14px 0 6px">Modelo 3D</h3><div class="tbl-wrap"><table class="t"><tbody>
-  ${[['Espacio','Seleccionar (Mayús + clic alterna, Ctrl + clic suma, Ctrl + A todo)'],['Arrastrar con Seleccionar','Recuadro: hacia la derecha elige lo de adentro; hacia la izquierda lo que toca'],['Clic derecho','Menú (en el celular, mantener presionado)'],['H','Mano: desplazar la vista'],['L  /  A','Línea / arco de dos puntos (tangente a la línea anterior)'],['R','Rectángulo (sobre un muro: ventana o puerta)'],['C','Círculo; escribe 6s para un hexágono'],['P','Empujar o tirar (Ctrl crea un volumen encima; doble clic repite)'],['M','Mover (Ctrl copia; luego 3x repite o /3 reparte)'],['Q','Rotar (se pega cada 15°; Ctrl copia)'],['F','Equidistancia'],['T','Medir y dejar guías'],['B','Pintar (Alt + clic copia un acabado)'],['E','Borrar (sobre la línea entre dos espacios, los une)'],['G  /  Mayús + G','Agrupar / desagrupar'],['Doble clic','Editar la forma o entrar a un grupo (Esc para salir)'],['Escribir 3.5  o  4,3  y Enter','Medida exacta (-2 va hacia el otro lado)'],['→  ←  ↑','Fijar eje rojo, verde o azul'],['Botón central / Mayús + central','Girar / desplazar'],['Rueda','Acercar hacia el puntero'],['Mayús + Z','Ver todo'],['O  /  I','Entrar / salir de pantalla completa']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div></div>`))}
+  ${[['Espacio','Seleccionar (Mayús + clic alterna, Ctrl + clic suma, Ctrl + A todo)'],['Arrastrar con Seleccionar','Recuadro: hacia la derecha elige lo de adentro; hacia la izquierda lo que toca'],['Clic derecho','Menú (en el celular, mantener presionado)'],['H','Mano: desplazar la vista'],['L  /  A','Línea / arco de dos puntos (tangente a la línea anterior)'],['R','Rectángulo (sobre un muro: ventana o puerta)'],['C','Círculo; escribe 6s para un hexágono'],['P','Empujar o tirar (Ctrl crea un volumen encima; doble clic repite)'],['M','Mover (Ctrl copia; luego 3x repite o /3 reparte)'],['Q','Rotar (se pega cada 15°; Ctrl copia)'],['F','Equidistancia'],['T','Medir y dejar guías'],['B','Pintar (Alt + clic copia un acabado)'],['E','Borrar (sobre la línea entre dos espacios, los une)'],['G  /  Mayús + G','Agrupar / desagrupar'],['Doble clic','Editar la forma o entrar a un grupo (Esc para salir)'],['Escribir 3.5  o  4,3  y Enter','Medida exacta (-2 va hacia el otro lado)'],['→  ←  ↑','Fijar eje rojo, verde o azul'],['Botón central / Mayús + central','Girar / desplazar'],['Rueda','Acercar hacia el puntero'],['Mayús + Z','Ver todo'],['O  /  I','Entrar / salir de pantalla completa']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div><h3 style="margin:14px 0 6px">Forma libre (3D)</h3><div class="tbl-wrap"><table class="t"><tbody>
+  ${[['L','Línea en cualquier dirección (un contorno plano cerrado se vuelve cara)'],['A','Arco de dos puntos sobre la cara donde empiezas'],['R  /  C','Rectángulo / círculo sobre el suelo o cualquier cara'],['P','Empujar o tirar cualquier cara (hasta atravesar abre un hueco; Ctrl deja la cara de arranque)'],['M  /  Q','Mover / rotar lo elegido o lo que tocas (Ctrl copia; 3x repite)'],['S','Escala (escribe 2, 0.5 o 1,1,2)'],['F','Equidistancia en cualquier cara'],['J','Sígueme: elige el camino y toca el perfil'],['B  /  E','Pintar / borrar'],['G  /  Mayús + G','Agrupar / explotar'],['Doble clic','Entrar a un grupo (Esc o doble clic fuera para salir)'],['3.5+0.15  ·  4/3','La caja de medidas hace cuentas']].map(([k,d])=>`<tr><td class="txt num">${esc(k)}</td><td class="txt">${esc(d)}</td></tr>`).join('')}</tbody></table></div></div>`))}
 function updModeMenu(){const b=$('#mMode');if(b)b.textContent=isSimple()?'Cambiar a modo completo':'Cambiar a modo sencillo'}
 async function boot(){
   await storageInit();restoreState();applyPrefs();applyMode();updModeMenu();$('#btnBell').onclick=openBell;$$('[data-mode-set]').forEach(b=>b.onclick=()=>{setMode(b.dataset.modeSet);updModeMenu()});buildRail();syncDerived();updAvatar();$('#btnProfile').onclick=()=>settings('perfil');const setTopH=()=>document.documentElement.style.setProperty('--top-h',$('.top').offsetHeight+'px');setTopH();addEventListener('resize',setTopH);
