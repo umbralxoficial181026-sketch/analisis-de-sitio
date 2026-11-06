@@ -1,0 +1,14 @@
+{
+ "paquetes": [
+  {
+   "id": "bcs-la-paz",
+   "nombre": "Baja California Sur · La Paz",
+   "estado": "Baja California Sur",
+   "municipio": "La Paz",
+   "lat": 24.1426,
+   "lon": -110.3128,
+   "radio": 80,
+   "revisado": "2026-11"
+  }
+ ]
+}

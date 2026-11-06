@@ -1,0 +1,179 @@
+{
+ "id": "bcs-la-paz",
+ "nombre": "Baja California Sur · La Paz",
+ "estado": "Baja California Sur",
+ "municipio": "La Paz",
+ "revisado": "2026-11",
+ "fuentes": {
+  "atlas": "Atlas Estatal de Riesgo de Baja California Sur (Gobierno de BCS y UABCS, 2024)",
+  "perfil": "Perfil Estatal de Riesgos de BCS 2025, con niveles del Atlas Nacional de Riesgos"
+ },
+ "riesgos": [
+  {
+   "k": "ciclon",
+   "lv": "alto",
+   "nota": "Baja California Sur es el estado con mayor porcentaje de impacto de ciclones tropicales en las últimas cinco décadas; al menos un huracán por año se acerca a menos de 250 km de su costa. Liza (1976) causó el mayor desastre del estado en La Paz y Odile (2014) llegó con vientos de hasta 205 km/h.",
+   "f": "atlas",
+   "ref": "pp. 44–45"
+  },
+  {
+   "k": "inund",
+   "lv": "alto",
+   "nota": "Los arroyos corren de julio a octubre y la ciudad no tiene drenaje pluvial: lluvias moderadas generan escurrimientos que cortan calles por horas. Evita construir en cauces y zonas bajas.",
+   "f": "atlas",
+   "ref": "pp. 14 y 19"
+  },
+  {
+   "k": "marea",
+   "lv": "medio",
+   "nota": "Los modelos prevén sobreelevaciones del mar de hasta 2 m en la bahía de La Paz durante huracanes. Aplica sobre todo a predios cercanos a la costa.",
+   "f": "atlas",
+   "ref": "p. 45"
+  },
+  {
+   "k": "sismo",
+   "lv": "alto",
+   "nota": "El Atlas Nacional de Riesgos clasifica a los cinco municipios de Baja California Sur con riesgo alto de sismos; en 2025 se registraron 359 sismos de magnitud 1.1 a 4.3 sin daños importantes.",
+   "f": "perfil",
+   "ref": ""
+  },
+  {
+   "k": "calor",
+   "lv": "muy alto",
+   "nota": "Riesgo muy alto de ondas de calor en los cinco municipios. La máxima diaria registrada en La Paz es de 44.0 °C (1991–2020) y en verano se superan con frecuencia los 40 °C.",
+   "f": "perfil",
+   "ref": "y Atlas Estatal, p. 16"
+  },
+  {
+   "k": "sequia",
+   "lv": "alto",
+   "nota": "Temporada seca de mayo a julio; el acuífero de La Paz está sobreexplotado y tiene intrusión salina. Conviene captar lluvia y reducir el consumo.",
+   "f": "atlas",
+   "ref": "pp. 20, 39 y 47"
+  },
+  {
+   "k": "tsunami",
+   "lv": "medio",
+   "nota": "Riesgo medio según el Atlas Nacional de Riesgos; no hay registros de tsunamis en la historia reciente del estado.",
+   "f": "perfil",
+   "ref": ""
+  },
+  {
+   "k": "mar",
+   "lv": "medio",
+   "nota": "Para La Paz se proyecta un aumento del nivel del mar de 0.23 a 0.26 m hacia 2050 y de 0.62 a 0.82 m hacia 2100.",
+   "f": "atlas",
+   "ref": "p. 41"
+  }
+ ],
+ "flora": [
+  {
+   "k": "mezquite",
+   "n": "Mezquite",
+   "sci": "Prosopis articulata",
+   "h": "3 a 8 m",
+   "uso": "Sombra amplia y ligera; nativo, poco riego",
+   "riego": "Bajo"
+  },
+  {
+   "k": "palobrea",
+   "n": "Palo brea",
+   "sci": "Parkinsonia praecox",
+   "h": "3 a 8 m",
+   "uso": "Sombra ligera; tronco verde ornamental",
+   "riego": "Bajo"
+  },
+  {
+   "k": "paloblanco",
+   "n": "Palo blanco",
+   "sci": "Lysiloma candidum",
+   "h": "5 a 10 m",
+   "uso": "Sombra ligera; tronco blanco; endémico de BCS",
+   "riego": "Bajo"
+  },
+  {
+   "k": "paloarco",
+   "n": "Palo de arco",
+   "sci": "Tecoma stans",
+   "h": "2 a 6 m",
+   "uso": "Ornato, flores amarillas; atrae colibríes",
+   "riego": "Bajo a medio"
+  },
+  {
+   "k": "torote",
+   "n": "Torote",
+   "sci": "Bursera microphylla",
+   "h": "2 a 5 m",
+   "uso": "Ornato escultórico; jardín seco",
+   "riego": "Muy bajo"
+  },
+  {
+   "k": "ciruelo",
+   "n": "Ciruelo cimarrón",
+   "sci": "Cyrtocarpa edulis",
+   "h": "4 a 8 m",
+   "uso": "Sombra y fruto; nativo",
+   "riego": "Bajo"
+  },
+  {
+   "k": "cardon",
+   "n": "Cardón",
+   "sci": "Pachycereus pringlei",
+   "h": "8 a 15 m",
+   "uso": "Hito del paisaje; jardín seco",
+   "riego": "Muy bajo"
+  },
+  {
+   "k": "pitaya",
+   "n": "Pitaya dulce",
+   "sci": "Stenocereus thurberi",
+   "h": "3 a 7 m",
+   "uso": "Barrera y paisaje; fruto comestible",
+   "riego": "Muy bajo"
+  },
+  {
+   "k": "paloadan",
+   "n": "Palo adán",
+   "sci": "Fouquieria diguetii",
+   "h": "2 a 5 m",
+   "uso": "Barrera viva y ornato",
+   "riego": "Muy bajo"
+  },
+  {
+   "k": "damiana",
+   "n": "Damiana",
+   "sci": "Turnera diffusa",
+   "h": "0.5 a 2 m",
+   "uso": "Arbusto aromático; cubresuelo",
+   "riego": "Bajo"
+  },
+  {
+   "k": "lomboy",
+   "n": "Lomboy",
+   "sci": "Jatropha cinerea",
+   "h": "1 a 3 m",
+   "uso": "Arbusto para setos bajos",
+   "riego": "Muy bajo"
+  },
+  {
+   "k": "palmablanca",
+   "n": "Palma de abanico",
+   "sci": "Washingtonia robusta",
+   "h": "15 a 25 m",
+   "uso": "Alineamientos y paisaje; nativa de los oasis",
+   "riego": "Medio"
+  },
+  {
+   "k": "palmataco",
+   "n": "Palma de taco",
+   "sci": "Brahea brandegeei",
+   "h": "8 a 12 m",
+   "uso": "Paisaje; endémica del sur de la península",
+   "riego": "Bajo a medio"
+  }
+ ],
+ "refs": [
+  "Gobierno del Estado de Baja California Sur, & Universidad Autónoma de Baja California Sur. (2024). *Atlas estatal de riesgo de Baja California Sur*. https://atlasriesgo.uabcs.mx",
+  "Secretaría de Salud de Baja California Sur. (2025). *Perfil estatal de riesgos de Baja California Sur 2025*. https://ssbcs.gob.mx/pdf/2025/vigilancia/Perfil_Estatal_de_Riesgos_BCS_2025.pdf"
+ ]
+}

@@ -1,17 +1,13 @@
 {
- "version": "1.4.0",
+ "version": "1.5.0",
  "date": "2026-11-05",
  "notes": [
-  "Nuevo apartado 14 · Documento: arma tu metodología con capítulos y preguntas guía, y descárgala en Word con formato APA 7.",
-  "Plantillas incluidas: metodología de diseño completa (usuario, factibilidad, marcos físico, urbano, social, psicológico, económico, legal y técnico, programa, zonificación y concepto), análisis de sitio y memoria descriptiva. Guarda la tuya",
-  "Espacios para tus fotos en cada marco (una o varias por renglón, con pie y fuente), tablas para llenar con columnas de imagen y pegado desde Excel.",
-  "Datos del proyecto que se actualizan solos: textos del terreno y del clima, dibujos, tablas, marco legal con artículos y la ficha técnica del mobiliario con la foto de cada mueble (se sube en Programa).",
-  "Word APA 7: portada de estudiante o de escuela con logo, índice con número de página, títulos por nivel, doble espacio y sangría, figuras y tablas numeradas con nota, recuadros para las fotos que falten y referencias con sangría francesa.",
-  "Referencias: armador APA 7 (libro, artículo, página web, ley o reglamento, tesis), botón «Citar» y revisión de citas sin referencia antes de entregar.",
-  "Vista previa del documento como hoja de Word y lista de pendientes (secciones vacías, fotos que faltan, fuentes de figuras)."
+  "Nuevo apartado Medio físico: macrolocalización automática (México, tu estado y tu terreno), topografía con curvas de nivel, pendiente, perfil y corte y relleno, tipo de suelo con cimentación sugerida, riesgos naturales y catálogo de flora y",
+  "Datos de la región por municipio: para La Paz, riesgos (huracanes, inundación, sismo, calor, sequía…) con su fuente oficial y un catálogo de vegetación nativa. Todo es editable.",
+  "Nuevo apartado Bioclimática: carta de Givoni con las horas del año que resuelve cada estrategia, tablas de Mahoney con sus recomendaciones de diseño y grados-día de calefacción y enfriamiento.",
+  "Sol: mapa de horas de sol directo en el terreno para los solsticios y el equinoccio, con la sombra de vecinos, árboles y tu proyecto.",
+  "Documento: las plantillas ya traen todo lo nuevo (mapas, topografía, Givoni, Mahoney, horas de sol, riesgos, suelo, flora y fauna) y el Excel suma esas hojas."
  ],
- "fixes": [
-  "Las referencias ya llevan cursivas donde APA las pide (en la bibliografía, el Excel y el Word)."
- ],
+ "fixes": [],
  "aviso": null
 }
