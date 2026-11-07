@@ -1,13 +1,9 @@
 {
- "version": "2.0.0",
- "date": "2026-11-06",
+ "version": "2.0.2",
+ "date": "2026-11-07",
  "notes": [
-  "Nuevo modo Forma libre en el 3D: un modelador completo con aristas y caras en cualquier plano. Una línea parte una cara y un contorno plano cerrado se vuelve cara solo.",
-  "Empujar/Tirar en cualquier cara, también inclinadas; hacia adentro hasta atravesar abre un hueco (ventanas en muros). Ctrl deja la cara de arranque y doble clic repite la medida.",
-  "Herramientas nuevas: Escala, Sígueme (barrer un perfil por un camino) y Equidistancia, rectángulo, círculo y arco sobre cualquier cara. Mover, rotar y escalar estiran caras, aristas y vértices.",
-  "Grupos y componentes (copias que cambian juntas): doble clic para editar por dentro, explotar y hacer único. Etiquetas con color y un esquema para ocultar y encontrar objetos.",
-  "Convertir en espacio: lo que modeles libre se vuelve local del programa (zonificación, cuadro de áreas y normativa). OBJ, STL, DAE, DXF e IFC exportan también la forma libre.",
-  "La caja de medidas hace cuentas (3.5+0.15, 4/3) y los avisos ya no estorban los clics en el visor."
+  "Correcciones generales y mejoras de estabilidad en toda la página.",
+  "Si algún día la página no termina de abrir tu proyecto, la siguiente vez abre de todos modos y te ofrece recuperarlo o descargarlo."
  ],
  "fixes": [],
  "aviso": null
