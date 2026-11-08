@@ -1,14 +1,13 @@
 {
- "version": "2.2.0",
+ "version": "2.3.0",
  "date": "2026-11-07",
  "notes": [
-  "Cada apartado tiene su propio estilo: acabado, grosor de líneas y paleta en «Estilo de este apartado». Ya no cambias todos los dibujos a la vez sin querer.",
-  "Boceto a mano en todos los dibujos: matriz, gráficas, tablas y planos se repasan a mano con letra a mano (la puedes apagar).",
-  "Fachadas y cortes en boceto: árboles y figura humana dibujados a mano, sin fotos ni texturas.",
-  "La paleta de cada apartado cambia solo sus colores: confort y lluvia en Clima, vientos en Vientos, zonas en Programa y Zonificación.",
-  "Carta solar y horas de sol a un tamaño de lectura más cómodo en pantallas grandes.",
-  "Normativa de La Paz con las seis zonas habitacionales del PDU: lote y frente mínimos, restricciones, altura, niveles y cajones, con ficha y revisión automática.",
-  "3D: sin letras X, Y, Z flotando; las líneas de colores de los ejes se quedan."
+  "Estilo por dibujo: en «Estilo de los dibujos» eliges si el cambio va a todo el apartado o a un solo dibujo (rosa de vientos, Givoni, matriz, agua…).",
+  "Cada dibujo tiene su botón Personalizar que te lleva directo a su estilo.",
+  "Medio físico y Recursos ya tienen su propio estilo de dibujos.",
+  "Todo abre en «Plano y limpio»; el boceto a mano y la sombra suave solo aparecen donde tú los eliges.",
+  "El panel de la derecha siempre cabe en la pantalla: ya no se corta abajo ni hay que bajar la página para verlo completo.",
+  "Ajustes → Apariencia: el acabado se aplica de una vez a todos los apartados."
  ],
  "fixes": [],
  "aviso": null
