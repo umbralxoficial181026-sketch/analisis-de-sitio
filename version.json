@@ -1,9 +1,15 @@
 {
- "version": "2.0.2",
+ "version": "2.1.0",
  "date": "2026-11-07",
  "notes": [
-  "Correcciones generales y mejoras de estabilidad en toda la página.",
-  "Si algún día la página no termina de abrir tu proyecto, la siguiente vez abre de todos modos y te ofrece recuperarlo o descargarlo."
+  "Panel con dos partes, Datos y Diseño: el selector de arriba salta al diseño de cada apartado, y en computadora el panel se queda fijo junto al dibujo para que nunca lo pierdas de vista.",
+  "Botón «Personalizar» en cada dibujo. En el plano de sitio, toca una parte del dibujo (sol, viento, terreno, vecinos…) y te lleva directo a su ajuste.",
+  "Plano de sitio a tu gusto: estilos rápidos (Color, Técnico, Presentación, Solo lo esencial), prender o apagar cada capa, colores propios, tamaño de letra y grosor del sol.",
+  "Vista previa flotante: si el dibujo se sale de la pantalla mientras ajustas, aparece una miniatura que se actualiza sola; tócala para volver al dibujo.",
+  "La paleta, el acabado y el grosor de líneas de todos los dibujos ahora también están en Diseño, y el modo sencillo ya muestra las opciones de diseño.",
+  "Documento: las negritas, cursivas y listas se ven como quedarán (sin asteriscos) y los botones se prenden y apagan; también Ctrl+B y Ctrl+I.",
+  "Horas de sol rehechas: degradado suave, curvas de 2, 4, 6 y 8 h, vecinos, árboles y la sombra real a la hora que elijas, con ▶ para recorrer el día.",
+  "Gráficas de clima más limpias (barras con degradado, curvas suaves, confort por hora continuo) y tablas más claras: colores de confort, barras de lluvia y de viento."
  ],
  "fixes": [],
  "aviso": null
