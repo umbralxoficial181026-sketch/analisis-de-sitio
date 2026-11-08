@@ -1,15 +1,14 @@
 {
- "version": "2.1.0",
+ "version": "2.2.0",
  "date": "2026-11-07",
  "notes": [
-  "Panel con dos partes, Datos y Diseño: el selector de arriba salta al diseño de cada apartado, y en computadora el panel se queda fijo junto al dibujo para que nunca lo pierdas de vista.",
-  "Botón «Personalizar» en cada dibujo. En el plano de sitio, toca una parte del dibujo (sol, viento, terreno, vecinos…) y te lleva directo a su ajuste.",
-  "Plano de sitio a tu gusto: estilos rápidos (Color, Técnico, Presentación, Solo lo esencial), prender o apagar cada capa, colores propios, tamaño de letra y grosor del sol.",
-  "Vista previa flotante: si el dibujo se sale de la pantalla mientras ajustas, aparece una miniatura que se actualiza sola; tócala para volver al dibujo.",
-  "La paleta, el acabado y el grosor de líneas de todos los dibujos ahora también están en Diseño, y el modo sencillo ya muestra las opciones de diseño.",
-  "Documento: las negritas, cursivas y listas se ven como quedarán (sin asteriscos) y los botones se prenden y apagan; también Ctrl+B y Ctrl+I.",
-  "Horas de sol rehechas: degradado suave, curvas de 2, 4, 6 y 8 h, vecinos, árboles y la sombra real a la hora que elijas, con ▶ para recorrer el día.",
-  "Gráficas de clima más limpias (barras con degradado, curvas suaves, confort por hora continuo) y tablas más claras: colores de confort, barras de lluvia y de viento."
+  "Cada apartado tiene su propio estilo: acabado, grosor de líneas y paleta en «Estilo de este apartado». Ya no cambias todos los dibujos a la vez sin querer.",
+  "Boceto a mano en todos los dibujos: matriz, gráficas, tablas y planos se repasan a mano con letra a mano (la puedes apagar).",
+  "Fachadas y cortes en boceto: árboles y figura humana dibujados a mano, sin fotos ni texturas.",
+  "La paleta de cada apartado cambia solo sus colores: confort y lluvia en Clima, vientos en Vientos, zonas en Programa y Zonificación.",
+  "Carta solar y horas de sol a un tamaño de lectura más cómodo en pantallas grandes.",
+  "Normativa de La Paz con las seis zonas habitacionales del PDU: lote y frente mínimos, restricciones, altura, niveles y cajones, con ficha y revisión automática.",
+  "3D: sin letras X, Y, Z flotando; las líneas de colores de los ejes se quedan."
  ],
  "fixes": [],
  "aviso": null
