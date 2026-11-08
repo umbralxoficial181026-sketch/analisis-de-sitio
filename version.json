@@ -1,13 +1,9 @@
 {
- "version": "2.3.0",
+ "version": "2.3.1",
  "date": "2026-11-07",
  "notes": [
-  "Estilo por dibujo: en «Estilo de los dibujos» eliges si el cambio va a todo el apartado o a un solo dibujo (rosa de vientos, Givoni, matriz, agua…).",
-  "Cada dibujo tiene su botón Personalizar que te lleva directo a su estilo.",
-  "Medio físico y Recursos ya tienen su propio estilo de dibujos.",
-  "Todo abre en «Plano y limpio»; el boceto a mano y la sombra suave solo aparecen donde tú los eliges.",
-  "El panel de la derecha siempre cabe en la pantalla: ya no se corta abajo ni hay que bajar la página para verlo completo.",
-  "Ajustes → Apariencia: el acabado se aplica de una vez a todos los apartados."
+  "Nuevo aviso de derechos de autor en el pie de página y en Acerca de.",
+  "Página más ligera y rápida de cargar."
  ],
  "fixes": [],
  "aviso": null
