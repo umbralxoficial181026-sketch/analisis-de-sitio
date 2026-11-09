@@ -1,9 +1,13 @@
 {
- "version": "2.3.1",
- "date": "2026-11-07",
+ "version": "2.4.0",
+ "date": "2026-11-08",
  "notes": [
-  "Nuevo aviso de derechos de autor en el pie de página y en Acerca de.",
-  "Página más ligera y rápida de cargar."
+  "Cada dato dice de dónde sale: fuente oficial, referencia, estimación, dato tuyo o editado por ti.",
+  "Normativa: aviso claro de qué municipios están revisados y cuáles usan valores de referencia.",
+  "Nueva sección «Agua, drenaje y luz (CONAGUA y CFE)» con las normas que aplican a toda vivienda y su cita oficial.",
+  "Recursos: la dotación de agua sale de la tabla de CONAGUA según tu clima y la clase de vivienda; cada cálculo explica su método y su fuente.",
+  "Nuevo «Aviso legal» y recordatorio de verificar siempre la información con tu municipio y un profesional responsable.",
+  "El reporte de normativa exportado incluye la nota de verificación."
  ],
  "fixes": [],
  "aviso": null
