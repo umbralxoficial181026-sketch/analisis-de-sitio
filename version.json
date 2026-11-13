@@ -1,13 +1,10 @@
 {
- "version": "2.4.0",
- "date": "2026-11-08",
+ "version": "2.4.1",
+ "date": "2026-11-12",
  "notes": [
-  "Cada dato dice de dónde sale: fuente oficial, referencia, estimación, dato tuyo o editado por ti.",
-  "Normativa: aviso claro de qué municipios están revisados y cuáles usan valores de referencia.",
-  "Nueva sección «Agua, drenaje y luz (CONAGUA y CFE)» con las normas que aplican a toda vivienda y su cita oficial.",
-  "Recursos: la dotación de agua sale de la tabla de CONAGUA según tu clima y la clase de vivienda; cada cálculo explica su método y su fuente.",
-  "Nuevo «Aviso legal» y recordatorio de verificar siempre la información con tu municipio y un profesional responsable.",
-  "El reporte de normativa exportado incluye la nota de verificación."
+  "Nuevo proyecto de ejemplo «Casa Patio»: vivienda de dos niveles alrededor de un patio con árbol, en un lote tipo de 12.5 × 20 m de La Paz (zona H-IM).",
+  "El ejemplo usa todas las herramientas: dos plantas, mobiliario, relaciones por nivel, puertas y ventanas, vecinos y árboles, flora y fauna, concepto y documento.",
+  "En la página publicada, el ejemplo carga solo los datos revisados de La Paz: medio físico y normativa de la zona H-IM, que cumple sin observaciones graves."
  ],
  "fixes": [],
  "aviso": null
