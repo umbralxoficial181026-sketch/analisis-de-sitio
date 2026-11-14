@@ -1,11 +1,10 @@
 {
- "version": "2.4.1",
- "date": "2026-11-12",
+ "version": "2.4.2",
+ "date": "2026-11-14",
  "notes": [
-  "Nuevo proyecto de ejemplo «Casa Patio»: vivienda de dos niveles alrededor de un patio con árbol, en un lote tipo de 12.5 × 20 m de La Paz (zona H-IM).",
-  "El ejemplo usa todas las herramientas: dos plantas, mobiliario, relaciones por nivel, puertas y ventanas, vecinos y árboles, flora y fauna, concepto y documento.",
-  "El documento del ejemplo viene completo: los 68 capítulos desarrollados con los datos del terreno, tablas de usuarios, análogos, colores e instalaciones, y referencias en APA 7.",
-  "En la página publicada, el ejemplo carga solo los datos revisados de La Paz: medio físico y normativa de la zona H-IM, que cumple sin observaciones graves."
+  "Importa tus modelos de SketchUp al 3D: COLLADA (.dae), el .zip de SketchUp web, STL, OBJ+MTL, KMZ, FBX, 3DS y glTF. Entran como grupo editable, con sus colores, componentes y medidas reales.",
+  "Arrastra el archivo encima del modelo o usa «Importar SketchUp / 3D». Si subes un .skp te decimos cómo exportarlo. Los modelos muy pesados entran como referencia para que la página no se trabe.",
+  "Todo se procesa en tu navegador: tu modelo no se sube a ningún lado."
  ],
  "fixes": [],
  "aviso": null
